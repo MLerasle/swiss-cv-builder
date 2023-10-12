@@ -23,3 +23,25 @@ export const experienceData = {
   toYear: "",
   description: "",
 };
+
+export const trainingData = {
+  school: "",
+  degree: "",
+  field: "",
+  grade: "",
+  country: "",
+  city: "",
+  fromMonth: "",
+  fromYear: "",
+  toMonth: "",
+  toYear: "",
+  description: "",
+};
+
+export const referenceData = {
+  name: "",
+  company: "",
+  position: "",
+  email: "",
+  tel: "",
+};

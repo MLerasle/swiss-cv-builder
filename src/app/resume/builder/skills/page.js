@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { Button, Input } from "@nextui-org/react";
 
@@ -86,7 +87,10 @@ export default function Skills() {
         </div>
       </div>
 
-      <div className="flex justify-end my-8">
+      <div className="flex justify-between items-center my-8">
+        <Link href="/resume/builder/work-experiences" passHref legacyBehavior>
+          <Button type="button">Previous</Button>
+        </Link>
         <Button color="primary" type="submit">
           Next
         </Button>
