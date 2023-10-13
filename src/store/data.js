@@ -9,6 +9,7 @@ export const personalData = {
   nip: "",
   city: "",
   country: "",
+  languages: [{ language: "", level: "" }],
 };
 
 export const experienceData = {
@@ -44,4 +45,11 @@ export const referenceData = {
   position: "",
   email: "",
   tel: "",
+};
+
+export const certificationData = {
+  title: "",
+  issuer: "",
+  month: "",
+  year: "",
 };
