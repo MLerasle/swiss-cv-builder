@@ -5,8 +5,6 @@ export const personalData = {
   tel: "",
   nationality: "",
   permit: "",
-  address: "",
-  nip: "",
   city: "",
   country: "",
   languages: [{ language: "", level: "" }],
