@@ -2,6 +2,7 @@ import { Controller } from "react-hook-form";
 import { Button, Input, Select, SelectItem } from "@nextui-org/react";
 
 import { months, years } from "@/lib/dates";
+import { TrashIcon } from "@heroicons/react/24/solid";
 
 export default function FormCertification({ control, errors, index, remove }) {
   return (
@@ -13,7 +14,9 @@ export default function FormCertification({ control, errors, index, remove }) {
           rules={{
             required: true,
           }}
-          render={({ field }) => <Input label="Title" isRequired {...field} />}
+          render={({ field }) => (
+            <Input label="Nom" autoFocus isRequired {...field} />
+          )}
         />
         {errors.title && <span>Title is missing.</span>}
 
@@ -24,7 +27,12 @@ export default function FormCertification({ control, errors, index, remove }) {
             required: true,
           }}
           render={({ field }) => (
-            <Input label="Issuer" isRequired className="my-8" {...field} />
+            <Input
+              label="Organisme de délivrance"
+              isRequired
+              className="my-8"
+              {...field}
+            />
           )}
         />
         {errors.issuer && <span>Issuer is missing.</span>}
@@ -72,8 +80,13 @@ export default function FormCertification({ control, errors, index, remove }) {
         </div>
 
         <div className="flex justify-end mt-8">
-          <Button color="danger" variant="light" onPress={() => remove(index)}>
-            Delete
+          <Button
+            color="danger"
+            variant="light"
+            onPress={() => remove(index)}
+            startContent={<TrashIcon className="h-4 w-4" aria-hidden="true" />}
+          >
+            Supprimer la certification
           </Button>
         </div>
       </div>

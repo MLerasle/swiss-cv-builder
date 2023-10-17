@@ -1,5 +1,6 @@
 import { Controller } from "react-hook-form";
 import { Button, Input } from "@nextui-org/react";
+import { TrashIcon } from "@heroicons/react/24/solid";
 
 export default function FormLanguage({ control, errors, index, remove }) {
   return (
@@ -13,7 +14,7 @@ export default function FormLanguage({ control, errors, index, remove }) {
               required: true,
             }}
             render={({ field }) => (
-              <Input label="Language" isRequired {...field} />
+              <Input label="Langue" isRequired {...field} />
             )}
           />
           {errors.language && <span>Language is missing.</span>}
@@ -27,15 +28,21 @@ export default function FormLanguage({ control, errors, index, remove }) {
               required: true,
             }}
             render={({ field }) => (
-              <Input label="Level" isRequired {...field} />
+              <Input label="Niveau" isRequired {...field} />
             )}
           />
           {errors.level && <span>Level is missing.</span>}
         </div>
 
         <div className="sm:col-span-2 flex justify-center items-center">
-          <Button color="danger" variant="light" onPress={() => remove(index)}>
-            Delete
+          <Button
+            color="danger"
+            aria-label="Delete"
+            variant="light"
+            onPress={() => remove(index)}
+            startContent={<TrashIcon className="w-4 h-4" aria-hidden="true" />}
+          >
+            Supprimer
           </Button>
         </div>
       </div>

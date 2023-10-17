@@ -1,5 +1,6 @@
 import { Controller } from "react-hook-form";
 import { Button, Input } from "@nextui-org/react";
+import { TrashIcon } from "@heroicons/react/24/solid";
 
 export default function FormReference({ control, errors, index, remove }) {
   return (
@@ -11,7 +12,9 @@ export default function FormReference({ control, errors, index, remove }) {
           rules={{
             required: true,
           }}
-          render={({ field }) => <Input label="Name" isRequired {...field} />}
+          render={({ field }) => (
+            <Input label="Prénom et nom" autoFocus isRequired {...field} />
+          )}
         />
         {errors.name && <span>Name is missing.</span>}
 
@@ -24,7 +27,7 @@ export default function FormReference({ control, errors, index, remove }) {
                 required: true,
               }}
               render={({ field }) => (
-                <Input label="Company" isRequired {...field} />
+                <Input label="Entreprise" isRequired {...field} />
               )}
             />
             {errors.company && <span>Company is missing.</span>}
@@ -38,7 +41,11 @@ export default function FormReference({ control, errors, index, remove }) {
                 required: true,
               }}
               render={({ field }) => (
-                <Input label="Position" isRequired {...field} />
+                <Input
+                  label="Fonction dans l'entreprise"
+                  isRequired
+                  {...field}
+                />
               )}
             />
             {errors.position && <span>Position is missing.</span>}
@@ -61,15 +68,20 @@ export default function FormReference({ control, errors, index, remove }) {
               name={`references.${index}.tel`}
               control={control}
               render={({ field }) => (
-                <Input label="Phone" type="tel" {...field} />
+                <Input label="Téléphone" type="tel" {...field} />
               )}
             />
           </div>
         </div>
 
         <div className="flex justify-end mt-8">
-          <Button color="danger" variant="light" onPress={() => remove(index)}>
-            Delete
+          <Button
+            color="danger"
+            variant="light"
+            onPress={() => remove(index)}
+            startContent={<TrashIcon className="h-4 w-4" aria-hidden="true" />}
+          >
+            Supprimer la référence
           </Button>
         </div>
       </div>

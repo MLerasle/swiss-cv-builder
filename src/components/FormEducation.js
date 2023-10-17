@@ -2,6 +2,7 @@ import { Controller } from "react-hook-form";
 import { Button, Input, Select, SelectItem, Textarea } from "@nextui-org/react";
 
 import { months, years } from "@/lib/dates";
+import { TrashIcon } from "@heroicons/react/24/solid";
 
 export default function FormEducation({ control, errors, index, remove }) {
   return (
@@ -16,7 +17,7 @@ export default function FormEducation({ control, errors, index, remove }) {
                 required: true,
               }}
               render={({ field }) => (
-                <Input label="School" isRequired {...field} />
+                <Input label="École" autoFocus isRequired {...field} />
               )}
             />
             {errors.school && <span>School is missing.</span>}
@@ -30,7 +31,7 @@ export default function FormEducation({ control, errors, index, remove }) {
                 required: true,
               }}
               render={({ field }) => (
-                <Input label="Degree" isRequired {...field} />
+                <Input label="Diplôme" isRequired {...field} />
               )}
             />
             {errors.degree && <span>Degree is missing.</span>}
@@ -46,7 +47,7 @@ export default function FormEducation({ control, errors, index, remove }) {
                 required: true,
               }}
               render={({ field }) => (
-                <Input label="Field" isRequired {...field} />
+                <Input label="Domaine d'études" isRequired {...field} />
               )}
             />
             {errors.field && <span>Field is missing.</span>}
@@ -56,7 +57,9 @@ export default function FormEducation({ control, errors, index, remove }) {
             <Controller
               name={`education.${index}.grade`}
               control={control}
-              render={({ field }) => <Input label="Grade" {...field} />}
+              render={({ field }) => (
+                <Input label="Résultat obtenu" {...field} />
+              )}
             />
           </div>
         </div>
@@ -66,7 +69,7 @@ export default function FormEducation({ control, errors, index, remove }) {
             <Controller
               name={`education.${index}.city`}
               control={control}
-              render={({ field }) => <Input label="City" {...field} />}
+              render={({ field }) => <Input label="Ville" {...field} />}
             />
             {errors.city && <span>City is missing.</span>}
           </div>
@@ -75,7 +78,7 @@ export default function FormEducation({ control, errors, index, remove }) {
             <Controller
               name={`education.${index}.country`}
               control={control}
-              render={({ field }) => <Input label="Country" {...field} />}
+              render={({ field }) => <Input label="Pays" {...field} />}
             />
             {errors.country && <span>Country is missing.</span>}
           </div>
@@ -189,8 +192,13 @@ export default function FormEducation({ control, errors, index, remove }) {
         {errors.description && <span>Job Description is missing.</span>}
 
         <div className="flex justify-end mt-8">
-          <Button color="danger" variant="light" onPress={() => remove(index)}>
-            Delete
+          <Button
+            color="danger"
+            variant="light"
+            onPress={() => remove(index)}
+            startContent={<TrashIcon className="h-4 w-4" aria-hidden="true" />}
+          >
+            Supprimer la formation
           </Button>
         </div>
       </div>

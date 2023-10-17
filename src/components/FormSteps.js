@@ -4,22 +4,22 @@ import { CheckIcon } from "@heroicons/react/24/solid";
 const steps = [
   {
     id: 1,
-    name: "Personal Informations",
+    name: "Informations Personnelles",
     href: "/resume/builder/personal-infos",
   },
   {
     id: 2,
-    name: "Work Experiences",
+    name: "Expériences Professionnelles",
     href: "/resume/builder/experiences",
   },
   {
     id: 3,
-    name: "Skills",
+    name: "Compétences",
     href: "/resume/builder/skills",
   },
   {
     id: 4,
-    name: "Education",
+    name: "Formation",
     href: "/resume/builder/education",
   },
   {
@@ -29,12 +29,12 @@ const steps = [
   },
   {
     id: 6,
-    name: "References",
+    name: "Références",
     href: "/resume/builder/references",
   },
   {
     id: 6,
-    name: "Summary",
+    name: "Résumé",
     href: "/resume/builder/summary",
   },
 ];

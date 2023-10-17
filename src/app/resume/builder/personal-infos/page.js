@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { Button, Input, Select, SelectItem } from "@nextui-org/react";
+import { PlusIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 
 import FormLanguage from "@/components/FormLanguage";
 import useFormStore from "@/store/useFormStore";
@@ -40,8 +41,8 @@ export default function PersonalInfos() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h2 className="text-base font-semibold leading-7 text-gray-900 mt-8">
-        Informations Personnelles
+      <h2 className="text-xl font-semibold leading-7 text-gray-900 mt-8">
+        1. Informations Personnelles
       </h2>
       <Controller
         name="name"
@@ -50,7 +51,13 @@ export default function PersonalInfos() {
           required: true,
         }}
         render={({ field }) => (
-          <Input label="Name" isRequired className="my-8" {...field} />
+          <Input
+            label="Prénom et Nom"
+            autoFocus
+            isRequired
+            className="my-8"
+            {...field}
+          />
         )}
       />
       {errors.fullName && <span>Fullname is missing.</span>}
@@ -61,8 +68,19 @@ export default function PersonalInfos() {
         rules={{
           required: true,
         }}
-        render={({ field }) => (
-          <Input label="Job Title" isRequired className="my-8" {...field} />
+        render={({ field: { onChange, onBlur, value, name } }) => (
+          <Input
+            label="Intitulé du poste"
+            isRequired
+            className="my-8"
+            onFocus={() => displayHelp(name)}
+            onBlur={(e) => {
+              onBlur(e);
+              hideHelp();
+            }}
+            onChange={onChange}
+            value={value}
+          />
         )}
       />
       {errors.title && <span>Job Title is missing.</span>}
@@ -91,7 +109,7 @@ export default function PersonalInfos() {
               required: true,
             }}
             render={({ field }) => (
-              <Input type="tel" label="Phone Number" isRequired {...field} />
+              <Input type="tel" label="Téléphone" isRequired {...field} />
             )}
           />
           {errors.tel && <span>Tel is missing.</span>}
@@ -108,7 +126,7 @@ export default function PersonalInfos() {
             }}
             render={({ field }) => (
               <Select
-                label="Nationality"
+                label="Nationalité"
                 defaultSelectedKeys={
                   personalData.nationality !== ""
                     ? [personalData.nationality]
@@ -155,14 +173,14 @@ export default function PersonalInfos() {
       </div>
 
       <span className="block text-sm font-medium leading-6 text-gray-900 mt-8">
-        Où habitez-vous ?
+        Où résidez-vous ?
       </span>
       <div className="grid grid-cols-1 gap-x-6 sm:grid-cols-6">
         <div className="sm:col-span-3 mt-1">
           <Controller
             name="city"
             control={control}
-            render={({ field }) => <Input label="City" {...field} />}
+            render={({ field }) => <Input label="Ville" {...field} />}
           />
           {errors.city && <span>City is missing.</span>}
         </div>
@@ -171,7 +189,7 @@ export default function PersonalInfos() {
           <Controller
             name="country"
             control={control}
-            render={({ field }) => <Input label="Country" {...field} />}
+            render={({ field }) => <Input label="Pays" {...field} />}
           />
           {errors.country && <span>Country is missing.</span>}
         </div>
@@ -181,7 +199,7 @@ export default function PersonalInfos() {
         name="linkedinUrl"
         control={control}
         render={({ field }) => (
-          <Input label="LinkedIn Profile" className="my-8" {...field} />
+          <Input label="Profile LinkedIn" className="my-8" {...field} />
         )}
       />
 
@@ -196,17 +214,24 @@ export default function PersonalInfos() {
       ))}
 
       <Button
-        className="mt-4"
+        className="mt-8"
         color="primary"
         variant="light"
         onPress={onAddLanguage}
+        startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
       >
-        Add language
+        Ajouter une langue
       </Button>
 
       <div className="flex justify-end my-8">
-        <Button color="primary" type="submit">
-          Next
+        <Button
+          color="primary"
+          type="submit"
+          endContent={
+            <ChevronRightIcon className="w-4 h-4" aria-hidden="true" />
+          }
+        >
+          Suivant
         </Button>
       </div>
     </form>

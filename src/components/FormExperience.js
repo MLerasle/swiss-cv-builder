@@ -3,6 +3,7 @@ import { Button, Input, Select, SelectItem, Checkbox } from "@nextui-org/react";
 
 import FormExperienceDesc from "@/components/FormExperienceDesc";
 import { months, years } from "@/lib/dates";
+import { TrashIcon } from "@heroicons/react/24/solid";
 
 export default function FormExperience({
   control,
@@ -21,7 +22,7 @@ export default function FormExperience({
             required: true,
           }}
           render={({ field }) => (
-            <Input label="Company" isRequired {...field} />
+            <Input label="Entreprise" autoFocus isRequired {...field} />
           )}
         />
         {errors.company && <span>Company is missing.</span>}
@@ -30,7 +31,11 @@ export default function FormExperience({
           name={`jobs.${index}.companyDesc`}
           control={control}
           render={({ field }) => (
-            <Input label="Company Description" className="my-8" {...field} />
+            <Input
+              label="Description de l'entreprise"
+              className="my-8"
+              {...field}
+            />
           )}
         />
 
@@ -41,7 +46,12 @@ export default function FormExperience({
             required: true,
           }}
           render={({ field }) => (
-            <Input label="Job Title" isRequired className="my-8" {...field} />
+            <Input
+              label="Fonction dans l'entreprise"
+              isRequired
+              className="my-8"
+              {...field}
+            />
           )}
         />
         {errors.title && <span>Job Title is missing.</span>}
@@ -51,7 +61,7 @@ export default function FormExperience({
             <Controller
               name={`jobs.${index}.city`}
               control={control}
-              render={({ field }) => <Input label="City" {...field} />}
+              render={({ field }) => <Input label="Ville" {...field} />}
             />
             {errors.city && <span>City is missing.</span>}
           </div>
@@ -60,7 +70,7 @@ export default function FormExperience({
             <Controller
               name={`jobs.${index}.country`}
               control={control}
-              render={({ field }) => <Input label="Country" {...field} />}
+              render={({ field }) => <Input label="Pays" {...field} />}
             />
             {errors.country && <span>Country is missing.</span>}
           </div>
@@ -183,8 +193,13 @@ export default function FormExperience({
         <FormExperienceDesc descIndex={index} control={control} />
 
         <div className="flex justify-end mt-8">
-          <Button color="danger" variant="light" onPress={() => remove(index)}>
-            Delete
+          <Button
+            color="danger"
+            variant="light"
+            onPress={() => remove(index)}
+            startContent={<TrashIcon className="h-4 w-4" aria-hidden="true" />}
+          >
+            Supprimer l'expérience professionnelle
           </Button>
         </div>
       </div>

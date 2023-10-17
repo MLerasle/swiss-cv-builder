@@ -53,3 +53,8 @@ export const certificationData = {
   month: "",
   year: "",
 };
+
+const helpData = {
+  title: "",
+  content: "",
+};

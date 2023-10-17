@@ -13,6 +13,165 @@ import {
 
 import useFormStore from "@/store/useFormStore";
 
+const data = {
+  personalData: {
+    name: "Maxime Lerasle",
+    title: "Développeur Web Frontend",
+    email: "maxlerasle@gmail.com",
+    tel: "+41 79 865 20 94",
+    nationality: "Français",
+    permit: "Permis C",
+    city: "Epalinges",
+    country: "Suisse",
+    linkedinUrl: "linkedin.com/in/maximelerasle/",
+    languages: [
+      {
+        language: "Français",
+        level: "Courant, Langue maternelle",
+      },
+      {
+        language: "Anglais",
+        level: "Compétences professionnelles",
+      },
+    ],
+  },
+  experiences: [
+    {
+      company: "ReTok Partners",
+      companyDesc:
+        "Fonds immobilier ESG facilitant l'accès à la propriété et permettant d'améliorer l'efficacité énergétique des biens qu'il propose.",
+      title: "Cofondateur et CTO",
+      city: "",
+      country: "Suisse",
+      current: true,
+      fromMonth: "08",
+      fromYear: "2021",
+      toMonth: "",
+      toYear: "",
+      description: [
+        "Développement du site web de l'entreprise",
+        "Création d'une communauté Twitter de +1500 abonnés",
+        "Développement d'un formulaire de paiement via Binance permettant la vente des premiers tokens ReTok à hauteur de $1'200'000.",
+        "Recrutement d'un Community Manager et du responsable des ventes.",
+      ],
+    },
+    {
+      company: "Skiset",
+      companyDesc:
+        "Société leader dans la location de matériel de sports d'hiver.",
+      title: "Développeur Web Fullstack",
+      city: "Lausanne",
+      country: "Suisse",
+      current: false,
+      fromMonth: "01",
+      fromYear: "2015",
+      toMonth: "03",
+      toYear: "2022",
+      description: [
+        "Développement du site web de l'entreprise",
+        "Développement du frontend de la nouvelle application de facturation et d'administration de l'entreprise.",
+        "Participation au développement du frontend du site la nouvelle marque du groupe, Netski.",
+      ],
+    },
+    {
+      company: "Enten IT Consulting",
+      companyDesc: "Société de Services Informatiques.",
+      title: "Développeur Web Junior",
+      city: "Lausanne",
+      country: "Suisse",
+      current: false,
+      fromMonth: "05",
+      fromYear: "2012",
+      toMonth: "12",
+      toYear: "2014",
+      description: [
+        "Développement du site web de l'entreprise",
+        "Développement d'un site de petites annonces entre particuliers",
+        "Développement d'un client mail pour Mac OSX",
+        "Développement et maintenance du web ERP de Skiset",
+      ],
+    },
+  ],
+  skills: [
+    "HTML",
+    "CSS",
+    "Tailwindcss",
+    "Javascript",
+    "React.js",
+    "Vue.js",
+    "Next.js",
+    "Ruby",
+    "Ruby On Rails",
+    "Git",
+  ],
+  education: [
+    {
+      school: "Université Claude Bernard Lyon 1",
+      degree: "Master",
+      field: "Ingénierie des Risques / Spécialité Sécurité Informatique",
+      grade: "",
+      country: "France",
+      city: "Lyon",
+      fromMonth: "09",
+      fromYear: "2010",
+      toMonth: "06",
+      toYear: "2012",
+      description: "",
+    },
+    {
+      school: "Université Claude Bernard Lyon 1",
+      degree: "License (Bachelor)",
+      field: "Mathématiques / Informatique",
+      grade: "",
+      country: "France",
+      city: "Lyon",
+      fromMonth: "09",
+      fromYear: "2006",
+      toMonth: "06",
+      toYear: "2010",
+      description: "",
+    },
+  ],
+  references: [
+    {
+      name: "Bruno Enten",
+      company: "ReTok Partners",
+      position: "CFO",
+      email: "",
+      tel: "",
+    },
+    {
+      name: "Denis Marinho",
+      company: "Skiset",
+      position: "CFO",
+      email: "",
+      tel: "",
+    },
+  ],
+  certifications: [
+    {
+      title: "Javascript, The Complete Guide",
+      issuer: "Udemy",
+      month: "03",
+      year: "2020",
+    },
+    {
+      title: "React, The Complete Guide",
+      issuer: "Udemy",
+      month: "10",
+      year: "2019",
+    },
+    {
+      title: "Vue.js, The Complete Guide",
+      issuer: "Udemy",
+      month: "12",
+      year: "2018",
+    },
+  ],
+  summary:
+    "Passionné par l'entrepreneuriat et le développement web, en particulier frontend, je suis à la recherche d'un nouveau challenge me permettant de parfaire mes connaissances en React ou Vue.js.",
+};
+
 const styles = StyleSheet.create({
   page: {
     flexDirection: "col",
@@ -130,7 +289,7 @@ const styles = StyleSheet.create({
 });
 
 export default function Preview() {
-  const data = useFormStore((state) => state);
+  // const data = useFormStore((state) => state);
 
   return (
     <PDFViewer showToolbar width="100%" height={window.innerHeight}>

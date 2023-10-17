@@ -1,5 +1,6 @@
 import { useFieldArray, Controller } from "react-hook-form";
 import { Button, Input } from "@nextui-org/react";
+import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
 
 export default function FormExperienceDesc({ descIndex, control }) {
   const { fields, append, remove } = useFieldArray({
@@ -44,8 +45,11 @@ export default function FormExperienceDesc({ descIndex, control }) {
                 variant="light"
                 type="button"
                 onPress={() => remove(index)}
+                startContent={
+                  <TrashIcon className="h-4 w-4" aria-hidden="true" />
+                }
               >
-                Remove Desc
+                Supprimer
               </Button>
             ) : (
               <Button
@@ -53,8 +57,11 @@ export default function FormExperienceDesc({ descIndex, control }) {
                 variant="light"
                 type="button"
                 onPress={onAddDesc}
+                startContent={
+                  <PlusIcon className="h-4 w-4" aria-hidden="true" />
+                }
               >
-                Add Desc
+                Ajouter
               </Button>
             )}
           </div>
