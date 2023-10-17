@@ -33,7 +33,7 @@ const steps = [
     href: "/resume/builder/references",
   },
   {
-    id: 6,
+    id: 7,
     name: "Résumé",
     href: "/resume/builder/summary",
   },

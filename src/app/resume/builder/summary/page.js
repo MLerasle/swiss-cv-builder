@@ -6,7 +6,7 @@ import { useForm, Controller } from "react-hook-form";
 import { Button, Textarea } from "@nextui-org/react";
 
 import useFormStore from "@/store/useFormStore";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+import { ChevronLeftIcon, DocumentTextIcon } from "@heroicons/react/24/solid";
 
 export default function Summary() {
   const router = useRouter();
@@ -69,8 +69,8 @@ export default function Summary() {
         <Button
           color="primary"
           type="submit"
-          endContent={
-            <ChevronRightIcon className="h-4 w-4" aria-hidden="true" />
+          startContent={
+            <DocumentTextIcon className="h-4 w-4" aria-hidden="true" />
           }
         >
           Prévisualiser le CV

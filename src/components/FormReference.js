@@ -13,7 +13,7 @@ export default function FormReference({ control, errors, index, remove }) {
             required: true,
           }}
           render={({ field }) => (
-            <Input label="Prénom et nom" autoFocus isRequired {...field} />
+            <Input label="Nom" autoFocus isRequired {...field} />
           )}
         />
         {errors.name && <span>Name is missing.</span>}

@@ -1,12 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { Button, Input, Select, SelectItem } from "@nextui-org/react";
 import { PlusIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 
 import FormLanguage from "@/components/FormLanguage";
+import HelpCard from "@/components/HelpCard";
 import useFormStore from "@/store/useFormStore";
+import { help } from "@/lib/help";
 
 const nationalities = ["Française", "Suisse"];
 const workPermits = ["Aucun", "Permis B", "Permis C", "Permis G", "Permis L"];
@@ -15,6 +18,8 @@ export default function PersonalInfos() {
   const router = useRouter();
   const { personalData, setData } = useFormStore();
   const languageData = { language: "", level: "" };
+  const [isHelpDisplayed, setIsHelpDisplayed] = useState(false);
+  const [helpData, setHelpData] = useState({});
 
   const {
     control,
@@ -39,8 +44,22 @@ export default function PersonalInfos() {
     append(languageData);
   };
 
+  const displayHelp = (fieldName) => {
+    setHelpData({
+      title: help[fieldName].title,
+      content: help[fieldName].content,
+    });
+    setIsHelpDisplayed(true);
+  };
+
+  const hideHelp = () => setIsHelpDisplayed(false);
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <p className="text-gray-800 mt-8">Bienvenue 👋</p>
+      <h1 className="text-3xl font-bold leading-8 text-gray-950 mt-2">
+        Commencez à rédiger votre nouveau CV
+      </h1>
       <h2 className="text-xl font-semibold leading-7 text-gray-900 mt-8">
         1. Informations Personnelles
       </h2>
@@ -51,13 +70,7 @@ export default function PersonalInfos() {
           required: true,
         }}
         render={({ field }) => (
-          <Input
-            label="Prénom et Nom"
-            autoFocus
-            isRequired
-            className="my-8"
-            {...field}
-          />
+          <Input label="Nom" autoFocus isRequired className="my-8" {...field} />
         )}
       />
       {errors.fullName && <span>Fullname is missing.</span>}
@@ -73,7 +86,7 @@ export default function PersonalInfos() {
             label="Intitulé du poste"
             isRequired
             className="my-8"
-            onFocus={() => displayHelp(name)}
+            onFocus={() => displayHelp("jobTitle")}
             onBlur={(e) => {
               onBlur(e);
               hideHelp();
@@ -234,6 +247,13 @@ export default function PersonalInfos() {
           Suivant
         </Button>
       </div>
+      {isHelpDisplayed && (
+        <HelpCard
+          title={helpData.title}
+          content={helpData.content}
+          onClose={hideHelp}
+        />
+      )}
     </form>
   );
 }
