@@ -30,7 +30,6 @@ export default function Skills() {
   };
 
   const onAddSkill = (event) => {
-    console.log(event);
     if (event.key === "Enter" || event.type === "press") {
       append({ skill: "" });
     }
@@ -88,7 +87,7 @@ export default function Skills() {
       </div>
 
       <div className="flex justify-between items-center my-8">
-        <Link href="/resume/builder/work-experiences" passHref legacyBehavior>
+        <Link href="/resume/builder/experiences" passHref legacyBehavior>
           <Button type="button">Previous</Button>
         </Link>
         <Button color="primary" type="submit">

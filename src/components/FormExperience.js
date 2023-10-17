@@ -1,16 +1,10 @@
 import { Controller } from "react-hook-form";
-import {
-  Button,
-  Input,
-  Select,
-  SelectItem,
-  Checkbox,
-  Textarea,
-} from "@nextui-org/react";
+import { Button, Input, Select, SelectItem, Checkbox } from "@nextui-org/react";
 
+import FormExperienceDesc from "@/components/FormExperienceDesc";
 import { months, years } from "@/lib/dates";
 
-export default function FormWorkExperience({
+export default function FormExperience({
   control,
   watch,
   errors,
@@ -31,6 +25,14 @@ export default function FormWorkExperience({
           )}
         />
         {errors.company && <span>Company is missing.</span>}
+
+        <Controller
+          name={`jobs.${index}.companyDesc`}
+          control={control}
+          render={({ field }) => (
+            <Input label="Company Description" className="my-8" {...field} />
+          )}
+        />
 
         <Controller
           name={`jobs.${index}.title`}
@@ -178,22 +180,7 @@ export default function FormWorkExperience({
           </div>
         </div>
 
-        <Controller
-          name={`jobs.${index}.description`}
-          control={control}
-          rules={{
-            required: true,
-          }}
-          render={({ field }) => (
-            <Textarea
-              label="Descriptif"
-              isRequired
-              className="mt-8"
-              {...field}
-            />
-          )}
-        />
-        {errors.description && <span>Job Description is missing.</span>}
+        <FormExperienceDesc descIndex={index} control={control} />
 
         <div className="flex justify-end mt-8">
           <Button color="danger" variant="light" onPress={() => remove(index)}>

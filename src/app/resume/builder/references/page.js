@@ -28,8 +28,8 @@ export default function WorkExperiences() {
   });
 
   const onSubmit = (data) => {
-    setData({ step: 5, data: data.references });
-    // router.push("/resume/builder/references");
+    setData({ step: 6, data: data.references });
+    router.push("/resume/builder/summary");
   };
 
   const onAddReference = () => {
@@ -56,7 +56,7 @@ export default function WorkExperiences() {
         Add more references
       </Button>
       <div className="flex justify-between items-center my-8">
-        <Link href="/resume/builder/education" passHref legacyBehavior>
+        <Link href="/resume/builder/certifications" passHref legacyBehavior>
           <Button type="button">Previous</Button>
         </Link>
         <Button color="primary" type="submit">

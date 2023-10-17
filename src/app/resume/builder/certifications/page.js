@@ -5,13 +5,13 @@ import Link from "next/link";
 import { Button } from "@nextui-org/react";
 import { useForm, useFieldArray } from "react-hook-form";
 
-import FormEducation from "@/components/FormEducation";
+import FormCertification from "@/components/FormCertification";
 import useFormStore from "@/store/useFormStore";
-import { trainingData } from "@/store/data";
+import { certificationData } from "@/store/data";
 
-export default function WorkExperiences() {
+export default function Certifications() {
   const router = useRouter();
-  const { education, setData } = useFormStore();
+  const { certifications, setData } = useFormStore();
 
   const {
     control,
@@ -19,31 +19,31 @@ export default function WorkExperiences() {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      education,
+      certifications,
     },
   });
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "education",
+    name: "certifications",
   });
 
   const onSubmit = (data) => {
-    setData({ step: 4, data: data.education });
-    router.push("/resume/builder/certifications");
+    setData({ step: 5, data: data.certifications });
+    router.push("/resume/builder/references");
   };
 
-  const onAddEducation = () => {
-    append(trainingData);
+  const onAddCertification = () => {
+    append(certificationData);
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h2 className="text-base font-semibold leading-7 text-gray-900 mt-8">
-        Formation
+        Certifications
       </h2>
 
       {fields.map((field, index) => (
-        <FormEducation
+        <FormCertification
           control={control}
           errors={errors}
           key={field.id}
@@ -52,11 +52,11 @@ export default function WorkExperiences() {
         />
       ))}
 
-      <Button color="primary" variant="light" onPress={onAddEducation}>
-        Add more education history
+      <Button color="primary" variant="light" onPress={onAddCertification}>
+        Add more certifications
       </Button>
       <div className="flex justify-between items-center my-8">
-        <Link href="/resume/builder/skills" passHref legacyBehavior>
+        <Link href="/resume/builder/education" passHref legacyBehavior>
           <Button type="button">Previous</Button>
         </Link>
         <Button color="primary" type="submit">

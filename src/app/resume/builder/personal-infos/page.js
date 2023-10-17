@@ -1,9 +1,10 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { Button, Input, Select, SelectItem } from "@nextui-org/react";
 
+import FormLanguage from "@/components/FormLanguage";
 import useFormStore from "@/store/useFormStore";
 
 const nationalities = ["Française", "Suisse"];
@@ -12,6 +13,7 @@ const workPermits = ["Aucun", "Permis B", "Permis C", "Permis G", "Permis L"];
 export default function PersonalInfos() {
   const router = useRouter();
   const { personalData, setData } = useFormStore();
+  const languageData = { language: "", level: "" };
 
   const {
     control,
@@ -22,9 +24,18 @@ export default function PersonalInfos() {
     defaultValues: personalData,
   });
 
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "languages",
+  });
+
   const onSubmit = (data) => {
     setData({ step: 1, data });
-    router.push("/resume/builder/work-experiences");
+    router.push("/resume/builder/experiences");
+  };
+
+  const onAddLanguage = () => {
+    append(languageData);
   };
 
   return (
@@ -143,26 +154,11 @@ export default function PersonalInfos() {
         </div>
       </div>
 
-      <Controller
-        name="address"
-        control={control}
-        render={({ field }) => (
-          <Input label="Address" className="my-8" {...field} />
-        )}
-      />
-      {errors.address && <span>Address is missing.</span>}
-
-      <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-        <div className="sm:col-span-2">
-          <Controller
-            name="nip"
-            control={control}
-            render={({ field }) => <Input label="Nip" {...field} />}
-          />
-          {errors.nip && <span>NIP is missing.</span>}
-        </div>
-
-        <div className="sm:col-span-2">
+      <span className="block text-sm font-medium leading-6 text-gray-900 mt-8">
+        Où habitez-vous ?
+      </span>
+      <div className="grid grid-cols-1 gap-x-6 sm:grid-cols-6">
+        <div className="sm:col-span-3 mt-1">
           <Controller
             name="city"
             control={control}
@@ -171,7 +167,7 @@ export default function PersonalInfos() {
           {errors.city && <span>City is missing.</span>}
         </div>
 
-        <div className="sm:col-span-2">
+        <div className="sm:col-span-3 mt-8 sm:mt-1">
           <Controller
             name="country"
             control={control}
@@ -180,6 +176,33 @@ export default function PersonalInfos() {
           {errors.country && <span>Country is missing.</span>}
         </div>
       </div>
+
+      <Controller
+        name="linkedinUrl"
+        control={control}
+        render={({ field }) => (
+          <Input label="LinkedIn Profile" className="my-8" {...field} />
+        )}
+      />
+
+      {fields.map((field, index) => (
+        <FormLanguage
+          control={control}
+          errors={errors}
+          key={field.id}
+          index={index}
+          remove={remove}
+        />
+      ))}
+
+      <Button
+        className="mt-4"
+        color="primary"
+        variant="light"
+        onPress={onAddLanguage}
+      >
+        Add language
+      </Button>
 
       <div className="flex justify-end my-8">
         <Button color="primary" type="submit">

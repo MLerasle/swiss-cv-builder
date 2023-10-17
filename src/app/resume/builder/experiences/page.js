@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Button } from "@nextui-org/react";
 import { useForm, useFieldArray } from "react-hook-form";
 
-import FormWorkExperience from "@/components/FormWorkExperience";
+import FormExperience from "@/components/FormExperience";
 import useFormStore from "@/store/useFormStore";
 import { experienceData } from "@/store/data";
 
@@ -44,7 +44,7 @@ export default function WorkExperiences() {
       </h2>
 
       {fields.map((field, index) => (
-        <FormWorkExperience
+        <FormExperience
           control={control}
           watch={watch}
           errors={errors}

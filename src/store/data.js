@@ -7,11 +7,13 @@ export const personalData = {
   permit: "",
   city: "",
   country: "",
+  linkedinUrl: "",
   languages: [{ language: "", level: "" }],
 };
 
 export const experienceData = {
   company: "",
+  companyDesc: "",
   title: "",
   city: "",
   country: "",
@@ -20,7 +22,7 @@ export const experienceData = {
   fromYear: "",
   toMonth: "",
   toYear: "",
-  description: "",
+  description: [{ item: "" }],
 };
 
 export const trainingData = {

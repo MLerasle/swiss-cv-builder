@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     color: "#0891b2",
     textTransform: "uppercase",
     fontSize: "14px",
-    // borderBottom: "2px solid #0891b2",
+    borderBottom: "2px solid #0891b2",
   },
   skills: {
     flexDirection: "row",

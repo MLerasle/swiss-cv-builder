@@ -10,7 +10,7 @@ const steps = [
   {
     id: 2,
     name: "Work Experiences",
-    href: "/resume/builder/work-experiences",
+    href: "/resume/builder/experiences",
   },
   {
     id: 3,
@@ -24,6 +24,11 @@ const steps = [
   },
   {
     id: 5,
+    name: "Certifications",
+    href: "/resume/builder/certifications",
+  },
+  {
+    id: 6,
     name: "References",
     href: "/resume/builder/references",
   },
