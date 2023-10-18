@@ -4,20 +4,17 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { Button, Input, Select, SelectItem } from "@nextui-org/react";
-import { PlusIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+import { ChevronRightIcon } from "@heroicons/react/24/solid";
 
-import FormLanguage from "@/components/FormLanguage";
+import FormActions from "@/components/FormActions";
 import HelpCard from "@/components/HelpCard";
 import useFormStore from "@/store/useFormStore";
+import { workPermits, nationalities } from "@/lib/select-options";
 import { help } from "@/lib/help";
-
-const nationalities = ["Française", "Suisse"];
-const workPermits = ["Aucun", "Permis B", "Permis C", "Permis G", "Permis L"];
 
 export default function PersonalInfos() {
   const router = useRouter();
   const { personalData, setData } = useFormStore();
-  const languageData = { language: "", level: "" };
   const [isHelpDisplayed, setIsHelpDisplayed] = useState(false);
   const [helpData, setHelpData] = useState({});
 
@@ -30,18 +27,9 @@ export default function PersonalInfos() {
     defaultValues: personalData,
   });
 
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: "languages",
-  });
-
   const onSubmit = (data) => {
     setData({ step: 1, data });
     router.push("/resume/builder/experiences");
-  };
-
-  const onAddLanguage = () => {
-    append(languageData);
   };
 
   const displayHelp = (fieldName) => {
@@ -166,7 +154,7 @@ export default function PersonalInfos() {
             }}
             render={({ field }) => (
               <Select
-                label="Quel permis de travail possédez-vous ?"
+                label="Possédez-vous un permis de travail ?"
                 defaultSelectedKeys={
                   personalData.permit !== "" ? [personalData.permit] : []
                 }
@@ -185,11 +173,50 @@ export default function PersonalInfos() {
         </div>
       </div>
 
+      <div className="grid grid-cols-1 gap-x-6 sm:grid-cols-6">
+        <div className="sm:col-span-3 mt-8">
+          <Controller
+            name="age"
+            control={control}
+            render={({ field }) => <Input label="Âge" {...field} />}
+          />
+        </div>
+
+        <div className="sm:col-span-3 mt-8">
+          <Controller
+            name="linkedinUrl"
+            control={control}
+            render={({ field }) => (
+              <Input label="Profile LinkedIn" {...field} />
+            )}
+          />
+        </div>
+      </div>
+
       <span className="block text-sm font-medium leading-6 text-gray-900 mt-8">
         Où résidez-vous ?
       </span>
+
+      <Controller
+        name="address"
+        control={control}
+        render={({ field }) => (
+          <Input label="Addresse" className="mt-1" {...field} />
+        )}
+      />
+      {errors.address && <span>Address is missing.</span>}
+
       <div className="grid grid-cols-1 gap-x-6 sm:grid-cols-6">
-        <div className="sm:col-span-3 mt-1">
+        <div className="sm:col-span-2 mt-8">
+          <Controller
+            name="nip"
+            control={control}
+            render={({ field }) => <Input label="NIP" {...field} />}
+          />
+          {errors.nip && <span>NIP is missing.</span>}
+        </div>
+
+        <div className="sm:col-span-2 mt-8">
           <Controller
             name="city"
             control={control}
@@ -198,7 +225,7 @@ export default function PersonalInfos() {
           {errors.city && <span>City is missing.</span>}
         </div>
 
-        <div className="sm:col-span-3 mt-8 sm:mt-1">
+        <div className="sm:col-span-2 mt-8">
           <Controller
             name="country"
             control={control}
@@ -208,45 +235,8 @@ export default function PersonalInfos() {
         </div>
       </div>
 
-      <Controller
-        name="linkedinUrl"
-        control={control}
-        render={({ field }) => (
-          <Input label="Profile LinkedIn" className="my-8" {...field} />
-        )}
-      />
+      <FormActions />
 
-      {fields.map((field, index) => (
-        <FormLanguage
-          control={control}
-          errors={errors}
-          key={field.id}
-          index={index}
-          remove={remove}
-        />
-      ))}
-
-      <Button
-        className="mt-8"
-        color="primary"
-        variant="light"
-        onPress={onAddLanguage}
-        startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
-      >
-        Ajouter une langue
-      </Button>
-
-      <div className="flex justify-end my-8">
-        <Button
-          color="primary"
-          type="submit"
-          endContent={
-            <ChevronRightIcon className="w-4 h-4" aria-hidden="true" />
-          }
-        >
-          Suivant
-        </Button>
-      </div>
       {isHelpDisplayed && (
         <HelpCard
           title={helpData.title}

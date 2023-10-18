@@ -20,3 +20,22 @@ export const years = Array.from(
 )
   .reverse()
   .map((i) => i.toString());
+
+export const languageLevels = [
+  "Niveau A1",
+  "Niveau A2",
+  "Niveau B1",
+  "Niveau B2",
+  "Niveau C1",
+  "Niveau C2",
+];
+
+export const workPermits = [
+  "Aucun Permis",
+  "Permis B",
+  "Permis C",
+  "Permis G",
+  "Permis L",
+];
+
+export const nationalities = ["Française", "Suisse"];

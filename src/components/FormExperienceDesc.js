@@ -17,8 +17,8 @@ export default function FormExperienceDesc({ descIndex, control }) {
   return (
     <>
       <span className="block text-sm font-medium leading-6 text-gray-900 mt-8">
-        Ajoutez une à une les principales tâches et réalisations que vous avez
-        réalisées :
+        Ajoutez une à une les principales tâches qui vous étaient assignées
+        ainsi que vos réalisations :
       </span>
       {fields.map((field, index) => (
         <div

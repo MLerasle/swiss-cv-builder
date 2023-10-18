@@ -11,6 +11,7 @@ import {
 } from "@heroicons/react/24/solid";
 
 import FormExperience from "@/components/FormExperience";
+import FormActions from "@/components/FormActions";
 import useFormStore from "@/store/useFormStore";
 import { experienceData } from "@/store/data";
 
@@ -67,26 +68,8 @@ export default function WorkExperiences() {
       >
         Ajouter une expérience professionnelle
       </Button>
-      <div className="flex justify-between items-center my-8">
-        <Link href="/resume/builder/personal-infos" passHref legacyBehavior>
-          <Button
-            startContent={
-              <ChevronLeftIcon className="h-4 w-4" aria-hidden="true" />
-            }
-          >
-            Précédent
-          </Button>
-        </Link>
-        <Button
-          color="primary"
-          type="submit"
-          endContent={
-            <ChevronRightIcon className="h-4 w-4" aria-hidden="true" />
-          }
-        >
-          Suivant
-        </Button>
-      </div>
+
+      <FormActions prevLink="/resume/builder/personal-infos" />
     </form>
   );
 }

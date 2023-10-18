@@ -5,10 +5,12 @@ export const personalData = {
   tel: "",
   nationality: "",
   permit: "",
+  age: "",
+  address: "",
+  nip: "",
   city: "",
   country: "",
   linkedinUrl: "",
-  languages: [{ language: "", level: "" }],
 };
 
 export const experienceData = {

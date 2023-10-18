@@ -1,17 +1,13 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { Button, Input } from "@nextui-org/react";
+import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
 
+import { Card } from "@/components/Card";
+import FormActions from "@/components/FormActions";
 import useFormStore from "@/store/useFormStore";
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  PlusIcon,
-  TrashIcon,
-} from "@heroicons/react/24/solid";
 
 export default function Skills() {
   const router = useRouter();
@@ -32,7 +28,7 @@ export default function Skills() {
 
   const onSubmit = (data) => {
     setData({ step: 3, data });
-    router.push("/resume/builder/education");
+    router.push("/resume/builder/languages");
   };
 
   const onAddSkill = (event) => {
@@ -47,79 +43,58 @@ export default function Skills() {
         3. Compétences
       </h2>
 
-      <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2 my-8">
-        <div className="px-4 py-6 sm:p-8">
-          <span className="block text-sm font-medium leading-6 text-gray-900">
-            Ajoutez une à une les compétences que vous souhaitez mettre en avant
-          </span>
-          {fields.map((field, index) => (
-            <div key={field.id} className="flex items-center">
-              <Controller
-                name={`skills.${index}.skill`}
-                control={control}
-                render={({ field }) => (
-                  <Input
-                    className="my-4 max-w-sm"
-                    onKeyDown={onAddSkill}
-                    autoFocus
-                    {...field}
-                  />
-                )}
-              />
-              {fields.length > 1 && fields.length !== index + 1 ? (
-                <Button
-                  color="danger"
-                  variant="light"
-                  type="button"
-                  className="ml-2"
-                  onPress={() => remove(index)}
-                  startContent={
-                    <TrashIcon className="h-4 w-4" aria-hidden="true" />
-                  }
-                >
-                  Supprimer
-                </Button>
-              ) : (
-                <Button
-                  color="primary"
-                  variant="light"
-                  type="button"
-                  className="ml-2"
-                  onPress={onAddSkill}
-                  startContent={
-                    <PlusIcon className="h-4 w-4" aria-hidden="true" />
-                  }
-                >
-                  Ajouter une compétence
-                </Button>
+      <Card>
+        <span className="block text-sm font-medium leading-6 text-gray-900">
+          Ajoutez une à une les compétences que vous souhaitez mettre en avant :
+        </span>
+        {fields.map((field, index) => (
+          <div key={field.id} className="flex items-center mt-8">
+            <Controller
+              name={`skills.${index}.skill`}
+              control={control}
+              render={({ field }) => (
+                <Input
+                  label="Compétence"
+                  className="max-w-xl"
+                  onKeyDown={onAddSkill}
+                  autoFocus
+                  {...field}
+                />
               )}
-            </div>
-          ))}
-          {errors.skills && <span>Skills are missing.</span>}
-        </div>
-      </div>
+            />
+            {fields.length > 1 && fields.length !== index + 1 ? (
+              <Button
+                color="danger"
+                variant="light"
+                type="button"
+                className="ml-2"
+                onPress={() => remove(index)}
+                startContent={
+                  <TrashIcon className="h-4 w-4" aria-hidden="true" />
+                }
+              >
+                Supprimer
+              </Button>
+            ) : (
+              <Button
+                color="primary"
+                variant="light"
+                type="button"
+                className="ml-2"
+                onPress={onAddSkill}
+                startContent={
+                  <PlusIcon className="h-4 w-4" aria-hidden="true" />
+                }
+              >
+                Ajouter une compétence
+              </Button>
+            )}
+          </div>
+        ))}
+        {errors.skills && <span>Skills are missing.</span>}
+      </Card>
 
-      <div className="flex justify-between items-center my-8">
-        <Link href="/resume/builder/experiences" passHref legacyBehavior>
-          <Button
-            type="button"
-            startContent={
-              <ChevronLeftIcon className="h-4 w-4" aria-hidden="true" />
-            }
-          >
-            Précédent
-          </Button>
-        </Link>
-        <Button
-          color="primary"
-          type="submit"
-          endContent={
-            <ChevronRightIcon className="h-4 w-4" aria-hidden="true" />
-          }
-        >
-          Suivant
-        </Button>
-      </div>
+      <FormActions prevLink="/resume/builder/experiences" />
     </form>
   );
 }

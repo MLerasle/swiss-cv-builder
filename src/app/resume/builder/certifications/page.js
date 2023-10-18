@@ -1,18 +1,14 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { Button } from "@nextui-org/react";
 import { useForm, useFieldArray } from "react-hook-form";
 
 import FormCertification from "@/components/FormCertification";
+import FormActions from "@/components/FormActions";
 import useFormStore from "@/store/useFormStore";
 import { certificationData } from "@/store/data";
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  PlusIcon,
-} from "@heroicons/react/24/solid";
+import { PlusIcon } from "@heroicons/react/24/solid";
 
 export default function Certifications() {
   const router = useRouter();
@@ -65,27 +61,8 @@ export default function Certifications() {
       >
         Ajouter une autre certification
       </Button>
-      <div className="flex justify-between items-center my-8">
-        <Link href="/resume/builder/education" passHref legacyBehavior>
-          <Button
-            type="button"
-            startContent={
-              <ChevronLeftIcon className="h-4 w-4" aria-hidden="true" />
-            }
-          >
-            Précédent
-          </Button>
-        </Link>
-        <Button
-          color="primary"
-          type="submit"
-          endContent={
-            <ChevronRightIcon className="h-4 w-4" aria-hidden="true" />
-          }
-        >
-          Suivant
-        </Button>
-      </div>
+
+      <FormActions prevLink="/resume/builder/education" />
     </form>
   );
 }

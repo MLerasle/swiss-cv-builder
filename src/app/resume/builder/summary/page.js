@@ -1,12 +1,11 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { useForm, Controller } from "react-hook-form";
-import { Button, Textarea } from "@nextui-org/react";
+import { Textarea } from "@nextui-org/react";
 
+import FormActions from "@/components/FormActions";
 import useFormStore from "@/store/useFormStore";
-import { ChevronLeftIcon, DocumentTextIcon } from "@heroicons/react/24/solid";
 
 export default function Summary() {
   const router = useRouter();
@@ -55,27 +54,7 @@ export default function Summary() {
       />
       {errors.summary && <span>Summary is missing.</span>}
 
-      <div className="flex justify-between items-center my-8">
-        <Link href="/resume/builder/references" passHref legacyBehavior>
-          <Button
-            type="button"
-            startContent={
-              <ChevronLeftIcon className="h-4 w-4" aria-hidden="true" />
-            }
-          >
-            Précédent
-          </Button>
-        </Link>
-        <Button
-          color="primary"
-          type="submit"
-          startContent={
-            <DocumentTextIcon className="h-4 w-4" aria-hidden="true" />
-          }
-        >
-          Prévisualiser le CV
-        </Button>
-      </div>
+      <FormActions prevLink="/resume/builder/references" lastStep />
     </form>
   );
 }
