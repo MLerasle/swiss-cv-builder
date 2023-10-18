@@ -17,9 +17,7 @@ export default function Skills() {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    defaultValues: { skills },
-  });
+  } = useForm({ defaultValues: { skills } });
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -27,7 +25,7 @@ export default function Skills() {
   });
 
   const onSubmit = (data) => {
-    setData({ step: 3, data });
+    setData({ step: 3, data: data.skills });
     router.push("/resume/builder/languages");
   };
 

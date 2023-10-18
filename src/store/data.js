@@ -24,7 +24,7 @@ export const experienceData = {
   fromYear: "",
   toMonth: "",
   toYear: "",
-  description: [{ item: "" }],
+  description: [{ task: "" }],
 };
 
 export const trainingData = {

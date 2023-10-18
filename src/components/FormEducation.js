@@ -5,7 +5,13 @@ import { TrashIcon } from "@heroicons/react/24/solid";
 import { Card } from "@/components/Card";
 import { months, years } from "@/lib/select-options";
 
-export default function FormEducation({ control, errors, index, remove }) {
+export default function FormEducation({
+  control,
+  watch,
+  errors,
+  index,
+  remove,
+}) {
   return (
     <Card>
       <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -94,7 +100,11 @@ export default function FormEducation({ control, errors, index, remove }) {
               required: true,
             }}
             render={({ field }) => (
-              <Select label="Mois" {...field}>
+              <Select
+                label="Mois"
+                defaultSelectedKeys={[watch(`education.${index}.fromMonth`)]}
+                {...field}
+              >
                 {months.map((month) => (
                   <SelectItem key={month} value={month}>
                     {month}
@@ -114,7 +124,11 @@ export default function FormEducation({ control, errors, index, remove }) {
               required: true,
             }}
             render={({ field }) => (
-              <Select label="Année" {...field}>
+              <Select
+                label="Année"
+                defaultSelectedKeys={[watch(`education.${index}.fromYear`)]}
+                {...field}
+              >
                 {years.map((year) => (
                   <SelectItem key={year} value={year}>
                     {year}
@@ -139,7 +153,11 @@ export default function FormEducation({ control, errors, index, remove }) {
               required: true,
             }}
             render={({ field }) => (
-              <Select label="Mois" {...field}>
+              <Select
+                label="Mois"
+                defaultSelectedKeys={[watch(`education.${index}.toMonth`)]}
+                {...field}
+              >
                 {months.map((month) => (
                   <SelectItem key={month} value={month}>
                     {month}
@@ -159,7 +177,11 @@ export default function FormEducation({ control, errors, index, remove }) {
               required: true,
             }}
             render={({ field }) => (
-              <Select label="Année" {...field}>
+              <Select
+                label="Année"
+                defaultSelectedKeys={[watch(`education.${index}.toYear`)]}
+                {...field}
+              >
                 {years.map((year) => (
                   <SelectItem key={year} value={year}>
                     {year}
@@ -175,14 +197,10 @@ export default function FormEducation({ control, errors, index, remove }) {
       <Controller
         name={`education.${index}.description`}
         control={control}
-        rules={{
-          required: true,
-        }}
         render={({ field }) => (
-          <Textarea label="Descriptif" isRequired className="mt-8" {...field} />
+          <Textarea label="Descriptif" className="mt-8" {...field} />
         )}
       />
-      {errors.description && <span>Job Description is missing.</span>}
 
       <div className="flex justify-end mt-8">
         <Button

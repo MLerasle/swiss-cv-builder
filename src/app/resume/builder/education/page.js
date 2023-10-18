@@ -16,20 +16,18 @@ export default function WorkExperiences() {
 
   const {
     control,
+    watch,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    defaultValues: {
-      education,
-    },
-  });
+  } = useForm({ defaultValues: { education } });
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: "education",
   });
 
   const onSubmit = (data) => {
-    setData({ step: 4, data: data.education });
+    setData({ step: 5, data: data.education });
     router.push("/resume/builder/certifications");
   };
 
@@ -40,12 +38,13 @@ export default function WorkExperiences() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h2 className="text-xl font-semibold leading-7 text-gray-900 mt-8">
-        4. Formation
+        5. Formation
       </h2>
 
       {fields.map((field, index) => (
         <FormEducation
           control={control}
+          watch={watch}
           errors={errors}
           key={field.id}
           index={index}

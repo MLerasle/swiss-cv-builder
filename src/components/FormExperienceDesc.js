@@ -10,7 +10,7 @@ export default function FormExperienceDesc({ descIndex, control }) {
 
   const onAddDesc = (event) => {
     if (event.key === "Enter" || event.type === "press") {
-      append({ description: "" });
+      append({ task: "" });
     }
   };
 
@@ -27,7 +27,7 @@ export default function FormExperienceDesc({ descIndex, control }) {
         >
           <div className={`sm:col-span-5 ${index > 0 && "mt-8"}`}>
             <Controller
-              name={`jobs.${descIndex}.description.${index}.item`}
+              name={`jobs.${descIndex}.description.${index}.task`}
               control={control}
               render={({ field }) => (
                 <Input label="Description" onKeyDown={onAddDesc} {...field} />

@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 
 import {
   personalData,
@@ -27,20 +28,28 @@ const steps = {
   8: "summary",
 };
 
-const useFormStore = create((set) => ({
-  personalData,
-  experiences,
-  skills,
-  languages,
-  education,
-  certifications,
-  references,
-  summary,
-  setData: ({ step, data }) =>
-    set((state) => ({
-      ...state,
-      [steps[step]]: data,
-    })),
-}));
+const useFormStore = create(
+  persist(
+    (set) => ({
+      personalData,
+      experiences,
+      skills,
+      languages,
+      education,
+      certifications,
+      references,
+      summary,
+      setData: ({ step, data }) =>
+        set((state) => ({
+          ...state,
+          [steps[step]]: data,
+        })),
+    }),
+    {
+      name: "resume",
+      storage: createJSONStorage(() => sessionStorage),
+    }
+  )
+);
 
 export default useFormStore;

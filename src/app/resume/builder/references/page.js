@@ -18,18 +18,15 @@ export default function WorkExperiences() {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    defaultValues: {
-      references,
-    },
-  });
+  } = useForm({ defaultValues: { references } });
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: "references",
   });
 
   const onSubmit = (data) => {
-    setData({ step: 6, data: data.references });
+    setData({ step: 7, data: data.references });
     router.push("/resume/builder/summary");
   };
 
@@ -40,7 +37,7 @@ export default function WorkExperiences() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h2 className="text-xl font-semibold leading-7 text-gray-900 mt-8">
-        6. Références
+        7. Références
       </h2>
 
       {fields.map((field, index) => (

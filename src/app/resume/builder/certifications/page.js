@@ -16,20 +16,18 @@ export default function Certifications() {
 
   const {
     control,
+    watch,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    defaultValues: {
-      certifications,
-    },
-  });
+  } = useForm({ defaultValues: { certifications } });
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: "certifications",
   });
 
   const onSubmit = (data) => {
-    setData({ step: 5, data: data.certifications });
+    setData({ step: 6, data: data.certifications });
     router.push("/resume/builder/references");
   };
 
@@ -40,12 +38,13 @@ export default function Certifications() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h2 className="text-xl font-semibold leading-7 text-gray-900 mt-8">
-        5. Certifications
+        6. Certifications
       </h2>
 
       {fields.map((field, index) => (
         <FormCertification
           control={control}
+          watch={watch}
           errors={errors}
           key={field.id}
           index={index}

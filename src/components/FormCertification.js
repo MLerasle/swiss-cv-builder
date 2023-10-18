@@ -5,11 +5,17 @@ import { TrashIcon } from "@heroicons/react/24/solid";
 import { Card } from "@/components/Card";
 import { months, years } from "@/lib/select-options";
 
-export default function FormCertification({ control, errors, index, remove }) {
+export default function FormCertification({
+  control,
+  watch,
+  errors,
+  index,
+  remove,
+}) {
   return (
     <Card>
       <Controller
-        name={`certifications${index}.title`}
+        name={`certifications.${index}.title`}
         control={control}
         rules={{
           required: true,
@@ -21,7 +27,7 @@ export default function FormCertification({ control, errors, index, remove }) {
       {errors.title && <span>Title is missing.</span>}
 
       <Controller
-        name={`certifications${index}.issuer`}
+        name={`certifications.${index}.issuer`}
         control={control}
         rules={{
           required: true,
@@ -46,7 +52,11 @@ export default function FormCertification({ control, errors, index, remove }) {
               required: true,
             }}
             render={({ field }) => (
-              <Select label="Mois" {...field}>
+              <Select
+                label="Mois"
+                defaultSelectedKeys={[watch(`certifications.${index}.month`)]}
+                {...field}
+              >
                 {months.map((month) => (
                   <SelectItem key={month} value={month}>
                     {month}
@@ -66,7 +76,11 @@ export default function FormCertification({ control, errors, index, remove }) {
               required: true,
             }}
             render={({ field }) => (
-              <Select label="Année" {...field}>
+              <Select
+                label="Année"
+                defaultSelectedKeys={[watch(`certifications.${index}.year`)]}
+                {...field}
+              >
                 {years.map((year) => (
                   <SelectItem key={year} value={year}>
                     {year}

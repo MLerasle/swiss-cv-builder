@@ -24,11 +24,8 @@ export default function WorkExperiences() {
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    defaultValues: {
-      jobs: experiences,
-    },
-  });
+  } = useForm({ defaultValues: { jobs: experiences } });
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: "jobs",

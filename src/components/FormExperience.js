@@ -85,6 +85,7 @@ export default function FormExperience({
             classNames={{
               label: "text-sm font-medium leading-6 text-gray-900",
             }}
+            defaultSelected={watch(`jobs.${index}.current`)}
             {...field}
           >
             J&apos;occupe actuellement ce poste
@@ -104,7 +105,11 @@ export default function FormExperience({
               required: true,
             }}
             render={({ field }) => (
-              <Select label="Mois" {...field}>
+              <Select
+                label="Mois"
+                defaultSelectedKeys={[watch(`jobs.${index}.fromMonth`)]}
+                {...field}
+              >
                 {months.map((month) => (
                   <SelectItem key={month} value={month}>
                     {month}
@@ -124,7 +129,11 @@ export default function FormExperience({
               required: true,
             }}
             render={({ field }) => (
-              <Select label="Année" {...field}>
+              <Select
+                label="Année"
+                defaultSelectedKeys={[watch(`jobs.${index}.fromYear`)]}
+                {...field}
+              >
                 {years.map((year) => (
                   <SelectItem key={year} value={year}>
                     {year}
@@ -152,6 +161,11 @@ export default function FormExperience({
               <Select
                 label="Mois"
                 isDisabled={watch(`jobs.${index}.current`)}
+                defaultSelectedKeys={
+                  watch(`jobs.${index}.current`)
+                    ? []
+                    : [watch(`jobs.${index}.toMonth`)]
+                }
                 {...field}
               >
                 {months.map((month) => (
@@ -176,6 +190,11 @@ export default function FormExperience({
               <Select
                 label="Année"
                 isDisabled={watch(`jobs.${index}.current`)}
+                defaultSelectedKeys={
+                  watch(`jobs.${index}.current`)
+                    ? []
+                    : [watch(`jobs.${index}.toYear`)]
+                }
                 {...field}
               >
                 {years.map((year) => (

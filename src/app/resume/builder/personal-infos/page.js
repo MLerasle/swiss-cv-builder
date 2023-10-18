@@ -2,9 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useForm, Controller, useFieldArray } from "react-hook-form";
-import { Button, Input, Select, SelectItem } from "@nextui-org/react";
-import { ChevronRightIcon } from "@heroicons/react/24/solid";
+import { useForm, Controller } from "react-hook-form";
+import { Input, Select, SelectItem } from "@nextui-org/react";
 
 import FormActions from "@/components/FormActions";
 import HelpCard from "@/components/HelpCard";
@@ -23,9 +22,7 @@ export default function PersonalInfos() {
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    defaultValues: personalData,
-  });
+  } = useForm({ defaultValues: personalData });
 
   const onSubmit = (data) => {
     setData({ step: 1, data });

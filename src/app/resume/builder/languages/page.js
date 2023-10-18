@@ -16,11 +16,10 @@ export default function Languages() {
 
   const {
     control,
+    watch,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    defaultValues: { languages },
-  });
+  } = useForm({ defaultValues: { languages } });
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -28,7 +27,7 @@ export default function Languages() {
   });
 
   const onSubmit = (data) => {
-    setData({ step: 4, data });
+    setData({ step: 4, data: data.languages });
     router.push("/resume/builder/education");
   };
 
@@ -50,7 +49,10 @@ export default function Languages() {
           compétence pour chacune d'entre elles :
         </span>
         {fields.map((field, index) => (
-          <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-12 mt-8">
+          <div
+            key={field.id}
+            className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-12 mt-8"
+          >
             <div className="sm:col-span-5">
               <Controller
                 name={`languages.${index}.language`}
@@ -73,7 +75,11 @@ export default function Languages() {
                   required: true,
                 }}
                 render={({ field }) => (
-                  <Select label="Niveau de compétence" {...field}>
+                  <Select
+                    label="Niveau de compétence"
+                    defaultSelectedKeys={[watch(`languages.${index}.level`)]}
+                    {...field}
+                  >
                     {languageLevels.map((level) => (
                       <SelectItem key={level} value={level}>
                         {level}
