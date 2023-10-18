@@ -15,7 +15,7 @@ export default function PersonalInfos() {
   const router = useRouter();
   const { personalData, setData } = useFormStore();
   const [isHelpDisplayed, setIsHelpDisplayed] = useState(false);
-  const [helpData, setHelpData] = useState({});
+  const [helpData, setHelpData] = useState([]);
 
   const {
     control,
@@ -30,10 +30,7 @@ export default function PersonalInfos() {
   };
 
   const displayHelp = (fieldName) => {
-    setHelpData({
-      title: help[fieldName].title,
-      content: help[fieldName].content,
-    });
+    setHelpData(help[fieldName]);
     setIsHelpDisplayed(true);
   };
 
@@ -41,13 +38,13 @@ export default function PersonalInfos() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <p className="text-gray-800 mt-8">Bienvenue 👋</p>
+      {/* <p className="text-gray-800 mt-8">Bienvenue 👋</p>
       <h1 className="text-3xl font-bold leading-8 text-gray-950 mt-2">
         Commencez à rédiger votre nouveau CV
-      </h1>
-      <h2 className="text-xl font-semibold leading-7 text-gray-900 mt-8">
+      </h1> */}
+      {/* <h2 className="text-xl font-semibold leading-7 text-gray-900 mt-8">
         1. Informations Personnelles
-      </h2>
+      </h2> */}
       <Controller
         name="name"
         control={control}
@@ -234,13 +231,7 @@ export default function PersonalInfos() {
 
       <FormActions />
 
-      {isHelpDisplayed && (
-        <HelpCard
-          title={helpData.title}
-          content={helpData.content}
-          onClose={hideHelp}
-        />
-      )}
+      {isHelpDisplayed && <HelpCard content={helpData} onClose={hideHelp} />}
     </form>
   );
 }

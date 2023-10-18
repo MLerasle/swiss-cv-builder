@@ -1,14 +1,9 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { Button } from "@nextui-org/react";
 import { useForm, useFieldArray } from "react-hook-form";
-import {
-  PlusIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-} from "@heroicons/react/24/solid";
+import { PlusIcon } from "@heroicons/react/24/solid";
 
 import FormExperience from "@/components/FormExperience";
 import FormActions from "@/components/FormActions";
@@ -42,10 +37,6 @@ export default function WorkExperiences() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h2 className="text-xl font-semibold leading-7 text-gray-900 mt-8">
-        2. Expériences Professionelles
-      </h2>
-
       {fields.map((field, index) => (
         <FormExperience
           control={control}

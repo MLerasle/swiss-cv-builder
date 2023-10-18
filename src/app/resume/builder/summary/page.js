@@ -24,9 +24,6 @@ export default function Summary() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h2 className="text-xl font-semibold leading-7 text-gray-900 mt-8">
-        8. Résumé
-      </h2>
       <p className="text-gray-500 text-sm mt-2">
         Expliquez brièvement au recruteur (3 à 5 phrases) pourquoi vous êtes le
         meilleur candidat pour le poste. Résumez les points clés de votre

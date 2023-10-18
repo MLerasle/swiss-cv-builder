@@ -37,10 +37,6 @@ export default function Skills() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h2 className="text-xl font-semibold leading-7 text-gray-900 mt-8">
-        3. Compétences
-      </h2>
-
       <Card>
         <span className="block text-sm font-medium leading-6 text-gray-900">
           Ajoutez une à une les compétences que vous souhaitez mettre en avant :

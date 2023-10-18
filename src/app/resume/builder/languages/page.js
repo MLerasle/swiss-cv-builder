@@ -7,8 +7,8 @@ import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
 
 import { Card } from "@/components/Card";
 import FormActions from "@/components/FormActions";
-import { languageLevels } from "@/lib/select-options";
 import useFormStore from "@/store/useFormStore";
+import { languageLevels } from "@/lib/select-options";
 
 export default function Languages() {
   const router = useRouter();
@@ -39,10 +39,6 @@ export default function Languages() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h2 className="text-xl font-semibold leading-7 text-gray-900 mt-8">
-        4. Langues
-      </h2>
-
       <Card>
         <span className="block text-sm font-medium leading-6 text-gray-900">
           Ajoutez une à une les langues que vous parlez et votre niveau de

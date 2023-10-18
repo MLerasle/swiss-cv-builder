@@ -1,9 +1,10 @@
 export const help = {
-  jobTitle: {
-    title: "Intitulé du poste",
-    content:
-      'Un sous-titre facultatif sous votre nom indiquant votre titre professionnel actuel ou une brève description personnelle est une pratique courante et acceptée. Nous vous suggérons de mettre en évidence vos compétences les plus fortes et votre ancienneté dans votre titre. Par exemple : "Développeur back-end Python" ou "Développeur front-end senior React".',
-  },
+  jobTitle: [
+    {
+      title: "Intitulé du poste",
+      desc: 'Un sous-titre facultatif sous votre nom indiquant votre titre professionnel actuel ou une brève description personnelle est une pratique courante et acceptée. Nous vous suggérons de mettre en évidence vos compétences les plus fortes et votre ancienneté dans votre titre. Par exemple : "Développeur back-end Python" ou "Développeur front-end senior React".',
+    },
+  ],
   emailAddress: {
     title: "Adresse Email",
     content:
