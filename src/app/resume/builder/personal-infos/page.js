@@ -7,6 +7,7 @@ import { Input, Select, SelectItem } from "@nextui-org/react";
 
 import FormActions from "@/components/FormActions";
 import HelpCard from "@/components/HelpCard";
+import { InputPhone } from "@/components/InputPhone";
 import useFormStore from "@/store/useFormStore";
 import { workPermits, nationalities } from "@/lib/select-options";
 import { help } from "@/lib/help";
@@ -104,9 +105,7 @@ export default function PersonalInfos() {
           <Controller
             name="tel"
             control={control}
-            render={({ field }) => (
-              <Input type="tel" label="Téléphone" {...field} />
-            )}
+            render={({ field }) => <InputPhone {...field} />}
           />
         </div>
       </div>
@@ -165,7 +164,9 @@ export default function PersonalInfos() {
           <Controller
             name="age"
             control={control}
-            render={({ field }) => <Input label="Âge" {...field} />}
+            render={({ field }) => (
+              <Input label="Âge" type="number" {...field} />
+            )}
           />
         </div>
 
@@ -174,7 +175,11 @@ export default function PersonalInfos() {
             name="linkedinUrl"
             control={control}
             render={({ field }) => (
-              <Input label="Profile LinkedIn" {...field} />
+              <Input
+                label="Profile LinkedIn"
+                placeholder="https://www.linkedin.com/in/username/"
+                {...field}
+              />
             )}
           />
         </div>

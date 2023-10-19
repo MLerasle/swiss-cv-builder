@@ -13,7 +13,6 @@ export default function FormExperience({
   index,
   remove,
 }) {
-  console.log({ errors });
   return (
     <Card>
       <Controller
