@@ -13,11 +13,7 @@ export default function Skills() {
   const router = useRouter();
   const { skills, setData } = useFormStore();
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ defaultValues: { skills } });
+  const { control, handleSubmit } = useForm({ defaultValues: { skills } });
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -85,7 +81,6 @@ export default function Skills() {
             )}
           </div>
         ))}
-        {errors.skills && <span>Skills are missing.</span>}
       </Card>
 
       <FormActions prevLink="/resume/builder/experiences" />

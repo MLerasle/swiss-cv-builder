@@ -23,10 +23,22 @@ export default function FormEducation({
               required: true,
             }}
             render={({ field }) => (
-              <Input label="École" autoFocus isRequired {...field} />
+              <Input
+                label="École"
+                autoFocus
+                isRequired
+                isInvalid={
+                  !!errors.education && !!errors.education[index].school
+                }
+                errorMessage={
+                  !!errors.education &&
+                  !!errors.education[index].school &&
+                  "Veuillez renseigner l'école dans laquelle vous avez obtenu votre diplôme."
+                }
+                {...field}
+              />
             )}
           />
-          {errors.school && <span>School is missing.</span>}
         </div>
 
         <div className="sm:col-span-3">
@@ -37,10 +49,21 @@ export default function FormEducation({
               required: true,
             }}
             render={({ field }) => (
-              <Input label="Diplôme" isRequired {...field} />
+              <Input
+                label="Diplôme"
+                isRequired
+                isInvalid={
+                  !!errors.education && !!errors.education[index].degree
+                }
+                errorMessage={
+                  !!errors.education &&
+                  !!errors.education[index].degree &&
+                  "Veuillez renseigner le diplôme obtenu."
+                }
+                {...field}
+              />
             )}
           />
-          {errors.degree && <span>Degree is missing.</span>}
         </div>
       </div>
 
@@ -53,10 +76,21 @@ export default function FormEducation({
               required: true,
             }}
             render={({ field }) => (
-              <Input label="Domaine d'études" isRequired {...field} />
+              <Input
+                label="Domaine d'études"
+                isRequired
+                isInvalid={
+                  !!errors.education && !!errors.education[index].field
+                }
+                errorMessage={
+                  !!errors.education &&
+                  !!errors.education[index].field &&
+                  "Veuillez renseigner le domaine d'études de votre diplôme."
+                }
+                {...field}
+              />
             )}
           />
-          {errors.field && <span>Field is missing.</span>}
         </div>
 
         <div className="sm:col-span-3">
@@ -75,7 +109,6 @@ export default function FormEducation({
             control={control}
             render={({ field }) => <Input label="Ville" {...field} />}
           />
-          {errors.city && <span>City is missing.</span>}
         </div>
 
         <div className="sm:col-span-3">
@@ -84,7 +117,6 @@ export default function FormEducation({
             control={control}
             render={({ field }) => <Input label="Pays" {...field} />}
           />
-          {errors.country && <span>Country is missing.</span>}
         </div>
       </div>
 
@@ -96,13 +128,14 @@ export default function FormEducation({
           <Controller
             name={`education.${index}.fromMonth`}
             control={control}
-            rules={{
-              required: true,
-            }}
             render={({ field }) => (
               <Select
                 label="Mois"
-                defaultSelectedKeys={[watch(`education.${index}.fromMonth`)]}
+                defaultSelectedKeys={
+                  !!watch(`education.${index}.fromMonth`)
+                    ? [watch(`education.${index}.fromMonth`)]
+                    : []
+                }
                 {...field}
               >
                 {months.map((month) => (
@@ -113,20 +146,20 @@ export default function FormEducation({
               </Select>
             )}
           />
-          {errors.fromMonth && <span>From Month is missing.</span>}
         </div>
 
         <div className="sm:col-span-3 mt-8 sm:mt-1">
           <Controller
             name={`education.${index}.fromYear`}
             control={control}
-            rules={{
-              required: true,
-            }}
             render={({ field }) => (
               <Select
                 label="Année"
-                defaultSelectedKeys={[watch(`education.${index}.fromYear`)]}
+                defaultSelectedKeys={
+                  !!watch(`education.${index}.fromYear`)
+                    ? [watch(`education.${index}.fromYear`)]
+                    : []
+                }
                 {...field}
               >
                 {years.map((year) => (
@@ -137,7 +170,6 @@ export default function FormEducation({
               </Select>
             )}
           />
-          {errors.fromYear && <span>From Year is missing.</span>}
         </div>
       </div>
 
@@ -149,13 +181,14 @@ export default function FormEducation({
           <Controller
             name={`education.${index}.toMonth`}
             control={control}
-            rules={{
-              required: true,
-            }}
             render={({ field }) => (
               <Select
                 label="Mois"
-                defaultSelectedKeys={[watch(`education.${index}.toMonth`)]}
+                defaultSelectedKeys={
+                  !!watch(`education.${index}.toMonth`)
+                    ? [watch(`education.${index}.toMonth`)]
+                    : []
+                }
                 {...field}
               >
                 {months.map((month) => (
@@ -166,20 +199,20 @@ export default function FormEducation({
               </Select>
             )}
           />
-          {errors.toMonth && <span>To Month is missing.</span>}
         </div>
 
         <div className="sm:col-span-3 mt-8 sm:mt-1">
           <Controller
             name={`education.${index}.toYear`}
             control={control}
-            rules={{
-              required: true,
-            }}
             render={({ field }) => (
               <Select
                 label="Année"
-                defaultSelectedKeys={[watch(`education.${index}.toYear`)]}
+                defaultSelectedKeys={
+                  !!watch(`education.${index}.toYear`)
+                    ? [watch(`education.${index}.toYear`)]
+                    : []
+                }
                 {...field}
               >
                 {years.map((year) => (
@@ -190,7 +223,6 @@ export default function FormEducation({
               </Select>
             )}
           />
-          {errors.toYear && <span>To Year is missing.</span>}
         </div>
       </div>
 

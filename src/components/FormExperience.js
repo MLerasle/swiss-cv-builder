@@ -13,6 +13,7 @@ export default function FormExperience({
   index,
   remove,
 }) {
+  console.log({ errors });
   return (
     <Card>
       <Controller
@@ -22,10 +23,20 @@ export default function FormExperience({
           required: true,
         }}
         render={({ field }) => (
-          <Input label="Entreprise" autoFocus isRequired {...field} />
+          <Input
+            label="Entreprise"
+            autoFocus
+            isRequired
+            isInvalid={!!errors.jobs && !!errors?.jobs[index]?.company}
+            errorMessage={
+              !!errors.jobs &&
+              !!errors?.jobs[index]?.company &&
+              "Veuillez renseigner le nom de l'entreprise."
+            }
+            {...field}
+          />
         )}
       />
-      {errors.company && <span>Company is missing.</span>}
 
       <Controller
         name={`jobs.${index}.companyDesc`}
@@ -49,12 +60,17 @@ export default function FormExperience({
           <Input
             label="Fonction dans l'entreprise"
             isRequired
+            isInvalid={!!errors.jobs && !!errors.jobs[index].title}
+            errorMessage={
+              !!errors.jobs &&
+              !!errors.jobs[index].title &&
+              "Veuillez renseigner la fonction que vous occupiez dans cette entreprise."
+            }
             className="my-8"
             {...field}
           />
         )}
       />
-      {errors.title && <span>Job Title is missing.</span>}
 
       <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
         <div className="sm:col-span-3">
@@ -63,7 +79,6 @@ export default function FormExperience({
             control={control}
             render={({ field }) => <Input label="Ville" {...field} />}
           />
-          {errors.city && <span>City is missing.</span>}
         </div>
 
         <div className="sm:col-span-3">
@@ -72,7 +87,6 @@ export default function FormExperience({
             control={control}
             render={({ field }) => <Input label="Pays" {...field} />}
           />
-          {errors.country && <span>Country is missing.</span>}
         </div>
       </div>
 
@@ -107,7 +121,18 @@ export default function FormExperience({
             render={({ field }) => (
               <Select
                 label="Mois"
-                defaultSelectedKeys={[watch(`jobs.${index}.fromMonth`)]}
+                defaultSelectedKeys={
+                  !!watch(`jobs.${index}.fromMonth`)
+                    ? [watch(`jobs.${index}.fromMonth`)]
+                    : []
+                }
+                isRequired
+                isInvalid={!!errors.jobs && !!errors.jobs[index].fromMonth}
+                errorMessage={
+                  !!errors.jobs &&
+                  !!errors.jobs[index].fromMonth &&
+                  "Veuillez renseigner la date du début de votre collaboration."
+                }
                 {...field}
               >
                 {months.map((month) => (
@@ -118,7 +143,6 @@ export default function FormExperience({
               </Select>
             )}
           />
-          {errors.fromMonth && <span>From Month is missing.</span>}
         </div>
 
         <div className="sm:col-span-3 mt-8 sm:mt-1">
@@ -131,7 +155,18 @@ export default function FormExperience({
             render={({ field }) => (
               <Select
                 label="Année"
-                defaultSelectedKeys={[watch(`jobs.${index}.fromYear`)]}
+                defaultSelectedKeys={
+                  !!watch(`jobs.${index}.fromYear`)
+                    ? [watch(`jobs.${index}.fromYear`)]
+                    : []
+                }
+                isRequired
+                isInvalid={!!errors.jobs && !!errors.jobs[index].fromYear}
+                errorMessage={
+                  !!errors.jobs &&
+                  !!errors.jobs[index].fromYear &&
+                  "Veuillez renseigner la date du début de votre collaboration."
+                }
                 {...field}
               >
                 {years.map((year) => (
@@ -142,7 +177,6 @@ export default function FormExperience({
               </Select>
             )}
           />
-          {errors.fromYear && <span>From Year is missing.</span>}
         </div>
       </div>
 
@@ -162,9 +196,22 @@ export default function FormExperience({
                 label="Mois"
                 isDisabled={watch(`jobs.${index}.current`)}
                 defaultSelectedKeys={
-                  watch(`jobs.${index}.current`)
+                  watch(`jobs.${index}.current`) ||
+                  !watch(`jobs.${index}.toMonth`)
                     ? []
                     : [watch(`jobs.${index}.toMonth`)]
+                }
+                isRequired={!watch(`jobs.${index}.current`)}
+                isInvalid={
+                  watch(`jobs.${index}.current`)
+                    ? false
+                    : !!errors.jobs && !!errors.jobs[index].toMonth
+                }
+                errorMessage={
+                  !watch(`jobs.${index}.current`) &&
+                  !!errors.jobs &&
+                  !!errors.jobs[index].toMonth &&
+                  "Veuillez renseigner la date du fin de votre collaboration si vous n'occupez plus ce poste."
                 }
                 {...field}
               >
@@ -176,7 +223,6 @@ export default function FormExperience({
               </Select>
             )}
           />
-          {errors.toMonth && <span>To Month is missing.</span>}
         </div>
 
         <div className="sm:col-span-3 mt-8 sm:mt-1">
@@ -191,9 +237,22 @@ export default function FormExperience({
                 label="Année"
                 isDisabled={watch(`jobs.${index}.current`)}
                 defaultSelectedKeys={
-                  watch(`jobs.${index}.current`)
+                  watch(`jobs.${index}.current`) ||
+                  !watch(`jobs.${index}.toYear`)
                     ? []
                     : [watch(`jobs.${index}.toYear`)]
+                }
+                isRequired={!watch(`jobs.${index}.current`)}
+                isInvalid={
+                  watch(`jobs.${index}.current`)
+                    ? false
+                    : !!errors.jobs && !!errors.jobs[index].toYear
+                }
+                errorMessage={
+                  !watch(`jobs.${index}.current`) &&
+                  !!errors.jobs &&
+                  !!errors.jobs[index].toYear &&
+                  "Veuillez renseigner la date du fin de votre collaboration si vous n'occupez plus ce poste."
                 }
                 {...field}
               >
@@ -205,7 +264,6 @@ export default function FormExperience({
               </Select>
             )}
           />
-          {errors.toYear && <span>To Year is missing.</span>}
         </div>
       </div>
 

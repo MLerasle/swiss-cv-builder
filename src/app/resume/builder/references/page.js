@@ -35,7 +35,7 @@ export default function WorkExperiences() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} noValidate>
       {fields.map((field, index) => (
         <FormReference
           control={control}

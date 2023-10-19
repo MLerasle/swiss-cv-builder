@@ -14,10 +14,20 @@ export default function FormReference({ control, errors, index, remove }) {
           required: true,
         }}
         render={({ field }) => (
-          <Input label="Nom" autoFocus isRequired {...field} />
+          <Input
+            label="Nom"
+            autoFocus
+            isRequired
+            isInvalid={!!errors.references && !!errors.references[index].name}
+            errorMessage={
+              !!errors.references &&
+              !!errors.references[index].name &&
+              "Veuillez renseigner le nom de la personne de référence."
+            }
+            {...field}
+          />
         )}
       />
-      {errors.name && <span>Name is missing.</span>}
 
       <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 mt-8">
         <div className="sm:col-span-3">
@@ -28,10 +38,21 @@ export default function FormReference({ control, errors, index, remove }) {
               required: true,
             }}
             render={({ field }) => (
-              <Input label="Entreprise" isRequired {...field} />
+              <Input
+                label="Entreprise"
+                isRequired
+                isInvalid={
+                  !!errors.references && !!errors.references[index].company
+                }
+                errorMessage={
+                  !!errors.references &&
+                  !!errors.references[index].company &&
+                  "Veuillez renseigner l'entreprise' de la personne de référence."
+                }
+                {...field}
+              />
             )}
           />
-          {errors.company && <span>Company is missing.</span>}
         </div>
 
         <div className="sm:col-span-3">
@@ -42,10 +63,21 @@ export default function FormReference({ control, errors, index, remove }) {
               required: true,
             }}
             render={({ field }) => (
-              <Input label="Fonction dans l'entreprise" isRequired {...field} />
+              <Input
+                label="Fonction dans l'entreprise"
+                isRequired
+                isInvalid={
+                  !!errors.references && !!errors.references[index].position
+                }
+                errorMessage={
+                  !!errors.references &&
+                  !!errors.references[index].position &&
+                  "Veuillez renseigner le fonction occupée par la personne de référence."
+                }
+                {...field}
+              />
             )}
           />
-          {errors.position && <span>Position is missing.</span>}
         </div>
       </div>
 

@@ -21,10 +21,22 @@ export default function FormCertification({
           required: true,
         }}
         render={({ field }) => (
-          <Input label="Nom" autoFocus isRequired {...field} />
+          <Input
+            label="Nom"
+            autoFocus
+            isRequired
+            isInvalid={
+              !!errors.certifications && !!errors.certifications[index].title
+            }
+            errorMessage={
+              !!errors.certifications &&
+              !!errors.certifications[index].title &&
+              "Veuillez renseigner le nom de votre certification."
+            }
+            {...field}
+          />
         )}
       />
-      {errors.title && <span>Title is missing.</span>}
 
       <Controller
         name={`certifications.${index}.issuer`}
@@ -36,12 +48,19 @@ export default function FormCertification({
           <Input
             label="Organisme de délivrance"
             isRequired
+            isInvalid={
+              !!errors.certifications && !!errors.certifications[index].issuer
+            }
+            errorMessage={
+              !!errors.certifications &&
+              !!errors.certifications[index].issuer &&
+              "Veuillez renseigner l'organisme de délivrance de votre certification."
+            }
             className="my-8"
             {...field}
           />
         )}
       />
-      {errors.issuer && <span>Issuer is missing.</span>}
 
       <div className="grid grid-cols-1 gap-x-6 sm:grid-cols-6">
         <div className="sm:col-span-3">
@@ -54,7 +73,21 @@ export default function FormCertification({
             render={({ field }) => (
               <Select
                 label="Mois"
-                defaultSelectedKeys={[watch(`certifications.${index}.month`)]}
+                defaultSelectedKeys={
+                  watch(`certifications.${index}.month`)
+                    ? [watch(`certifications.${index}.month`)]
+                    : []
+                }
+                isRequired
+                isInvalid={
+                  !!errors.certifications &&
+                  !!errors.certifications[index].month
+                }
+                errorMessage={
+                  !!errors.certifications &&
+                  !!errors.certifications[index].month &&
+                  "Veuillez renseigner la date d'obtention de votre certification."
+                }
                 {...field}
               >
                 {months.map((month) => (
@@ -65,7 +98,6 @@ export default function FormCertification({
               </Select>
             )}
           />
-          {errors.month && <span>Month is missing.</span>}
         </div>
 
         <div className="sm:col-span-3 mt-8 sm:mt-0">
@@ -78,7 +110,20 @@ export default function FormCertification({
             render={({ field }) => (
               <Select
                 label="Année"
-                defaultSelectedKeys={[watch(`certifications.${index}.year`)]}
+                defaultSelectedKeys={
+                  watch(`certifications.${index}.year`)
+                    ? [watch(`certifications.${index}.year`)]
+                    : []
+                }
+                isRequired
+                isInvalid={
+                  !!errors.certifications && !!errors.certifications[index].year
+                }
+                errorMessage={
+                  !!errors.certifications &&
+                  !!errors.certifications[index].year &&
+                  "Veuillez renseigner la date d'obtention de votre certification."
+                }
                 {...field}
               >
                 {years.map((year) => (
@@ -89,7 +134,6 @@ export default function FormCertification({
               </Select>
             )}
           />
-          {errors.year && <span>Year is missing.</span>}
         </div>
       </div>
 

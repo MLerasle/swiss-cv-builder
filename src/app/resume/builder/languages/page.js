@@ -38,7 +38,7 @@ export default function Languages() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <Card>
         <span className="block text-sm font-medium leading-6 text-gray-900">
           Ajoutez une à une les langues que vous parlez et votre niveau de
@@ -57,23 +57,35 @@ export default function Languages() {
                   required: true,
                 }}
                 render={({ field }) => (
-                  <Input label="Langue" isRequired {...field} />
+                  <Input
+                    label="Langue"
+                    isRequired
+                    isInvalid={
+                      !!errors.languages && !!errors.languages[index].language
+                    }
+                    errorMessage={
+                      !!errors.languages &&
+                      !!errors.languages[index].language &&
+                      "Veuillez renseigner la langue."
+                    }
+                    {...field}
+                  />
                 )}
               />
-              {errors.language && <span>Language is missing.</span>}
             </div>
 
             <div className="sm:col-span-5">
               <Controller
                 name={`languages.${index}.level`}
                 control={control}
-                rules={{
-                  required: true,
-                }}
                 render={({ field }) => (
                   <Select
                     label="Niveau de compétence"
-                    defaultSelectedKeys={[watch(`languages.${index}.level`)]}
+                    defaultSelectedKeys={
+                      watch(`languages.${index}.level`)
+                        ? [watch(`languages.${index}.level`)]
+                        : []
+                    }
                     {...field}
                   >
                     {languageLevels.map((level) => (
@@ -84,7 +96,6 @@ export default function Languages() {
                   </Select>
                 )}
               />
-              {errors.level && <span>Level is missing.</span>}
             </div>
 
             <div className="sm:col-span-2 flex justify-center items-center">

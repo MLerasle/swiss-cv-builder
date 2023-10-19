@@ -34,20 +34,10 @@ export default function Summary() {
       <Controller
         name="summary"
         control={control}
-        rules={{
-          required: true,
-        }}
         render={({ field }) => (
-          <Textarea
-            label="Résumé"
-            autoFocus
-            isRequired
-            className="mt-8"
-            {...field}
-          />
+          <Textarea label="Résumé" autoFocus className="mt-8" {...field} />
         )}
       />
-      {errors.summary && <span>Summary is missing.</span>}
 
       <FormActions prevLink="/resume/builder/references" lastStep />
     </form>

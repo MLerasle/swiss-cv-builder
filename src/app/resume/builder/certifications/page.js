@@ -36,7 +36,7 @@ export default function Certifications() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} noValidate>
       {fields.map((field, index) => (
         <FormCertification
           control={control}
