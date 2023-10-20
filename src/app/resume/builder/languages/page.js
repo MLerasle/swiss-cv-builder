@@ -6,9 +6,11 @@ import { Button, Input, Select, SelectItem } from "@nextui-org/react";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
 
 import { Card } from "@/components/Card";
+import HelpCard from "@/components/HelpCard";
 import FormActions from "@/components/FormActions";
 import useFormStore from "@/store/useFormStore";
 import { languageLevels } from "@/lib/select-options";
+import { useHelp } from "@/hooks/useHelp";
 
 export default function Languages() {
   const router = useRouter();
@@ -37,6 +39,8 @@ export default function Languages() {
     }
   };
 
+  const { helpData, displayHelp, hideHelp, isHelpDisplayed } = useHelp();
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <Card>
@@ -56,7 +60,7 @@ export default function Languages() {
                 rules={{
                   required: true,
                 }}
-                render={({ field }) => (
+                render={({ field: { onBlur, ...field } }) => (
                   <Input
                     label="Langue"
                     isRequired
@@ -68,6 +72,13 @@ export default function Languages() {
                       !!errors.languages[index].language &&
                       "Veuillez renseigner la langue."
                     }
+                    onFocus={() => {
+                      if (index === 0) displayHelp("language");
+                    }}
+                    onBlur={(e) => {
+                      onBlur(e);
+                      hideHelp();
+                    }}
                     {...field}
                   />
                 )}
@@ -132,6 +143,8 @@ export default function Languages() {
       </Card>
 
       <FormActions prevLink="/resume/builder/skills" />
+
+      {isHelpDisplayed && <HelpCard content={helpData} onClose={hideHelp} />}
     </form>
   );
 }

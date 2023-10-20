@@ -1,6 +1,9 @@
 import { useFieldArray, Controller } from "react-hook-form";
 import { Button, Input } from "@nextui-org/react";
+import HelpCard from "@/components/HelpCard";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
+
+import { useHelp } from "@/hooks/useHelp";
 
 export default function FormExperienceDesc({ descIndex, control }) {
   const { fields, append, remove } = useFieldArray({
@@ -13,6 +16,8 @@ export default function FormExperienceDesc({ descIndex, control }) {
       append({ task: "" });
     }
   };
+
+  const { helpData, displayHelp, hideHelp, isHelpDisplayed } = useHelp();
 
   return (
     <>
@@ -29,8 +34,19 @@ export default function FormExperienceDesc({ descIndex, control }) {
             <Controller
               name={`jobs.${descIndex}.description.${index}.task`}
               control={control}
-              render={({ field }) => (
-                <Input label="Description" onKeyDown={onAddDesc} {...field} />
+              render={({ field: { onBlur, ...field } }) => (
+                <Input
+                  label="Description"
+                  onKeyDown={onAddDesc}
+                  onFocus={() => {
+                    if (index === 0) displayHelp("jobExpDesc");
+                  }}
+                  onBlur={(e) => {
+                    onBlur(e);
+                    hideHelp();
+                  }}
+                  {...field}
+                />
               )}
             />
           </div>
@@ -67,6 +83,8 @@ export default function FormExperienceDesc({ descIndex, control }) {
           </div>
         </div>
       ))}
+
+      {isHelpDisplayed && <HelpCard content={helpData} onClose={hideHelp} />}
     </>
   );
 }

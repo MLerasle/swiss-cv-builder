@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm, Controller } from "react-hook-form";
 import { Input, Select, SelectItem } from "@nextui-org/react";
@@ -10,13 +9,11 @@ import HelpCard from "@/components/HelpCard";
 import { InputPhone } from "@/components/InputPhone";
 import useFormStore from "@/store/useFormStore";
 import { workPermits, nationalities } from "@/lib/select-options";
-import { help } from "@/lib/help";
+import { useHelp } from "@/hooks/useHelp";
 
 export default function PersonalInfos() {
   const router = useRouter();
   const { personalData, setData } = useFormStore();
-  const [isHelpDisplayed, setIsHelpDisplayed] = useState(false);
-  const [helpData, setHelpData] = useState([]);
 
   const {
     control,
@@ -30,12 +27,7 @@ export default function PersonalInfos() {
     router.push("/resume/builder/experiences");
   };
 
-  const displayHelp = (fieldName) => {
-    setHelpData(help[fieldName]);
-    setIsHelpDisplayed(true);
-  };
-
-  const hideHelp = () => setIsHelpDisplayed(false);
+  const { helpData, displayHelp, hideHelp, isHelpDisplayed } = useHelp();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -61,7 +53,7 @@ export default function PersonalInfos() {
       <Controller
         name="title"
         control={control}
-        render={({ field: { onChange, onBlur, value, name } }) => (
+        render={({ field: { onBlur, ...field } }) => (
           <Input
             label="Intitulé du poste"
             className="my-8"
@@ -70,8 +62,7 @@ export default function PersonalInfos() {
               onBlur(e);
               hideHelp();
             }}
-            onChange={onChange}
-            value={value}
+            {...field}
           />
         )}
       />
@@ -85,10 +76,15 @@ export default function PersonalInfos() {
               required: true,
               pattern: /^\S+@\S+$/i,
             }}
-            render={({ field }) => (
+            render={({ field: { onBlur, ...field } }) => (
               <Input
                 type="email"
                 label="Email"
+                onFocus={() => displayHelp("emailAddress")}
+                onBlur={(e) => {
+                  onBlur(e);
+                  hideHelp();
+                }}
                 isRequired
                 isInvalid={!!errors.email}
                 errorMessage={
@@ -105,7 +101,16 @@ export default function PersonalInfos() {
           <Controller
             name="tel"
             control={control}
-            render={({ field }) => <InputPhone {...field} />}
+            render={({ field: { onBlur, ...field } }) => (
+              <InputPhone
+                onFocus={() => displayHelp("phone")}
+                onBlur={(e) => {
+                  onBlur(e);
+                  hideHelp();
+                }}
+                {...field}
+              />
+            )}
           />
         </div>
       </div>
@@ -115,7 +120,7 @@ export default function PersonalInfos() {
           <Controller
             name="nationality"
             control={control}
-            render={({ field }) => (
+            render={({ field: { onBlur, ...field } }) => (
               <Select
                 label="Nationalité"
                 defaultSelectedKeys={
@@ -123,6 +128,11 @@ export default function PersonalInfos() {
                     ? [personalData.nationality]
                     : []
                 }
+                onFocus={() => displayHelp("nationality")}
+                onBlur={(e) => {
+                  onBlur(e);
+                  hideHelp();
+                }}
                 {...field}
               >
                 {nationalities.map((nationality) => (
@@ -139,13 +149,18 @@ export default function PersonalInfos() {
           <Controller
             name="permit"
             control={control}
-            render={({ field }) => (
+            render={({ field: { onBlur, ...field } }) => (
               <Select
                 label="Possédez-vous un permis de travail ?"
                 defaultSelectedKeys={
                   personalData.permit !== "" ? [personalData.permit] : []
                 }
                 isDisabled={watch("nationality") === "Suisse"}
+                onFocus={() => displayHelp("workPermit")}
+                onBlur={(e) => {
+                  onBlur(e);
+                  hideHelp();
+                }}
                 {...field}
               >
                 {workPermits.map((permit) => (

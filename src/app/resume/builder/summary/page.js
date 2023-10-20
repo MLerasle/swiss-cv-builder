@@ -5,11 +5,14 @@ import { useForm, Controller } from "react-hook-form";
 import { Textarea } from "@nextui-org/react";
 
 import FormActions from "@/components/FormActions";
+import HelpCard from "@/components/HelpCard";
 import useFormStore from "@/store/useFormStore";
+import { useHelp } from "@/hooks/useHelp";
 
 export default function Summary() {
   const router = useRouter();
   const { summary, setData } = useFormStore();
+  const { helpData, displayHelp, hideHelp, isHelpDisplayed } = useHelp();
 
   const {
     control,
@@ -34,12 +37,24 @@ export default function Summary() {
       <Controller
         name="summary"
         control={control}
-        render={({ field }) => (
-          <Textarea label="Résumé" autoFocus className="mt-8" {...field} />
+        render={({ field: { onBlur, ...field } }) => (
+          <Textarea
+            label="Résumé"
+            autoFocus
+            className="mt-8"
+            onFocus={() => displayHelp("summary")}
+            onBlur={(e) => {
+              onBlur(e);
+              hideHelp();
+            }}
+            {...field}
+          />
         )}
       />
 
       <FormActions prevLink="/resume/builder/references" lastStep />
+
+      {isHelpDisplayed && <HelpCard content={helpData} onClose={hideHelp} />}
     </form>
   );
 }
