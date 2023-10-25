@@ -1,4 +1,5 @@
 export const personalData = {
+  profilePicture: "",
   name: "",
   title: "",
   email: "",

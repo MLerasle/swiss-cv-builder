@@ -1,8 +1,10 @@
 "use client";
 
+import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useForm, Controller } from "react-hook-form";
-import { Input, Select, SelectItem } from "@nextui-org/react";
+import { Input, Select, SelectItem, Avatar, Button } from "@nextui-org/react";
+import { UserCircleIcon } from "@heroicons/react/24/solid";
 
 import FormActions from "@/components/FormActions";
 import HelpCard from "@/components/HelpCard";
@@ -13,24 +15,69 @@ import { useHelp } from "@/hooks/useHelp";
 
 export default function PersonalInfos() {
   const router = useRouter();
+  const hiddenInputRef = useRef();
+  const [previewImage, setPreviewImage] = useState(null);
   const { personalData, setData } = useFormStore();
-
+  const { helpData, displayHelp, hideHelp, isHelpDisplayed } = useHelp();
   const {
     control,
+    register,
     watch,
     handleSubmit,
     formState: { errors },
   } = useForm({ defaultValues: personalData });
 
-  const onSubmit = (data) => {
+  const { ref: registerRef, ...rest } = register("profilePicture");
+
+  const handleUploadedFile = (event) => {
+    const file = event.target.files[0];
+    const urlImage = URL.createObjectURL(file);
+    setPreviewImage(urlImage);
+  };
+
+  const onUpload = () => {
+    hiddenInputRef.current.click();
+  };
+
+  const onSubmit = async (data) => {
+    const formData = new FormData();
+    formData.set("picture", data.profilePicture[0]);
+    const response = await fetch("/api/picture", {
+      method: "post",
+      body: formData,
+    });
     setData({ step: 1, data });
     router.push("/resume/builder/experiences");
   };
 
-  const { helpData, displayHelp, hideHelp, isHelpDisplayed } = useHelp();
-
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
+      <input
+        type="file"
+        name="profilePicture"
+        onInput={handleUploadedFile}
+        ref={(e) => {
+          registerRef(e);
+          hiddenInputRef.current = e;
+        }}
+        style={{ display: "none" }}
+        {...rest}
+      />
+
+      <div className="mt-8 flex items-center gap-x-3">
+        <Avatar
+          src={previewImage}
+          className="w-20 h-20 text-large"
+          showFallback
+          fallback={
+            <UserCircleIcon className="h-20 w-20 bg-white text-gray-300" />
+          }
+        />
+        <Button color="default" variant="bordered" onClick={onUpload}>
+          Change Photo
+        </Button>
+      </div>
+
       <Controller
         name="name"
         control={control}
