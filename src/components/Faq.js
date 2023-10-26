@@ -41,10 +41,16 @@ export function Faq() {
                         </span>
                       </Disclosure.Button>
                     </dt>
-                    <Disclosure.Panel as="dd" className="mt-2 pr-12">
-                      <p className="text-base leading-7 text-gray-600">
-                        {faq.answer}
-                      </p>
+                    <Disclosure.Panel as="dd" className="mt-4 pr-12">
+                      {faq.answer.map((answer, index) => (
+                        <p
+                          className={`text-base leading-7 text-gray-600 ${
+                            index > 0 && "mt-4"
+                          }`}
+                        >
+                          {answer}
+                        </p>
+                      ))}
                     </Disclosure.Panel>
                   </>
                 )}
