@@ -7,7 +7,7 @@ export default function FormSteps({ pathname }) {
 
   return (
     <nav
-      className="flex items-center justify-start sticky top-0 py-4 bg-white z-50"
+      className="flex items-center sticky top-0 bg-white justify-start mt-1 py-10 z-50"
       aria-label="Progress"
     >
       <p className="text-sm font-medium">

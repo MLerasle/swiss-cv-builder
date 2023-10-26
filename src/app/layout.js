@@ -1,5 +1,7 @@
 import { Roboto } from "next/font/google";
 
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import "@/styles/globals.css";
 import { Providers } from "@/app/providers";
 
@@ -22,7 +24,11 @@ export default function RootLayout({ children }) {
       className={`h-full scroll-smooth bg-white antialiased ${roboto.className}`}
     >
       <body className="flex h-full flex-col">
-        <Providers>{children}</Providers>
+        <Providers>
+          <Header />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
