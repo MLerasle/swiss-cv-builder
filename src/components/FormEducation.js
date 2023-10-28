@@ -27,7 +27,7 @@ export default function FormEducation({
               rules={{
                 required: true,
               }}
-              render={({ field }) => (
+              render={({ field: { onBlur, ...field } }) => (
                 <Input
                   label="École"
                   autoFocus
@@ -40,6 +40,13 @@ export default function FormEducation({
                     !!errors.education[index].school &&
                     "Veuillez renseigner l'école dans laquelle vous avez obtenu votre diplôme."
                   }
+                  onFocus={() => {
+                    if (index === 0) displayHelp("educationOrder");
+                  }}
+                  onBlur={(e) => {
+                    onBlur(e);
+                    hideHelp();
+                  }}
                   {...field}
                 />
               )}

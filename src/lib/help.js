@@ -2,105 +2,123 @@ export const help = {
   jobTitle: [
     {
       title: "Intitulé du poste",
-      desc: 'Un sous-titre facultatif sous votre nom indiquant votre titre professionnel actuel ou une brève description personnelle est une pratique courante et acceptée. Nous vous suggérons de mettre en évidence vos compétences les plus fortes et votre ancienneté dans votre titre. Par exemple : "Développeur back-end Python" ou "Développeur front-end senior React".',
+      desc: 'Un sous-titre facultatif sous votre nom indiquant votre titre professionnel actuel ou une brève description personnelle est une pratique courante et acceptée. Nous vous suggérons de mettre en évidence vos compétences les plus fortes et votre ancienneté dans votre titre. Par exemple "Développeur front-end senior React".',
     },
   ],
   emailAddress: [
     {
       title: "Adresse Email",
-      desc: "Don’t turn IT recruiters off with your old high school handle (e.g., smartymcfartypants420@aol.com). Use a basic, professional email address with just your first and last name, or create an alias or brand new email address if necessary.",
+      desc: "Nous vous recommandons d'utiliser une adresse email professionnelle contenant vos nom et prénom, quitte à en créer une nouvelle.",
     },
   ],
   phone: [
     {
       title: "Téléphone",
-      desc: "Give your cell phone number rather than your home phone number, and include your country code to ensure they get through.",
+      desc: "De préférence votre numéro de mobile, sans oublier l'indicatif international. Bonne nouvelle, tout est déjà en place pour vous faciliter le travail !",
     },
   ],
   nationality: [
     {
       title: "Nationalité",
-      desc: "",
+      desc: "Le marché suisse est international. Les recruteurs voudront savoir si vous êtes un ressortissant européen ou non pour évaluer la difficulté à obtenir un permis de travail si vous n'en possédez pas encore.",
     },
   ],
   workPermit: [
     {
       title: "Permis de travail",
-      desc: "",
+      desc: "Toute personne travaillant en Suisse doit être en possession d'un permis de travail. Si vous en possédez un, ce peut être un plus pour vous puisque le recruteur n'aura pas à s'en soucier.",
+    },
+  ],
+  age: [
+    {
+      title: "Âge",
+      desc: "L'âge n'est pas obigatoire au sens légal mais recommandé.",
+    },
+  ],
+  address: [
+    {
+      title: "Adresse",
+      desc: "Dans beaucoup d'offres d'emploi, une adresse en Suisse est demandée. Si vous en possédez une, l'indiquer peut être un vrai plus pour votre candidature.",
     },
   ],
   jobExpOrder: [
     {
       title: "Ordre",
-      desc: "Start with the most recent software engineering position and work backwards from there (reverse-chronological order).",
+      desc: "Commencez par le poste le plus récent et remontez le temps à partir de là (ordre chronologique inverse).",
     },
   ],
   jobExpDesc: [
     {
       title: "Réalisations quantifiables",
-      desc: "Just as a checksum verifies the integrity of an associated file, achievement numbers verify how well you carried out past responsibilities. You can say you oversaw the redesign of a website, but you can prove you did a great job if you add something like “... leading to a 35% sales increase.”",
+      desc: "Au-delà des tâches que vous avez réalisées, nous vous recommandons de prouver votre valeur ajoutée : par exemple, plutôt que de dire que vous avez supervisé la refonte d'un site web, mentionnez le fait que la refonte du site web a augmenté les ventes de 25%.",
     },
   ],
   skills: [
     {
       title: "Quantité",
-      desc: "Include only relevant skills which will help you land the software engineering position. These will usually be listed in the job description. As a software engineer, there's probably no point listing your proficiency with Microsoft Office, but more relevant software applications should certainly be included.",
+      desc: "Bien qu'optionnelle, cette section peut s'avérer particulièrement utile si vous occupez un poste technique. Mentionnez alors les compétences que vous possédez et qui correspondent à l'offre d'emploi à laquelle vous postulez. Nous vous recommandons de vous limiter à 8 compétences maximum.",
     },
     {
-      title: "Go “Hard”",
-      desc: "Hard skills are those which can be developed through learning, such as technical skills. For example: Python, React, Machine Learning, DevOps, Swift",
+      title: "Compétences techniques et humaines",
+      desc: "Aujourd'hui, les compétences relationnelles ont une place au moins aussi importantes que les compétences techniques. N'hésitez pas à mêler les 2 pour vous distinguer de vos concurrents.",
     },
   ],
   language: [
     {
       title: "Langue",
-      desc: "blubbloubi",
+      desc: "La Suisse ne compte pas moins de 4 langues nationales. Il est donc très important de mentionner le niveau de langue que vous possédez. Il est d'usage d'utiliser la classification du Conseil de l'Europe pour évaluer votre niveau de langue, que nous avons donc adopté dans notre générateur.",
+    },
+  ],
+  educationOrder: [
+    {
+      title: "Ordre",
+      desc: "Comme pour les expériences professionnelles, commencez par la formation la plus récente et remontez le temps à partir de là (ordre chronologique inverse).",
+    },
+    {
+      title: "Importance",
+      desc: "La Suisse n'accorde pas autant d'importance aux diplômes que d'autres pays. N'indiquez que les formations qui sont pertinentes pour l'emploi que vous visez.",
     },
   ],
   degree: [
     {
       title: "Diplôme",
-      desc: "If you've earned a degree, the first line of each entry should be the degree name and your major. Follow the naming convention the job description uses when deciding to choose between “bachelor’s degree,” “BS,” or “B.S.” If you’re working on a degree, write instead “Majoring in Computer Science,” for example.",
+      desc: "Si vous avez obtenu un diplôme à l'étranger, pensez à indiquer entre parenthèses son équivalent suisse si le nom diffère. Par exemple, l'équivalent d'une license en France est un bachelor en Suisse.",
     },
   ],
   grade: [
     {
       title: "Résultat",
-      desc: "Adding your grade point average is often problematic, as anything much less than a perfect GPA will turn them off.",
+      desc: "À moins que vous n'ayez obtenu la meilleure mention, indiquer votre résultat pourrait vous desservir.",
     },
   ],
   degreeDesc: [
     {
       title: "Description",
-      desc: "Include college classes you took which are relevant to the job you’re applying for. And not just specifically connected to software engineering. For example, if you’re applying to become the lead software engineer, adding that course you took on business leadership is a great way to increase your chances! One more important thing is If you graduated with honors or earned any academic awards, show them off.",
+      desc: "Il peut être utile d'expliquer en quoi a consisté votre formation, en particulier si l'intitulé est technique ou peu clair.",
     },
   ],
   certification: [
     {
-      desc: "If you’re looking to apply Pareto’s principle (the “80/20 rule”) to writing a resume for software engineering jobs, the certification and awards section is sure to give you the most bang for your buck.",
+      desc: "Cette section peut véritablement booster votre CV dans la mesure où une certification agit naturellement comme une preuve d'une certain niveau de compétence.",
     },
     {
-      desc: "If you are able to include this section, the few words you list here may just be the most impactful items found on your resume. Why? Certifications and awards, including online qualifications, automatically prove a certain level of technical skills and knowledge, especially when delivered from an industry-renowned organization.",
+      desc: "Si vous postulez pour un poste technique notamment, nous vous recommandons donc de mentionner celles qui pourraient faire sortir votre candidature du lot.",
     },
   ],
   reference: [
     {
-      title: "Référence",
-      desc: "ldskfjdlsgkfhlk",
+      title: "Références",
+      desc: "En Suisse, il est recommandé d'indiquer les personnes qui pourront parler de votre travail et qu'on nomme références. Vous ne devriez pas indiquer leur email ou leur téléphone, mais prévenir ces personnes afin de vous assurer qu'elles parlent de vous de façon positive et objective !",
     },
   ],
   summary: [
     {
       title: "Concis et complèt",
-      desc: "A perfect resume summary statement is only about 3-5 sentences long, yet it touches on everything.",
+      desc: "Un résumé de CV parfait ne comporte que 3 à 5 phrases, mais il aborde tous les aspects de la question.",
     },
     {
-      title: "Numbers as Proof",
-      desc: "Don’t simply write that you have certain technical skills or knowledge with software applications. Give the recruiter hard numbers to back up your claims. For example: “I increased speed and accuracy” is quite vague and requires clarification, but “I increased speed and accuracy by 12% in 6 months” shows them just how capable you are.",
-    },
-    {
-      title: "Tailored",
-      desc: "The introductory paragraph should be tailored to each software engineer job description you’re applying for. Mention the role and company to which you are applying, for starters, and search the original job posting for clues as to what kind of person they’re looking for.",
+      title: "Les chiffres comme preuve",
+      desc: "Ne vous contentez pas d'écrire que vous avez certaines compétences techniques, donnez au recruteur des chiffres concrets pour étayer vos affirmations.",
     },
   ],
 };

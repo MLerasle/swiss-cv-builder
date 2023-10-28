@@ -226,8 +226,17 @@ export default function PersonalInfos() {
           <Controller
             name="age"
             control={control}
-            render={({ field }) => (
-              <Input label="Âge" type="number" {...field} />
+            render={({ field: { onBlur, ...field } }) => (
+              <Input
+                label="Âge"
+                type="number"
+                onFocus={() => displayHelp("age")}
+                onBlur={(e) => {
+                  onBlur(e);
+                  hideHelp();
+                }}
+                {...field}
+              />
             )}
           />
         </div>
@@ -254,8 +263,17 @@ export default function PersonalInfos() {
       <Controller
         name="address"
         control={control}
-        render={({ field }) => (
-          <Input label="Addresse" className="mt-1" {...field} />
+        render={({ field: { onBlur, ...field } }) => (
+          <Input
+            label="Addresse"
+            className="mt-1"
+            onFocus={() => displayHelp("address")}
+            onBlur={(e) => {
+              onBlur(e);
+              hideHelp();
+            }}
+            {...field}
+          />
         )}
       />
 

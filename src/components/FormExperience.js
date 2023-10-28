@@ -37,7 +37,9 @@ export default function FormExperience({
                 !!errors?.jobs[index]?.company &&
                 "Veuillez renseigner le nom de l'entreprise."
               }
-              onFocus={() => displayHelp("jobExpOrder")}
+              onFocus={() => {
+                if (index === 0) displayHelp("jobExpOrder");
+              }}
               onBlur={(e) => {
                 onBlur(e);
                 hideHelp();
