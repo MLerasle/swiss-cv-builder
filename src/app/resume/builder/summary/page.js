@@ -52,7 +52,7 @@ export default function Summary() {
         )}
       />
 
-      <FormActions prevLink="/resume/builder/references" lastStep />
+      <FormActions prevLink="/resume/builder/hobbies" lastStep />
 
       {isHelpDisplayed && <HelpCard content={helpData} onClose={hideHelp} />}
     </form>

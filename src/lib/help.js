@@ -111,6 +111,18 @@ export const help = {
       desc: "En Suisse, il est recommandé d'indiquer les personnes qui pourront parler de votre travail et qu'on nomme références. Vous ne devriez pas indiquer leur email ou leur téléphone, mais prévenir ces personnes afin de vous assurer qu'elles parlent de vous de façon positive et objective !",
     },
   ],
+  projectDesc: [
+    {
+      title: "Description",
+      desc: "Décrivez brièvement votre projet en 2-3 phrases en précisant la raison pour laquelle vous l'avez créé, le rpoblème éventuel qu'il résout ainsi que vos potentiels clients.",
+    },
+  ],
+  hobbies: [
+    {
+      title: "Hobby",
+      desc: "Cette section n'est pas obligatoire. N'ajoutez vos hobbies que si vous pensez qu'ils apportent une réelle plus-value à votre CV. Mieux vaut ne rien mentionner que d'ajouter lecture ou cinéma.",
+    },
+  ],
   summary: [
     {
       title: "Concis et complèt",

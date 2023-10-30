@@ -36,6 +36,16 @@ export const steps = [
   },
   {
     id: 8,
+    name: "Projets Personnels",
+    href: "/resume/builder/projects",
+  },
+  {
+    id: 9,
+    name: "Hobbies",
+    href: "/resume/builder/hobbies",
+  },
+  {
+    id: 10,
     name: "Résumé",
     href: "/resume/builder/summary",
   },

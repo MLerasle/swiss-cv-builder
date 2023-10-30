@@ -5,16 +5,19 @@ import {
   personalData,
   experienceData,
   trainingData,
-  referenceData,
   certificationData,
+  referenceData,
+  projectData,
 } from "@/store/data";
 
 const experiences = [experienceData];
 const skills = [{ skill: "" }];
 const languages = [{ language: "", level: "" }];
 const education = [trainingData];
-const references = [referenceData];
 const certifications = [certificationData];
+const references = [referenceData];
+const projects = [projectData];
+const hobbies = [{ hobby: "" }];
 const summary = "";
 
 const steps = {
@@ -25,7 +28,9 @@ const steps = {
   5: "education",
   6: "certifications",
   7: "references",
-  8: "summary",
+  8: "projects",
+  9: "hobbies",
+  10: "summary",
 };
 
 const useFormStore = create(
@@ -38,6 +43,8 @@ const useFormStore = create(
       education,
       certifications,
       references,
+      projects,
+      hobbies,
       summary,
       setData: ({ step, data }) =>
         set((state) => ({

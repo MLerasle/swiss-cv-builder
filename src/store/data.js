@@ -42,6 +42,13 @@ export const trainingData = {
   description: "",
 };
 
+export const certificationData = {
+  title: "",
+  issuer: "",
+  month: "",
+  year: "",
+};
+
 export const referenceData = {
   name: "",
   company: "",
@@ -50,9 +57,12 @@ export const referenceData = {
   tel: "",
 };
 
-export const certificationData = {
+export const projectData = {
   title: "",
-  issuer: "",
-  month: "",
-  year: "",
+  current: false,
+  fromMonth: "",
+  fromYear: "",
+  toMonth: "",
+  toYear: "",
+  description: "",
 };
