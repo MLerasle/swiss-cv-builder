@@ -3,7 +3,7 @@ import { LightBulbIcon, XMarkIcon } from "@heroicons/react/24/solid";
 
 export default function HelpCard({ content, onClose }) {
   return (
-    <Card className="fixed bottom-6 left-6 bg-gray-800 text-gray-50 z-50 max-w-xl">
+    <Card className="fixed bottom-6 left-6 bg-gray-800 text-gray-50 z-50 max-w-2xl">
       <CardBody className="grid grid-cols-12">
         <div className="col-span-1">
           <LightBulbIcon
@@ -20,7 +20,7 @@ export default function HelpCard({ content, onClose }) {
             ))}
           </ul>
         </div>
-        <div className="col-span-1">
+        <div className="col-span-1 flex justify-end">
           <XMarkIcon
             className="w-5 h-5 cursor-pointer"
             aria-hidden="true"

@@ -7,13 +7,16 @@ export default function FormSteps({ pathname }) {
 
   return (
     <nav
-      className="flex items-center sticky top-0 bg-white justify-start my-2 py-8 z-50"
+      className="flex flex-col sm:flex-row items-center sticky top-0 bg-white justify-start my-2 py-8 z-50 w-full"
       aria-label="Progress"
     >
       <p className="text-sm font-medium">
         Step {currentStepId} of {steps.length}
       </p>
-      <ol role="list" className="ml-8 flex items-center space-x-5">
+      <ol
+        role="list"
+        className="sm:ml-8 mt-4 sm:mt-0 flex items-center space-x-5"
+      >
         {steps.map((step) => (
           <li key={step.name}>
             {step.id < currentStepId ? (

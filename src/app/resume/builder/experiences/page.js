@@ -27,6 +27,11 @@ export default function WorkExperiences() {
   });
 
   const onSubmit = (data) => {
+    for (const job of data.jobs) {
+      if (job.description.length > 0) {
+        job.description = job.description.filter((d) => d.task !== "");
+      }
+    }
     setData({ step: 2, data: data.jobs });
     router.push("/resume/builder/skills");
   };
@@ -50,7 +55,7 @@ export default function WorkExperiences() {
 
       <Button
         color="primary"
-        variant="light"
+        variant="bordered"
         onPress={onAddJobExperience}
         startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
       >

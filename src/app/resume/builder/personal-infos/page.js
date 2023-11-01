@@ -40,12 +40,12 @@ export default function PersonalInfos() {
   };
 
   const onSubmit = async (data) => {
-    const formData = new FormData();
-    formData.set("picture", data.profilePicture[0]);
-    const response = await fetch("/api/picture", {
-      method: "post",
-      body: formData,
-    });
+    // const formData = new FormData();
+    // formData.set("picture", data.profilePicture[0]);
+    // const response = await fetch("/api/picture", {
+    //   method: "post",
+    //   body: formData,
+    // });
     setData({ step: 1, data });
     router.push("/resume/builder/experiences");
   };
@@ -148,7 +148,7 @@ export default function PersonalInfos() {
           <Controller
             name="tel"
             control={control}
-            render={({ field: { onBlur, ...field } }) => (
+            render={({ field: { onBlur, ref, ...field } }) => (
               <InputPhone
                 onFocus={() => displayHelp("phone")}
                 onBlur={(e) => {
@@ -247,7 +247,7 @@ export default function PersonalInfos() {
             control={control}
             render={({ field }) => (
               <Input
-                label="Profile LinkedIn"
+                label="Profil LinkedIn"
                 placeholder="https://www.linkedin.com/in/username/"
                 {...field}
               />

@@ -71,10 +71,10 @@ export default function FormExperience({
             <Input
               label="Fonction dans l'entreprise"
               isRequired
-              isInvalid={!!errors.jobs && !!errors.jobs[index].title}
+              isInvalid={!!errors.jobs && !!errors.jobs[index]?.title}
               errorMessage={
                 !!errors.jobs &&
-                !!errors.jobs[index].title &&
+                !!errors.jobs[index]?.title &&
                 "Veuillez renseigner la fonction que vous occupiez dans cette entreprise."
               }
               className="my-8"
@@ -138,17 +138,17 @@ export default function FormExperience({
                       : []
                   }
                   isRequired
-                  isInvalid={!!errors.jobs && !!errors.jobs[index].fromMonth}
+                  isInvalid={!!errors.jobs && !!errors.jobs[index]?.fromMonth}
                   errorMessage={
                     !!errors.jobs &&
-                    !!errors.jobs[index].fromMonth &&
+                    !!errors.jobs[index]?.fromMonth &&
                     "Veuillez renseigner la date du début de votre collaboration."
                   }
                   {...field}
                 >
                   {months.map((month) => (
-                    <SelectItem key={month} value={month}>
-                      {month}
+                    <SelectItem key={month.num} value={month.num}>
+                      {month.name}
                     </SelectItem>
                   ))}
                 </Select>
@@ -172,10 +172,10 @@ export default function FormExperience({
                       : []
                   }
                   isRequired
-                  isInvalid={!!errors.jobs && !!errors.jobs[index].fromYear}
+                  isInvalid={!!errors.jobs && !!errors.jobs[index]?.fromYear}
                   errorMessage={
                     !!errors.jobs &&
-                    !!errors.jobs[index].fromYear &&
+                    !!errors.jobs[index]?.fromYear &&
                     "Veuillez renseigner la date du début de votre collaboration."
                   }
                   {...field}
@@ -216,19 +216,19 @@ export default function FormExperience({
                   isInvalid={
                     watch(`jobs.${index}.current`)
                       ? false
-                      : !!errors.jobs && !!errors.jobs[index].toMonth
+                      : !!errors.jobs && !!errors.jobs[index]?.toMonth
                   }
                   errorMessage={
                     !watch(`jobs.${index}.current`) &&
                     !!errors.jobs &&
-                    !!errors.jobs[index].toMonth &&
+                    !!errors.jobs[index]?.toMonth &&
                     "Veuillez renseigner la date de fin de votre collaboration si vous n'occupez plus ce poste."
                   }
                   {...field}
                 >
                   {months.map((month) => (
-                    <SelectItem key={month} value={month}>
-                      {month}
+                    <SelectItem key={month.num} value={month.num}>
+                      {month.name}
                     </SelectItem>
                   ))}
                 </Select>
@@ -257,12 +257,12 @@ export default function FormExperience({
                   isInvalid={
                     watch(`jobs.${index}.current`)
                       ? false
-                      : !!errors.jobs && !!errors.jobs[index].toYear
+                      : !!errors.jobs && !!errors.jobs[index]?.toYear
                   }
                   errorMessage={
                     !watch(`jobs.${index}.current`) &&
                     !!errors.jobs &&
-                    !!errors.jobs[index].toYear &&
+                    !!errors.jobs[index]?.toYear &&
                     "Veuillez renseigner la date de fin de votre collaboration si vous n'occupez plus ce poste."
                   }
                   {...field}

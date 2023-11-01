@@ -33,10 +33,8 @@ export default function Languages() {
     router.push("/resume/builder/education");
   };
 
-  const onAddLanguage = (event) => {
-    if (event.key === "Enter" || event.type === "press") {
-      append({ language: "", level: "" });
-    }
+  const onAddLanguage = () => {
+    append({ language: "", level: "" });
   };
 
   const { helpData, displayHelp, hideHelp, isHelpDisplayed } = useHelp();
@@ -65,11 +63,11 @@ export default function Languages() {
                     label="Langue"
                     isRequired
                     isInvalid={
-                      !!errors.languages && !!errors.languages[index].language
+                      !!errors.languages && !!errors.languages[index]?.language
                     }
                     errorMessage={
                       !!errors.languages &&
-                      !!errors.languages[index].language &&
+                      !!errors.languages[index]?.language &&
                       "Veuillez renseigner la langue."
                     }
                     onFocus={() => {
@@ -110,36 +108,32 @@ export default function Languages() {
             </div>
 
             <div className="sm:col-span-2 flex justify-center items-center">
-              {fields.length > 1 && fields.length !== index + 1 ? (
-                <Button
-                  color="danger"
-                  variant="light"
-                  type="button"
-                  className="ml-2"
-                  onPress={() => remove(index)}
-                  startContent={
-                    <TrashIcon className="h-4 w-4" aria-hidden="true" />
-                  }
-                >
-                  Supprimer
-                </Button>
-              ) : (
-                <Button
-                  color="primary"
-                  variant="light"
-                  type="button"
-                  className="ml-2"
-                  onPress={onAddLanguage}
-                  startContent={
-                    <PlusIcon className="h-4 w-4" aria-hidden="true" />
-                  }
-                >
-                  Ajouter
-                </Button>
-              )}
+              <Button
+                color="danger"
+                variant="light"
+                type="button"
+                className="ml-2"
+                onPress={() => remove(index)}
+                startContent={
+                  <TrashIcon className="h-4 w-4" aria-hidden="true" />
+                }
+              >
+                Supprimer
+              </Button>
             </div>
           </div>
         ))}
+
+        <Button
+          color="primary"
+          variant="bordered"
+          type="button"
+          className="mt-8"
+          onPress={onAddLanguage}
+          startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
+        >
+          Ajouter une langue
+        </Button>
       </Card>
 
       <FormActions prevLink="/resume/builder/skills" />

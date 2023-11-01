@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { CircularProgress } from "@nextui-org/react";
 
 import FormSteps from "@/components/FormSteps";
 import FormStepTitle from "@/components/FormStepTitle";
@@ -22,7 +23,21 @@ export default function BuilderTemplate(props) {
     <Container>
       <FormSteps pathname={pathname} />
       <FormStepTitle id={currentStep.id} title={currentStep.name} />
-      <section>{isClient ? props.children : ""}</section>
+      <section>
+        {isClient ? (
+          props.children
+        ) : (
+          <div className="flex justify-center items-center my-32">
+            <CircularProgress
+              classNames={{
+                svg: "w-16 h-16 drop-shadow-md",
+              }}
+              strokeWidth={4}
+              aria-label="Loading..."
+            />
+          </div>
+        )}
+      </section>
     </Container>
   );
 }

@@ -31,11 +31,11 @@ export default function FormCertification({
               autoFocus
               isRequired
               isInvalid={
-                !!errors.certifications && !!errors.certifications[index].title
+                !!errors.certifications && !!errors.certifications[index]?.title
               }
               errorMessage={
                 !!errors.certifications &&
-                !!errors.certifications[index].title &&
+                !!errors.certifications[index]?.title &&
                 "Veuillez renseigner le nom de votre certification."
               }
               onFocus={() => {
@@ -61,11 +61,12 @@ export default function FormCertification({
               label="Organisme de délivrance"
               isRequired
               isInvalid={
-                !!errors.certifications && !!errors.certifications[index].issuer
+                !!errors.certifications &&
+                !!errors.certifications[index]?.issuer
               }
               errorMessage={
                 !!errors.certifications &&
-                !!errors.certifications[index].issuer &&
+                !!errors.certifications[index]?.issuer &&
                 "Veuillez renseigner l'organisme de délivrance de votre certification."
               }
               className="my-8"
@@ -93,18 +94,18 @@ export default function FormCertification({
                   isRequired
                   isInvalid={
                     !!errors.certifications &&
-                    !!errors.certifications[index].month
+                    !!errors.certifications[index]?.month
                   }
                   errorMessage={
                     !!errors.certifications &&
-                    !!errors.certifications[index].month &&
+                    !!errors.certifications[index]?.month &&
                     "Veuillez renseigner la date d'obtention de votre certification."
                   }
                   {...field}
                 >
                   {months.map((month) => (
-                    <SelectItem key={month} value={month}>
-                      {month}
+                    <SelectItem key={month.num} value={month.num}>
+                      {month.name}
                     </SelectItem>
                   ))}
                 </Select>
@@ -130,11 +131,11 @@ export default function FormCertification({
                   isRequired
                   isInvalid={
                     !!errors.certifications &&
-                    !!errors.certifications[index].year
+                    !!errors.certifications[index]?.year
                   }
                   errorMessage={
                     !!errors.certifications &&
-                    !!errors.certifications[index].year &&
+                    !!errors.certifications[index]?.year &&
                     "Veuillez renseigner la date d'obtention de votre certification."
                   }
                   {...field}

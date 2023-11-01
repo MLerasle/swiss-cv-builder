@@ -121,11 +121,21 @@ export function Header() {
             )}
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">
-            <Link href="/resume/builder/personal-infos">
-              <Button color="primary">
-                Générer <span className="hidden lg:inline">mon </span>CV
-              </Button>
-            </Link>
+            {pathname.startsWith("/resume/builder") ? (
+              <Link href="/resume/preview">
+                <Button color="primary">Prévisualiser</Button>
+              </Link>
+            ) : pathname.startsWith("/resume/preview") ? (
+              <Link href="/resume/builder/personal-infos">
+                <Button color="primary">Retour à l'éditeur</Button>
+              </Link>
+            ) : (
+              <Link href="/resume/builder/personal-infos">
+                <Button color="primary">
+                  Générer <span className="hidden lg:inline">mon </span>CV
+                </Button>
+              </Link>
+            )}
             {pathname === "" && (
               <div className="-mr-1 md:hidden">
                 <MobileNavigation />

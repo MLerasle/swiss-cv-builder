@@ -18,10 +18,10 @@ export default function Summary() {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm({ defaultValues: summary });
+  } = useForm({ defaultValues: { summary } });
 
   const onSubmit = (data) => {
-    setData({ step: 8, data });
+    setData({ step: 10, data: data.summary });
     router.push("/resume/preview");
   };
 

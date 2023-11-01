@@ -33,11 +33,11 @@ export default function FormEducation({
                   autoFocus
                   isRequired
                   isInvalid={
-                    !!errors.education && !!errors.education[index].school
+                    !!errors.education && !!errors.education[index]?.school
                   }
                   errorMessage={
                     !!errors.education &&
-                    !!errors.education[index].school &&
+                    !!errors.education[index]?.school &&
                     "Veuillez renseigner l'école dans laquelle vous avez obtenu votre diplôme."
                   }
                   onFocus={() => {
@@ -65,11 +65,11 @@ export default function FormEducation({
                   label="Diplôme"
                   isRequired
                   isInvalid={
-                    !!errors.education && !!errors.education[index].degree
+                    !!errors.education && !!errors.education[index]?.degree
                   }
                   errorMessage={
                     !!errors.education &&
-                    !!errors.education[index].degree &&
+                    !!errors.education[index]?.degree &&
                     "Veuillez renseigner le diplôme obtenu."
                   }
                   onFocus={() => {
@@ -99,11 +99,11 @@ export default function FormEducation({
                   label="Domaine d'études"
                   isRequired
                   isInvalid={
-                    !!errors.education && !!errors.education[index].field
+                    !!errors.education && !!errors.education[index]?.field
                   }
                   errorMessage={
                     !!errors.education &&
-                    !!errors.education[index].field &&
+                    !!errors.education[index]?.field &&
                     "Veuillez renseigner le domaine d'études de votre diplôme."
                   }
                   {...field}
@@ -170,8 +170,8 @@ export default function FormEducation({
                   {...field}
                 >
                   {months.map((month) => (
-                    <SelectItem key={month} value={month}>
-                      {month}
+                    <SelectItem key={month.num} value={month.num}>
+                      {month.name}
                     </SelectItem>
                   ))}
                 </Select>
@@ -223,8 +223,8 @@ export default function FormEducation({
                   {...field}
                 >
                   {months.map((month) => (
-                    <SelectItem key={month} value={month}>
-                      {month}
+                    <SelectItem key={month.num} value={month.num}>
+                      {month.name}
                     </SelectItem>
                   ))}
                 </Select>

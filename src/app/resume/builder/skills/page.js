@@ -23,12 +23,14 @@ export default function Skills() {
   });
 
   const onSubmit = (data) => {
+    data.skills = data.skills.filter((s) => s.skill !== "");
     setData({ step: 3, data: data.skills });
     router.push("/resume/builder/languages");
   };
 
-  const onAddSkill = (event) => {
-    if (event.key === "Enter" || event.type === "press") {
+  const onAddSkill = (e) => {
+    if (e.key === "Enter") e.preventDefault();
+    if (e.key === "Enter" || e.type === "press") {
       append({ skill: "" });
     }
   };
@@ -65,35 +67,30 @@ export default function Skills() {
                   />
                 )}
               />
-              {fields.length > 1 && fields.length !== index + 1 ? (
-                <Button
-                  color="danger"
-                  variant="light"
-                  type="button"
-                  className="ml-2"
-                  onPress={() => remove(index)}
-                  startContent={
-                    <TrashIcon className="h-4 w-4" aria-hidden="true" />
-                  }
-                >
-                  Supprimer
-                </Button>
-              ) : (
-                <Button
-                  color="primary"
-                  variant="light"
-                  type="button"
-                  className="ml-2"
-                  onPress={onAddSkill}
-                  startContent={
-                    <PlusIcon className="h-4 w-4" aria-hidden="true" />
-                  }
-                >
-                  Ajouter une compétence
-                </Button>
-              )}
+              <Button
+                color="danger"
+                variant="light"
+                type="button"
+                className="ml-2"
+                onPress={() => remove(index)}
+                startContent={
+                  <TrashIcon className="h-4 w-4" aria-hidden="true" />
+                }
+              >
+                Supprimer
+              </Button>
             </div>
           ))}
+          <Button
+            color="primary"
+            variant="bordered"
+            type="button"
+            className="mt-8"
+            onPress={onAddSkill}
+            startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
+          >
+            Ajouter une compétence
+          </Button>
         </Card>
 
         <FormActions prevLink="/resume/builder/experiences" />

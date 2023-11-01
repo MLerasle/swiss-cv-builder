@@ -11,8 +11,9 @@ export default function FormExperienceDesc({ descIndex, control }) {
     name: `jobs.${descIndex}.description`,
   });
 
-  const onAddDesc = (event) => {
-    if (event.key === "Enter" || event.type === "press") {
+  const onAddDesc = (e) => {
+    if (e.key === "Enter") e.preventDefault();
+    if (e.key === "Enter" || e.type === "press") {
       append({ task: "" });
     }
   };
@@ -55,34 +56,31 @@ export default function FormExperienceDesc({ descIndex, control }) {
               index > 0 && "mt-8"
             } flex justify-center items-center`}
           >
-            {fields.length > 1 && fields.length !== index + 1 ? (
-              <Button
-                color="danger"
-                variant="light"
-                type="button"
-                onPress={() => remove(index)}
-                startContent={
-                  <TrashIcon className="h-4 w-4" aria-hidden="true" />
-                }
-              >
-                Supprimer
-              </Button>
-            ) : (
-              <Button
-                color="primary"
-                variant="light"
-                type="button"
-                onPress={onAddDesc}
-                startContent={
-                  <PlusIcon className="h-4 w-4" aria-hidden="true" />
-                }
-              >
-                Ajouter
-              </Button>
-            )}
+            <Button
+              color="danger"
+              variant="light"
+              type="button"
+              onPress={() => remove(index)}
+              startContent={
+                <TrashIcon className="h-4 w-4" aria-hidden="true" />
+              }
+            >
+              Supprimer
+            </Button>
           </div>
         </div>
       ))}
+
+      <Button
+        color="primary"
+        className="mt-8"
+        variant="bordered"
+        type="button"
+        onPress={onAddDesc}
+        startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
+      >
+        Ajouter une tâche
+      </Button>
 
       {isHelpDisplayed && <HelpCard content={helpData} onClose={hideHelp} />}
     </>

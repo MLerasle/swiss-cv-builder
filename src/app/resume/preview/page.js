@@ -230,9 +230,9 @@ export default function Preview() {
           <View id="main" style={styles.main}>
             <Text style={styles.sectionTitle}>Compétences</Text>
             <View id="skills" style={styles.skills}>
-              {data.skills.map((skill) => (
-                <Text key={skill} style={styles.skill}>
-                  {skill}
+              {data.skills.map((s) => (
+                <Text key={s.skill} style={styles.skill}>
+                  {s.skill}
                 </Text>
               ))}
             </View>
@@ -266,7 +266,7 @@ export default function Preview() {
                   <View style={styles.achievementDescView}>
                     {exp.description.map((desc) => (
                       <View
-                        key="desc"
+                        key={desc.task}
                         style={{
                           flexDirection: "row",
                           alignItems: "center",
@@ -274,7 +274,7 @@ export default function Preview() {
                         }}
                       >
                         <Text style={styles.circle}></Text>
-                        <Text style={styles.achievementDesc}>{desc}</Text>
+                        <Text style={styles.achievementDesc}>{desc.task}</Text>
                       </View>
                     ))}
                   </View>
@@ -322,7 +322,7 @@ export default function Preview() {
                 Langues
               </Text>
               <View id="languages" style={styles.options}>
-                {data.personalData.languages.map((l) => (
+                {data.languages.map((l) => (
                   <View key={l.language}>
                     <Text style={styles.optionTitle}>{l.language}</Text>
                     <Text style={styles.optionDesc}>{l.level}</Text>

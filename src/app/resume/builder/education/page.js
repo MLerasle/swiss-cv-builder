@@ -50,7 +50,7 @@ export default function WorkExperiences() {
 
       <Button
         color="primary"
-        variant="light"
+        variant="bordered"
         onPress={onAddEducation}
         startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
       >

@@ -23,10 +23,12 @@ export default function FormReference({ control, errors, index, remove }) {
               label="Nom"
               autoFocus
               isRequired
-              isInvalid={!!errors.references && !!errors.references[index].name}
+              isInvalid={
+                !!errors.references && !!errors.references[index]?.name
+              }
               errorMessage={
                 !!errors.references &&
-                !!errors.references[index].name &&
+                !!errors.references[index]?.name &&
                 "Veuillez renseigner le nom de la personne de référence."
               }
               onFocus={() => {
@@ -54,11 +56,11 @@ export default function FormReference({ control, errors, index, remove }) {
                   label="Entreprise"
                   isRequired
                   isInvalid={
-                    !!errors.references && !!errors.references[index].company
+                    !!errors.references && !!errors.references[index]?.company
                   }
                   errorMessage={
                     !!errors.references &&
-                    !!errors.references[index].company &&
+                    !!errors.references[index]?.company &&
                     "Veuillez renseigner l'entreprise' de la personne de référence."
                   }
                   {...field}
@@ -79,11 +81,11 @@ export default function FormReference({ control, errors, index, remove }) {
                   label="Fonction dans l'entreprise"
                   isRequired
                   isInvalid={
-                    !!errors.references && !!errors.references[index].position
+                    !!errors.references && !!errors.references[index]?.position
                   }
                   errorMessage={
                     !!errors.references &&
-                    !!errors.references[index].position &&
+                    !!errors.references[index]?.position &&
                     "Veuillez renseigner le fonction occupée par la personne de référence."
                   }
                   {...field}

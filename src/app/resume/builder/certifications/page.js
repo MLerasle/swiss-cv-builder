@@ -50,7 +50,7 @@ export default function Certifications() {
 
       <Button
         color="primary"
-        variant="light"
+        variant="bordered"
         onPress={onAddCertification}
         startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
       >

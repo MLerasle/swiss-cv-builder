@@ -28,7 +28,7 @@ export default function Projects() {
 
   const onSubmit = (data) => {
     setData({ step: 8, data: data.projects });
-    router.push("/resume/builder/summary");
+    router.push("/resume/builder/hobbies");
   };
 
   const onAddProject = () => {
@@ -50,7 +50,7 @@ export default function Projects() {
 
       <Button
         color="primary"
-        variant="light"
+        variant="bordered"
         onPress={onAddProject}
         startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
       >

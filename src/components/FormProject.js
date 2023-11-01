@@ -36,10 +36,10 @@ export default function FormExperience({
             <Input
               label="Nom du projet"
               isRequired
-              isInvalid={!!errors.projects && !!errors.projects[index].title}
+              isInvalid={!!errors.projects && !!errors.projects[index]?.title}
               errorMessage={
                 !!errors.projects &&
-                !!errors.projects[index].title &&
+                !!errors.projects[index]?.title &&
                 "Veuillez renseigner le nom du projet."
               }
               {...field}
@@ -104,18 +104,18 @@ export default function FormExperience({
                   }
                   isRequired
                   isInvalid={
-                    !!errors.projects && !!errors.projects[index].fromMonth
+                    !!errors.projects && !!errors.projects[index]?.fromMonth
                   }
                   errorMessage={
                     !!errors.projects &&
-                    !!errors.projects[index].fromMonth &&
+                    !!errors.projects[index]?.fromMonth &&
                     "Veuillez renseigner la date du début de votre projet."
                   }
                   {...field}
                 >
                   {months.map((month) => (
-                    <SelectItem key={month} value={month}>
-                      {month}
+                    <SelectItem key={month.num} value={month.num}>
+                      {month.name}
                     </SelectItem>
                   ))}
                 </Select>
@@ -140,11 +140,11 @@ export default function FormExperience({
                   }
                   isRequired
                   isInvalid={
-                    !!errors.projects && !!errors.projects[index].fromYear
+                    !!errors.projects && !!errors.projects[index]?.fromYear
                   }
                   errorMessage={
                     !!errors.projects &&
-                    !!errors.projects[index].fromYear &&
+                    !!errors.projects[index]?.fromYear &&
                     "Veuillez renseigner la date du début de votre projet."
                   }
                   {...field}
@@ -185,19 +185,19 @@ export default function FormExperience({
                   isInvalid={
                     watch(`projects.${index}.current`)
                       ? false
-                      : !!errors.projects && !!errors.projects[index].toMonth
+                      : !!errors.projects && !!errors.projects[index]?.toMonth
                   }
                   errorMessage={
                     !watch(`projects.${index}.current`) &&
                     !!errors.projects &&
-                    !!errors.projects[index].toMonth &&
+                    !!errors.projects[index]?.toMonth &&
                     "Veuillez renseigner la date de fin de votre projet si vous ne travaillez plus dessus."
                   }
                   {...field}
                 >
                   {months.map((month) => (
-                    <SelectItem key={month} value={month}>
-                      {month}
+                    <SelectItem key={month.num} value={month.num}>
+                      {month.name}
                     </SelectItem>
                   ))}
                 </Select>
@@ -226,12 +226,12 @@ export default function FormExperience({
                   isInvalid={
                     watch(`projects.${index}.current`)
                       ? false
-                      : !!errors.projects && !!errors.projects[index].toYear
+                      : !!errors.projects && !!errors.projects[index]?.toYear
                   }
                   errorMessage={
                     !watch(`projects.${index}.current`) &&
                     !!errors.projects &&
-                    !!errors.projects[index].toYear &&
+                    !!errors.projects[index]?.toYear &&
                     "Veuillez renseigner la date de fin de votre projet si vous ne travaillez plus dessus."
                   }
                   {...field}

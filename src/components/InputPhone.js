@@ -19,7 +19,7 @@ export const InputPhone = ({ value, onChange, ...restProps }) => {
 
   return (
     <Input
-      label="Phone"
+      label="Téléphone"
       type="tel"
       value={phone}
       onChange={handlePhoneValueChange}
