@@ -7,19 +7,18 @@ import { PlusIcon } from "@heroicons/react/24/solid";
 
 import FormEducation from "@/components/FormEducation";
 import FormActions from "@/components/FormActions";
-import useFormStore from "@/store/useFormStore";
-import { trainingData } from "@/store/data";
+import useFormStore, { trainingData } from "@/store/useFormStore";
 
 export default function WorkExperiences() {
   const router = useRouter();
-  const { education, setData } = useFormStore();
+  const { setData } = useFormStore();
 
   const {
     control,
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm({ defaultValues: { education } });
+  } = useForm({ defaultValues: { education: [trainingData] } });
 
   const { fields, append, remove } = useFieldArray({
     control,

@@ -8,14 +8,16 @@ import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { Card } from "@/components/Card";
 import HelpCard from "@/components/HelpCard";
 import FormActions from "@/components/FormActions";
-import useFormStore from "@/store/useFormStore";
+import useFormStore, { hobbyData } from "@/store/useFormStore";
 import { useHelp } from "@/hooks/useHelp";
 
 export default function Hobbies() {
   const router = useRouter();
-  const { hobbies, setData } = useFormStore();
+  const { setData } = useFormStore();
 
-  const { control, handleSubmit } = useForm({ defaultValues: { hobbies } });
+  const { control, handleSubmit } = useForm({
+    defaultValues: { hobbies: [hobbyData] },
+  });
 
   const { fields, append, remove } = useFieldArray({
     control,

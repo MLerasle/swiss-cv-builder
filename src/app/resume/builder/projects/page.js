@@ -7,19 +7,18 @@ import { PlusIcon } from "@heroicons/react/24/solid";
 
 import FormProject from "@/components/FormProject";
 import FormActions from "@/components/FormActions";
-import useFormStore from "@/store/useFormStore";
-import { projectData } from "@/store/data";
+import useFormStore, { projectData } from "@/store/useFormStore";
 
 export default function Projects() {
   const router = useRouter();
-  const { projects, setData } = useFormStore();
+  const { setData } = useFormStore();
 
   const {
     control,
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm({ defaultValues: { projects } });
+  } = useForm({ defaultValues: { projects: [projectData] } });
 
   const { fields, append, remove } = useFieldArray({
     control,

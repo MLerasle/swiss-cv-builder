@@ -1,24 +1,83 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
-import {
-  personalData,
-  experienceData,
-  trainingData,
-  certificationData,
-  referenceData,
-  projectData,
-} from "@/store/data";
+export const personalData = {
+  profilePicture: "",
+  name: "",
+  title: "",
+  email: "",
+  tel: "",
+  nationality: "",
+  permit: "",
+  age: "",
+  address: "",
+  nip: "",
+  city: "",
+  country: "",
+  linkedinUrl: "",
+};
 
-const experiences = [experienceData];
-const skills = [{ skill: "" }];
-const languages = [{ language: "", level: "" }];
-const education = [trainingData];
-const certifications = [certificationData];
-const references = [referenceData];
-const projects = [projectData];
-const hobbies = [{ hobby: "" }];
-const summary = "";
+export const experienceData = {
+  company: "",
+  companyDesc: "",
+  title: "",
+  city: "",
+  country: "",
+  current: false,
+  fromMonth: "",
+  fromYear: "",
+  toMonth: "",
+  toYear: "",
+  description: [{ task: "" }],
+};
+
+export const skillData = { skill: "" };
+
+export const languageData = {
+  language: "",
+  level: "",
+};
+
+export const trainingData = {
+  school: "",
+  degree: "",
+  field: "",
+  grade: "",
+  country: "",
+  city: "",
+  fromMonth: "",
+  fromYear: "",
+  toMonth: "",
+  toYear: "",
+  description: "",
+};
+
+export const certificationData = {
+  title: "",
+  issuer: "",
+  month: "",
+  year: "",
+};
+
+export const referenceData = {
+  name: "",
+  company: "",
+  position: "",
+  email: "",
+  tel: "",
+};
+
+export const projectData = {
+  title: "",
+  current: false,
+  fromMonth: "",
+  fromYear: "",
+  toMonth: "",
+  toYear: "",
+  description: "",
+};
+
+export const hobbyData = { hobby: "" };
 
 const steps = {
   1: "personalData",
@@ -36,16 +95,16 @@ const steps = {
 const useFormStore = create(
   persist(
     (set) => ({
-      personalData,
-      experiences,
-      skills,
-      languages,
-      education,
-      certifications,
-      references,
-      projects,
-      hobbies,
-      summary,
+      personalData: {},
+      experiences: [],
+      skills: [],
+      languages: [],
+      education: [],
+      certifications: [],
+      references: [],
+      projects: [],
+      hobbies: [],
+      summary: "",
       setData: ({ step, data }) =>
         set((state) => ({
           ...state,

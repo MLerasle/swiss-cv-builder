@@ -7,18 +7,17 @@ import { PlusIcon } from "@heroicons/react/24/solid";
 
 import FormReference from "@/components/FormReference";
 import FormActions from "@/components/FormActions";
-import useFormStore from "@/store/useFormStore";
-import { referenceData } from "@/store/data";
+import useFormStore, { referenceData } from "@/store/useFormStore";
 
 export default function WorkExperiences() {
   const router = useRouter();
-  const { references, setData } = useFormStore();
+  const { setData } = useFormStore();
 
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm({ defaultValues: { references } });
+  } = useForm({ defaultValues: { references: [referenceData] } });
 
   const { fields, append, remove } = useFieldArray({
     control,

@@ -8,20 +8,20 @@ import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { Card } from "@/components/Card";
 import HelpCard from "@/components/HelpCard";
 import FormActions from "@/components/FormActions";
-import useFormStore from "@/store/useFormStore";
+import useFormStore, { languageData } from "@/store/useFormStore";
 import { languageLevels } from "@/lib/select-options";
 import { useHelp } from "@/hooks/useHelp";
 
 export default function Languages() {
   const router = useRouter();
-  const { languages, setData } = useFormStore();
+  const { setData } = useFormStore();
 
   const {
     control,
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm({ defaultValues: { languages } });
+  } = useForm({ defaultValues: { languages: [languageData] } });
 
   const { fields, append, remove } = useFieldArray({
     control,

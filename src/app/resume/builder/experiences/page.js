@@ -7,19 +7,19 @@ import { PlusIcon } from "@heroicons/react/24/solid";
 
 import FormExperience from "@/components/FormExperience";
 import FormActions from "@/components/FormActions";
-import useFormStore from "@/store/useFormStore";
-import { experienceData } from "@/store/data";
+import useFormStore, { experienceData } from "@/store/useFormStore";
 
 export default function WorkExperiences() {
   const router = useRouter();
-  const { experiences, setData } = useFormStore();
+  const { setData } = useFormStore();
+  console.log({ experienceData });
 
   const {
     control,
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm({ defaultValues: { jobs: experiences } });
+  } = useForm({ defaultValues: { jobs: [experienceData] } });
 
   const { fields, append, remove } = useFieldArray({
     control,

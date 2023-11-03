@@ -7,19 +7,18 @@ import { PlusIcon } from "@heroicons/react/24/solid";
 
 import FormCertification from "@/components/FormCertification";
 import FormActions from "@/components/FormActions";
-import useFormStore from "@/store/useFormStore";
-import { certificationData } from "@/store/data";
+import useFormStore, { certificationData } from "@/store/useFormStore";
 
 export default function Certifications() {
   const router = useRouter();
-  const { certifications, setData } = useFormStore();
+  const { setData } = useFormStore();
 
   const {
     control,
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm({ defaultValues: { certifications } });
+  } = useForm({ defaultValues: { certifications: [certificationData] } });
 
   const { fields, append, remove } = useFieldArray({
     control,

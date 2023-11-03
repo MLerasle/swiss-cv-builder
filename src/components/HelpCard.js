@@ -13,8 +13,8 @@ export default function HelpCard({ content, onClose }) {
         </div>
         <div className="col-span-10">
           <ul className="space-y-6">
-            {content.map((section) => (
-              <li key={section.title}>
+            {content.map((section, index) => (
+              <li key={index}>
                 <b>{section.title}</b> - {section.desc}
               </li>
             ))}
