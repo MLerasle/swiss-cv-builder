@@ -14,14 +14,18 @@ import { useHelp } from "@/hooks/useHelp";
 
 export default function Languages() {
   const router = useRouter();
-  const { setData } = useFormStore();
+  const { languages, setData } = useFormStore();
 
   const {
     control,
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm({ defaultValues: { languages: [languageData] } });
+  } = useForm({
+    defaultValues: {
+      languages: languages.length > 0 ? languages : [languageData],
+    },
+  });
 
   const { fields, append, remove } = useFieldArray({
     control,

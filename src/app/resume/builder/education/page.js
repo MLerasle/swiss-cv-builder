@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Button } from "@nextui-org/react";
+import { Button, Accordion, AccordionItem } from "@nextui-org/react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { PlusIcon } from "@heroicons/react/24/solid";
 
@@ -9,16 +9,20 @@ import FormEducation from "@/components/FormEducation";
 import FormActions from "@/components/FormActions";
 import useFormStore, { trainingData } from "@/store/useFormStore";
 
-export default function WorkExperiences() {
+export default function Education() {
   const router = useRouter();
-  const { setData } = useFormStore();
+  const { education, setData } = useFormStore();
 
   const {
     control,
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm({ defaultValues: { education: [trainingData] } });
+  } = useForm({
+    defaultValues: {
+      education: education.length > 0 ? education : [trainingData],
+    },
+  });
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -36,16 +40,29 @@ export default function WorkExperiences() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      {fields.map((field, index) => (
-        <FormEducation
-          control={control}
-          watch={watch}
-          errors={errors}
-          key={field.id}
-          index={index}
-          remove={remove}
-        />
-      ))}
+      <Accordion
+        variant="splitted"
+        defaultSelectedKeys={[fields[fields.length - 1].id]}
+        itemClasses={{
+          title: "px-2 font-medium",
+        }}
+        className="my-8 px-0 gap-8"
+      >
+        {fields.map((field, index) => (
+          <AccordionItem
+            key={field.id}
+            title={field.degree || "Nouvelle formation"}
+          >
+            <FormEducation
+              control={control}
+              watch={watch}
+              errors={errors}
+              index={index}
+              remove={remove}
+            />
+          </AccordionItem>
+        ))}
+      </Accordion>
 
       <Button
         color="primary"

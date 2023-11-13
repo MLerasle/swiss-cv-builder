@@ -7,9 +7,8 @@ import {
   Checkbox,
   Textarea,
 } from "@nextui-org/react";
-import { TrashIcon } from "@heroicons/react/24/solid";
+import { TrashIcon, LinkIcon } from "@heroicons/react/24/solid";
 
-import { Card } from "@/components/Card";
 import HelpCard from "@/components/HelpCard";
 import { months, years } from "@/lib/select-options";
 import { useHelp } from "@/hooks/useHelp";
@@ -25,7 +24,7 @@ export default function FormExperience({
 
   return (
     <>
-      <Card>
+      <div className="p-2">
         <Controller
           name={`projects.${index}.title`}
           control={control}
@@ -61,6 +60,19 @@ export default function FormExperience({
                 onBlur(e);
                 hideHelp();
               }}
+              {...field}
+            />
+          )}
+        />
+
+        <Controller
+          name={`projects.${index}.link`}
+          control={control}
+          render={({ field }) => (
+            <Input
+              label="Lien vers le projet"
+              className="mt-8"
+              startContent={<LinkIcon className="w-4 h-4" />}
               {...field}
             />
           )}
@@ -257,7 +269,7 @@ export default function FormExperience({
             Supprimer le projet
           </Button>
         </div>
-      </Card>
+      </div>
 
       {isHelpDisplayed && <HelpCard content={helpData} onClose={hideHelp} />}
     </>

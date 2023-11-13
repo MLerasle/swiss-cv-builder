@@ -10,12 +10,13 @@ import FormActions from "@/components/FormActions";
 import HelpCard from "@/components/HelpCard";
 import { InputPhone } from "@/components/InputPhone";
 import useFormStore from "@/store/useFormStore";
-import { workPermits, nationalities } from "@/lib/select-options";
+import { workPermits } from "@/lib/select-options";
 import { useHelp } from "@/hooks/useHelp";
 
 export default function PersonalInfos() {
   const router = useRouter();
   const hiddenInputRef = useRef();
+  const ageInputRef = useRef();
   const [previewImage, setPreviewImage] = useState(null);
   const { personalData, setData } = useFormStore();
   const { helpData, displayHelp, hideHelp, isHelpDisplayed } = useHelp();
@@ -168,26 +169,17 @@ export default function PersonalInfos() {
             name="nationality"
             control={control}
             render={({ field: { onBlur, ...field } }) => (
-              <Select
+              <Input
                 label="Nationalité"
-                defaultSelectedKeys={
-                  personalData.nationality !== ""
-                    ? [personalData.nationality]
-                    : []
-                }
                 onFocus={() => displayHelp("nationality")}
                 onBlur={(e) => {
                   onBlur(e);
+                  e.target.value?.toLowerCase() === "suisse" &&
+                    ageInputRef.current.focus();
                   hideHelp();
                 }}
                 {...field}
-              >
-                {nationalities.map((nationality) => (
-                  <SelectItem key={nationality} value={nationality}>
-                    {nationality}
-                  </SelectItem>
-                ))}
-              </Select>
+              />
             )}
           />
         </div>
@@ -202,7 +194,7 @@ export default function PersonalInfos() {
                 defaultSelectedKeys={
                   personalData.permit !== "" ? [personalData.permit] : []
                 }
-                isDisabled={watch("nationality") === "Suisse"}
+                isDisabled={watch("nationality").toLowerCase() === "suisse"}
                 onFocus={() => displayHelp("workPermit")}
                 onBlur={(e) => {
                   onBlur(e);
@@ -226,10 +218,11 @@ export default function PersonalInfos() {
           <Controller
             name="age"
             control={control}
-            render={({ field: { onBlur, ...field } }) => (
+            render={({ field: { onBlur, ref, ...field } }) => (
               <Input
                 label="Âge"
                 type="number"
+                ref={ageInputRef}
                 onFocus={() => displayHelp("age")}
                 onBlur={(e) => {
                   onBlur(e);

@@ -31,12 +31,4 @@ export const languageLevels = [
   "Niveau C2",
 ];
 
-export const workPermits = [
-  "Aucun Permis",
-  "Permis B",
-  "Permis C",
-  "Permis G",
-  "Permis L",
-];
-
-export const nationalities = ["Française", "Suisse"];
+export const workPermits = ["Permis B", "Permis C", "Permis G", "Permis L"];

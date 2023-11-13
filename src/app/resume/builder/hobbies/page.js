@@ -13,10 +13,10 @@ import { useHelp } from "@/hooks/useHelp";
 
 export default function Hobbies() {
   const router = useRouter();
-  const { setData } = useFormStore();
+  const { hobbies, setData } = useFormStore();
 
   const { control, handleSubmit } = useForm({
-    defaultValues: { hobbies: [hobbyData] },
+    defaultValues: { hobbies: hobbies.length > 0 ? hobbies : [hobbyData] },
   });
 
   const { fields, append, remove } = useFieldArray({

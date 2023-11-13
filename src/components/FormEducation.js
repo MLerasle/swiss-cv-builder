@@ -2,7 +2,6 @@ import { Controller } from "react-hook-form";
 import { Button, Input, Select, SelectItem, Textarea } from "@nextui-org/react";
 import { TrashIcon } from "@heroicons/react/24/solid";
 
-import { Card } from "@/components/Card";
 import HelpCard from "./HelpCard";
 import { months, years } from "@/lib/select-options";
 import { useHelp } from "@/hooks/useHelp";
@@ -18,7 +17,7 @@ export default function FormEducation({
 
   return (
     <>
-      <Card>
+      <div className="p-2">
         <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div className="sm:col-span-3">
             <Controller
@@ -286,7 +285,7 @@ export default function FormEducation({
             Supprimer la formation
           </Button>
         </div>
-      </Card>
+      </div>
 
       {isHelpDisplayed && <HelpCard content={helpData} onClose={hideHelp} />}
     </>

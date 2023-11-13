@@ -2,7 +2,6 @@ import { Controller } from "react-hook-form";
 import { Button, Input, Select, SelectItem } from "@nextui-org/react";
 import { TrashIcon } from "@heroicons/react/24/solid";
 
-import { Card } from "@/components/Card";
 import HelpCard from "./HelpCard";
 import { months, years } from "@/lib/select-options";
 import { useHelp } from "@/hooks/useHelp";
@@ -18,7 +17,7 @@ export default function FormCertification({
 
   return (
     <>
-      <Card>
+      <div className="p-2">
         <Controller
           name={`certifications.${index}.title`}
           control={control}
@@ -161,7 +160,7 @@ export default function FormCertification({
             Supprimer la certification
           </Button>
         </div>
-      </Card>
+      </div>
 
       {isHelpDisplayed && <HelpCard content={helpData} onClose={hideHelp} />}
     </>

@@ -2,7 +2,6 @@ import { Controller } from "react-hook-form";
 import { Button, Input, Select, SelectItem, Checkbox } from "@nextui-org/react";
 import { TrashIcon } from "@heroicons/react/24/solid";
 
-import { Card } from "@/components/Card";
 import HelpCard from "@/components/HelpCard";
 import FormExperienceDesc from "@/components/FormExperienceDesc";
 import { months, years } from "@/lib/select-options";
@@ -19,7 +18,7 @@ export default function FormExperience({
 
   return (
     <>
-      <Card>
+      <div className="p-2">
         <Controller
           name={`jobs.${index}.company`}
           control={control}
@@ -290,7 +289,7 @@ export default function FormExperience({
             Supprimer l'expérience professionnelle
           </Button>
         </div>
-      </Card>
+      </div>
 
       {isHelpDisplayed && <HelpCard content={helpData} onClose={hideHelp} />}
     </>

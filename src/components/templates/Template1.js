@@ -13,17 +13,19 @@ const styles = StyleSheet.create({
     flexDirection: "col",
     backgroundColor: "white",
     fontFamily: "Helvetica",
-  },
-  header: {
-    backgroundColor: "#334155",
-    color: "white",
-  },
-  headerMain: {
     padding: "16px 24px",
   },
+  header: {
+    color: "#334155",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  headerMain: {
+    maxWidth: "60%",
+  },
   title: {
-    color: "#06b6d4",
-    fontSize: "12px",
+    color: "#0891b2",
+    fontSize: "14px",
     marginTop: "2px",
   },
   summary: {
@@ -32,24 +34,26 @@ const styles = StyleSheet.create({
     lineHeight: "1.2px",
   },
   contact: {
-    backgroundColor: "#0f172a",
+    backgroundColor: "#0891b2",
     fontSize: "8px",
-    flexDirection: "row",
+    flexDirection: "col",
     justifyContent: "space-around",
-    padding: "8px 24px",
+    padding: "8px",
+    borderRadius: "4px",
+    color: "white",
+    maxWidth: "35%",
   },
   contactDetail: {
-    display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    columnGap: "2px",
+    columnGap: "4px",
+    marginTop: "4px",
   },
   address: {
-    flexDirection: "row",
+    flexDirection: "col",
+    rowGap: "1px",
   },
-  main: {
-    padding: "0 24px",
-  },
+  main: {},
   section: {
     padding: "16px 0",
   },
@@ -58,75 +62,73 @@ const styles = StyleSheet.create({
     color: "#0891b2",
     textTransform: "uppercase",
     fontSize: "14px",
-    borderBottom: "2px solid #0891b2",
   },
   sectionContent: {
     marginTop: "10px",
   },
-  // skills: {
-  //   flexDirection: "row",
-  //   rowGap: "5px",
-  //   columnGap: "5px",
-  //   flexWrap: "wrap",
-  //   fontSize: "8px",
-  // },
-  // skill: {
-  //   backgroundColor: "#94a3b8",
-  //   color: "white",
-  //   padding: "4px 8px",
-  //   borderRadius: "4px",
-  // },
-  // achievementTitle: {
-  //   fontFamily: "Helvetica-Bold",
-  //   fontSize: "12px",
-  //   marginTop: "10px",
-  // },
-  // achievementPlace: {
-  //   fontSize: "12px",
-  //   marginTop: "1px",
-  // },
-  // achievementDetails: {
-  //   fontFamily: "Helvetica-Oblique",
-  //   flexDirection: "row",
-  //   justifyContent: "space-between",
-  //   fontSize: "8px",
-  //   color: "#0891b2",
-  //   marginTop: "4px",
-  // },
-  // achievementPlaceDesc: {
-  //   fontFamily: "Helvetica-Oblique",
-  //   fontSize: "8px",
-  //   color: "#64748b",
-  //   marginTop: "2px",
-  // },
-  // achievementDescView: {
-  //   marginTop: "4px",
-  // },
-  // achievementDesc: {
-  //   fontSize: "8px",
-  // },
-  // options: {
-  //   marginTop: "10px",
-  //   flexDirection: "row",
-  //   fontSize: "8px",
-  //   columnGap: "40px",
-  // },
-  // optionTitle: {
-  //   fontSize: "10px",
-  // },
-  // optionDesc: {
-  //   fontFamily: "Helvetica-Oblique",
-  //   color: "#0891b2",
-  //   marginTop: "2px",
-  // },
-  // circle: {
-  //   display: "block",
-  //   height: "4px",
-  //   width: "4px",
-  //   backgroundColor: "#0891b2",
-  //   borderRadius: "9999px",
-  //   marginRight: "6px",
-  // },
+  skills: {
+    flexDirection: "row",
+    rowGap: "5px",
+    columnGap: "5px",
+    flexWrap: "wrap",
+    fontSize: "8px",
+  },
+  skill: {
+    backgroundColor: "#94a3b8",
+    color: "white",
+    padding: "4px 8px",
+    borderRadius: "4px",
+  },
+  achievementTitle: {
+    fontFamily: "Helvetica-Bold",
+    fontSize: "12px",
+  },
+  achievementPlace: {
+    fontSize: "12px",
+    marginTop: "1px",
+  },
+  achievementDetails: {
+    fontFamily: "Helvetica-Oblique",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    fontSize: "8px",
+    color: "#0891b2",
+    marginTop: "4px",
+  },
+  achievementPlaceDesc: {
+    fontFamily: "Helvetica-Oblique",
+    fontSize: "8px",
+    color: "#64748b",
+    marginTop: "2px",
+  },
+  achievementDescView: {
+    marginTop: "4px",
+  },
+  achievementDesc: {
+    fontSize: "8px",
+  },
+  options: {
+    marginTop: "10px",
+    flexDirection: "row",
+    fontSize: "8px",
+    columnGap: "40px",
+  },
+  optionTitle: {
+    fontSize: "10px",
+  },
+  optionDesc: {
+    fontFamily: "Helvetica-Oblique",
+    color: "#0891b2",
+    marginTop: "2px",
+  },
+  circle: {
+    display: "block",
+    height: "4px",
+    width: "4px",
+    backgroundColor: "#0891b2",
+    borderRadius: "9999px",
+    marginRight: "6px",
+  },
 });
 
 export function Template1({ data }) {
@@ -195,12 +197,19 @@ export function Template1({ data }) {
                   <Path d="M512 327c-29.9 0-58 11.6-79.2 32.8A111.6 111.6 0 0 0 400 439c0 29.9 11.7 58 32.8 79.2A111.6 111.6 0 0 0 512 551c29.9 0 58-11.7 79.2-32.8C612.4 497 624 468.9 624 439c0-29.9-11.6-58-32.8-79.2S541.9 327 512 327zm342.6-37.9a362.49 362.49 0 0 0-79.9-115.7 370.83 370.83 0 0 0-118.2-77.8C610.7 76.6 562.1 67 512 67c-50.1 0-98.7 9.6-144.5 28.5-44.3 18.3-84 44.5-118.2 77.8A363.6 363.6 0 0 0 169.4 289c-19.5 45-29.4 92.8-29.4 142 0 70.6 16.9 140.9 50.1 208.7 26.7 54.5 64 107.6 111 158.1 80.3 86.2 164.5 138.9 188.4 153a43.9 43.9 0 0 0 22.4 6.1c7.8 0 15.5-2 22.4-6.1 23.9-14.1 108.1-66.8 188.4-153 47-50.4 84.3-103.6 111-158.1C867.1 572 884 501.8 884 431.1c0-49.2-9.9-97-29.4-142zM512 615c-97.2 0-176-78.8-176-176s78.8-176 176-176 176 78.8 176 176-78.8 176-176 176z" />
                 </Svg>
                 <View style={styles.address}>
+                  {data.personalData.address && (
+                    <Text>{data.personalData.address}</Text>
+                  )}
                   <Text>
-                    {data.personalData.city
-                      ? `${data.personalData.city}, `
-                      : ""}
+                    {`${data.personalData.nip && `${data.personalData.nip} `}${
+                      data.personalData.city && data.personalData.city
+                    }${
+                      data.personalData.country &&
+                      data.personalData.country !== "Suisse"
+                        ? `, ${data.personalData.country}`
+                        : ""
+                    }`}
                   </Text>
-                  <Text>{data.personalData.country}</Text>
                 </View>
               </View>
             )}
@@ -242,7 +251,10 @@ export function Template1({ data }) {
         <View id="main" style={styles.main}>
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Compétences</Text>
-            <View id="skills" style={styles.sectionContent}>
+            <View
+              id="skills"
+              style={{ ...styles.sectionContent, ...styles.skills }}
+            >
               {data.skills.map((s) => (
                 <Text key={s.skill} style={styles.skill}>
                   {s.skill}
@@ -254,10 +266,21 @@ export function Template1({ data }) {
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Expérience professionnelle</Text>
             <View id="experiences" style={styles.sectionContent}>
-              {data.experiences.map((exp) => (
+              {data.experiences.map((exp, index) => (
                 <View key={exp.company} id="experience" wrap={false}>
-                  <Text style={styles.achievementTitle}>{exp.title}</Text>
+                  {index > 0 ? (
+                    <Text
+                      style={[styles.achievementTitle, { marginTop: "12px" }]}
+                    >
+                      {exp.title}
+                    </Text>
+                  ) : (
+                    <Text style={styles.achievementTitle}>{exp.title}</Text>
+                  )}
                   <Text style={styles.achievementPlace}>{exp.company}</Text>
+                  <Text style={styles.achievementPlaceDesc}>
+                    {exp.companyDesc}
+                  </Text>
                   <View style={styles.achievementDetails}>
                     <Text>
                       {exp.fromMonth}/{exp.fromYear} -
@@ -269,18 +292,15 @@ export function Template1({ data }) {
                       {exp.city ? `${exp.city}, ` : ""} {exp.country}
                     </Text>
                   </View>
-                  <Text style={styles.achievementPlaceDesc}>
-                    {exp.companyDesc}
-                  </Text>
                   <View style={styles.achievementDescView}>
                     {exp.description.map((desc) => (
                       <View
                         key={desc.task}
-                        // style={{
-                        //   flexDirection: "row",
-                        //   alignItems: "center",
-                        //   marginTop: "4px",
-                        // }}
+                        style={{
+                          flexDirection: "row",
+                          alignItems: "center",
+                          marginTop: "4px",
+                        }}
                       >
                         <Text style={styles.circle}></Text>
                         <Text style={styles.achievementDesc}>{desc.task}</Text>
@@ -295,11 +315,19 @@ export function Template1({ data }) {
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Formation</Text>
             <View id="education" style={styles.sectionContent}>
-              {data.education.map((ed) => (
+              {data.education.map((ed, index) => (
                 <View key={ed.degree} wrap={false}>
-                  <Text style={styles.achievementTitle}>
-                    {ed.degree} {ed.field}
-                  </Text>
+                  {index > 0 ? (
+                    <Text
+                      style={[styles.achievementTitle, { marginTop: "12px" }]}
+                    >
+                      {ed.degree} {ed.field}
+                    </Text>
+                  ) : (
+                    <Text style={styles.achievementTitle}>
+                      {ed.degree} {ed.field}
+                    </Text>
+                  )}
                   <Text style={styles.achievementPlace}>{ed.school}</Text>
                   <View style={styles.achievementDetails}>
                     <Text>
@@ -316,11 +344,17 @@ export function Template1({ data }) {
 
           <View style={styles.section} wrap={false}>
             <Text style={styles.sectionTitle}>Certifications</Text>
-            <View id="certifications" style={styles.sectionContent}>
-              {data.certifications.map((cert) => (
-                <Text key={cert.title} style={styles.achievementDesc}>
-                  {cert.title} - {cert.issuer} ({cert.month}/{cert.year})
-                </Text>
+            <View
+              id="certifications"
+              style={{ ...styles.sectionContent, ...styles.options }}
+            >
+              {data.certifications.map((cert, index) => (
+                <View key={cert.title}>
+                  <Text style={styles.optionTitle}>{cert.title}</Text>
+                  <Text style={styles.optionDesc}>
+                    {cert.issuer} ({cert.month}/{cert.year})
+                  </Text>
+                </View>
               ))}
             </View>
           </View>
@@ -328,15 +362,42 @@ export function Template1({ data }) {
           <View style={styles.section} wrap={false}>
             <Text style={styles.sectionTitle}>Projets Personnels</Text>
             <View id="projects" style={styles.sectionContent}>
-              {data.projects.map((project) => (
-                <Text key={project.title}>{project.title}</Text>
+              {data.projects.map((proj, index) => (
+                <View key={proj.company} id="experience" wrap={false}>
+                  {index > 0 ? (
+                    <Text
+                      style={[styles.achievementTitle, { marginTop: "12px" }]}
+                    >
+                      {proj.title}
+                    </Text>
+                  ) : (
+                    <Text style={styles.achievementTitle}>{proj.title}</Text>
+                  )}
+                  <Text style={styles.achievementPlaceDesc}>{proj.link}</Text>
+                  <View style={styles.achievementDetails}>
+                    <Text>
+                      {proj.fromMonth}/{proj.fromYear} -
+                      {proj.current
+                        ? " Maintenant"
+                        : ` ${proj.toMonth}/${proj.toYear}`}
+                    </Text>
+                  </View>
+                  <View style={styles.achievementDescView}>
+                    <Text style={styles.achievementDesc}>
+                      {proj.description}
+                    </Text>
+                  </View>
+                </View>
               ))}
             </View>
           </View>
 
           <View style={styles.section} wrap={false}>
             <Text style={styles.sectionTitle}>Langues</Text>
-            <View id="languages" style={styles.sectionContent}>
+            <View
+              id="languages"
+              style={{ ...styles.sectionContent, ...styles.options }}
+            >
               {data.languages.map((l) => (
                 <View key={l.language}>
                   <Text style={styles.optionTitle}>{l.language}</Text>
@@ -348,7 +409,10 @@ export function Template1({ data }) {
 
           <View style={styles.section} wrap={false}>
             <Text style={styles.sectionTitle}>Références</Text>
-            <View id="references" style={styles.sectionContent}>
+            <View
+              id="references"
+              style={{ ...styles.sectionContent, ...styles.options }}
+            >
               {data.references.map((ref) => (
                 <View key={ref.name}>
                   <Text style={styles.optionTitle}>{ref.name}</Text>
@@ -356,6 +420,20 @@ export function Template1({ data }) {
                     {ref.position} chez {ref.company}
                   </Text>
                 </View>
+              ))}
+            </View>
+          </View>
+
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Centres d'intérêts</Text>
+            <View
+              id="hobbies"
+              style={{ ...styles.sectionContent, ...styles.skills }}
+            >
+              {data.hobbies.map((h) => (
+                <Text key={h.hobby} style={styles.skill}>
+                  {h.hobby}
+                </Text>
               ))}
             </View>
           </View>

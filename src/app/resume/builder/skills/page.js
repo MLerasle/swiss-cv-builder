@@ -13,10 +13,10 @@ import { useHelp } from "@/hooks/useHelp";
 
 export default function Skills() {
   const router = useRouter();
-  const { setData } = useFormStore();
+  const { skills, setData } = useFormStore();
 
   const { control, handleSubmit } = useForm({
-    defaultValues: { skills: [skillData] },
+    defaultValues: { skills: skills.length > 0 ? skills : [skillData] },
   });
 
   const { fields, append, remove } = useFieldArray({

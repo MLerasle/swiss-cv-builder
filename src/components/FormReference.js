@@ -2,7 +2,6 @@ import { Controller } from "react-hook-form";
 import { Button, Input } from "@nextui-org/react";
 import { TrashIcon } from "@heroicons/react/24/solid";
 
-import { Card } from "@/components/Card";
 import HelpCard from "@/components/HelpCard";
 import { useHelp } from "@/hooks/useHelp";
 
@@ -11,7 +10,7 @@ export default function FormReference({ control, errors, index, remove }) {
 
   return (
     <>
-      <Card>
+      <div className="p-2">
         <Controller
           name={`references.${index}.name`}
           control={control}
@@ -127,7 +126,7 @@ export default function FormReference({ control, errors, index, remove }) {
             Supprimer la référence
           </Button>
         </div>
-      </Card>
+      </div>
 
       {isHelpDisplayed && <HelpCard content={helpData} onClose={hideHelp} />}
     </>

@@ -75,6 +75,7 @@ export const projectData = {
   toMonth: "",
   toYear: "",
   description: "",
+  link: "",
 };
 
 export const hobbyData = { hobby: "" };
