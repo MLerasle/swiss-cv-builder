@@ -10,8 +10,6 @@ export const personalData = {
   nationality: "",
   permit: "",
   age: "",
-  address: "",
-  nip: "",
   city: "",
   country: "",
   linkedinUrl: "",

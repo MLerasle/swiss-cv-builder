@@ -253,33 +253,8 @@ export default function PersonalInfos() {
         Où résidez-vous ?
       </span>
 
-      <Controller
-        name="address"
-        control={control}
-        render={({ field: { onBlur, ...field } }) => (
-          <Input
-            label="Addresse"
-            className="mt-1"
-            onFocus={() => displayHelp("address")}
-            onBlur={(e) => {
-              onBlur(e);
-              hideHelp();
-            }}
-            {...field}
-          />
-        )}
-      />
-
       <div className="grid grid-cols-1 gap-x-6 sm:grid-cols-6">
-        <div className="sm:col-span-2 mt-8">
-          <Controller
-            name="nip"
-            control={control}
-            render={({ field }) => <Input label="NIP" {...field} />}
-          />
-        </div>
-
-        <div className="sm:col-span-2 mt-8">
+        <div className="sm:col-span-3 mt-1">
           <Controller
             name="city"
             control={control}
@@ -287,7 +262,7 @@ export default function PersonalInfos() {
           />
         </div>
 
-        <div className="sm:col-span-2 mt-8">
+        <div className="sm:col-span-3 mt-8 sm:mt-1">
           <Controller
             name="country"
             control={control}
