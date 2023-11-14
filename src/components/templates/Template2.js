@@ -13,18 +13,16 @@ const styles = StyleSheet.create({
     flexDirection: "col",
     backgroundColor: "white",
     fontFamily: "Helvetica",
-    padding: "16px 24px",
-  },
-  header: {
-    color: "#1e293b",
-    flexDirection: "row",
-    justifyContent: "space-between",
+    padding: "16px 0",
   },
   headerMain: {
-    maxWidth: "60%",
+    padding: "0 24px",
+  },
+  name: {
+    color: "#0284c7",
   },
   title: {
-    color: "#0891b2",
+    color: "#475569",
     fontSize: "14px",
     marginTop: "2px",
   },
@@ -34,27 +32,36 @@ const styles = StyleSheet.create({
     lineHeight: "1.2px",
   },
   contact: {
-    backgroundColor: "#0891b2",
-    fontSize: "8px",
-    flexDirection: "col",
+    flexDirection: "row",
     justifyContent: "space-around",
-    padding: "8px",
-    borderRadius: "4px",
-    color: "white",
-    maxWidth: "35%",
+    fontSize: "8px",
+    marginTop: "16px",
+    padding: "8px 0",
+    borderTop: "1px solid black",
+    borderBottom: "1px solid black",
   },
   contactDetail: {
     flexDirection: "row",
     alignItems: "center",
     columnGap: "4px",
-    marginTop: "4px",
+  },
+  main: {
+    padding: "0 24px",
+    flexDirection: "row",
+    columnGap: "24px",
+  },
+  leftColumn: {
+    width: "67%",
+  },
+  rightColumn: {
+    width: "33%",
   },
   section: {
     padding: "16px 0",
   },
   sectionTitle: {
     fontFamily: "Helvetica-Bold",
-    color: "#0891b2",
+    color: "#0284c7",
     textTransform: "uppercase",
     fontSize: "14px",
   },
@@ -69,7 +76,7 @@ const styles = StyleSheet.create({
     fontSize: "8px",
   },
   skill: {
-    backgroundColor: "#94a3b8",
+    backgroundColor: "#0284c7",
     color: "white",
     padding: "4px 8px",
     borderRadius: "4px",
@@ -92,7 +99,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     fontSize: "8px",
-    color: "#0891b2",
+    color: "#475569",
     marginTop: "4px",
   },
   achievementPlaceDesc: {
@@ -109,31 +116,31 @@ const styles = StyleSheet.create({
   },
   options: {
     marginTop: "10px",
-    flexDirection: "row",
+    flexDirection: "col",
     fontSize: "8px",
-    columnGap: "40px",
+    rowGap: "8px",
   },
   optionTitle: {
     fontSize: "10px",
   },
   optionDesc: {
     fontFamily: "Helvetica-Oblique",
-    color: "#0891b2",
+    color: "#475569",
     marginTop: "2px",
   },
   circle: {
     display: "block",
     height: "4px",
     width: "4px",
-    backgroundColor: "#0891b2",
+    backgroundColor: "#0284c7",
     borderRadius: "9999px",
     marginRight: "6px",
   },
 });
 
-const iconColors = { fill: "white", stroke: "#0891b2" };
+const iconColors = { fill: "#0284c7", stroke: "white" };
 
-export function Template1({ data }) {
+export function Template2({ data }) {
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -245,192 +252,200 @@ export function Template1({ data }) {
         </View>
 
         <View id="main" style={styles.main}>
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Compétences</Text>
-            <View
-              id="skills"
-              style={{ ...styles.sectionContent, ...styles.skills }}
-            >
-              {data.skills.map((s) => (
-                <Text key={s.skill} style={styles.skill}>
-                  {s.skill}
-                </Text>
-              ))}
-            </View>
-          </View>
-
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Expérience professionnelle</Text>
-            <View id="experiences" style={styles.sectionContent}>
-              {data.experiences.map((exp, index) => (
-                <View key={exp.company} id="experience" wrap={false}>
-                  {index > 0 ? (
-                    <Text
-                      style={[styles.achievementTitle, { marginTop: "12px" }]}
-                    >
-                      {exp.title}
-                    </Text>
-                  ) : (
-                    <Text style={styles.achievementTitle}>{exp.title}</Text>
-                  )}
-                  <Text style={styles.achievementPlace}>{exp.company}</Text>
-                  <Text style={styles.achievementPlaceDesc}>
-                    {exp.companyDesc}
+          <View id="leftColumn" style={styles.leftColumn}>
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Compétences</Text>
+              <View
+                id="skills"
+                style={{ ...styles.sectionContent, ...styles.skills }}
+              >
+                {data.skills.map((s) => (
+                  <Text key={s.skill} style={styles.skill}>
+                    {s.skill}
                   </Text>
-                  <View style={styles.achievementDetails}>
-                    <Text>
-                      {exp.fromMonth}/{exp.fromYear} -
-                      {exp.current
-                        ? " Maintenant"
-                        : ` ${exp.toMonth}/${exp.toYear}`}
-                    </Text>
-                    <Text>
-                      {exp.city ? `${exp.city}, ` : ""} {exp.country}
-                    </Text>
-                  </View>
-                  <View style={styles.achievementDescView}>
-                    {exp.description.map((desc) => (
-                      <View
-                        key={desc.task}
-                        style={{
-                          flexDirection: "row",
-                          alignItems: "center",
-                          marginTop: "4px",
-                        }}
+                ))}
+              </View>
+            </View>
+
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>
+                Expérience professionnelle
+              </Text>
+              <View id="experiences" style={styles.sectionContent}>
+                {data.experiences.map((exp, index) => (
+                  <View key={exp.company} id="experience" wrap={false}>
+                    {index > 0 ? (
+                      <Text
+                        style={[styles.achievementTitle, { marginTop: "12px" }]}
                       >
-                        <Text style={styles.circle}></Text>
-                        <Text style={styles.achievementDesc}>{desc.task}</Text>
-                      </View>
-                    ))}
+                        {exp.title}
+                      </Text>
+                    ) : (
+                      <Text style={styles.achievementTitle}>{exp.title}</Text>
+                    )}
+                    <Text style={styles.achievementPlace}>{exp.company}</Text>
+                    <Text style={styles.achievementPlaceDesc}>
+                      {exp.companyDesc}
+                    </Text>
+                    <View style={styles.achievementDetails}>
+                      <Text>
+                        {exp.fromMonth}/{exp.fromYear} -
+                        {exp.current
+                          ? " Maintenant"
+                          : ` ${exp.toMonth}/${exp.toYear}`}
+                      </Text>
+                      <Text>
+                        {exp.city ? `${exp.city}, ` : ""} {exp.country}
+                      </Text>
+                    </View>
+                    <View style={styles.achievementDescView}>
+                      {exp.description.map((desc) => (
+                        <View
+                          key={desc.task}
+                          style={{
+                            flexDirection: "row",
+                            alignItems: "center",
+                            marginTop: "4px",
+                          }}
+                        >
+                          <Text style={styles.circle}></Text>
+                          <Text style={styles.achievementDesc}>
+                            {desc.task}
+                          </Text>
+                        </View>
+                      ))}
+                    </View>
                   </View>
-                </View>
-              ))}
+                ))}
+              </View>
+            </View>
+
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Formation</Text>
+              <View id="education" style={styles.sectionContent}>
+                {data.education.map((ed, index) => (
+                  <View key={ed.degree} wrap={false}>
+                    {index > 0 ? (
+                      <Text
+                        style={[styles.achievementTitle, { marginTop: "12px" }]}
+                      >
+                        {ed.degree} {ed.field}
+                      </Text>
+                    ) : (
+                      <Text style={styles.achievementTitle}>
+                        {ed.degree} {ed.field}
+                      </Text>
+                    )}
+                    <Text style={styles.achievementPlace}>{ed.school}</Text>
+                    <View style={styles.achievementDetails}>
+                      <Text>
+                        {ed.fromMonth}/{ed.fromYear} - {ed.toMonth}/{ed.toYear}
+                      </Text>
+                      <Text>
+                        {ed.city}, {ed.country}
+                      </Text>
+                    </View>
+                  </View>
+                ))}
+              </View>
             </View>
           </View>
 
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Formation</Text>
-            <View id="education" style={styles.sectionContent}>
-              {data.education.map((ed, index) => (
-                <View key={ed.degree} wrap={false}>
-                  {index > 0 ? (
-                    <Text
-                      style={[styles.achievementTitle, { marginTop: "12px" }]}
-                    >
-                      {ed.degree} {ed.field}
-                    </Text>
-                  ) : (
-                    <Text style={styles.achievementTitle}>
-                      {ed.degree} {ed.field}
-                    </Text>
-                  )}
-                  <Text style={styles.achievementPlace}>{ed.school}</Text>
-                  <View style={styles.achievementDetails}>
-                    <Text>
-                      {ed.fromMonth}/{ed.fromYear} - {ed.toMonth}/{ed.toYear}
-                    </Text>
-                    <Text>
-                      {ed.city}, {ed.country}
+          <View id="rightColumn" style={styles.rightColumn}>
+            <View style={styles.section} wrap={false}>
+              <Text style={styles.sectionTitle}>Certifications</Text>
+              <View
+                id="certifications"
+                style={{ ...styles.sectionContent, ...styles.options }}
+              >
+                {data.certifications.map((cert, index) => (
+                  <View key={cert.title}>
+                    <Text style={styles.optionTitle}>{cert.title}</Text>
+                    <Text style={styles.optionDesc}>
+                      {cert.issuer} ({cert.month}/{cert.year})
                     </Text>
                   </View>
-                </View>
-              ))}
+                ))}
+              </View>
             </View>
-          </View>
 
-          <View style={styles.section} wrap={false}>
-            <Text style={styles.sectionTitle}>Certifications</Text>
-            <View
-              id="certifications"
-              style={{ ...styles.sectionContent, ...styles.options }}
-            >
-              {data.certifications.map((cert, index) => (
-                <View key={cert.title}>
-                  <Text style={styles.optionTitle}>{cert.title}</Text>
-                  <Text style={styles.optionDesc}>
-                    {cert.issuer} ({cert.month}/{cert.year})
+            <View style={styles.section} wrap={false}>
+              <Text style={styles.sectionTitle}>Projets Personnels</Text>
+              <View id="projects" style={styles.sectionContent}>
+                {data.projects.map((proj, index) => (
+                  <View key={proj.company} id="experience" wrap={false}>
+                    {index > 0 ? (
+                      <Text
+                        style={[styles.achievementTitle, { marginTop: "12px" }]}
+                      >
+                        {proj.title}
+                      </Text>
+                    ) : (
+                      <Text style={styles.achievementTitle}>{proj.title}</Text>
+                    )}
+                    <Text style={styles.achievementPlaceDesc}>{proj.link}</Text>
+                    <View style={styles.achievementDetails}>
+                      <Text>
+                        {proj.fromMonth}/{proj.fromYear} -
+                        {proj.current
+                          ? " Maintenant"
+                          : ` ${proj.toMonth}/${proj.toYear}`}
+                      </Text>
+                    </View>
+                    <View style={styles.achievementDescView}>
+                      <Text style={styles.achievementDesc}>
+                        {proj.description}
+                      </Text>
+                    </View>
+                  </View>
+                ))}
+              </View>
+            </View>
+
+            <View style={styles.section} wrap={false}>
+              <Text style={styles.sectionTitle}>Langues</Text>
+              <View
+                id="languages"
+                style={{ ...styles.sectionContent, ...styles.options }}
+              >
+                {data.languages.map((l) => (
+                  <View key={l.language}>
+                    <Text style={styles.optionTitle}>{l.language}</Text>
+                    <Text style={styles.optionDesc}>{l.level}</Text>
+                  </View>
+                ))}
+              </View>
+            </View>
+
+            <View style={styles.section} wrap={false}>
+              <Text style={styles.sectionTitle}>Références</Text>
+              <View
+                id="references"
+                style={{ ...styles.sectionContent, ...styles.options }}
+              >
+                {data.references.map((ref) => (
+                  <View key={ref.name}>
+                    <Text style={styles.optionTitle}>{ref.name}</Text>
+                    <Text style={styles.optionDesc}>
+                      {ref.position} chez {ref.company}
+                    </Text>
+                  </View>
+                ))}
+              </View>
+            </View>
+
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Centres d'intérêts</Text>
+              <View
+                id="hobbies"
+                style={{ ...styles.sectionContent, ...styles.skills }}
+              >
+                {data.hobbies.map((h) => (
+                  <Text key={h.hobby} style={styles.hobby}>
+                    {h.hobby}
                   </Text>
-                </View>
-              ))}
-            </View>
-          </View>
-
-          <View style={styles.section} wrap={false}>
-            <Text style={styles.sectionTitle}>Projets Personnels</Text>
-            <View id="projects" style={styles.sectionContent}>
-              {data.projects.map((proj, index) => (
-                <View key={proj.company} id="experience" wrap={false}>
-                  {index > 0 ? (
-                    <Text
-                      style={[styles.achievementTitle, { marginTop: "12px" }]}
-                    >
-                      {proj.title}
-                    </Text>
-                  ) : (
-                    <Text style={styles.achievementTitle}>{proj.title}</Text>
-                  )}
-                  <Text style={styles.achievementPlaceDesc}>{proj.link}</Text>
-                  <View style={styles.achievementDetails}>
-                    <Text>
-                      {proj.fromMonth}/{proj.fromYear} -
-                      {proj.current
-                        ? " Maintenant"
-                        : ` ${proj.toMonth}/${proj.toYear}`}
-                    </Text>
-                  </View>
-                  <View style={styles.achievementDescView}>
-                    <Text style={styles.achievementDesc}>
-                      {proj.description}
-                    </Text>
-                  </View>
-                </View>
-              ))}
-            </View>
-          </View>
-
-          <View style={styles.section} wrap={false}>
-            <Text style={styles.sectionTitle}>Langues</Text>
-            <View
-              id="languages"
-              style={{ ...styles.sectionContent, ...styles.options }}
-            >
-              {data.languages.map((l) => (
-                <View key={l.language}>
-                  <Text style={styles.optionTitle}>{l.language}</Text>
-                  <Text style={styles.optionDesc}>{l.level}</Text>
-                </View>
-              ))}
-            </View>
-          </View>
-
-          <View style={styles.section} wrap={false}>
-            <Text style={styles.sectionTitle}>Références</Text>
-            <View
-              id="references"
-              style={{ ...styles.sectionContent, ...styles.options }}
-            >
-              {data.references.map((ref) => (
-                <View key={ref.name}>
-                  <Text style={styles.optionTitle}>{ref.name}</Text>
-                  <Text style={styles.optionDesc}>
-                    {ref.position} chez {ref.company}
-                  </Text>
-                </View>
-              ))}
-            </View>
-          </View>
-
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Centres d'intérêts</Text>
-            <View
-              id="hobbies"
-              style={{ ...styles.sectionContent, ...styles.skills }}
-            >
-              {data.hobbies.map((h) => (
-                <Text key={h.hobby} style={styles.hobby}>
-                  {h.hobby}
-                </Text>
-              ))}
+                ))}
+              </View>
             </View>
           </View>
         </View>
