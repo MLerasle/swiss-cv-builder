@@ -2,6 +2,7 @@
 
 import { PDFViewer } from "@react-pdf/renderer";
 
+// Lazy load correct template based on store value
 import { Template1 } from "@/components/templates/Template1";
 import { Template2 } from "@/components/templates/Template2";
 import useFormStore from "@/store/useFormStore";

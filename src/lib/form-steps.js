@@ -1,51 +1,56 @@
 export const steps = [
   {
     id: 1,
+    name: "Sélectionnez votre modèle de CV",
+    href: "/resume/builder",
+  },
+  {
+    id: 2,
     name: "Informations Personnelles",
     href: "/resume/builder/personal-infos",
   },
   {
-    id: 2,
+    id: 3,
     name: "Expériences Professionnelles",
     href: "/resume/builder/experiences",
   },
   {
-    id: 3,
+    id: 4,
     name: "Compétences",
     href: "/resume/builder/skills",
   },
   {
-    id: 4,
+    id: 5,
     name: "Langues",
     href: "/resume/builder/languages",
   },
   {
-    id: 5,
+    id: 6,
     name: "Formation",
     href: "/resume/builder/education",
   },
   {
-    id: 6,
+    id: 7,
     name: "Certifications",
     href: "/resume/builder/certifications",
   },
   {
-    id: 7,
+    id: 8,
     name: "Références",
     href: "/resume/builder/references",
   },
   {
-    id: 8,
+    id: 9,
     name: "Projets Personnels",
     href: "/resume/builder/projects",
   },
   {
-    id: 9,
+    id: 10,
     name: "Hobbies",
     href: "/resume/builder/hobbies",
   },
   {
-    id: 10,
+    id: 11,
     name: "Résumé",
     href: "/resume/builder/summary",
   },

@@ -11,5 +11,9 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [nextui(), require("@tailwindcss/typography")],
+  plugins: [
+    nextui(),
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/aspect-ratio"),
+  ],
 };

@@ -295,7 +295,8 @@ export function Template2({ data }) {
                           : ` ${exp.toMonth}/${exp.toYear}`}
                       </Text>
                       <Text>
-                        {exp.city ? `${exp.city}, ` : ""} {exp.country}
+                        {exp.city ? `${exp.city}, ` : ""}
+                        {exp.country}
                       </Text>
                     </View>
                     <View style={styles.achievementDescView}>
@@ -342,7 +343,8 @@ export function Template2({ data }) {
                         {ed.fromMonth}/{ed.fromYear} - {ed.toMonth}/{ed.toYear}
                       </Text>
                       <Text>
-                        {ed.city}, {ed.country}
+                        {ed.city ? `${ed.city}, ` : ""}
+                        {ed.country}
                       </Text>
                     </View>
                   </View>

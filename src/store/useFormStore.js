@@ -94,6 +94,7 @@ const steps = {
 const useFormStore = create(
   persist(
     (set) => ({
+      template: "",
       personalData: {},
       experiences: [],
       skills: [],
@@ -104,6 +105,11 @@ const useFormStore = create(
       projects: [],
       hobbies: [],
       summary: "",
+      setTemplate: (template) =>
+        set((state) => ({
+          ...state,
+          template,
+        })),
       setData: ({ step, data }) =>
         set((state) => ({
           ...state,
