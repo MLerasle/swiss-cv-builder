@@ -1,4 +1,5 @@
 export const data = {
+  template: "template2",
   personalData: {
     name: "John Doe",
     title: "Développeur Web Frontend",
@@ -77,16 +78,16 @@ export const data = {
     },
   ],
   skills: [
-    { skil: "HTML" },
-    { skil: "CSS" },
-    { skil: "Tailwindcss" },
-    { skil: "Javascript" },
-    { skil: "React.js" },
-    { skil: "Vue.js" },
-    { skil: "Next.js" },
-    { skil: "Ruby" },
-    { skil: "Ruby On Rails" },
-    { skil: "Git" },
+    { skill: "HTML" },
+    { skill: "CSS" },
+    { skill: "Tailwindcss" },
+    { skill: "Javascript" },
+    { skill: "React.js" },
+    { skill: "Vue.js" },
+    { skill: "Next.js" },
+    { skill: "Ruby" },
+    { skill: "Ruby On Rails" },
+    { skill: "Git" },
   ],
   education: [
     {
@@ -116,29 +117,29 @@ export const data = {
       description: "",
     },
   ],
-  references: [
-    {
-      name: "Larry Page",
-      company: "Google",
-      position: "Informaticien",
-      email: "",
-      tel: "",
-    },
-    {
-      name: "Tim Cook",
-      company: "Apple",
-      position: "CEO",
-      email: "",
-      tel: "",
-    },
-    {
-      name: "Mark Zuckerberg",
-      company: "Facebook",
-      position: "CEO",
-      email: "",
-      tel: "",
-    },
-  ],
+  // references: [
+  //   {
+  //     name: "Larry Page",
+  //     company: "Google",
+  //     position: "Informaticien",
+  //     email: "",
+  //     tel: "",
+  //   },
+  //   {
+  //     name: "Tim Cook",
+  //     company: "Apple",
+  //     position: "CEO",
+  //     email: "",
+  //     tel: "",
+  //   },
+  //   {
+  //     name: "Mark Zuckerberg",
+  //     company: "Facebook",
+  //     position: "CEO",
+  //     email: "",
+  //     tel: "",
+  //   },
+  // ],
   certifications: [
     {
       title: "Javascript, The Complete Guide",
@@ -159,16 +160,29 @@ export const data = {
       year: "2018",
     },
   ],
-  languages: [
-    {
-      language: "Français",
-      level: "Courant, Langue maternelle",
-    },
-    {
-      language: "Anglais",
-      level: "Niveau C1",
-    },
-  ],
+  // languages: [
+  //   {
+  //     language: "Français",
+  //     level: "Courant, Langue maternelle",
+  //   },
+  //   {
+  //     language: "Anglais",
+  //     level: "Niveau C1",
+  //   },
+  // ],
+  // projects: [
+  //   {
+  //     title: "Générateur de CV",
+  //     description:
+  //       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+  //     link: "https://github.com/JohDoe/cv-builder",
+  //     current: "true",
+  //     fromMonth: "10",
+  //     fromYear: "2023",
+  //     toMonth: "",
+  //     toYear: "",
+  //   },
+  // ],
   summary:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
 };

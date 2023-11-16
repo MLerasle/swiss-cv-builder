@@ -7,10 +7,14 @@ import useFormStore from "@/store/useFormStore";
 
 import Template1 from "@/images/templates/template1.png";
 import Template2 from "@/images/templates/template2.png";
+import Template3 from "@/images/templates/template3.png";
+import Template4 from "@/images/templates/template4.png";
 
 const templates = [
   { name: "template1", preview: Template1 },
   { name: "template2", preview: Template2 },
+  { name: "template3", preview: Template3 },
+  { name: "template4", preview: Template4 },
 ];
 
 export default function Builder() {
