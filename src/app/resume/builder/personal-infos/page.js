@@ -194,7 +194,7 @@ export default function PersonalInfos() {
                 defaultSelectedKeys={
                   personalData.permit !== "" ? [personalData.permit] : []
                 }
-                isDisabled={watch("nationality").toLowerCase() === "suisse"}
+                isDisabled={watch("nationality")?.toLowerCase() === "suisse"}
                 onFocus={() => displayHelp("workPermit")}
                 onBlur={(e) => {
                   onBlur(e);

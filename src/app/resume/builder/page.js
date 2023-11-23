@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 
+import { MyImage } from "@/components/MyImage";
 import useFormStore from "@/store/useFormStore";
 
 import Template1 from "@/images/templates/template1.png";
@@ -32,26 +32,19 @@ export default function Builder() {
       className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8 my-8"
     >
       {templates.map((template) => (
-        <li key={template.name} className="relative">
-          <div className="group aspect-h-8 aspect-w-6 block w-full overflow-hidden rounded-lg shadow-lg bg-gray-100 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
-            <Image
-              className="pointer-events-none group-hover:opacity-40 transition-opacity duration-500 ease-out"
-              src={template.preview}
-              alt=""
-              width={200}
-              height={380}
-              placeholder="blur"
-            />
-            <button
-              type="button"
-              className="absolute inset-0 focus:outline-none"
-              onClick={() => selectTemplate(template.name)}
-            >
-              <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in text-white font-medium bg-blue-600 px-4 py-2 rounded-full">
-                Selectionner ce modèle
-              </span>
-            </button>
+        <li key={template.name} className="flex flex-col justify-center">
+          <div className="group block w-full overflow-hidden rounded-lg shadow-lg bg-gray-100 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
+            <MyImage src={template.preview} alt={template.name} height="8000" />
           </div>
+          <button
+            type="button"
+            className="mt-6"
+            onClick={() => selectTemplate(template.name)}
+          >
+            <span className=" text-white font-medium bg-blue-600 px-4 py-2 rounded-full">
+              Selectionner ce modèle
+            </span>
+          </button>
         </li>
       ))}
     </ul>
