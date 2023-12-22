@@ -53,7 +53,7 @@ export default function PersonalInfos() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <input
+      {/* <input
         type="file"
         name="profilePicture"
         onInput={handleUploadedFile}
@@ -77,7 +77,7 @@ export default function PersonalInfos() {
         <Button color="default" variant="bordered" onClick={onUpload}>
           Change Photo
         </Button>
-      </div>
+      </div> */}
 
       <Controller
         name="name"
@@ -192,7 +192,9 @@ export default function PersonalInfos() {
               <Select
                 label="Possédez-vous un permis de travail ?"
                 defaultSelectedKeys={
-                  personalData.permit !== "" ? [personalData.permit] : []
+                  personalData.permit && personalData.permit !== ""
+                    ? [personalData.permit]
+                    : null
                 }
                 isDisabled={watch("nationality")?.toLowerCase() === "suisse"}
                 onFocus={() => displayHelp("workPermit")}

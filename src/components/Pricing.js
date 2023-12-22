@@ -11,7 +11,7 @@ const tiers = [
     name: "Premium",
     id: "tier-premium",
     href: "#",
-    priceMonthly: "29.90",
+    priceMonthly: "14.90",
     description:
       "Le plan idéal pour vous démarquer de la concurrence et décrocher votre emploi en Suisse.",
     features: [
@@ -27,7 +27,7 @@ const tiers = [
     name: "Basique",
     id: "tier-basic",
     href: "#",
-    priceMonthly: "5.90",
+    priceMonthly: "4.90",
     description:
       "Le plan qui vous permet de générer votre CV Suisse professionnel en quelques minutes.",
     features: ["Génération du CV", "Aide en ligne", "1 modèle de CV"],
@@ -98,10 +98,7 @@ export function Pricing() {
                 ))}
               </ul>
 
-              <Link
-                href="/resume/builder/personal-infos"
-                className="mt-8 block"
-              >
+              <Link href="/resume/builder" className="mt-8 block">
                 <Button
                   color="primary"
                   className="block w-full"

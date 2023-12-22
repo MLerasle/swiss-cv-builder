@@ -9,8 +9,7 @@ export default function Privacy() {
             <h1>Politique de confidentialité</h1>
             <h2>ARTICLE 1 : PRÉAMBULE</h2>
             <p>
-              Cette politique de confidentialité s'applique au site : Resume
-              Builder.
+              Cette politique de confidentialité s'applique au site : Swiss CV.
             </p>
             <p>
               La présente politique de confidentialité a pour but d'exposer aux
@@ -42,7 +41,7 @@ export default function Privacy() {
               Cette politique de confidentialité complète les mentions légales
               et les Conditions Générales d'Utilisation que les utilisateurs
               peuvent consulter à l'adresse ci-après :{" "}
-              <Link href="/terms">https://www.resume-builder.ch/terms</Link>
+              <Link href="/terms">https://www.swisscv.ch/terms</Link>
             </p>
             <h2>
               ARTICLE 2 : PRINCIPES GÉNÉRAUX EN MATIÈRE DE COLLECTE ET DE
@@ -120,8 +119,8 @@ export default function Privacy() {
             </h2>
             <h3>A. DONNÉES COLLECTÉES ET TRAITÉES ET MODE DE COLLECTE</h3>
             <p>
-              Les données à caractère personnel collectées sur le site Resume
-              Builder sont les suivantes :
+              Les données à caractère personnel collectées sur le site Swiss CV
+              sont les suivantes :
             </p>
             <p className="italic">
               Prénoms, Nom, adresse e-mail, numéro de téléphone, nationalité,
@@ -163,8 +162,8 @@ export default function Privacy() {
             </p>
             <h3>C. HÉBERGEMENT DES DONNÉES</h3>
             <p>
-              Le site Resume Builder est hébergé par : Vercel Inc., dont le
-              siège est situé à l'adresse ci-après :
+              Le site SwissCV est hébergé par : Vercel Inc., dont le siège est
+              situé à l'adresse ci-après :
             </p>
             <p className="italic">340 S Lemon Ave #4133 Walnut, CA 91789</p>
             <p>
@@ -183,7 +182,7 @@ export default function Privacy() {
             </p>
             <p className="italic">
               Le responsable des traitements peut être contacté à l'adresse{" "}
-              <a href="mailto:dpo@resume-builder.ch">dpo@resume-builder.ch</a>.
+              <a href="mailto:contact@swisscv.ch">contact@swisscv.ch</a>.
             </p>
             <p>
               Le responsable du traitement des données est chargé de déterminer
@@ -235,9 +234,7 @@ export default function Privacy() {
               Le délégué à la protection des données peut être joint de la
               manière suivante :
             </p>
-            <p className="italic">
-              Par email à l'adresse dpo@resume-builder.ch
-            </p>
+            <p className="italic">Par email à l'adresse contact@SwissCV.ch</p>
             <h2>ARTICLE 5 : DROITS DE L'UTILISATEUR</h2>
             <p>
               Conformément à la réglementation concernant le traitement des
@@ -457,15 +454,15 @@ export default function Privacy() {
             </p>
             <ul>
               <li>
-                Nom du cookie: paymentIntentId; Émetteur: Resume Builder;
-                Finalité: Bon fonctionnement du site;
+                Nom du cookie: paymentIntentId; Émetteur: SwissCV; Finalité: Bon
+                fonctionnement du site;
               </li>
               <li>
-                Nom du cookie: __stripe_mid (ou mid); Émetteur: Resume Builder;
+                Nom du cookie: __stripe_mid (ou mid); Émetteur: SwissCV;
                 Finalité: Détection et prévention des fraudes;
               </li>
               <li>
-                Nom du cookie: __stripe_sid (ou sid); Émetteur: Resume Builder;
+                Nom du cookie: __stripe_sid (ou sid); Émetteur: SwissCV;
                 Finalité: Détection et prévention des fraudes;
               </li>
             </ul>
@@ -503,7 +500,7 @@ export default function Privacy() {
               tout moment à l'adresse ci-après indiquée :
             </p>
             <p>
-              <Link href="/privacy">https://www.resume-builder.ch/privacy</Link>
+              <Link href="/privacy">https://www.swisscv.ch/privacy</Link>
             </p>
             <p>
               L'éditeur du site se réserve le droit de la modifier afin de

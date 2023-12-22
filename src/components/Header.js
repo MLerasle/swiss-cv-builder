@@ -2,19 +2,20 @@
 
 import { Fragment } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Popover, Transition } from "@headlessui/react";
 import clsx from "clsx";
 import { Button } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 
 import { Container } from "@/components/Container";
-import { Logo } from "@/components/Logo";
 import { NavLink } from "@/components/NavLink";
+import Logo from "@/images/logo.svg";
 
 const navlinks = [
   { href: "#benefits", label: "Bénéfices" },
   { href: "#features", label: "Fonctionnalités" },
-  { href: "#pricing", label: "Tarif" },
+  // { href: "#pricing", label: "Tarif" },
   { href: "#faq", label: "FAQ" },
 ];
 
@@ -107,8 +108,15 @@ export function Header() {
       <Container>
         <nav className="relative z-50 flex justify-between">
           <div className="flex items-center md:gap-x-12">
-            <Link href="/" aria-label="Home">
-              <Logo className="h-10 w-auto" />
+            <Link
+              href="/"
+              aria-label="Home"
+              className="flex items-center gap-x-3"
+            >
+              <Image src={Logo} className="h-10 w-auto" />
+              <div className="text-xl font-medium leading-8 text-gray-800">
+                CV<span className="text-blue-700">Builder</span>
+              </div>
             </Link>
             {pathname === "/" && (
               <div className="hidden md:flex md:gap-x-6">
@@ -124,11 +132,11 @@ export function Header() {
             {pathname.startsWith("/resume/builder") ? (
               <></>
             ) : pathname.startsWith("/resume/preview") ? (
-              <Link href="/resume/builder/personal-infos">
+              <Link href="/resume/builder">
                 <Button color="primary">Retour à l'éditeur</Button>
               </Link>
             ) : (
-              <Link href="/resume/builder/personal-infos">
+              <Link href="/resume/builder">
                 <Button color="primary">
                   Générer <span className="hidden lg:inline">mon </span>CV
                 </Button>

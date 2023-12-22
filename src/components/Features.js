@@ -3,6 +3,8 @@ import Image from "next/image";
 import { Container } from "@/components/Container";
 
 import form from "@/images/screenshots/form.png";
+import screenshotForm from "@/images/screenshots/screenshot-form.png";
+import screenshotTemplate from "@/images/screenshots/screenshot-template.png";
 
 export function Features() {
   return (
@@ -32,7 +34,7 @@ export function Features() {
           <div className="mt-10 -mx-4 relative lg:mt-0" aria-hidden="true">
             <Image
               className="relative mx-auto sm:rounded-xl"
-              src={form}
+              src={screenshotTemplate}
               alt=""
               width={600}
               height={400}
@@ -55,7 +57,7 @@ export function Features() {
             <div className="mt-10 -mx-4 relative lg:mt-0 lg:col-start-1">
               <Image
                 className="relative mx-auto sm:rounded-xl"
-                src={form}
+                src={screenshotForm}
                 alt=""
                 width={600}
                 height={400}

@@ -7,7 +7,7 @@ import { Container } from "@/components/Container";
 
 export function Cta() {
   return (
-    <div className="bg-gray-50 py-24 sm:py-32">
+    <div className="py-24 sm:py-32">
       <Container>
         <div className="text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
@@ -18,7 +18,7 @@ export function Cta() {
           </p>
         </div>
         <div className="mt-10 flex items-center justify-center">
-          <Link href="/resume/builder/personal-infos">
+          <Link href="/resume/builder">
             <Button color="primary" size="lg">
               Générer mon CV
             </Button>

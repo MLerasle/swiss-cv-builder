@@ -20,7 +20,7 @@ export function Hero() {
         de CV pour répondre aux attentes des recruteurs.
       </p>
       <div className="mt-10">
-        <Link href="/resume/builder/personal-infos">
+        <Link href="/resume/builder">
           <Button color="primary" size="lg">
             Générer mon CV
           </Button>

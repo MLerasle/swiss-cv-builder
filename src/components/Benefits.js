@@ -9,7 +9,7 @@ import { Container } from "@/components/Container";
 const features = [
   {
     name: "Gagnez du temps",
-    desc: "Rédiger un CV performant peut être long et fastidieux. Avec notre générateur, cela ne vous prendra que quelques minutes.",
+    desc: "Rédiger un CV performant peut être long et fastidieux. Avec notre générateur de CV, cela ne vous prendra que quelques minutes.",
     icon: ClockIcon,
   },
   {

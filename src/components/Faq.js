@@ -8,7 +8,7 @@ import { faqs } from "@/lib/faq";
 
 export function Faq() {
   return (
-    <div id="faq" className="py-24 sm:py-32">
+    <div id="faq" className="py-24 sm:py-32 bg-gray-50">
       <Container>
         <div className="text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">

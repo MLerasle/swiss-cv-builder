@@ -6,8 +6,9 @@ import "@/styles/globals.css";
 import { Providers } from "@/app/providers";
 
 export const metadata = {
-  title: "Resume Builder",
-  description: "Generate your resume in a few minutes.",
+  title: "SwissCV",
+  description:
+    "Générer un CV pour le marché de l'emploi Suisse en quelques minutes.",
 };
 
 const roboto = Roboto({
@@ -20,7 +21,7 @@ const roboto = Roboto({
 export default function RootLayout({ children }) {
   return (
     <html
-      lang="en"
+      lang="fr"
       className={`h-full scroll-smooth bg-white antialiased ${roboto.className}`}
     >
       <body className="flex h-full flex-col">
