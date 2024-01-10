@@ -2,9 +2,9 @@ import Image from "next/image";
 
 import { Container } from "@/components/Container";
 
-import form from "@/images/screenshots/form.png";
 import screenshotForm from "@/images/screenshots/screenshot-form.png";
 import screenshotTemplate from "@/images/screenshots/screenshot-template.png";
+import screenshotPreview from "@/images/screenshots/screenshot-preview.png";
 
 export function Features() {
   return (
@@ -49,8 +49,8 @@ export function Features() {
                 Saisissez vos informations
               </h3>
               <p className="mt-3 text-lg text-gray-500">
-                Remplissez les informations de votre CV en suivant en suivant
-                les conseils que nous vous fournissons en temps réel.
+                Remplissez les informations de votre CV en suivant les conseils
+                que nous vous fournissons en temps réel.
               </p>
             </div>
 
@@ -81,7 +81,7 @@ export function Features() {
           <div className="mt-10 -mx-4 relative lg:mt-0" aria-hidden="true">
             <Image
               className="relative mx-auto sm:rounded-xl"
-              src={form}
+              src={screenshotPreview}
               alt=""
               width={600}
               height={400}

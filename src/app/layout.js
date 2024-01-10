@@ -6,7 +6,7 @@ import "@/styles/globals.css";
 import { Providers } from "@/app/providers";
 
 export const metadata = {
-  title: "SwissCV",
+  title: "SwissCVBuilder",
   description:
     "Générer un CV pour le marché de l'emploi Suisse en quelques minutes.",
 };

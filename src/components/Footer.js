@@ -1,10 +1,7 @@
 import Link from "next/link";
 
 const navigation = {
-  main: [
-    { name: "CGU", href: "#" },
-    { name: "Confidentialité", href: "/privacy" },
-  ],
+  main: [{ name: "Mentions légales", href: "#" }],
 };
 
 export function Footer() {
@@ -27,7 +24,8 @@ export function Footer() {
           ))}
         </nav>
         <p className="mt-10 text-center text-xs leading-5 text-gray-500">
-          &copy; {new Date().getFullYear()} SwissCV. Tous droits réservés.
+          &copy; {new Date().getFullYear()} SwissCVBuilder. Tous droits
+          réservés.
         </p>
       </div>
     </footer>

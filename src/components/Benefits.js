@@ -9,7 +9,7 @@ import { Container } from "@/components/Container";
 const features = [
   {
     name: "Gagnez du temps",
-    desc: "Rédiger un CV performant peut être long et fastidieux. Avec notre générateur de CV, cela ne vous prendra que quelques minutes.",
+    desc: "Rédiger un CV performant peut être long et fastidieux. Avec SwissCVBuilder, cela ne vous prendra que quelques minutes.",
     icon: ClockIcon,
   },
   {
@@ -19,7 +19,7 @@ const features = [
   },
   {
     name: "Adapté au marché Suisse",
-    desc: "Le marché de l'emploi en Suisse a ses spécificités. Notre générateur vous permet de répondre aux attentes des recruteurs.",
+    desc: "Le marché de l'emploi en Suisse a ses spécificités. SwissCVBuilder vous permet de répondre aux attentes des recruteurs.",
     icon: DocumentCheckIcon,
   },
 ];

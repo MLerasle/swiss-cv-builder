@@ -142,7 +142,7 @@ const iconColors = { fill: "#0284c7", stroke: "white" };
 
 export function Template2({ data }) {
   return (
-    <Document>
+    <Document title={`CV ${data.personalData.name}`}>
       <Page size="A4" style={styles.page}>
         <View id="header" style={styles.header}>
           <View style={styles.headerMain}>

@@ -44,6 +44,7 @@ export function Faq() {
                     <Disclosure.Panel as="dd" className="mt-4 pr-12">
                       {faq.answer.map((answer, index) => (
                         <p
+                          key={index}
                           className={`text-base leading-7 text-gray-600 ${
                             index > 0 && "mt-4"
                           }`}

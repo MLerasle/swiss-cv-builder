@@ -113,9 +113,13 @@ export function Header() {
               aria-label="Home"
               className="flex items-center gap-x-3"
             >
-              <Image src={Logo} className="h-10 w-auto" />
+              <Image
+                src={Logo}
+                alt="SwissCVBuilder logo"
+                className="h-10 w-auto"
+              />
               <div className="text-xl font-medium leading-8 text-gray-800">
-                CV<span className="text-blue-700">Builder</span>
+                Swiss<span className="text-blue-700">CV</span>Builder
               </div>
             </Link>
             {pathname === "/" && (
