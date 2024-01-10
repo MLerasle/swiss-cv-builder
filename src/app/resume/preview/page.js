@@ -1,17 +1,16 @@
 "use client";
 
 import { createElement } from "react";
-import ReactPDF, { PDFViewer } from "@react-pdf/renderer";
+import { PDFViewer } from "@react-pdf/renderer";
 
 import { Template1 } from "@/components/templates/Template1";
 import { Template2 } from "@/components/templates/Template2";
 import { Template3 } from "@/components/templates/Template3";
 import { Template4 } from "@/components/templates/Template4";
 import useFormStore from "@/store/useFormStore";
-import { data } from "@/lib/fake-data";
 
 export default function Preview() {
-  // const data = useFormStore((state) => state);
+  const data = useFormStore((state) => state);
 
   const renderTemplate = (template) => {
     switch (template) {
@@ -25,6 +24,10 @@ export default function Preview() {
         return Template4;
     }
   };
+
+  if (typeof window === "undefined") {
+    return <></>;
+  }
 
   return (
     <PDFViewer showToolbar width="100%" height={window.innerHeight}>
