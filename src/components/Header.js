@@ -122,7 +122,7 @@ export function Header() {
                 <div className="text-xl font-medium leading-8 text-gray-800">
                   Swiss<span className="text-blue-700">CV</span>Builder
                 </div>
-                <div className="text-xs bg-blue-500 shadow-md shadow-blue-500/50 text-white font-semibold tracking-wider px-4 py-1 rounded-full">
+                <div className="hidden sm:inline-block text-xs bg-blue-500 shadow-md shadow-blue-500/50 text-white font-semibold tracking-wider px-4 py-1 rounded-full">
                   BETA
                 </div>
               </div>
