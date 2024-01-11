@@ -13,6 +13,7 @@
     "@heroicons/react": "^2.0.18",
     "@nextui-org/react": "^2.1.13",
     "@react-pdf/renderer": "^3.1.13",
+    "@sentry/nextjs": "^7.93.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/typography": "^0.5.10",
     "clsx": "^2.0.0",
