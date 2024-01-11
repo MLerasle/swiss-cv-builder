@@ -34,6 +34,7 @@ export default function FormExperience({
           render={({ field }) => (
             <Input
               label="Nom du projet"
+              autoFocus
               isRequired
               isInvalid={!!errors.projects && !!errors.projects[index]?.title}
               errorMessage={

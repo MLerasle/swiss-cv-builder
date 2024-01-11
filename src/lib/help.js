@@ -85,12 +85,6 @@ export const help = {
       desc: "Si vous avez obtenu un diplôme à l'étranger, pensez à indiquer entre parenthèses son équivalent suisse si le nom diffère. Par exemple, l'équivalent d'une license en France est un bachelor en Suisse.",
     },
   ],
-  grade: [
-    {
-      title: "Résultat",
-      desc: "À moins que vous n'ayez obtenu la meilleure mention, indiquer votre résultat pourrait vous desservir.",
-    },
-  ],
   degreeDesc: [
     {
       title: "Description",

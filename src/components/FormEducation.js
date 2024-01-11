@@ -85,51 +85,29 @@ export default function FormEducation({
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 my-8">
-          <div className="sm:col-span-3">
-            <Controller
-              name={`education.${index}.field`}
-              control={control}
-              rules={{
-                required: true,
-              }}
-              render={({ field }) => (
-                <Input
-                  label="Domaine d'études"
-                  isRequired
-                  isInvalid={
-                    !!errors.education && !!errors.education[index]?.field
-                  }
-                  errorMessage={
-                    !!errors.education &&
-                    !!errors.education[index]?.field &&
-                    "Veuillez renseigner le domaine d'études de votre diplôme."
-                  }
-                  {...field}
-                />
-              )}
-            />
-          </div>
-
-          <div className="sm:col-span-3">
-            <Controller
-              name={`education.${index}.grade`}
-              control={control}
-              render={({ field: { onBlur, ...field } }) => (
-                <Input
-                  label="Résultat obtenu"
-                  onFocus={() => {
-                    if (index === 0) displayHelp("grade");
-                  }}
-                  onBlur={(e) => {
-                    onBlur(e);
-                    hideHelp();
-                  }}
-                  {...field}
-                />
-              )}
-            />
-          </div>
+        <div className="my-8">
+          <Controller
+            name={`education.${index}.field`}
+            control={control}
+            rules={{
+              required: true,
+            }}
+            render={({ field }) => (
+              <Input
+                label="Domaine d'études"
+                isRequired
+                isInvalid={
+                  !!errors.education && !!errors.education[index]?.field
+                }
+                errorMessage={
+                  !!errors.education &&
+                  !!errors.education[index]?.field &&
+                  "Veuillez renseigner le domaine d'études de votre diplôme."
+                }
+                {...field}
+              />
+            )}
+          />
         </div>
 
         <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">

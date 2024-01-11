@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
       lang="fr"
       className={`h-full scroll-smooth bg-white antialiased ${roboto.className}`}
     >
-      <body className="flex h-full flex-col">
+      <body id="body" className="flex h-full flex-col">
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
           <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
         ) : null}

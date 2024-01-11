@@ -40,7 +40,6 @@ export const trainingData = {
   school: "",
   degree: "",
   field: "",
-  grade: "",
   country: "",
   city: "",
   fromMonth: "",
