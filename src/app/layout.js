@@ -1,9 +1,10 @@
 import { Roboto } from "next/font/google";
 
+import "@/styles/globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import "@/styles/globals.css";
 import { Providers } from "@/app/providers";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 
 export const metadata = {
   title: "SwissCVBuilder",
@@ -25,6 +26,9 @@ export default function RootLayout({ children }) {
       className={`h-full scroll-smooth bg-white antialiased ${roboto.className}`}
     >
       <body className="flex h-full flex-col">
+        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
+          <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
+        ) : null}
         <Providers>
           <Header />
           {children}
