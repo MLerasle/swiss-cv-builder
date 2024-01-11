@@ -1,7 +1,10 @@
 import Link from "next/link";
 
 const navigation = {
-  main: [{ name: "Mentions légales", href: "/legal" }],
+  main: [
+    { name: "Mentions légales", href: "/legal" },
+    { name: "Contact", href: "/contact" },
+  ],
 };
 
 export function Footer() {
