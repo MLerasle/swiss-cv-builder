@@ -13,7 +13,7 @@ export function Hero() {
         <span className="relative whitespace-nowrap text-blue-600">
           <span className="relative">votre CV Suisse</span>
         </span>{" "}
-        en 5 minutes.
+        en quelques minutes.
       </h1>
       <p className="mt-6 text-lg leading-8 text-gray-600 max-w-2xl mx-auto">
         Vous souhaitez décrocher un emploi en Suisse ? Utilisez notre générateur
