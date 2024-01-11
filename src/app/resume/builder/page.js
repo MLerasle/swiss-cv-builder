@@ -29,7 +29,7 @@ export default function Builder() {
   return (
     <ul
       role="list"
-      className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8 my-8"
+      className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8 my-8"
     >
       {templates.map((template) => (
         <li key={template.name} className="flex flex-col justify-center">

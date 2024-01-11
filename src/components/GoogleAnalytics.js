@@ -4,12 +4,12 @@ export function GoogleAnalytics({ ga_id }) {
   return (
     <>
       <Script
-        async
-        src={`https://www.googletagmanager.com/gtag/js? 
-        id=${ga_id}`}
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${ga_id}`}
       ></Script>
       <Script
         id="google-analytics"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
