@@ -3,6 +3,7 @@ import { Benefits } from "@/components/Benefits";
 import { Features } from "@/components/Features";
 import { Pricing } from "@/components/Pricing";
 import { Faq } from "@/components/Faq";
+import { NewsletterForm } from "@/components/NewsletterForm";
 import { Cta } from "@/components/Cta";
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
       {/* <Pricing /> */}
       <Faq />
       <Cta />
+      <NewsletterForm />
     </main>
   );
 }
