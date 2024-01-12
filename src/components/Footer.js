@@ -3,6 +3,7 @@ import Link from "next/link";
 const navigation = {
   main: [
     { name: "Mentions légales", href: "/legal" },
+    { name: "Politique de confidentialité", href: "/privacy" },
     { name: "Contact", href: "/contact" },
   ],
 };
