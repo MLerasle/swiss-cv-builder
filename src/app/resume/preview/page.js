@@ -1,7 +1,7 @@
 "use client";
 
 import { createElement } from "react";
-import { PDFViewer } from "@react-pdf/renderer";
+import { PDFViewer } from "@react-pdf/renderer/lib/react-pdf.browser.es.js";
 
 import { Template1 } from "@/components/templates/Template1";
 import { Template2 } from "@/components/templates/Template2";
@@ -25,12 +25,8 @@ export default function Preview() {
     }
   };
 
-  if (typeof window === "undefined") {
-    return <></>;
-  }
-
   return (
-    <PDFViewer showToolbar width="100%" height={window.innerHeight}>
+    <PDFViewer showToolbar width="100%" height="800px">
       {createElement(renderTemplate(data.template), { data })}
     </PDFViewer>
   );
