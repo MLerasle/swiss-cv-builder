@@ -113,8 +113,8 @@ export const help = {
   ],
   hobbies: [
     {
-      title: "Hobby",
-      desc: "Cette section n'est pas obligatoire. N'ajoutez vos hobbies que si vous pensez qu'ils apportent une réelle plus-value à votre CV. Mieux vaut ne rien mentionner que d'ajouter lecture ou cinéma.",
+      title: "Loisirs",
+      desc: "Cette section n'est pas obligatoire. N'ajoutez vos loisirs que si vous pensez qu'ils apportent une réelle plus-value à votre CV. Mieux vaut ne rien mentionner que d'ajouter lecture ou cinéma.",
     },
   ],
   summary: [

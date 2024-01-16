@@ -1,5 +1,9 @@
 import { Container } from "@/components/Container";
 
+export const metadata = {
+  title: "SwissCVBuilder - Mentions légales",
+};
+
 export default function Legal() {
   return (
     <Container className="prose my-16">

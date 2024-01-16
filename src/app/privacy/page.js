@@ -1,5 +1,9 @@
 import Link from "next/link";
 
+export const metadata = {
+  title: "SwissCVBuilder - Politique de confidentialité",
+};
+
 export default function Privacy() {
   return (
     <div className="max-w-7xl mx-auto px-4 pb-16 sm:pb-24 sm:px-6 lg:px-8">
