@@ -1,8 +1,9 @@
 import { useFieldArray, Controller } from "react-hook-form";
-import { Button, Input } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 import HelpCard from "@/components/HelpCard";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
 
+import { BaseInput } from "@/components/BaseInput";
 import { useHelp } from "@/hooks/useHelp";
 
 export default function FormExperienceDesc({ descIndex, control }) {
@@ -36,7 +37,7 @@ export default function FormExperienceDesc({ descIndex, control }) {
               name={`jobs.${descIndex}.description.${index}.task`}
               control={control}
               render={({ field: { onBlur, ...field } }) => (
-                <Input
+                <BaseInput
                   label="Description"
                   onKeyDown={onAddDesc}
                   onFocus={() => {

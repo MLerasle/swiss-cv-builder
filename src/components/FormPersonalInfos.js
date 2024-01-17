@@ -3,12 +3,14 @@
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useForm, Controller } from "react-hook-form";
-import { Input, Select, SelectItem, Avatar, Button } from "@nextui-org/react";
+import { SelectItem, Avatar, Button } from "@nextui-org/react";
 import { UserCircleIcon } from "@heroicons/react/24/solid";
 
 import FormActions from "@/components/FormActions";
 import HelpCard from "@/components/HelpCard";
 import { InputPhone } from "@/components/InputPhone";
+import { BaseInput } from "@/components/BaseInput";
+import { BaseSelect } from "@/components/BaseSelect";
 import useFormStore from "@/store/useFormStore";
 import { workPermits } from "@/lib/select-options";
 import { useHelp } from "@/hooks/useHelp";
@@ -23,6 +25,7 @@ export function FormPersonalInfos() {
   const {
     control,
     register,
+    getValues,
     watch,
     handleSubmit,
     formState: { errors },
@@ -85,14 +88,21 @@ export function FormPersonalInfos() {
         rules={{
           required: true,
         }}
-        render={({ field }) => (
-          <Input
+        render={({ field: { onBlur, ...field } }) => (
+          <BaseInput
             label="Nom"
             autoFocus
             isRequired
             isInvalid={!!errors.name}
             errorMessage={!!errors.name && "Veuillez renseigner votre nom."}
             className="my-8"
+            onBlur={(e) => {
+              onBlur(e);
+              setData({
+                step: 1,
+                data: { ...personalData, name: e.target.value },
+              });
+            }}
             {...field}
           />
         )}
@@ -102,13 +112,17 @@ export function FormPersonalInfos() {
         name="title"
         control={control}
         render={({ field: { onBlur, ...field } }) => (
-          <Input
+          <BaseInput
             label="Intitulé du poste"
             className="my-8"
             onFocus={() => displayHelp("jobTitle")}
             onBlur={(e) => {
               onBlur(e);
               hideHelp();
+              setData({
+                step: 1,
+                data: { ...personalData, title: e.target.value },
+              });
             }}
             {...field}
           />
@@ -125,13 +139,17 @@ export function FormPersonalInfos() {
               pattern: /^\S+@\S+$/i,
             }}
             render={({ field: { onBlur, ...field } }) => (
-              <Input
+              <BaseInput
                 type="email"
                 label="Email"
                 onFocus={() => displayHelp("emailAddress")}
                 onBlur={(e) => {
                   onBlur(e);
                   hideHelp();
+                  setData({
+                    step: 1,
+                    data: { ...personalData, email: e.target.value },
+                  });
                 }}
                 isRequired
                 isInvalid={!!errors.email}
@@ -155,6 +173,10 @@ export function FormPersonalInfos() {
                 onBlur={(e) => {
                   onBlur(e);
                   hideHelp();
+                  setData({
+                    step: 1,
+                    data: { ...personalData, tel: e.target.value },
+                  });
                 }}
                 {...field}
               />
@@ -169,7 +191,7 @@ export function FormPersonalInfos() {
             name="nationality"
             control={control}
             render={({ field: { onBlur, ...field } }) => (
-              <Input
+              <BaseInput
                 label="Nationalité"
                 onFocus={() => displayHelp("nationality")}
                 onBlur={(e) => {
@@ -177,6 +199,10 @@ export function FormPersonalInfos() {
                   e.target.value?.toLowerCase() === "suisse" &&
                     ageInputRef.current.focus();
                   hideHelp();
+                  setData({
+                    step: 1,
+                    data: { ...personalData, nationality: e.target.value },
+                  });
                 }}
                 {...field}
               />
@@ -189,7 +215,8 @@ export function FormPersonalInfos() {
             name="permit"
             control={control}
             render={({ field: { onBlur, ...field } }) => (
-              <Select
+              <BaseSelect
+                variant="bordered"
                 label="Possédez-vous un permis de travail ?"
                 defaultSelectedKeys={
                   personalData.permit && personalData.permit !== ""
@@ -201,6 +228,10 @@ export function FormPersonalInfos() {
                 onBlur={(e) => {
                   onBlur(e);
                   hideHelp();
+                  setData({
+                    step: 1,
+                    data: { ...personalData, permit: e.target.value },
+                  });
                 }}
                 {...field}
               >
@@ -209,7 +240,7 @@ export function FormPersonalInfos() {
                     {permit}
                   </SelectItem>
                 ))}
-              </Select>
+              </BaseSelect>
             )}
           />
         </div>
@@ -221,7 +252,7 @@ export function FormPersonalInfos() {
             name="age"
             control={control}
             render={({ field: { onBlur, ref, ...field } }) => (
-              <Input
+              <BaseInput
                 label="Âge"
                 type="number"
                 ref={ageInputRef}
@@ -229,6 +260,10 @@ export function FormPersonalInfos() {
                 onBlur={(e) => {
                   onBlur(e);
                   hideHelp();
+                  setData({
+                    step: 1,
+                    data: { ...personalData, age: e.target.value },
+                  });
                 }}
                 {...field}
               />
@@ -240,10 +275,17 @@ export function FormPersonalInfos() {
           <Controller
             name="linkedinUrl"
             control={control}
-            render={({ field }) => (
-              <Input
+            render={({ field: { onBlur, ...field } }) => (
+              <BaseInput
                 label="Profil LinkedIn"
                 placeholder="https://www.linkedin.com/in/username/"
+                onBlur={(e) => {
+                  onBlur(e);
+                  setData({
+                    step: 1,
+                    data: { ...personalData, linkedinUrl: e.target.value },
+                  });
+                }}
                 {...field}
               />
             )}
@@ -260,7 +302,19 @@ export function FormPersonalInfos() {
           <Controller
             name="city"
             control={control}
-            render={({ field }) => <Input label="Ville" {...field} />}
+            render={({ field: { onBlur, ...field } }) => (
+              <BaseInput
+                label="Ville"
+                onBlur={(e) => {
+                  onBlur(e);
+                  setData({
+                    step: 1,
+                    data: { ...personalData, city: e.target.value },
+                  });
+                }}
+                {...field}
+              />
+            )}
           />
         </div>
 
@@ -268,7 +322,19 @@ export function FormPersonalInfos() {
           <Controller
             name="country"
             control={control}
-            render={({ field }) => <Input label="Pays" {...field} />}
+            render={({ field: { onBlur, ...field } }) => (
+              <BaseInput
+                label="Pays"
+                onBlur={(e) => {
+                  onBlur(e);
+                  setData({
+                    step: 1,
+                    data: { ...personalData, country: e.target.value },
+                  });
+                }}
+                {...field}
+              />
+            )}
           />
         </div>
       </div>

@@ -2,10 +2,10 @@
 
 import { useRouter } from "next/navigation";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
-import { Button, Input } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
 
-import { Card } from "@/components/Card";
+import { BaseInput } from "@/components/BaseInput";
 import HelpCard from "@/components/HelpCard";
 import FormActions from "@/components/FormActions";
 import useFormStore, { skillData } from "@/store/useFormStore";
@@ -42,58 +42,55 @@ export function FormSkills() {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Card>
-          <span className="block text-sm font-medium leading-6 text-gray-900">
-            Ajoutez une à une les compétences que vous souhaitez mettre en avant
-            :
-          </span>
-          {fields.map((field, index) => (
-            <div key={field.id} className="flex items-center mt-8">
-              <Controller
-                name={`skills.${index}.skill`}
-                control={control}
-                render={({ field: { onBlur, ...field } }) => (
-                  <Input
-                    label="Compétence"
-                    className="max-w-xl"
-                    onKeyDown={onAddSkill}
-                    autoFocus
-                    onFocus={() => {
-                      if (index === 0) displayHelp("skills");
-                    }}
-                    onBlur={(e) => {
-                      onBlur(e);
-                      hideHelp();
-                    }}
-                    {...field}
-                  />
-                )}
-              />
-              <Button
-                color="danger"
-                variant="light"
-                type="button"
-                className="ml-2"
-                onPress={() => remove(index)}
-                startContent={
-                  <TrashIcon className="h-4 w-4" aria-hidden="true" />
-                }
-              >
-                Supprimer
-              </Button>
-            </div>
-          ))}
-          <Button
-            color="primary"
-            variant="bordered"
-            type="button"
-            className="mt-8"
-            onPress={onAddSkill}
-            startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
-          >
-            Ajouter une compétence
-          </Button>
-        </Card>
+        <span className="block text-sm font-medium leading-6 text-gray-900 mt-8">
+          Ajoutez une à une les compétences que vous souhaitez mettre en avant :
+        </span>
+        {fields.map((field, index) => (
+          <div key={field.id} className="flex items-center mt-8">
+            <Controller
+              name={`skills.${index}.skill`}
+              control={control}
+              render={({ field: { onBlur, ...field } }) => (
+                <BaseInput
+                  label="Compétence"
+                  className="max-w-xl"
+                  onKeyDown={onAddSkill}
+                  autoFocus
+                  onFocus={() => {
+                    if (index === 0) displayHelp("skills");
+                  }}
+                  onBlur={(e) => {
+                    onBlur(e);
+                    hideHelp();
+                  }}
+                  {...field}
+                />
+              )}
+            />
+            <Button
+              color="danger"
+              variant="light"
+              type="button"
+              className="ml-2"
+              onPress={() => remove(index)}
+              startContent={
+                <TrashIcon className="h-4 w-4" aria-hidden="true" />
+              }
+            >
+              Supprimer
+            </Button>
+          </div>
+        ))}
+        <Button
+          color="primary"
+          variant="bordered"
+          type="button"
+          className="mt-8"
+          onPress={onAddSkill}
+          startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
+        >
+          Ajouter une compétence
+        </Button>
 
         <FormActions prevLink="/resume/builder/experiences" />
       </form>

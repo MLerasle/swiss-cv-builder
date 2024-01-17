@@ -1,10 +1,11 @@
 import "react-international-phone/style.css";
-import { Input } from "@nextui-org/react";
 import {
   defaultCountries,
   usePhoneInput,
   CountrySelector,
 } from "react-international-phone";
+
+import { BaseInput } from "@/components/BaseInput";
 
 export const InputPhone = ({ value, onChange, ...restProps }) => {
   const { phone, handlePhoneValueChange, inputRef, country, setCountry } =
@@ -18,7 +19,7 @@ export const InputPhone = ({ value, onChange, ...restProps }) => {
     });
 
   return (
-    <Input
+    <BaseInput
       label="Téléphone"
       type="tel"
       value={phone}

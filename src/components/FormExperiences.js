@@ -53,12 +53,12 @@ export function FormExperiences() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <Accordion
-        variant="splitted"
         selectedKeys={selectedKeys}
         onSelectionChange={setSelectedKeys}
         selectionBehavior="replace"
         itemClasses={{
-          title: "px-2 font-medium",
+          title: "font-medium",
+          trigger: "data-[focus-visible=true]:outline-transparent ",
         }}
         className="my-8 px-0 gap-8"
       >
@@ -73,6 +73,9 @@ export function FormExperiences() {
               errors={errors}
               index={index}
               remove={remove}
+              field={field}
+              experices={experiences}
+              setData={setData}
             />
           </AccordionItem>
         ))}

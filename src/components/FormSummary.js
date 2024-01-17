@@ -2,8 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { useForm, Controller } from "react-hook-form";
-import { Textarea } from "@nextui-org/react";
 
+import { BaseTextarea } from "@/components/BaseTextarea";
 import FormActions from "@/components/FormActions";
 import HelpCard from "@/components/HelpCard";
 import useFormStore from "@/store/useFormStore";
@@ -38,7 +38,7 @@ export function FormSummary() {
         name="summary"
         control={control}
         render={({ field: { onBlur, ...field } }) => (
-          <Textarea
+          <BaseTextarea
             label="Résumé"
             autoFocus
             className="mt-8"

@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { Button, Input } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 
 import { Notification } from "@/components/Notification";
+import { BaseInput } from "@/components/BaseInput";
 
 export function NewsletterForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -69,7 +70,7 @@ export function NewsletterForm() {
             className="mx-auto mt-10 flex max-w-md gap-x-4"
             onSubmit={subsribeToNewsletter}
           >
-            <Input
+            <BaseInput
               label="Adresse email"
               type="email"
               name="email"

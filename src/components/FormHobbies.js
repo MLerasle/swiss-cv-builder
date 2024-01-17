@@ -2,10 +2,10 @@
 
 import { useRouter } from "next/navigation";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
-import { Button, Input } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
 
-import { Card } from "@/components/Card";
+import { BaseInput } from "@/components/BaseInput";
 import HelpCard from "@/components/HelpCard";
 import FormActions from "@/components/FormActions";
 import useFormStore, { hobbyData } from "@/store/useFormStore";
@@ -42,58 +42,56 @@ export function FormHobbies() {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Card>
-          <span className="block text-sm font-medium leading-6 text-gray-900">
-            Ajoutez un à un vos loisirs :
-          </span>
-          {fields.map((field, index) => (
-            <div key={field.id} className="flex items-center mt-8">
-              <Controller
-                name={`hobbies.${index}.hobby`}
-                control={control}
-                render={({ field: { onBlur, ...field } }) => (
-                  <Input
-                    label="Hobby"
-                    className="max-w-xl"
-                    onKeyDown={onAddHobby}
-                    autoFocus
-                    onFocus={() => {
-                      if (index === 0) displayHelp("hobbies");
-                    }}
-                    onBlur={(e) => {
-                      onBlur(e);
-                      hideHelp();
-                    }}
-                    {...field}
-                  />
-                )}
-              />
-              <Button
-                color="danger"
-                variant="light"
-                type="button"
-                className="ml-2"
-                onPress={() => remove(index)}
-                startContent={
-                  <TrashIcon className="h-4 w-4" aria-hidden="true" />
-                }
-              >
-                Supprimer
-              </Button>
-            </div>
-          ))}
+        <span className="block text-sm font-medium leading-6 text-gray-900 mt-8">
+          Ajoutez un à un vos loisirs :
+        </span>
+        {fields.map((field, index) => (
+          <div key={field.id} className="flex items-center mt-8">
+            <Controller
+              name={`hobbies.${index}.hobby`}
+              control={control}
+              render={({ field: { onBlur, ...field } }) => (
+                <BaseInput
+                  label="Hobby"
+                  className="max-w-xl"
+                  onKeyDown={onAddHobby}
+                  autoFocus
+                  onFocus={() => {
+                    if (index === 0) displayHelp("hobbies");
+                  }}
+                  onBlur={(e) => {
+                    onBlur(e);
+                    hideHelp();
+                  }}
+                  {...field}
+                />
+              )}
+            />
+            <Button
+              color="danger"
+              variant="light"
+              type="button"
+              className="ml-2"
+              onPress={() => remove(index)}
+              startContent={
+                <TrashIcon className="h-4 w-4" aria-hidden="true" />
+              }
+            >
+              Supprimer
+            </Button>
+          </div>
+        ))}
 
-          <Button
-            color="primary"
-            variant="bordered"
-            type="button"
-            className="mt-8"
-            onPress={onAddHobby}
-            startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
-          >
-            Ajouter un hobby
-          </Button>
-        </Card>
+        <Button
+          color="primary"
+          variant="bordered"
+          type="button"
+          className="mt-8"
+          onPress={onAddHobby}
+          startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
+        >
+          Ajouter un hobby
+        </Button>
 
         <FormActions prevLink="/resume/builder/projects" />
       </form>

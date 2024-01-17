@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { Button, Input, Textarea } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 
+import { BaseInput } from "@/components/BaseInput";
+import { BaseTextarea } from "@/components/BaseTextarea";
 import { Notification } from "@/components/Notification";
 import { scrollToElement } from "@/lib/scroll";
 
@@ -73,7 +75,7 @@ export function ContactForm() {
         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
           <div className="sm:col-span-2">
             <div className="mt-2.5">
-              <Input
+              <BaseInput
                 label="Email"
                 autoFocus
                 type="email"
@@ -86,7 +88,7 @@ export function ContactForm() {
           </div>
           <div className="sm:col-span-2">
             <div className="mt-2.5">
-              <Textarea
+              <BaseTextarea
                 label="Message"
                 name="message"
                 id="message"

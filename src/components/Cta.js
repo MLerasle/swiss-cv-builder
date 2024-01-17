@@ -18,7 +18,7 @@ export function Cta() {
           </p>
         </div>
         <div className="mt-10 flex items-center justify-center">
-          <Link href="/resume/builder">
+          <Link href="/onboard">
             <Button color="primary" size="lg">
               Générer mon CV
             </Button>

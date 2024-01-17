@@ -141,11 +141,11 @@ export function Header() {
             {pathname.startsWith("/resume/builder") ? (
               <></>
             ) : pathname.startsWith("/resume/preview") ? (
-              <Link href="/resume/builder">
+              <Link href="/onboard">
                 <Button color="primary">Retour à l'éditeur</Button>
               </Link>
             ) : (
-              <Link href="/resume/builder">
+              <Link href="/onboard">
                 <Button color="primary">
                   Générer <span className="hidden lg:inline">mon </span>CV
                 </Button>

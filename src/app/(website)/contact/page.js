@@ -7,8 +7,10 @@ export const metadata = {
 
 export default function Contact() {
   return (
-    <Container>
-      <ContactForm />
-    </Container>
+    <div className="bg-slate-50">
+      <Container>
+        <ContactForm />
+      </Container>
+    </div>
   );
 }

@@ -27,6 +27,7 @@
     "react-hook-form": "^7.47.0",
     "react-international-phone": "^3.1.2",
     "react-medium-image-zoom": "^5.1.8",
+    "react-pdf": "7.7.0",
     "sharp": "^0.33.1",
     "smoothscroll-polyfill": "^0.4.4",
     "zustand": "^4.4.2"
