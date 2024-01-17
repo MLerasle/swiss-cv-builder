@@ -68,6 +68,9 @@ export function FormEducations() {
               errors={errors}
               index={index}
               remove={remove}
+              fieldData={field}
+              education={education}
+              setData={setData}
             />
           </AccordionItem>
         ))}

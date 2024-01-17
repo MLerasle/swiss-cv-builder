@@ -73,8 +73,8 @@ export function FormExperiences() {
               errors={errors}
               index={index}
               remove={remove}
-              field={field}
-              experices={experiences}
+              fieldData={field}
+              experiences={experiences}
               setData={setData}
             />
           </AccordionItem>

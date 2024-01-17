@@ -69,6 +69,9 @@ export function FormCertifications() {
               errors={errors}
               index={index}
               remove={remove}
+              fieldData={field}
+              certifications={certifications}
+              setData={setData}
             />
           </AccordionItem>
         ))}

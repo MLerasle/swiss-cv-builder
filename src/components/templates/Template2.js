@@ -293,20 +293,26 @@ export function Template2({ data }) {
                       <Text style={styles.achievementPlaceDesc}>
                         {exp.companyDesc}
                       </Text>
-                      <View style={styles.achievementDetails}>
-                        <Text>
-                          {exp.fromMonth}/{exp.fromYear} -
-                          {exp.current
-                            ? " Maintenant"
-                            : ` ${exp.toMonth}/${exp.toYear}`}
-                        </Text>
-                        <Text>
-                          {exp.city ? `${exp.city}, ` : ""}
-                          {exp.country}
-                        </Text>
-                      </View>
+                      {(exp.fromMonth ||
+                        exp.fromYear ||
+                        exp.toMonth ||
+                        exp.toYear) && (
+                        <View style={styles.achievementDetails}>
+                          <Text>
+                            {exp.fromMonth}/{exp.fromYear} -
+                            {exp.current
+                              ? " Maintenant"
+                              : ` ${exp.toMonth}/${exp.toYear}`}
+                          </Text>
+                          <Text>
+                            {exp.city ? `${exp.city}, ` : ""}
+                            {exp.country}
+                          </Text>
+                        </View>
+                      )}
                       <View style={styles.achievementDescView}>
-                        {exp.description.map((desc) => (
+                        <Text>{exp.description}</Text>
+                        {/* {exp.description.map((desc) => (
                           <View
                             key={desc.task}
                             style={{
@@ -320,7 +326,7 @@ export function Template2({ data }) {
                               {desc.task}
                             </Text>
                           </View>
-                        ))}
+                        ))} */}
                       </View>
                     </View>
                   ))}
@@ -350,10 +356,15 @@ export function Template2({ data }) {
                       )}
                       <Text style={styles.achievementPlace}>{ed.school}</Text>
                       <View style={styles.achievementDetails}>
-                        <Text>
-                          {ed.fromMonth}/{ed.fromYear} - {ed.toMonth}/
-                          {ed.toYear}
-                        </Text>
+                        {(ed.fromMonth ||
+                          ed.fromYear ||
+                          ed.toMonth ||
+                          ed.toYear) && (
+                          <Text>
+                            {ed.fromMonth}/{ed.fromYear} - {ed.toMonth}/
+                            {ed.toYear}
+                          </Text>
+                        )}
                         <Text>
                           {ed.city ? `${ed.city}, ` : ""}
                           {ed.country}

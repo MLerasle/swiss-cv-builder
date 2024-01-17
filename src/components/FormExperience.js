@@ -1,5 +1,5 @@
 import { Controller } from "react-hook-form";
-import { Button, SelectItem, Checkbox } from "@nextui-org/react";
+import { Button, SelectItem } from "@nextui-org/react";
 import { TrashIcon } from "@heroicons/react/24/solid";
 
 import { BaseInput } from "@/components/BaseInput";
@@ -16,11 +16,32 @@ export default function FormExperience({
   errors,
   index,
   remove,
-  field,
+  fieldData,
   experiences,
   setData,
 }) {
   const { helpData, displayHelp, hideHelp, isHelpDisplayed } = useHelp();
+
+  const updateResume = (value, index, field) => {
+    const fieldName = field.name.split(".").slice(-1)[0];
+    const updatedFieldData = experiences[index] || fieldData;
+    const updatedData = { ...updatedFieldData, [fieldName]: value };
+    let updatedExperiences = [...experiences];
+
+    if (experiences[index]) {
+      updatedExperiences = experiences.map((exp, idx) => {
+        if (idx === index) {
+          return updatedData;
+        } else {
+          return exp;
+        }
+      });
+    } else {
+      updatedExperiences.push(updatedData);
+    }
+
+    setData({ step: 2, data: updatedExperiences });
+  };
 
   return (
     <>
@@ -47,6 +68,7 @@ export default function FormExperience({
             onBlur={(e) => {
               onBlur(e);
               hideHelp();
+              updateResume(e.target.value, index, field);
             }}
             {...field}
           />
@@ -56,10 +78,14 @@ export default function FormExperience({
       <Controller
         name={`jobs.${index}.companyDesc`}
         control={control}
-        render={({ field }) => (
+        render={({ field: { onBlur, ...field } }) => (
           <BaseInput
             label="Description de l'entreprise"
             className="my-8"
+            onBlur={(e) => {
+              onBlur(e);
+              updateResume(e.target.value, index, field);
+            }}
             {...field}
           />
         )}
@@ -71,7 +97,7 @@ export default function FormExperience({
         rules={{
           required: true,
         }}
-        render={({ field }) => (
+        render={({ field: { onBlur, ...field } }) => (
           <BaseInput
             label="Fonction dans l'entreprise"
             isRequired
@@ -82,6 +108,10 @@ export default function FormExperience({
               "Veuillez renseigner la fonction que vous occupiez dans cette entreprise."
             }
             className="my-8"
+            onBlur={(e) => {
+              onBlur(e);
+              updateResume(e.target.value, index, field);
+            }}
             {...field}
           />
         )}
@@ -92,7 +122,16 @@ export default function FormExperience({
           <Controller
             name={`jobs.${index}.city`}
             control={control}
-            render={({ field }) => <BaseInput label="Ville" {...field} />}
+            render={({ field: { onBlur, ...field } }) => (
+              <BaseInput
+                label="Ville"
+                onBlur={(e) => {
+                  onBlur(e);
+                  updateResume(e.target.value, index, field);
+                }}
+                {...field}
+              />
+            )}
           />
         </div>
 
@@ -100,7 +139,16 @@ export default function FormExperience({
           <Controller
             name={`jobs.${index}.country`}
             control={control}
-            render={({ field }) => <BaseInput label="Pays" {...field} />}
+            render={({ field: { onBlur, ...field } }) => (
+              <BaseInput
+                label="Pays"
+                onBlur={(e) => {
+                  onBlur(e);
+                  updateResume(e.target.value, index, field);
+                }}
+                {...field}
+              />
+            )}
           />
         </div>
       </div>
@@ -108,13 +156,17 @@ export default function FormExperience({
       <Controller
         name={`jobs.${index}.current`}
         control={control}
-        render={({ field }) => (
+        render={({ field: { onBlur, ...field } }) => (
           <BaseCheckbox
             className="mt-8"
             classNames={{
               label: "text-sm leading-6 text-gray-700",
             }}
             defaultSelected={watch(`jobs.${index}.current`)}
+            onBlur={(e) => {
+              onBlur(e);
+              updateResume(e.target.value, index, field);
+            }}
             {...field}
           >
             J&apos;occupe actuellement ce poste
@@ -133,8 +185,9 @@ export default function FormExperience({
             rules={{
               required: true,
             }}
-            render={({ field }) => (
+            render={({ field: { onBlur, ...field } }) => (
               <BaseSelect
+                variant="bordered"
                 label="Mois"
                 defaultSelectedKeys={
                   !!watch(`jobs.${index}.fromMonth`)
@@ -148,6 +201,10 @@ export default function FormExperience({
                   !!errors.jobs[index]?.fromMonth &&
                   "Veuillez renseigner la date du début de votre collaboration."
                 }
+                onBlur={(e) => {
+                  onBlur(e);
+                  updateResume(e.target.value, index, field);
+                }}
                 {...field}
               >
                 {months.map((month) => (
@@ -167,8 +224,9 @@ export default function FormExperience({
             rules={{
               required: true,
             }}
-            render={({ field }) => (
+            render={({ field: { onBlur, ...field } }) => (
               <BaseSelect
+                variant="bordered"
                 label="Année"
                 defaultSelectedKeys={
                   !!watch(`jobs.${index}.fromYear`)
@@ -182,6 +240,10 @@ export default function FormExperience({
                   !!errors.jobs[index]?.fromYear &&
                   "Veuillez renseigner la date du début de votre collaboration."
                 }
+                onBlur={(e) => {
+                  onBlur(e);
+                  updateResume(e.target.value, index, field);
+                }}
                 {...field}
               >
                 {years.map((year) => (
@@ -206,8 +268,9 @@ export default function FormExperience({
             rules={{
               required: !watch(`jobs.${index}.current`),
             }}
-            render={({ field }) => (
+            render={({ field: { onBlur, ...field } }) => (
               <BaseSelect
+                variant="bordered"
                 label="Mois"
                 isDisabled={watch(`jobs.${index}.current`)}
                 defaultSelectedKeys={
@@ -228,6 +291,10 @@ export default function FormExperience({
                   !!errors.jobs[index]?.toMonth &&
                   "Veuillez renseigner la date de fin de votre collaboration si vous n'occupez plus ce poste."
                 }
+                onBlur={(e) => {
+                  onBlur(e);
+                  updateResume(e.target.value, index, field);
+                }}
                 {...field}
               >
                 {months.map((month) => (
@@ -247,8 +314,9 @@ export default function FormExperience({
             rules={{
               required: !watch(`jobs.${index}.current`),
             }}
-            render={({ field }) => (
+            render={({ field: { onBlur, ...field } }) => (
               <BaseSelect
+                variant="bordered"
                 label="Année"
                 isDisabled={watch(`jobs.${index}.current`)}
                 defaultSelectedKeys={
@@ -269,6 +337,10 @@ export default function FormExperience({
                   !!errors.jobs[index]?.toYear &&
                   "Veuillez renseigner la date de fin de votre collaboration si vous n'occupez plus ce poste."
                 }
+                onBlur={(e) => {
+                  onBlur(e);
+                  updateResume(e.target.value, index, field);
+                }}
                 {...field}
               >
                 {years.map((year) => (

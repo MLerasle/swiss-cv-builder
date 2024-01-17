@@ -44,6 +44,27 @@ export function FormLanguages() {
 
   const { helpData, displayHelp, hideHelp, isHelpDisplayed } = useHelp();
 
+  const updateResume = (value, index, field) => {
+    const fieldName = field.name.split(".").slice(-1)[0];
+    const updatedFieldData = languages[index] || languageData;
+    const updatedData = { ...updatedFieldData, [fieldName]: value };
+    let updatedLanguages = [...languages];
+
+    if (languages[index]) {
+      updatedLanguages = languages.map((s, idx) => {
+        if (idx === index) {
+          return updatedData;
+        } else {
+          return s;
+        }
+      });
+    } else {
+      updatedLanguages.push(updatedData);
+    }
+
+    setData({ step: 4, data: updatedLanguages });
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <span className="block text-sm font-medium leading-6 text-gray-900 mt-8">
@@ -80,6 +101,7 @@ export function FormLanguages() {
                   onBlur={(e) => {
                     onBlur(e);
                     hideHelp();
+                    updateResume(e.target.value, index, field);
                   }}
                   {...field}
                 />
@@ -91,14 +113,19 @@ export function FormLanguages() {
             <Controller
               name={`languages.${index}.level`}
               control={control}
-              render={({ field }) => (
+              render={({ field: { onBlur, ...field } }) => (
                 <BaseSelect
+                  variant="bordered"
                   label="Niveau de compétence"
                   defaultSelectedKeys={
                     watch(`languages.${index}.level`)
                       ? [watch(`languages.${index}.level`)]
                       : []
                   }
+                  onBlur={(e) => {
+                    onBlur(e);
+                    updateResume(e.target.value, index, field);
+                  }}
                   {...field}
                 >
                   {languageLevels.map((level) => (

@@ -39,6 +39,27 @@ export function FormHobbies() {
 
   const { helpData, displayHelp, hideHelp, isHelpDisplayed } = useHelp();
 
+  const updateResume = (value, index, field) => {
+    const fieldName = field.name.split(".").slice(-1)[0];
+    const updatedFieldData = hobbies[index] || hobbyData;
+    const updatedData = { ...updatedFieldData, [fieldName]: value };
+    let updatedHobbies = [...hobbies];
+
+    if (hobbies[index]) {
+      updatedHobbies = hobbies.map((s, idx) => {
+        if (idx === index) {
+          return updatedData;
+        } else {
+          return s;
+        }
+      });
+    } else {
+      updatedHobbies.push(updatedData);
+    }
+
+    setData({ step: 9, data: updatedHobbies });
+  };
+
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -62,6 +83,7 @@ export function FormHobbies() {
                   onBlur={(e) => {
                     onBlur(e);
                     hideHelp();
+                    updateResume(e.target.value, index, field);
                   }}
                   {...field}
                 />

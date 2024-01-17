@@ -14,8 +14,32 @@ export default function FormCertification({
   errors,
   index,
   remove,
+  fieldData,
+  certifications,
+  setData,
 }) {
   const { helpData, displayHelp, hideHelp, isHelpDisplayed } = useHelp();
+
+  const updateResume = (value, index, field) => {
+    const fieldName = field.name.split(".").slice(-1)[0];
+    const updatedFieldData = certifications[index] || fieldData;
+    const updatedData = { ...updatedFieldData, [fieldName]: value };
+    let updatedCertifications = [...certifications];
+
+    if (certifications[index]) {
+      updatedCertifications = certifications.map((cert, idx) => {
+        if (idx === index) {
+          return updatedData;
+        } else {
+          return cert;
+        }
+      });
+    } else {
+      updatedCertifications.push(updatedData);
+    }
+
+    setData({ step: 6, data: updatedCertifications });
+  };
 
   return (
     <>
@@ -44,6 +68,7 @@ export default function FormCertification({
             onBlur={(e) => {
               onBlur(e);
               hideHelp();
+              updateResume(e.target.value, index, field);
             }}
             {...field}
           />
@@ -56,7 +81,7 @@ export default function FormCertification({
         rules={{
           required: true,
         }}
-        render={({ field }) => (
+        render={({ field: { onBlur, ...field } }) => (
           <BaseInput
             label="Organisme de délivrance"
             isRequired
@@ -69,6 +94,10 @@ export default function FormCertification({
               "Veuillez renseigner l'organisme de délivrance de votre certification."
             }
             className="my-8"
+            onBlur={(e) => {
+              onBlur(e);
+              updateResume(e.target.value, index, field);
+            }}
             {...field}
           />
         )}
@@ -82,8 +111,9 @@ export default function FormCertification({
             rules={{
               required: true,
             }}
-            render={({ field }) => (
+            render={({ field: { onBlur, ...field } }) => (
               <BaseSelect
+                variant="bordered"
                 label="Mois"
                 defaultSelectedKeys={
                   watch(`certifications.${index}.month`)
@@ -100,6 +130,10 @@ export default function FormCertification({
                   !!errors.certifications[index]?.month &&
                   "Veuillez renseigner la date d'obtention de votre certification."
                 }
+                onBlur={(e) => {
+                  onBlur(e);
+                  updateResume(e.target.value, index, field);
+                }}
                 {...field}
               >
                 {months.map((month) => (
@@ -119,8 +153,9 @@ export default function FormCertification({
             rules={{
               required: true,
             }}
-            render={({ field }) => (
+            render={({ field: { onBlur, ...field } }) => (
               <BaseSelect
+                variant="bordered"
                 label="Année"
                 defaultSelectedKeys={
                   watch(`certifications.${index}.year`)
@@ -137,6 +172,10 @@ export default function FormCertification({
                   !!errors.certifications[index]?.year &&
                   "Veuillez renseigner la date d'obtention de votre certification."
                 }
+                onBlur={(e) => {
+                  onBlur(e);
+                  updateResume(e.target.value, index, field);
+                }}
                 {...field}
               >
                 {years.map((year) => (

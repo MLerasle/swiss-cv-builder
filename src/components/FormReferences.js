@@ -67,6 +67,9 @@ export function FormReferences() {
               errors={errors}
               index={index}
               remove={remove}
+              fieldData={field}
+              references={references}
+              setData={setData}
             />
           </AccordionItem>
         ))}

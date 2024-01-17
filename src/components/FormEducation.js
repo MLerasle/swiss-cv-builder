@@ -15,8 +15,32 @@ export default function FormEducation({
   errors,
   index,
   remove,
+  fieldData,
+  education,
+  setData,
 }) {
   const { helpData, displayHelp, hideHelp, isHelpDisplayed } = useHelp();
+
+  const updateResume = (value, index, field) => {
+    const fieldName = field.name.split(".").slice(-1)[0];
+    const updatedFieldData = education[index] || fieldData;
+    const updatedData = { ...updatedFieldData, [fieldName]: value };
+    let updatedEducation = [...education];
+
+    if (education[index]) {
+      updatedEducation = education.map((ed, idx) => {
+        if (idx === index) {
+          return updatedData;
+        } else {
+          return ed;
+        }
+      });
+    } else {
+      updatedEducation.push(updatedData);
+    }
+
+    setData({ step: 5, data: updatedEducation });
+  };
 
   return (
     <>
@@ -47,6 +71,7 @@ export default function FormEducation({
                 onBlur={(e) => {
                   onBlur(e);
                   hideHelp();
+                  updateResume(e.target.value, index, field);
                 }}
                 {...field}
               />
@@ -79,6 +104,7 @@ export default function FormEducation({
                 onBlur={(e) => {
                   onBlur(e);
                   hideHelp();
+                  updateResume(e.target.value, index, field);
                 }}
                 {...field}
               />
@@ -94,7 +120,7 @@ export default function FormEducation({
           rules={{
             required: true,
           }}
-          render={({ field }) => (
+          render={({ field: { onBlur, ...field } }) => (
             <BaseInput
               label="Domaine d'études"
               isRequired
@@ -104,6 +130,10 @@ export default function FormEducation({
                 !!errors.education[index]?.field &&
                 "Veuillez renseigner le domaine d'études de votre diplôme."
               }
+              onBlur={(e) => {
+                onBlur(e);
+                updateResume(e.target.value, index, field);
+              }}
               {...field}
             />
           )}
@@ -115,7 +145,16 @@ export default function FormEducation({
           <Controller
             name={`education.${index}.city`}
             control={control}
-            render={({ field }) => <BaseInput label="Ville" {...field} />}
+            render={({ field: { onBlur, ...field } }) => (
+              <BaseInput
+                label="Ville"
+                onBlur={(e) => {
+                  onBlur(e);
+                  updateResume(e.target.value, index, field);
+                }}
+                {...field}
+              />
+            )}
           />
         </div>
 
@@ -123,7 +162,16 @@ export default function FormEducation({
           <Controller
             name={`education.${index}.country`}
             control={control}
-            render={({ field }) => <BaseInput label="Pays" {...field} />}
+            render={({ field: { onBlur, ...field } }) => (
+              <BaseInput
+                label="Pays"
+                onBlur={(e) => {
+                  onBlur(e);
+                  updateResume(e.target.value, index, field);
+                }}
+                {...field}
+              />
+            )}
           />
         </div>
       </div>
@@ -136,14 +184,19 @@ export default function FormEducation({
           <Controller
             name={`education.${index}.fromMonth`}
             control={control}
-            render={({ field }) => (
+            render={({ field: { onBlur, ...field } }) => (
               <BaseSelect
+                variant="bordered"
                 label="Mois"
                 defaultSelectedKeys={
                   !!watch(`education.${index}.fromMonth`)
                     ? [watch(`education.${index}.fromMonth`)]
                     : []
                 }
+                onBlur={(e) => {
+                  onBlur(e);
+                  updateResume(e.target.value, index, field);
+                }}
                 {...field}
               >
                 {months.map((month) => (
@@ -160,14 +213,19 @@ export default function FormEducation({
           <Controller
             name={`education.${index}.fromYear`}
             control={control}
-            render={({ field }) => (
+            render={({ field: { onBlur, ...field } }) => (
               <BaseSelect
+                variant="bordered"
                 label="Année"
                 defaultSelectedKeys={
                   !!watch(`education.${index}.fromYear`)
                     ? [watch(`education.${index}.fromYear`)]
                     : []
                 }
+                onBlur={(e) => {
+                  onBlur(e);
+                  updateResume(e.target.value, index, field);
+                }}
                 {...field}
               >
                 {years.map((year) => (
@@ -189,14 +247,19 @@ export default function FormEducation({
           <Controller
             name={`education.${index}.toMonth`}
             control={control}
-            render={({ field }) => (
+            render={({ field: { onBlur, ...field } }) => (
               <BaseSelect
+                variant="bordered"
                 label="Mois"
                 defaultSelectedKeys={
                   !!watch(`education.${index}.toMonth`)
                     ? [watch(`education.${index}.toMonth`)]
                     : []
                 }
+                onBlur={(e) => {
+                  onBlur(e);
+                  updateResume(e.target.value, index, field);
+                }}
                 {...field}
               >
                 {months.map((month) => (
@@ -213,14 +276,19 @@ export default function FormEducation({
           <Controller
             name={`education.${index}.toYear`}
             control={control}
-            render={({ field }) => (
+            render={({ field: { onBlur, ...field } }) => (
               <BaseSelect
+                variant="bordered"
                 label="Année"
                 defaultSelectedKeys={
                   !!watch(`education.${index}.toYear`)
                     ? [watch(`education.${index}.toYear`)]
                     : []
                 }
+                onBlur={(e) => {
+                  onBlur(e);
+                  updateResume(e.target.value, index, field);
+                }}
                 {...field}
               >
                 {years.map((year) => (
@@ -247,6 +315,7 @@ export default function FormEducation({
             onBlur={(e) => {
               onBlur(e);
               hideHelp();
+              updateResume(e.target.value, index, field);
             }}
             {...field}
           />

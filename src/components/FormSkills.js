@@ -39,6 +39,27 @@ export function FormSkills() {
 
   const { helpData, displayHelp, hideHelp, isHelpDisplayed } = useHelp();
 
+  const updateResume = (value, index, field) => {
+    const fieldName = field.name.split(".").slice(-1)[0];
+    const updatedFieldData = skills[index] || skillData;
+    const updatedData = { ...updatedFieldData, [fieldName]: value };
+    let updatedSkills = [...skills];
+
+    if (skills[index]) {
+      updatedSkills = skills.map((s, idx) => {
+        if (idx === index) {
+          return updatedData;
+        } else {
+          return s;
+        }
+      });
+    } else {
+      updatedSkills.push(updatedData);
+    }
+
+    setData({ step: 3, data: updatedSkills });
+  };
+
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -62,6 +83,7 @@ export function FormSkills() {
                   onBlur={(e) => {
                     onBlur(e);
                     hideHelp();
+                    updateResume(e.target.value, index, field);
                   }}
                   {...field}
                 />

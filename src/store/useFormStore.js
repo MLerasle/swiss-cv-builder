@@ -26,7 +26,7 @@ export const experienceData = {
   fromYear: "",
   toMonth: "",
   toYear: "",
-  description: [{ task: "" }],
+  description: "",
 };
 
 export const skillData = { skill: "" };

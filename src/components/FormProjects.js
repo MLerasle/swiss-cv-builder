@@ -63,6 +63,9 @@ export function FormProjects() {
               errors={errors}
               index={index}
               remove={remove}
+              fieldData={field}
+              projects={projects}
+              setData={setData}
             />
           </AccordionItem>
         ))}
