@@ -6,38 +6,35 @@ import { Button, Accordion, AccordionItem } from "@nextui-org/react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { PlusIcon } from "@heroicons/react/24/solid";
 
-import FormReference from "@/components/FormReference";
-import FormActions from "@/components/FormActions";
-import useFormStore, { referenceData } from "@/store/useFormStore";
+import FormEducation from "@/components/builder/FormEducation";
+import FormActions from "@/components/builder/FormActions";
+import useFormStore, { trainingData } from "@/store/useFormStore";
 import { scrollToElement } from "@/lib/scroll";
 
-export function FormReferences() {
+export function FormEducations() {
   const router = useRouter();
-  const { references, setData } = useFormStore();
+  const { education, setData } = useFormStore();
   const [selectedKeys, setSelectedKeys] = useState(new Set(["0"]));
 
   const {
     control,
+    watch,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    defaultValues: {
-      references: references.length > 0 ? references : [referenceData],
-    },
-  });
+  } = useForm({ defaultValues: { education } });
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "references",
+    name: "education",
   });
 
   const onSubmit = (data) => {
-    setData({ step: 7, data: data.references });
-    router.push("/resume/builder/projects");
+    setData({ step: 5, data: data.education });
+    router.push("/resume/builder/certifications");
   };
 
-  const onAddReference = () => {
-    append(referenceData);
+  const onAddEducation = () => {
+    append(trainingData);
     scrollToElement("body");
     setTimeout(() => {
       setSelectedKeys(new Set([fields.length.toString()]));
@@ -46,45 +43,50 @@ export function FormReferences() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
+      <span className="block text-sm font-medium leading-6 text-slate-500 mt-2">
+        Commencez par votre dernier diplôme
+      </span>
       <Accordion
         selectedKeys={selectedKeys}
         onSelectionChange={setSelectedKeys}
         selectionBehavior="replace"
         itemClasses={{
           title: "font-medium",
-          trigger: "data-[focus-visible=true]:outline-transparent ",
+          trigger: "data-[focus-visible=true]:outline-transparent",
         }}
         className="my-8 px-0 gap-8"
       >
         {fields.map((field, index) => (
           <AccordionItem
             key={index}
-            title={field.name || "Nouvelle référence"}
-            className="reference"
+            title={field.degree || "Nouvelle formation"}
           >
-            <FormReference
+            <FormEducation
               control={control}
+              watch={watch}
               errors={errors}
               index={index}
               remove={remove}
               fieldData={field}
-              references={references}
+              education={education}
               setData={setData}
             />
           </AccordionItem>
         ))}
       </Accordion>
 
-      <Button
-        color="primary"
-        variant="bordered"
-        onPress={onAddReference}
-        startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
-      >
-        Ajouter une autre référence
-      </Button>
+      <div className="py-3 border-y-1 border-slate-400 border-dashed">
+        <Button
+          color="primary"
+          variant="light"
+          onPress={onAddEducation}
+          startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
+        >
+          Ajouter une formation
+        </Button>
+      </div>
 
-      <FormActions prevLink="/resume/builder/certifications" />
+      <FormActions prevLink="/resume/builder/languages" />
     </form>
   );
 }

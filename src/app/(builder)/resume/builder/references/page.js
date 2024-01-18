@@ -1,4 +1,4 @@
-import { FormReferences } from "@/components/FormReferences";
+import { FormReferences } from "@/components/builder/FormReferences";
 
 export const metadata = {
   title: "SwissCVBuilder - Références",

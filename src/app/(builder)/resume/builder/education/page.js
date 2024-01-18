@@ -1,4 +1,4 @@
-import { FormEducations } from "@/components/FormEducations";
+import { FormEducations } from "@/components/builder/FormEducations";
 
 export const metadata = {
   title: "SwissCVBuilder - Formations",

@@ -6,14 +6,14 @@ import { Button, Accordion, AccordionItem } from "@nextui-org/react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { PlusIcon } from "@heroicons/react/24/solid";
 
-import FormCertification from "@/components/FormCertification";
-import FormActions from "@/components/FormActions";
-import useFormStore, { certificationData } from "@/store/useFormStore";
+import FormExperience from "@/components/builder/FormExperience";
+import FormActions from "@/components/builder/FormActions";
+import useFormStore, { experienceData } from "@/store/useFormStore";
 import { scrollToElement } from "@/lib/scroll";
 
-export function FormCertifications() {
+export function FormExperiences() {
   const router = useRouter();
-  const { certifications, setData } = useFormStore();
+  const { experiences, setData } = useFormStore();
   const [selectedKeys, setSelectedKeys] = useState(new Set(["0"]));
 
   const {
@@ -21,25 +21,25 @@ export function FormCertifications() {
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    defaultValues: {
-      certifications:
-        certifications.length > 0 ? certifications : [certificationData],
-    },
-  });
+  } = useForm({ defaultValues: { jobs: experiences } });
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "certifications",
+    name: "jobs",
   });
 
   const onSubmit = (data) => {
-    setData({ step: 6, data: data.certifications });
-    router.push("/resume/builder/references");
+    for (const job of data.jobs) {
+      if (job.description.length > 0) {
+        job.description = job.description.filter((d) => d.task !== "");
+      }
+    }
+    setData({ step: 2, data: data.jobs });
+    router.push("/resume/builder/skills");
   };
 
-  const onAddCertification = () => {
-    append(certificationData);
+  const onAddJobExperience = () => {
+    append(experienceData);
     scrollToElement("body");
     setTimeout(() => {
       setSelectedKeys(new Set([fields.length.toString()]));
@@ -48,45 +48,50 @@ export function FormCertifications() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
+      <span className="block text-sm font-medium leading-6 text-slate-500 mt-2">
+        Commencez par le poste le plus récent
+      </span>
       <Accordion
         selectedKeys={selectedKeys}
         onSelectionChange={setSelectedKeys}
         selectionBehavior="replace"
         itemClasses={{
           title: "font-medium",
-          trigger: "data-[focus-visible=true]:outline-transparent",
+          trigger: "data-[focus-visible=true]:outline-transparent ",
         }}
         className="my-8 px-0 gap-8"
       >
         {fields.map((field, index) => (
           <AccordionItem
             key={index}
-            title={field.title || "Nouvelle certification"}
+            title={field.company || "Nouvelle expérience"}
           >
-            <FormCertification
+            <FormExperience
               control={control}
               watch={watch}
               errors={errors}
               index={index}
               remove={remove}
               fieldData={field}
-              certifications={certifications}
+              experiences={experiences}
               setData={setData}
             />
           </AccordionItem>
         ))}
       </Accordion>
 
-      <Button
-        color="primary"
-        variant="bordered"
-        onPress={onAddCertification}
-        startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
-      >
-        Ajouter une autre certification
-      </Button>
+      <div className="py-3 border-y-1 border-slate-400 border-dashed">
+        <Button
+          color="primary"
+          variant="light"
+          onPress={onAddJobExperience}
+          startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
+        >
+          Ajouter une expérience professionnelle
+        </Button>
+      </div>
 
-      <FormActions prevLink="/resume/builder/education" />
+      <FormActions prevLink="/resume/builder/personal-infos" />
     </form>
   );
 }

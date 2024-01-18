@@ -1,4 +1,4 @@
-import { FormSkills } from "@/components/FormSkills";
+import { FormSkills } from "@/components/builder/FormSkills";
 
 export const metadata = {
   title: "SwissCVBuilder - Compétences professionnelles",

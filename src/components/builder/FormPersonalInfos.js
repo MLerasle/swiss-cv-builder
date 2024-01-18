@@ -6,11 +6,11 @@ import { useForm, Controller } from "react-hook-form";
 import { SelectItem, Avatar, Button } from "@nextui-org/react";
 import { UserCircleIcon } from "@heroicons/react/24/solid";
 
-import FormActions from "@/components/FormActions";
-import HelpCard from "@/components/HelpCard";
-import { InputPhone } from "@/components/InputPhone";
-import { BaseInput } from "@/components/BaseInput";
-import { BaseSelect } from "@/components/BaseSelect";
+import FormActions from "@/components/builder/FormActions";
+import HelpCard from "@/components/builder/HelpCard";
+import { BaseInputPhone } from "@/components/UI/BaseInputPhone";
+import { BaseInput } from "@/components/UI/BaseInput";
+import { BaseSelect } from "@/components/UI/BaseSelect";
 import useFormStore from "@/store/useFormStore";
 import { workPermits } from "@/lib/select-options";
 import { useHelp } from "@/hooks/useHelp";
@@ -168,7 +168,7 @@ export function FormPersonalInfos() {
             name="tel"
             control={control}
             render={({ field: { onBlur, ref, ...field } }) => (
-              <InputPhone
+              <BaseInputPhone
                 onFocus={() => displayHelp("phone")}
                 onBlur={(e) => {
                   onBlur(e);

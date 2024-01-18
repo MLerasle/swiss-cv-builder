@@ -1,4 +1,4 @@
-import { FormLanguages } from "@/components/FormLanguages";
+import { FormLanguages } from "@/components/builder/FormLanguages";
 
 export const metadata = {
   title: "SwissCVBuilder - Langues",

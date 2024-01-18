@@ -5,10 +5,10 @@ import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { Button, SelectItem } from "@nextui-org/react";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
 
-import { BaseInput } from "@/components/BaseInput";
-import { BaseSelect } from "@/components/BaseSelect";
-import HelpCard from "@/components/HelpCard";
-import FormActions from "@/components/FormActions";
+import { BaseInput } from "@/components/UI/BaseInput";
+import { BaseSelect } from "@/components/UI/BaseSelect";
+import HelpCard from "@/components/builder/HelpCard";
+import FormActions from "@/components/builder/FormActions";
 import useFormStore, { languageData } from "@/store/useFormStore";
 import { languageLevels } from "@/lib/select-options";
 import { useHelp } from "@/hooks/useHelp";
@@ -22,11 +22,7 @@ export function FormLanguages() {
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    defaultValues: {
-      languages: languages.length > 0 ? languages : [languageData],
-    },
-  });
+  } = useForm({ defaultValues: { languages } });
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -65,11 +61,18 @@ export function FormLanguages() {
     setData({ step: 4, data: updatedLanguages });
   };
 
+  const removeFromResume = (index) => {
+    remove(index);
+    languages.splice(index, 1);
+
+    setData({ step: 4, data: languages });
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <span className="block text-sm font-medium leading-6 text-gray-900 mt-8">
+      <span className="block text-sm font-medium leading-6 text-slate-500 mt-2">
         Ajoutez une à une les langues que vous parlez et votre niveau de
-        compétence pour chacune d'entre elles :
+        compétence pour chacune d'entre elles
       </span>
       {fields.map((field, index) => (
         <div
@@ -144,7 +147,7 @@ export function FormLanguages() {
               variant="light"
               type="button"
               className="ml-2"
-              onPress={() => remove(index)}
+              onPress={() => removeFromResume(index)}
               startContent={
                 <TrashIcon className="h-4 w-4" aria-hidden="true" />
               }
@@ -155,16 +158,17 @@ export function FormLanguages() {
         </div>
       ))}
 
-      <Button
-        color="primary"
-        variant="bordered"
-        type="button"
-        className="mt-8"
-        onPress={onAddLanguage}
-        startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
-      >
-        Ajouter une langue
-      </Button>
+      <div className="mt-8 py-3 border-y-1 border-slate-400 border-dashed">
+        <Button
+          color="primary"
+          variant="light"
+          type="button"
+          onPress={onAddLanguage}
+          startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
+        >
+          Ajouter une langue
+        </Button>
+      </div>
 
       <FormActions prevLink="/resume/builder/skills" />
 

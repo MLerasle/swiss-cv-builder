@@ -1,9 +1,9 @@
 import { useFieldArray, Controller } from "react-hook-form";
 import { Button } from "@nextui-org/react";
-import HelpCard from "@/components/HelpCard";
+import HelpCard from "@/components/builder/HelpCard";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
 
-import { BaseInput } from "@/components/BaseInput";
+import { BaseInput } from "@/components/UI/BaseInput";
 import { useHelp } from "@/hooks/useHelp";
 
 export default function FormExperienceDesc({ descIndex, control }) {

@@ -1,4 +1,4 @@
-import { FormProjects } from "@/components/FormProjects";
+import { FormProjects } from "@/components/builder/FormProjects";
 
 export default function Projects() {
   return <FormProjects />;

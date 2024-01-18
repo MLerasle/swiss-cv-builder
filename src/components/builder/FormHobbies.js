@@ -5,9 +5,9 @@ import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { Button } from "@nextui-org/react";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
 
-import { BaseInput } from "@/components/BaseInput";
-import HelpCard from "@/components/HelpCard";
-import FormActions from "@/components/FormActions";
+import { BaseInput } from "@/components/UI/BaseInput";
+import HelpCard from "@/components/builder/HelpCard";
+import FormActions from "@/components/builder/FormActions";
 import useFormStore, { hobbyData } from "@/store/useFormStore";
 import { useHelp } from "@/hooks/useHelp";
 
@@ -16,7 +16,7 @@ export function FormHobbies() {
   const { hobbies, setData } = useFormStore();
 
   const { control, handleSubmit } = useForm({
-    defaultValues: { hobbies: hobbies.length > 0 ? hobbies : [hobbyData] },
+    defaultValues: { hobbies },
   });
 
   const { fields, append, remove } = useFieldArray({
@@ -60,12 +60,16 @@ export function FormHobbies() {
     setData({ step: 9, data: updatedHobbies });
   };
 
+  const removeFromResume = (index) => {
+    remove(index);
+    hobbies.splice(index, 1);
+
+    setData({ step: 4, data: hobbies });
+  };
+
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <span className="block text-sm font-medium leading-6 text-gray-900 mt-8">
-          Ajoutez un à un vos loisirs :
-        </span>
         {fields.map((field, index) => (
           <div key={field.id} className="flex items-center mt-8">
             <Controller
@@ -94,7 +98,7 @@ export function FormHobbies() {
               variant="light"
               type="button"
               className="ml-2"
-              onPress={() => remove(index)}
+              onPress={() => removeFromResume(index)}
               startContent={
                 <TrashIcon className="h-4 w-4" aria-hidden="true" />
               }
@@ -104,16 +108,17 @@ export function FormHobbies() {
           </div>
         ))}
 
-        <Button
-          color="primary"
-          variant="bordered"
-          type="button"
-          className="mt-8"
-          onPress={onAddHobby}
-          startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
-        >
-          Ajouter un hobby
-        </Button>
+        <div className="mt-8 py-3 border-y-1 border-slate-400 border-dashed">
+          <Button
+            color="primary"
+            variant="light"
+            type="button"
+            onPress={onAddHobby}
+            startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
+          >
+            Ajouter un hobby
+          </Button>
+        </div>
 
         <FormActions prevLink="/resume/builder/projects" />
       </form>

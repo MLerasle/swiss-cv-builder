@@ -5,9 +5,9 @@ import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { Button } from "@nextui-org/react";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
 
-import { BaseInput } from "@/components/BaseInput";
-import HelpCard from "@/components/HelpCard";
-import FormActions from "@/components/FormActions";
+import { BaseInput } from "@/components/UI/BaseInput";
+import HelpCard from "@/components/builder/HelpCard";
+import FormActions from "@/components/builder/FormActions";
 import useFormStore, { skillData } from "@/store/useFormStore";
 import { useHelp } from "@/hooks/useHelp";
 
@@ -15,9 +15,7 @@ export function FormSkills() {
   const router = useRouter();
   const { skills, setData } = useFormStore();
 
-  const { control, handleSubmit } = useForm({
-    defaultValues: { skills: skills.length > 0 ? skills : [skillData] },
-  });
+  const { control, handleSubmit } = useForm({ defaultValues: { skills } });
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -60,11 +58,18 @@ export function FormSkills() {
     setData({ step: 3, data: updatedSkills });
   };
 
+  const removeFromResume = (index) => {
+    remove(index);
+    skills.splice(index, 1);
+
+    setData({ step: 3, data: skills });
+  };
+
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <span className="block text-sm font-medium leading-6 text-gray-900 mt-8">
-          Ajoutez une à une les compétences que vous souhaitez mettre en avant :
+        <span className="block text-sm font-medium leading-6 text-slate-500 mt-2">
+          Ajoutez une à une les compétences que vous souhaitez mettre en avant
         </span>
         {fields.map((field, index) => (
           <div key={field.id} className="flex items-center mt-8">
@@ -94,7 +99,7 @@ export function FormSkills() {
               variant="light"
               type="button"
               className="ml-2"
-              onPress={() => remove(index)}
+              onPress={() => removeFromResume(index)}
               startContent={
                 <TrashIcon className="h-4 w-4" aria-hidden="true" />
               }
@@ -103,16 +108,18 @@ export function FormSkills() {
             </Button>
           </div>
         ))}
-        <Button
-          color="primary"
-          variant="bordered"
-          type="button"
-          className="mt-8"
-          onPress={onAddSkill}
-          startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
-        >
-          Ajouter une compétence
-        </Button>
+
+        <div className="mt-8 py-3 border-y-1 border-slate-400 border-dashed">
+          <Button
+            color="primary"
+            variant="light"
+            type="button"
+            onPress={onAddSkill}
+            startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
+          >
+            Ajouter une compétence
+          </Button>
+        </div>
 
         <FormActions prevLink="/resume/builder/experiences" />
       </form>

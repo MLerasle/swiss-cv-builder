@@ -3,7 +3,7 @@ import { Button } from "@nextui-org/react";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
-  DocumentTextIcon,
+  ArrowDownTrayIcon,
 } from "@heroicons/react/24/solid";
 
 export default function FormActions({ prevLink, lastStep }) {
@@ -27,10 +27,10 @@ export default function FormActions({ prevLink, lastStep }) {
           color="primary"
           type="submit"
           startContent={
-            <DocumentTextIcon className="h-4 w-4" aria-hidden="true" />
+            <ArrowDownTrayIcon className="h-4 w-4" aria-hidden="true" />
           }
         >
-          Prévisualiser le CV
+          Télécharger mon CV
         </Button>
       ) : (
         <Button

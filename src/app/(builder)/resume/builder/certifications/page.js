@@ -1,4 +1,4 @@
-import { FormCertifications } from "@/components/FormCertifications";
+import { FormCertifications } from "@/components/builder/FormCertifications";
 
 export const metadata = {
   title: "SwissCVBuilder - Certifications",

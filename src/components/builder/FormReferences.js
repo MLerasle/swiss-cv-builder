@@ -6,44 +6,36 @@ import { Button, Accordion, AccordionItem } from "@nextui-org/react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { PlusIcon } from "@heroicons/react/24/solid";
 
-import FormExperience from "@/components/FormExperience";
-import FormActions from "@/components/FormActions";
-import useFormStore, { experienceData } from "@/store/useFormStore";
+import FormReference from "@/components/builder/FormReference";
+import FormActions from "@/components/builder/FormActions";
+import useFormStore, { referenceData } from "@/store/useFormStore";
 import { scrollToElement } from "@/lib/scroll";
 
-export function FormExperiences() {
+export function FormReferences() {
   const router = useRouter();
-  const { experiences, setData } = useFormStore();
+  const { references, setData } = useFormStore();
   const [selectedKeys, setSelectedKeys] = useState(new Set(["0"]));
 
   const {
     control,
-    watch,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValues: {
-      jobs: experiences.length > 0 ? experiences : [experienceData],
-    },
+    defaultValues: { references },
   });
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "jobs",
+    name: "references",
   });
 
   const onSubmit = (data) => {
-    for (const job of data.jobs) {
-      if (job.description.length > 0) {
-        job.description = job.description.filter((d) => d.task !== "");
-      }
-    }
-    setData({ step: 2, data: data.jobs });
-    router.push("/resume/builder/skills");
+    setData({ step: 7, data: data.references });
+    router.push("/resume/builder/projects");
   };
 
-  const onAddJobExperience = () => {
-    append(experienceData);
+  const onAddReference = () => {
+    append(referenceData);
     scrollToElement("body");
     setTimeout(() => {
       setSelectedKeys(new Set([fields.length.toString()]));
@@ -65,32 +57,34 @@ export function FormExperiences() {
         {fields.map((field, index) => (
           <AccordionItem
             key={index}
-            title={field.company || "Nouvelle expérience"}
+            title={field.name || "Nouvelle référence"}
+            className="reference"
           >
-            <FormExperience
+            <FormReference
               control={control}
-              watch={watch}
               errors={errors}
               index={index}
               remove={remove}
               fieldData={field}
-              experiences={experiences}
+              references={references}
               setData={setData}
             />
           </AccordionItem>
         ))}
       </Accordion>
 
-      <Button
-        color="primary"
-        variant="bordered"
-        onPress={onAddJobExperience}
-        startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
-      >
-        Ajouter une expérience professionnelle
-      </Button>
+      <div className="py-3 border-y-1 border-slate-400 border-dashed">
+        <Button
+          color="primary"
+          variant="light"
+          onPress={onAddReference}
+          startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
+        >
+          Ajouter une référence
+        </Button>
+      </div>
 
-      <FormActions prevLink="/resume/builder/personal-infos" />
+      <FormActions prevLink="/resume/builder/certifications" />
     </form>
   );
 }

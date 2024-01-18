@@ -33,8 +33,8 @@ export function ResumePreview() {
   };
 
   useEffect(() => {
-    const child = createElement(renderTemplate(data.template), { data });
-    pdf(child)
+    const resume = createElement(renderTemplate(data.template), { data });
+    pdf(resume)
       .toBlob()
       .then((blob) => {
         setPdfUrl(URL.createObjectURL(blob));

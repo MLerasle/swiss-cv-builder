@@ -1,12 +1,12 @@
 import { Controller } from "react-hook-form";
 import { Button, SelectItem } from "@nextui-org/react";
-import { TrashIcon } from "@heroicons/react/24/solid";
+import { TrashIcon, LinkIcon } from "@heroicons/react/24/solid";
 
-import { BaseInput } from "@/components/BaseInput";
-import { BaseSelect } from "@/components/BaseSelect";
-import { BaseCheckbox } from "@/components/BaseCheckbox";
-import HelpCard from "@/components/HelpCard";
-import FormExperienceDesc from "@/components/FormExperienceDesc";
+import { BaseInput } from "@/components/UI/BaseInput";
+import { BaseSelect } from "@/components/UI/BaseSelect";
+import { BaseTextarea } from "@/components/UI/BaseTextarea";
+import { BaseCheckbox } from "@/components/UI/BaseCheckbox";
+import HelpCard from "@/components/builder/HelpCard";
 import { months, years } from "@/lib/select-options";
 import { useHelp } from "@/hooks/useHelp";
 
@@ -17,53 +17,76 @@ export default function FormExperience({
   index,
   remove,
   fieldData,
-  experiences,
+  projects,
   setData,
 }) {
   const { helpData, displayHelp, hideHelp, isHelpDisplayed } = useHelp();
 
   const updateResume = (value, index, field) => {
     const fieldName = field.name.split(".").slice(-1)[0];
-    const updatedFieldData = experiences[index] || fieldData;
+    const updatedFieldData = projects[index] || fieldData;
     const updatedData = { ...updatedFieldData, [fieldName]: value };
-    let updatedExperiences = [...experiences];
+    let updatedProjects = [...projects];
 
-    if (experiences[index]) {
-      updatedExperiences = experiences.map((exp, idx) => {
+    if (projects[index]) {
+      updatedProjects = projects.map((proj, idx) => {
         if (idx === index) {
           return updatedData;
         } else {
-          return exp;
+          return proj;
         }
       });
     } else {
-      updatedExperiences.push(updatedData);
+      updatedProjects.push(updatedData);
     }
 
-    setData({ step: 2, data: updatedExperiences });
+    setData({ step: 8, data: updatedProjects });
+  };
+
+  const removeFromResume = (index) => {
+    remove(index);
+    projects.splice(index, 1);
+
+    setData({ step: 8, data: projects });
   };
 
   return (
     <>
       <Controller
-        name={`jobs.${index}.company`}
+        name={`projects.${index}.title`}
         control={control}
         rules={{
           required: true,
         }}
         render={({ field: { onBlur, ...field } }) => (
           <BaseInput
-            label="Entreprise"
+            label="Nom du projet"
             autoFocus
             isRequired
-            isInvalid={!!errors.jobs && !!errors?.jobs[index]?.company}
+            isInvalid={!!errors.projects && !!errors.projects[index]?.title}
             errorMessage={
-              !!errors.jobs &&
-              !!errors?.jobs[index]?.company &&
-              "Veuillez renseigner le nom de l'entreprise."
+              !!errors.projects &&
+              !!errors.projects[index]?.title &&
+              "Veuillez renseigner le nom du projet."
             }
+            onBlur={(e) => {
+              onBlur(e);
+              updateResume(e.target.value, index, field);
+            }}
+            {...field}
+          />
+        )}
+      />
+
+      <Controller
+        name={`projects.${index}.description`}
+        control={control}
+        render={({ field: { onBlur, ...field } }) => (
+          <BaseTextarea
+            label="Descriptif"
+            className="mt-8"
             onFocus={() => {
-              if (index === 0) displayHelp("jobExpOrder");
+              if (index === 0) displayHelp("projectDesc");
             }}
             onBlur={(e) => {
               onBlur(e);
@@ -76,12 +99,13 @@ export default function FormExperience({
       />
 
       <Controller
-        name={`jobs.${index}.companyDesc`}
+        name={`projects.${index}.link`}
         control={control}
         render={({ field: { onBlur, ...field } }) => (
           <BaseInput
-            label="Description de l'entreprise"
-            className="my-8"
+            label="Lien vers le projet"
+            className="mt-8"
+            startContent={<LinkIcon className="w-4 h-4" />}
             onBlur={(e) => {
               onBlur(e);
               updateResume(e.target.value, index, field);
@@ -92,69 +116,7 @@ export default function FormExperience({
       />
 
       <Controller
-        name={`jobs.${index}.title`}
-        control={control}
-        rules={{
-          required: true,
-        }}
-        render={({ field: { onBlur, ...field } }) => (
-          <BaseInput
-            label="Fonction dans l'entreprise"
-            isRequired
-            isInvalid={!!errors.jobs && !!errors.jobs[index]?.title}
-            errorMessage={
-              !!errors.jobs &&
-              !!errors.jobs[index]?.title &&
-              "Veuillez renseigner la fonction que vous occupiez dans cette entreprise."
-            }
-            className="my-8"
-            onBlur={(e) => {
-              onBlur(e);
-              updateResume(e.target.value, index, field);
-            }}
-            {...field}
-          />
-        )}
-      />
-
-      <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-        <div className="sm:col-span-3">
-          <Controller
-            name={`jobs.${index}.city`}
-            control={control}
-            render={({ field: { onBlur, ...field } }) => (
-              <BaseInput
-                label="Ville"
-                onBlur={(e) => {
-                  onBlur(e);
-                  updateResume(e.target.value, index, field);
-                }}
-                {...field}
-              />
-            )}
-          />
-        </div>
-
-        <div className="sm:col-span-3">
-          <Controller
-            name={`jobs.${index}.country`}
-            control={control}
-            render={({ field: { onBlur, ...field } }) => (
-              <BaseInput
-                label="Pays"
-                onBlur={(e) => {
-                  onBlur(e);
-                  updateResume(e.target.value, index, field);
-                }}
-                {...field}
-              />
-            )}
-          />
-        </div>
-      </div>
-
-      <Controller
-        name={`jobs.${index}.current`}
+        name={`projects.${index}.current`}
         control={control}
         render={({ field: { onBlur, ...field } }) => (
           <BaseCheckbox
@@ -162,14 +124,14 @@ export default function FormExperience({
             classNames={{
               label: "text-sm leading-6 text-gray-700",
             }}
-            defaultSelected={watch(`jobs.${index}.current`)}
+            defaultSelected={watch(`projects.${index}.current`)}
             onBlur={(e) => {
               onBlur(e);
               updateResume(e.target.value, index, field);
             }}
             {...field}
           >
-            J&apos;occupe actuellement ce poste
+            Je travaille actuellement sur ce projet
           </BaseCheckbox>
         )}
       />
@@ -180,7 +142,7 @@ export default function FormExperience({
       <div className="grid grid-cols-1 gap-x-6 sm:grid-cols-6">
         <div className="sm:col-span-3 mt-1">
           <Controller
-            name={`jobs.${index}.fromMonth`}
+            name={`projects.${index}.fromMonth`}
             control={control}
             rules={{
               required: true,
@@ -190,16 +152,18 @@ export default function FormExperience({
                 variant="bordered"
                 label="Mois"
                 defaultSelectedKeys={
-                  !!watch(`jobs.${index}.fromMonth`)
-                    ? [watch(`jobs.${index}.fromMonth`)]
+                  !!watch(`projects.${index}.fromMonth`)
+                    ? [watch(`projects.${index}.fromMonth`)]
                     : []
                 }
                 isRequired
-                isInvalid={!!errors.jobs && !!errors.jobs[index]?.fromMonth}
+                isInvalid={
+                  !!errors.projects && !!errors.projects[index]?.fromMonth
+                }
                 errorMessage={
-                  !!errors.jobs &&
-                  !!errors.jobs[index]?.fromMonth &&
-                  "Veuillez renseigner la date du début de votre collaboration."
+                  !!errors.projects &&
+                  !!errors.projects[index]?.fromMonth &&
+                  "Veuillez renseigner la date du début de votre projet."
                 }
                 onBlur={(e) => {
                   onBlur(e);
@@ -219,7 +183,7 @@ export default function FormExperience({
 
         <div className="sm:col-span-3 mt-8 sm:mt-1">
           <Controller
-            name={`jobs.${index}.fromYear`}
+            name={`projects.${index}.fromYear`}
             control={control}
             rules={{
               required: true,
@@ -229,16 +193,18 @@ export default function FormExperience({
                 variant="bordered"
                 label="Année"
                 defaultSelectedKeys={
-                  !!watch(`jobs.${index}.fromYear`)
-                    ? [watch(`jobs.${index}.fromYear`)]
+                  !!watch(`projects.${index}.fromYear`)
+                    ? [watch(`projects.${index}.fromYear`)]
                     : []
                 }
                 isRequired
-                isInvalid={!!errors.jobs && !!errors.jobs[index]?.fromYear}
+                isInvalid={
+                  !!errors.projects && !!errors.projects[index]?.fromYear
+                }
                 errorMessage={
-                  !!errors.jobs &&
-                  !!errors.jobs[index]?.fromYear &&
-                  "Veuillez renseigner la date du début de votre collaboration."
+                  !!errors.projects &&
+                  !!errors.projects[index]?.fromYear &&
+                  "Veuillez renseigner la date du début de votre projet."
                 }
                 onBlur={(e) => {
                   onBlur(e);
@@ -263,33 +229,33 @@ export default function FormExperience({
       <div className="grid grid-cols-1 gap-x-6 sm:grid-cols-6">
         <div className="sm:col-span-3 mt-1">
           <Controller
-            name={`jobs.${index}.toMonth`}
+            name={`projects.${index}.toMonth`}
             control={control}
             rules={{
-              required: !watch(`jobs.${index}.current`),
+              required: !watch(`projects.${index}.current`),
             }}
             render={({ field: { onBlur, ...field } }) => (
               <BaseSelect
                 variant="bordered"
                 label="Mois"
-                isDisabled={watch(`jobs.${index}.current`)}
+                isDisabled={watch(`projects.${index}.current`)}
                 defaultSelectedKeys={
-                  watch(`jobs.${index}.current`) ||
-                  !watch(`jobs.${index}.toMonth`)
+                  watch(`projects.${index}.current`) ||
+                  !watch(`projects.${index}.toMonth`)
                     ? []
-                    : [watch(`jobs.${index}.toMonth`)]
+                    : [watch(`projects.${index}.toMonth`)]
                 }
-                isRequired={!watch(`jobs.${index}.current`)}
+                isRequired={!watch(`projects.${index}.current`)}
                 isInvalid={
-                  watch(`jobs.${index}.current`)
+                  watch(`projects.${index}.current`)
                     ? false
-                    : !!errors.jobs && !!errors.jobs[index]?.toMonth
+                    : !!errors.projects && !!errors.projects[index]?.toMonth
                 }
                 errorMessage={
-                  !watch(`jobs.${index}.current`) &&
-                  !!errors.jobs &&
-                  !!errors.jobs[index]?.toMonth &&
-                  "Veuillez renseigner la date de fin de votre collaboration si vous n'occupez plus ce poste."
+                  !watch(`projects.${index}.current`) &&
+                  !!errors.projects &&
+                  !!errors.projects[index]?.toMonth &&
+                  "Veuillez renseigner la date de fin de votre projet si vous ne travaillez plus dessus."
                 }
                 onBlur={(e) => {
                   onBlur(e);
@@ -309,33 +275,33 @@ export default function FormExperience({
 
         <div className="sm:col-span-3 mt-8 sm:mt-1">
           <Controller
-            name={`jobs.${index}.toYear`}
+            name={`projects.${index}.toYear`}
             control={control}
             rules={{
-              required: !watch(`jobs.${index}.current`),
+              required: !watch(`projects.${index}.current`),
             }}
             render={({ field: { onBlur, ...field } }) => (
               <BaseSelect
                 variant="bordered"
                 label="Année"
-                isDisabled={watch(`jobs.${index}.current`)}
+                isDisabled={watch(`projects.${index}.current`)}
                 defaultSelectedKeys={
-                  watch(`jobs.${index}.current`) ||
-                  !watch(`jobs.${index}.toYear`)
+                  watch(`projects.${index}.current`) ||
+                  !watch(`projects.${index}.toYear`)
                     ? []
-                    : [watch(`jobs.${index}.toYear`)]
+                    : [watch(`projects.${index}.toYear`)]
                 }
-                isRequired={!watch(`jobs.${index}.current`)}
+                isRequired={!watch(`projects.${index}.current`)}
                 isInvalid={
-                  watch(`jobs.${index}.current`)
+                  watch(`projects.${index}.current`)
                     ? false
-                    : !!errors.jobs && !!errors.jobs[index]?.toYear
+                    : !!errors.projects && !!errors.projects[index]?.toYear
                 }
                 errorMessage={
-                  !watch(`jobs.${index}.current`) &&
-                  !!errors.jobs &&
-                  !!errors.jobs[index]?.toYear &&
-                  "Veuillez renseigner la date de fin de votre collaboration si vous n'occupez plus ce poste."
+                  !watch(`projects.${index}.current`) &&
+                  !!errors.projects &&
+                  !!errors.projects[index]?.toYear &&
+                  "Veuillez renseigner la date de fin de votre projet si vous ne travaillez plus dessus."
                 }
                 onBlur={(e) => {
                   onBlur(e);
@@ -354,16 +320,14 @@ export default function FormExperience({
         </div>
       </div>
 
-      <FormExperienceDesc descIndex={index} control={control} />
-
       <div className="flex justify-end mt-8">
         <Button
           color="danger"
           variant="light"
-          onPress={() => remove(index)}
+          onPress={() => removeFromResume(index)}
           startContent={<TrashIcon className="h-4 w-4" aria-hidden="true" />}
         >
-          Supprimer l'expérience professionnelle
+          Supprimer le projet
         </Button>
       </div>
 

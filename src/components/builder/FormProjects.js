@@ -6,8 +6,8 @@ import { Button, Accordion, AccordionItem } from "@nextui-org/react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { PlusIcon } from "@heroicons/react/24/solid";
 
-import FormProject from "@/components/FormProject";
-import FormActions from "@/components/FormActions";
+import FormProject from "@/components/builder/FormProject";
+import FormActions from "@/components/builder/FormActions";
 import useFormStore, { projectData } from "@/store/useFormStore";
 import { scrollToElement } from "@/lib/scroll";
 
@@ -21,9 +21,7 @@ export function FormProjects() {
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    defaultValues: { projects: projects.length > 0 ? projects : [projectData] },
-  });
+  } = useForm({ defaultValues: { projects } });
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -71,14 +69,16 @@ export function FormProjects() {
         ))}
       </Accordion>
 
-      <Button
-        color="primary"
-        variant="bordered"
-        onPress={onAddProject}
-        startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
-      >
-        Ajouter un projet personnel
-      </Button>
+      <div className="py-3 border-y-1 border-slate-400 border-dashed">
+        <Button
+          color="primary"
+          variant="light"
+          onPress={onAddProject}
+          startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
+        >
+          Ajouter un projet personnel
+        </Button>
+      </div>
 
       <FormActions prevLink="/resume/builder/references" />
     </form>

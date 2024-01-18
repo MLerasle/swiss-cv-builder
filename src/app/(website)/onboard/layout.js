@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { CircularProgress } from "@nextui-org/react";
 
 import { Container } from "@/components/Container";
+import { BaseSpinner } from "@/components/UI/BaseSpinner";
 
 export default function BuilderTemplate(props) {
   const [isClient, setIsClient] = useState(false);
@@ -26,13 +26,7 @@ export default function BuilderTemplate(props) {
             props.children
           ) : (
             <div className="flex justify-center items-center my-32">
-              <CircularProgress
-                classNames={{
-                  svg: "w-16 h-16 drop-shadow-md",
-                }}
-                strokeWidth={4}
-                aria-label="Loading..."
-              />
+              <BaseSpinner />
             </div>
           )}
         </section>

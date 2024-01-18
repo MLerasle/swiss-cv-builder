@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 
-import { MyImage } from "@/components/MyImage";
+import { BaseImage } from "@/components/UI/BaseImage";
 import useFormStore from "@/store/useFormStore";
 
 export function TemplatePreview({ template }) {
@@ -17,7 +17,7 @@ export function TemplatePreview({ template }) {
   return (
     <li key={template.name} className="flex flex-col justify-center">
       <div className="group block w-full overflow-hidden rounded-lg shadow-lg bg-gray-100 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
-        <MyImage src={template.preview} alt={template.name} height="8000" />
+        <BaseImage src={template.preview} alt={template.name} height="8000" />
       </div>
       <button
         type="button"

@@ -1,4 +1,4 @@
-import { TemplatePreview } from "@/components/TemplatePreview";
+import { TemplatePreview } from "@/components/builder/TemplatePreview";
 
 import Template1 from "@/images/templates/template1.png";
 import Template2 from "@/images/templates/template2.png";

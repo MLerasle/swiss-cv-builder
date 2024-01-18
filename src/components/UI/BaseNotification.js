@@ -1,6 +1,6 @@
 import { Card, CardBody } from "@nextui-org/react";
 
-export const Notification = ({ type, children, className }) => {
+export const BaseNotification = ({ type, children, className }) => {
   return (
     <Card
       className={`rounded-lg text-white ${className} ${

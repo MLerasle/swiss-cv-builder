@@ -2,8 +2,8 @@ import { Controller } from "react-hook-form";
 import { Button, SelectItem } from "@nextui-org/react";
 import { TrashIcon } from "@heroicons/react/24/solid";
 
-import { BaseInput } from "@/components/BaseInput";
-import { BaseSelect } from "@/components/BaseSelect";
+import { BaseInput } from "@/components/UI/BaseInput";
+import { BaseSelect } from "@/components/UI/BaseSelect";
 import HelpCard from "./HelpCard";
 import { months, years } from "@/lib/select-options";
 import { useHelp } from "@/hooks/useHelp";
@@ -39,6 +39,13 @@ export default function FormCertification({
     }
 
     setData({ step: 6, data: updatedCertifications });
+  };
+
+  const removeFromResume = (index) => {
+    remove(index);
+    certifications.splice(index, 1);
+
+    setData({ step: 6, data: certifications });
   };
 
   return (
@@ -193,7 +200,7 @@ export default function FormCertification({
         <Button
           color="danger"
           variant="light"
-          onPress={() => remove(index)}
+          onPress={() => removeFromResume(index)}
           startContent={<TrashIcon className="h-4 w-4" aria-hidden="true" />}
         >
           Supprimer la certification

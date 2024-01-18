@@ -3,9 +3,9 @@
 import { useRouter } from "next/navigation";
 import { useForm, Controller } from "react-hook-form";
 
-import { BaseTextarea } from "@/components/BaseTextarea";
-import FormActions from "@/components/FormActions";
-import HelpCard from "@/components/HelpCard";
+import { BaseTextarea } from "@/components/UI/BaseTextarea";
+import FormActions from "@/components/builder/FormActions";
+import HelpCard from "@/components/builder/HelpCard";
 import useFormStore from "@/store/useFormStore";
 import { useHelp } from "@/hooks/useHelp";
 
@@ -27,12 +27,12 @@ export function FormSummary() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <p className="text-gray-500 text-sm mt-2">
+      <span className="block text-sm font-medium leading-6 text-slate-500 mt-2">
         Expliquez brièvement au recruteur (3 à 5 phrases) pourquoi vous êtes le
         meilleur candidat pour le poste. Résumez les points clés de votre
         parcours professionnel et universitaire, et utilisez des chiffres pour
         illustrer les résultats que vous avez obtenus.
-      </p>
+      </span>
 
       <Controller
         name="summary"

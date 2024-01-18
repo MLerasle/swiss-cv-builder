@@ -3,9 +3,9 @@
 import { useState, useRef } from "react";
 import { Button } from "@nextui-org/react";
 
-import { BaseInput } from "@/components/BaseInput";
-import { BaseTextarea } from "@/components/BaseTextarea";
-import { Notification } from "@/components/Notification";
+import { BaseInput } from "@/components/UI/BaseInput";
+import { BaseTextarea } from "@/components/UI/BaseTextarea";
+import { BaseNotification } from "@/components/UI/BaseNotification";
 import { scrollToElement } from "@/lib/scroll";
 
 export function ContactForm() {
@@ -49,19 +49,19 @@ export function ContactForm() {
     <div className="px-6 py-24 sm:py-32 lg:px-8" id="formContainer">
       <div className="mx-auto max-w-2xl text-center">
         {isFormSubmitted && !error && (
-          <Notification type="success" className="mb-16 sm:mb-20">
+          <BaseNotification type="success" className="mb-16 sm:mb-20">
             <p>Votre message a bien été envoyé.</p>
             <p>Nous reviendrons vers vous le plus rapidement possible.</p>
-          </Notification>
+          </BaseNotification>
         )}
         {isFormSubmitted && error && (
-          <Notification type="error" className="mb-16 sm:mb-20">
+          <BaseNotification type="error" className="mb-16 sm:mb-20">
             <p>Une erreur est survenue pendant l'envoi de votre message.</p>
             <p>
               Si celle-ci persiste, vous pouvez nous contacter directement à
               l'adresse contact@swisscvbuilder.ch.
             </p>
-          </Notification>
+          </BaseNotification>
         )}
         <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
           Contactez-nous

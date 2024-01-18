@@ -5,9 +5,9 @@ import {
   CountrySelector,
 } from "react-international-phone";
 
-import { BaseInput } from "@/components/BaseInput";
+import { BaseInput } from "@/components/UI/BaseInput";
 
-export const InputPhone = ({ value, onChange, ...restProps }) => {
+export const BaseInputPhone = ({ value, onChange, ...restProps }) => {
   const { phone, handlePhoneValueChange, inputRef, country, setCountry } =
     usePhoneInput({
       defaultCountry: "ch",

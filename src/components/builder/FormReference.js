@@ -2,8 +2,8 @@ import { Controller } from "react-hook-form";
 import { Button } from "@nextui-org/react";
 import { TrashIcon } from "@heroicons/react/24/solid";
 
-import { BaseInput } from "@/components/BaseInput";
-import HelpCard from "@/components/HelpCard";
+import { BaseInput } from "@/components/UI/BaseInput";
+import HelpCard from "@/components/builder/HelpCard";
 import { useHelp } from "@/hooks/useHelp";
 
 export default function FormReference({
@@ -36,6 +36,13 @@ export default function FormReference({
     }
 
     setData({ step: 7, data: updatedReferences });
+  };
+
+  const removeFromResume = (index) => {
+    remove(index);
+    references.splice(index, 1);
+
+    setData({ step: 7, data: references });
   };
 
   return (
@@ -172,7 +179,7 @@ export default function FormReference({
         <Button
           color="danger"
           variant="light"
-          onPress={() => remove(index)}
+          onPress={() => removeFromResume(index)}
           startContent={<TrashIcon className="h-4 w-4" aria-hidden="true" />}
         >
           Supprimer la référence

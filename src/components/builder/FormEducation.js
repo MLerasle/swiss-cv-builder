@@ -2,9 +2,9 @@ import { Controller } from "react-hook-form";
 import { Button, SelectItem } from "@nextui-org/react";
 import { TrashIcon } from "@heroicons/react/24/solid";
 
-import { BaseInput } from "@/components/BaseInput";
-import { BaseSelect } from "@/components/BaseSelect";
-import { BaseTextarea } from "@/components/BaseTextarea";
+import { BaseInput } from "@/components/UI/BaseInput";
+import { BaseSelect } from "@/components/UI/BaseSelect";
+import { BaseTextarea } from "@/components/UI/BaseTextarea";
 import HelpCard from "./HelpCard";
 import { months, years } from "@/lib/select-options";
 import { useHelp } from "@/hooks/useHelp";
@@ -40,6 +40,13 @@ export default function FormEducation({
     }
 
     setData({ step: 5, data: updatedEducation });
+  };
+
+  const removeFromResume = (index) => {
+    remove(index);
+    education.splice(index, 1);
+
+    setData({ step: 5, data: education });
   };
 
   return (
@@ -326,7 +333,7 @@ export default function FormEducation({
         <Button
           color="danger"
           variant="light"
-          onPress={() => remove(index)}
+          onPress={() => removeFromResume(index)}
           startContent={<TrashIcon className="h-4 w-4" aria-hidden="true" />}
         >
           Supprimer la formation

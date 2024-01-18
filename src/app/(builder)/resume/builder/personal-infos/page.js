@@ -1,4 +1,4 @@
-import { FormPersonalInfos } from "@/components/FormPersonalInfos";
+import { FormPersonalInfos } from "@/components/builder/FormPersonalInfos";
 
 export const metadata = {
   title: "SwissCVBuilder - Informations personnelles",

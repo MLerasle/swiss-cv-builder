@@ -41,12 +41,6 @@ export const help = {
       desc: "Dans beaucoup d'offres d'emploi, une adresse en Suisse est demandée. Si vous en possédez une, l'indiquer peut être un vrai plus pour votre candidature.",
     },
   ],
-  jobExpOrder: [
-    {
-      title: "Ordre",
-      desc: "Commencez par le poste le plus récent et remontez le temps à partir de là (ordre chronologique inverse).",
-    },
-  ],
   jobExpDesc: [
     {
       title: "Réalisations quantifiables",
@@ -71,11 +65,7 @@ export const help = {
   ],
   educationOrder: [
     {
-      title: "Ordre",
-      desc: "Comme pour les expériences professionnelles, commencez par la formation la plus récente et remontez le temps à partir de là (ordre chronologique inverse).",
-    },
-    {
-      title: "Importance",
+      title: "Spécificité",
       desc: "La Suisse n'accorde pas autant d'importance aux diplômes que d'autres pays. N'indiquez que les formations qui sont pertinentes pour l'emploi que vous visez.",
     },
   ],
@@ -119,7 +109,7 @@ export const help = {
   ],
   summary: [
     {
-      title: "Concis et complèt",
+      title: "Concis et complet",
       desc: "Un résumé de CV parfait ne comporte que 3 à 5 phrases, mais il aborde tous les aspects de la question.",
     },
     {

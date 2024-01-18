@@ -1,4 +1,4 @@
-import { FormExperiences } from "@/components/FormExperiences";
+import { FormExperiences } from "@/components/builder/FormExperiences";
 
 export const metadata = {
   title: "SwissCVBuilder - Expériences professionnelles",

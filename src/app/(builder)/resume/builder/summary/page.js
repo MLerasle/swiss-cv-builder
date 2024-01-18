@@ -1,4 +1,4 @@
-import { FormSummary } from "@/components/FormSummary";
+import { FormSummary } from "@/components/builder/FormSummary";
 
 export const metadata = {
   title: "SwissCVBuilder - Résumé",

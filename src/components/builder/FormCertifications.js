@@ -6,14 +6,14 @@ import { Button, Accordion, AccordionItem } from "@nextui-org/react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { PlusIcon } from "@heroicons/react/24/solid";
 
-import FormEducation from "@/components/FormEducation";
-import FormActions from "@/components/FormActions";
-import useFormStore, { trainingData } from "@/store/useFormStore";
+import FormCertification from "@/components/builder/FormCertification";
+import FormActions from "@/components/builder/FormActions";
+import useFormStore, { certificationData } from "@/store/useFormStore";
 import { scrollToElement } from "@/lib/scroll";
 
-export function FormEducations() {
+export function FormCertifications() {
   const router = useRouter();
-  const { education, setData } = useFormStore();
+  const { certifications, setData } = useFormStore();
   const [selectedKeys, setSelectedKeys] = useState(new Set(["0"]));
 
   const {
@@ -22,23 +22,21 @@ export function FormEducations() {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValues: {
-      education: education.length > 0 ? education : [trainingData],
-    },
+    defaultValues: { certifications },
   });
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "education",
+    name: "certifications",
   });
 
   const onSubmit = (data) => {
-    setData({ step: 5, data: data.education });
-    router.push("/resume/builder/certifications");
+    setData({ step: 6, data: data.certifications });
+    router.push("/resume/builder/references");
   };
 
-  const onAddEducation = () => {
-    append(trainingData);
+  const onAddCertification = () => {
+    append(certificationData);
     scrollToElement("body");
     setTimeout(() => {
       setSelectedKeys(new Set([fields.length.toString()]));
@@ -60,32 +58,34 @@ export function FormEducations() {
         {fields.map((field, index) => (
           <AccordionItem
             key={index}
-            title={field.degree || "Nouvelle formation"}
+            title={field.title || "Nouvelle certification"}
           >
-            <FormEducation
+            <FormCertification
               control={control}
               watch={watch}
               errors={errors}
               index={index}
               remove={remove}
               fieldData={field}
-              education={education}
+              certifications={certifications}
               setData={setData}
             />
           </AccordionItem>
         ))}
       </Accordion>
 
-      <Button
-        color="primary"
-        variant="bordered"
-        onPress={onAddEducation}
-        startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
-      >
-        Ajouter une formation
-      </Button>
+      <div className="py-3 border-y-1 border-slate-400 border-dashed">
+        <Button
+          color="primary"
+          variant="light"
+          onPress={onAddCertification}
+          startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
+        >
+          Ajouter une autre certification
+        </Button>
+      </div>
 
-      <FormActions prevLink="/resume/builder/languages" />
+      <FormActions prevLink="/resume/builder/education" />
     </form>
   );
 }
