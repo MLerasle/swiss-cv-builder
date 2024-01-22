@@ -132,15 +132,9 @@ const styles = StyleSheet.create({
     color: "#475569",
     marginTop: "2px",
   },
-  circle: {
-    display: "block",
-    height: "4px",
-    width: "4px",
-    backgroundColor: "#f59e0b",
-    borderRadius: "9999px",
-    marginRight: "6px",
-  },
 });
+
+import { formatDescription } from "@/lib/pdf";
 
 const iconColors = { fill: "#f59e0b", stroke: "white" };
 
@@ -395,7 +389,7 @@ export function Template4({ data }) {
                         ) : null}
                       </View>
                       <View style={styles.achievementDescView}>
-                        <Text>{exp.description}</Text>
+                        {formatDescription(exp.description, "#0284c7")}
                       </View>
                     </View>
                   ))}

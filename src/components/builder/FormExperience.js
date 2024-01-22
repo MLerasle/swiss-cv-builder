@@ -5,10 +5,12 @@ import { TrashIcon } from "@heroicons/react/24/solid";
 import { BaseInput } from "@/components/UI/BaseInput";
 import { BaseSelect } from "@/components/UI/BaseSelect";
 import { BaseCheckbox } from "@/components/UI/BaseCheckbox";
+import { BaseEditor } from "../UI/BaseEditor";
 import HelpCard from "@/components/builder/HelpCard";
 import FormExperienceDesc from "@/components/builder/FormExperienceDesc";
 import { months, years } from "@/lib/select-options";
 import { useHelp } from "@/hooks/useHelp";
+import { BaseTextarea } from "../UI/BaseTextarea";
 
 export default function FormExperience({
   control,
@@ -131,7 +133,7 @@ export default function FormExperience({
             classNames={{
               label: "text-sm leading-6 text-gray-700",
             }}
-            defaultSelected={watch(`jobs.${index}.current`)}
+            defaultSelected={!!watch(`jobs.${index}.current`)}
             onBlur={(e) => {
               onBlur(e);
               updateResume(e.target.value, index, field);
@@ -241,7 +243,7 @@ export default function FormExperience({
               <BaseSelect
                 variant="bordered"
                 label="Mois"
-                isDisabled={watch(`jobs.${index}.current`)}
+                isDisabled={!!watch(`jobs.${index}.current`)}
                 defaultSelectedKeys={
                   watch(`jobs.${index}.current`) ||
                   !watch(`jobs.${index}.toMonth`)
@@ -287,7 +289,7 @@ export default function FormExperience({
               <BaseSelect
                 variant="bordered"
                 label="Année"
-                isDisabled={watch(`jobs.${index}.current`)}
+                isDisabled={!!watch(`jobs.${index}.current`)}
                 defaultSelectedKeys={
                   watch(`jobs.${index}.current`) ||
                   !watch(`jobs.${index}.toYear`)
@@ -359,7 +361,28 @@ export default function FormExperience({
         </div>
       </div>
 
-      <FormExperienceDesc descIndex={index} control={control} />
+      <div className="my-8 relative">
+        <Controller
+          name={`jobs.${index}.description`}
+          control={control}
+          render={({ field: { onBlur, ref, ...field } }) => (
+            <BaseEditor
+              label="Description"
+              initialContent={
+                experiences?.length > 0
+                  ? experiences[index].description
+                  : fieldData.description
+              }
+              onBlur={(e) => {
+                onBlur(e);
+                updateResume(e, index, field);
+              }}
+              {...field}
+            />
+          )}
+        />
+      </div>
+      {/* <FormExperienceDesc descIndex={index} control={control} /> */}
 
       <div className="flex justify-end mt-8">
         <Button

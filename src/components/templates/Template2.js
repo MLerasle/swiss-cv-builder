@@ -8,6 +8,8 @@ import {
   StyleSheet,
 } from "@react-pdf/renderer";
 
+import { formatDescription } from "@/lib/pdf";
+
 const styles = StyleSheet.create({
   page: {
     flexDirection: "col",
@@ -110,6 +112,7 @@ const styles = StyleSheet.create({
   },
   achievementDescView: {
     marginTop: "4px",
+    fontSize: "8px",
   },
   achievementDesc: {
     fontSize: "8px",
@@ -127,14 +130,6 @@ const styles = StyleSheet.create({
     fontFamily: "Helvetica-Oblique",
     color: "#475569",
     marginTop: "2px",
-  },
-  circle: {
-    display: "block",
-    height: "4px",
-    width: "4px",
-    backgroundColor: "#0284c7",
-    borderRadius: "9999px",
-    marginRight: "6px",
   },
 });
 
@@ -317,7 +312,7 @@ export function Template2({ data }) {
                         ) : null}
                       </View>
                       <View style={styles.achievementDescView}>
-                        <Text>{exp.description}</Text>
+                        {formatDescription(exp.description, "#0284c7")}
                       </View>
                     </View>
                   ))}

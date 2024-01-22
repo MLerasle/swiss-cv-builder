@@ -1,0 +1,36 @@
+.contentEditable {
+  overflow-y: scroll;
+  font-size: 14px;
+  line-height: 20px;
+  color: #11181c;
+}
+
+.toolbar-wrapper {
+  display: flex;
+  padding: 1px;
+}
+
+.editor-bold {
+  font-weight: 600;
+}
+
+.editor-italic {
+  font-style: italic;
+}
+
+.editor-underline {
+  text-decoration: underline;
+}
+
+.editor-strikethrough {
+  text-decoration: line-through;
+}
+
+.editor-underlineStrikethrough {
+  text-decoration: underline line-through;
+}
+
+.editor-list-ul {
+  list-style-type: disc;
+  margin: 16px 0 16px 32px;
+}

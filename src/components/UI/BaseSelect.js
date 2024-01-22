@@ -8,6 +8,8 @@ export const BaseSelect = extendVariants(Select, {
           "bg-white",
           "shadow-none",
           "border",
+          "w-auto",
+          "h-14",
           "data-[hover=true]:bg-white",
           "data-[hover=true]:border-primary",
           "data-[open=true]:border-primary",

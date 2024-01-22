@@ -1,0 +1,47 @@
+.toolbarRoot {
+  display: flex;
+  padding: 10px;
+  width: 100%;
+  min-width: max-content;
+  position: absolute;
+  z-index: 50;
+}
+
+.toolbarButton, .toolbarToggleItem {
+  flex: 0 0 auto;
+  height: 25px;
+  padding: 0 10px;
+  border-radius: 4px;
+  display: inline-flex;
+  font-size: 13px;
+  line-height: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.toolbarButton:hover {
+  background-color: #E6F1FE;
+  color: #006FEE;
+}
+
+.toolbarButton:focus, .toolbarToggleItem:focus {
+  position: relative;
+}
+
+.toolbarButton {
+  background-color: white;
+}
+
+/* .toolbarToggleItem:first-child {
+  margin-left: 0;
+}
+
+.toolbarToggleItem[data-state='on'] {
+  background-color: #E6F1FE;
+  color: #006FEE;
+} */
+
+.toolbarButton.active {
+  background-color: #E6F1FE;
+  color: #006FEE;
+}
