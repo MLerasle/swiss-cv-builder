@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useForm, Controller } from "react-hook-form";
 
-import { BaseTextarea } from "@/components/UI/BaseTextarea";
+import { BaseEditor } from "@/components/UI/BaseEditor";
 import FormActions from "@/components/builder/FormActions";
 import HelpCard from "@/components/builder/HelpCard";
 import useFormStore from "@/store/useFormStore";
@@ -14,11 +14,11 @@ export function FormSummary() {
   const { summary, setData } = useFormStore();
   const { helpData, displayHelp, hideHelp, isHelpDisplayed } = useHelp();
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ defaultValues: { summary } });
+  const { control, handleSubmit } = useForm({ defaultValues: { summary } });
+
+  const updateResume = (summary) => {
+    setData({ step: 10, data: summary });
+  };
 
   const onSubmit = (data) => {
     setData({ step: 10, data: data.summary });
@@ -37,15 +37,16 @@ export function FormSummary() {
       <Controller
         name="summary"
         control={control}
-        render={({ field: { onBlur, ...field } }) => (
-          <BaseTextarea
+        render={({ field: { onBlur, ref, ...field } }) => (
+          <BaseEditor
             label="Résumé"
-            autoFocus
-            className="mt-8"
-            onFocus={() => displayHelp("summary")}
+            initialContent={summary}
+            onFocus={() => {
+              displayHelp("summary");
+            }}
             onBlur={(e) => {
               onBlur(e);
-              hideHelp();
+              updateResume(e);
             }}
             {...field}
           />

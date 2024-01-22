@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { Container } from "@/components/Container";
+import { FadeIn } from "@/components/FadeIn";
 
 import screenshotForm from "@/images/screenshots/screenshot-form.png";
 import screenshotTemplate from "@/images/screenshots/screenshot-template.png";
@@ -10,7 +11,7 @@ export function Features() {
   return (
     <div id="features" className="py-24 sm:py-32">
       <Container>
-        <div className="text-center">
+        <FadeIn className="text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Créez votre CV facilement et rapidement
           </h2>
@@ -18,10 +19,10 @@ export function Features() {
             Pas de logiciel à télécharger. Pas de formulaire d'inscription. Pas
             de tutoriels sans fin. Juste un processus simple.
           </p>
-        </div>
+        </FadeIn>
 
         <div className="relative mt-12 lg:mt-24 lg:grid lg:grid-cols-2 lg:gap-24 lg:items-center">
-          <div className="relative">
+          <FadeIn className="relative">
             <h3 className="text-xl sm:text-2xl font-semibold leading-7 text-gray-900">
               Choisissez un modèle
             </h3>
@@ -29,9 +30,9 @@ export function Features() {
               Choisissez parmi nos modèles de CV conçus à la main et adaptés aux
               attentes des recruteurs suisses.
             </p>
-          </div>
+          </FadeIn>
 
-          <div className="mt-10 -mx-4 relative lg:mt-0" aria-hidden="true">
+          <FadeIn className="mt-10 -mx-4 relative lg:mt-0" aria-hidden="true">
             <Image
               className="relative mx-auto sm:rounded-xl"
               src={screenshotTemplate}
@@ -40,11 +41,11 @@ export function Features() {
               height={400}
               placeholder="blur"
             />
-          </div>
+          </FadeIn>
         </div>
         <div className="relative mt-12 sm:mt-16 lg:mt-24">
           <div className="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-24 lg:items-center">
-            <div className="lg:col-start-2">
+            <FadeIn className="lg:col-start-2">
               <h3 className="text-xl sm:text-2xl font-semibold leading-7 text-gray-900">
                 Saisissez vos informations
               </h3>
@@ -52,9 +53,9 @@ export function Features() {
                 Remplissez les informations de votre CV en suivant les conseils
                 que nous vous fournissons en temps réel.
               </p>
-            </div>
+            </FadeIn>
 
-            <div className="mt-10 -mx-4 relative lg:mt-0 lg:col-start-1">
+            <FadeIn className="mt-10 -mx-4 relative lg:mt-0 lg:col-start-1">
               <Image
                 className="relative mx-auto sm:rounded-xl"
                 src={screenshotForm}
@@ -63,11 +64,11 @@ export function Features() {
                 height={400}
                 placeholder="blur"
               />
-            </div>
+            </FadeIn>
           </div>
         </div>
         <div className="relative mt-12 sm:mt-16 lg:mt-24 lg:grid lg:grid-cols-2 lg:gap-24 lg:items-center">
-          <div className="relative">
+          <FadeIn className="relative">
             <h3 className="text-xl sm:text-2xl font-semibold leading-7 text-gray-900">
               Téléchargez votre CV
             </h3>
@@ -76,9 +77,9 @@ export function Features() {
               Vous pouvez toujours choisir de modifier votre modèle si vous le
               souhaitez.
             </p>
-          </div>
+          </FadeIn>
 
-          <div className="mt-10 -mx-4 relative lg:mt-0" aria-hidden="true">
+          <FadeIn className="mt-10 -mx-4 relative lg:mt-0" aria-hidden="true">
             <Image
               className="relative mx-auto sm:rounded-xl"
               src={screenshotPreview}
@@ -87,7 +88,7 @@ export function Features() {
               height={400}
               placeholder="blur"
             />
-          </div>
+          </FadeIn>
         </div>
       </Container>
     </div>

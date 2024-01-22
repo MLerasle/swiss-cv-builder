@@ -14,67 +14,46 @@ export const data = {
   },
   experiences: [
     {
-      company: "Google",
-      companyDesc: "PME Américaine qui développe des logiciels.",
-      title: "Développeur web senior",
+      company: "Rolex",
+      companyDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      title: "CTO",
       city: "",
-      country: "USA",
+      country: "Suisse",
       current: true,
       fromMonth: "08",
       fromYear: "2021",
       toMonth: "",
       toYear: "",
-      description: [
-        { task: "Développement d'un moteur de recherche." },
-        {
-          task: "Développement d'un client mail utilisé par 1 milliard de personnes.",
-        },
-        {
-          task: "Développement d'un navigateur web utilisé par plus de 3 milliards de personnes.",
-        },
-      ],
+      description:
+        '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1},{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"listitem","version":1,"value":1},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Excepteur sint occaecat cupidatat non proident.","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"listitem","version":1,"value":2}],"direction":"ltr","format":"","indent":0,"type":"list","version":1,"listType":"bullet","start":1,"tag":"ul"}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}',
     },
     {
-      company: "Apple",
-      companyDesc: "Société qui fabrique et vend des appareils technologiques.",
-      title: "Développeur Web Fullstack",
+      company: "Migros",
+      companyDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      title: "Développeur web fullstack",
       city: "",
-      country: "USA",
+      country: "Suisse",
       current: false,
       fromMonth: "03",
       fromYear: "2015",
       toMonth: "07",
       toYear: "2021",
-      description: [
-        { task: "Développement du site web de l'entreprise." },
-        {
-          task: "Développement du frontend du back office de l'entreprise.",
-        },
-        {
-          task: "Développement de l'Apple Store.",
-        },
-      ],
+      description:
+        '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1},{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"listitem","version":1,"value":1},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Excepteur sint occaecat cupidatat non proident.","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"listitem","version":1,"value":2}],"direction":"ltr","format":"","indent":0,"type":"list","version":1,"listType":"bullet","start":1,"tag":"ul"}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}',
     },
     {
-      company: "Facebook",
-      companyDesc: "Réseau social.",
-      title: "Développeur Web Junior",
+      company: "Nestlé",
+      companyDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      title: "Développeur web junior",
       city: "",
-      country: "USA",
+      country: "Suisse",
       current: false,
       fromMonth: "04",
       fromYear: "2012",
       toMonth: "02",
       toYear: "2015",
-      description: [
-        { task: "Développement du réseau social du même nom." },
-        {
-          task: "Développement d'une application de petites annonces entre particuliers.",
-        },
-        {
-          task: "Développement de nouvelles fonctionnalités de l'application de messagerie de l'entreprise.",
-        },
-      ],
+      description:
+        '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1},{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"listitem","version":1,"value":1},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Excepteur sint occaecat cupidatat non proident.","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"listitem","version":1,"value":2}],"direction":"ltr","format":"","indent":0,"type":"list","version":1,"listType":"bullet","start":1,"tag":"ul"}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}',
     },
   ],
   skills: [
@@ -91,49 +70,44 @@ export const data = {
   ],
   education: [
     {
-      school: "Université Claude Bernard Lyon 1",
+      school: "Insa",
       degree: "Master",
-      field: "Ingénierie des Risques / Spécialité Sécurité Informatique",
+      field: "Sécurité Informatique",
       country: "France",
       city: "Lyon",
       fromMonth: "09",
       fromYear: "2010",
       toMonth: "06",
       toYear: "2012",
-      description: "",
+      description:
+        '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}',
     },
     {
-      school: "Université Claude Bernard Lyon 1",
+      school: "Epitech",
       degree: "License (Bachelor)",
-      field: "Mathématiques / Informatique",
+      field: "Informatique",
       country: "France",
-      city: "Lyon",
+      city: "Paris",
       fromMonth: "09",
       fromYear: "2007",
       toMonth: "06",
       toYear: "2010",
-      description: "",
+      description:
+        '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}',
     },
   ],
   references: [
     {
-      name: "Larry Page",
-      company: "Google",
-      position: "Informaticien",
-      email: "",
-      tel: "",
-    },
-    {
-      name: "Tim Cook",
-      company: "Apple",
+      name: "Roger The Goat",
+      company: "Rolex",
       position: "CEO",
       email: "",
       tel: "",
     },
     {
-      name: "Mark Zuckerberg",
-      company: "Facebook",
-      position: "CEO",
+      name: "Stan Imal",
+      company: "Migros",
+      position: "CTO",
       email: "",
       tel: "",
     },
@@ -172,7 +146,7 @@ export const data = {
     {
       title: "Générateur de CV",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}',
       link: "https://github.com/JohDoe/cv-builder",
       current: "true",
       fromMonth: "10",
@@ -182,5 +156,5 @@ export const data = {
     },
   ],
   summary:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}',
 };

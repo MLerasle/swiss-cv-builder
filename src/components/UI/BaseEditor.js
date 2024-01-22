@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import "../../styles/base-editor.css";
-import { BLUR_COMMAND, COMMAND_PRIORITY_EDITOR, $getRoot } from "lexical";
+import { BLUR_COMMAND, FOCUS_COMMAND, COMMAND_PRIORITY_EDITOR } from "lexical";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
@@ -29,7 +29,7 @@ function onError(error) {
   console.error(error);
 }
 
-export function BaseEditor({ label, initialContent, onBlur }) {
+export function BaseEditor({ label, initialContent, onFocus, onBlur }) {
   const initialConfig = {
     namespace: "MyEditor",
     theme,
@@ -55,6 +55,21 @@ export function BaseEditor({ label, initialContent, onBlur }) {
     return null;
   };
 
+  const EditorFocusPlugin = ({ onFocus }) => {
+    const [editor] = useLexicalComposerContext();
+    useEffect(() => {
+      editor.registerCommand(
+        FOCUS_COMMAND,
+        () => {
+          onFocus();
+        },
+        COMMAND_PRIORITY_EDITOR
+      );
+    }, [editor]);
+
+    return null;
+  };
+
   return (
     <>
       <span className="block text-sm font-medium leading-6 text-gray-900 mt-8 mb-1">
@@ -70,6 +85,7 @@ export function BaseEditor({ label, initialContent, onBlur }) {
           ErrorBoundary={LexicalErrorBoundary}
         />
         <HistoryPlugin />
+        <EditorFocusPlugin onFocus={() => onFocus()} />
         <EditorBlurPlugin onBlur={(e) => onBlur(e)} />
       </LexicalComposer>
     </>

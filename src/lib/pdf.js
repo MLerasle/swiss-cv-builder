@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export function formatDescription(content, themeColor) {
+export function formatRichText(content, themeColor) {
   if (!content) return;
   const description = JSON.parse(content);
   const descriptionParts = description.root.children;

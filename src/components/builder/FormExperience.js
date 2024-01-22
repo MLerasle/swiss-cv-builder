@@ -5,12 +5,10 @@ import { TrashIcon } from "@heroicons/react/24/solid";
 import { BaseInput } from "@/components/UI/BaseInput";
 import { BaseSelect } from "@/components/UI/BaseSelect";
 import { BaseCheckbox } from "@/components/UI/BaseCheckbox";
-import { BaseEditor } from "../UI/BaseEditor";
+import { BaseEditor } from "@/components/UI/BaseEditor";
 import HelpCard from "@/components/builder/HelpCard";
-import FormExperienceDesc from "@/components/builder/FormExperienceDesc";
 import { months, years } from "@/lib/select-options";
 import { useHelp } from "@/hooks/useHelp";
-import { BaseTextarea } from "../UI/BaseTextarea";
 
 export default function FormExperience({
   control,
@@ -71,9 +69,6 @@ export default function FormExperience({
               !!errors.jobs[index]?.title &&
               "Veuillez renseigner la fonction que vous occupiez dans cette entreprise."
             }
-            // onFocus={() => {
-            //   if (index === 0) displayHelp("jobExpOrder");
-            // }}
             onBlur={(e) => {
               onBlur(e);
               updateResume(e.target.value, index, field);
@@ -370,9 +365,12 @@ export default function FormExperience({
               label="Description"
               initialContent={
                 experiences?.length > 0
-                  ? experiences[index].description
+                  ? experiences[index]?.description
                   : fieldData.description
               }
+              onFocus={() => {
+                displayHelp("jobExpDesc");
+              }}
               onBlur={(e) => {
                 onBlur(e);
                 updateResume(e, index, field);
@@ -382,7 +380,6 @@ export default function FormExperience({
           )}
         />
       </div>
-      {/* <FormExperienceDesc descIndex={index} control={control} /> */}
 
       <div className="flex justify-end mt-8">
         <Button

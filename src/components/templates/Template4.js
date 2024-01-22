@@ -8,6 +8,8 @@ import {
   StyleSheet,
 } from "@react-pdf/renderer";
 
+import { formatRichText } from "@/lib/pdf";
+
 const styles = StyleSheet.create({
   page: {
     flexDirection: "col",
@@ -114,8 +116,6 @@ const styles = StyleSheet.create({
   },
   achievementDescView: {
     marginTop: "4px",
-  },
-  achievementDesc: {
     fontSize: "8px",
   },
   options: {
@@ -134,8 +134,6 @@ const styles = StyleSheet.create({
   },
 });
 
-import { formatDescription } from "@/lib/pdf";
-
 const iconColors = { fill: "#f59e0b", stroke: "white" };
 
 export function Template4({ data }) {
@@ -146,7 +144,9 @@ export function Template4({ data }) {
           <View style={styles.headerMain}>
             <Text style={styles.name}>{data.personalData.name}</Text>
             <Text style={styles.title}>{data.personalData.title}</Text>
-            <Text style={styles.summary}>{data.summary}</Text>
+            <View style={styles.summary}>
+              {formatRichText(data.summary, iconColors.fill)}
+            </View>
           </View>
           <View style={styles.contact}>
             {data.personalData.email && (
@@ -278,7 +278,8 @@ export function Template4({ data }) {
                       <Text style={styles.optionTitle}>{cert.title}</Text>
                       <Text style={styles.optionDesc}>
                         {cert.issuer}{" "}
-                        {cert.month || (cert.year && cert.month / cert.year)}
+                        {(cert.month || cert.year) &&
+                          `${cert.month} / ${cert.year}`}
                       </Text>
                     </View>
                   ))}
@@ -389,7 +390,7 @@ export function Template4({ data }) {
                         ) : null}
                       </View>
                       <View style={styles.achievementDescView}>
-                        {formatDescription(exp.description, "#0284c7")}
+                        {formatRichText(exp.description, iconColors.fill)}
                       </View>
                     </View>
                   ))}
@@ -440,9 +441,7 @@ export function Template4({ data }) {
                         ) : null}
                       </View>
                       <View style={styles.achievementDescView}>
-                        <Text style={styles.achievementDesc}>
-                          {ed.description}
-                        </Text>
+                        {formatRichText(ed.description, iconColors.fill)}
                       </View>
                     </View>
                   ))}
@@ -487,9 +486,7 @@ export function Template4({ data }) {
                         )}
                       </View>
                       <View style={styles.achievementDescView}>
-                        <Text style={styles.achievementDesc}>
-                          {proj.description}
-                        </Text>
+                        {formatRichText(proj.description, iconColors.fill)}
                       </View>
                     </View>
                   ))}

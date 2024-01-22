@@ -4,18 +4,19 @@ import { Disclosure } from "@headlessui/react";
 import { MinusSmallIcon, PlusSmallIcon } from "@heroicons/react/24/outline";
 
 import { Container } from "@/components/Container";
+import { FadeIn } from "@/components/FadeIn";
 import { faqs } from "@/lib/faq";
 
 export function Faq() {
   return (
     <div id="faq" className="py-24 sm:py-32 bg-slate-50">
       <Container>
-        <div className="text-center">
+        <FadeIn className="text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Questions fréquentes
           </h2>
-        </div>
-        <div className="mx-auto max-w-4xl divide-y divide-gray-900/10">
+        </FadeIn>
+        <FadeIn className="mx-auto max-w-4xl divide-y divide-gray-900/10">
           <dl className="mt-10 space-y-6 divide-y divide-gray-900/10">
             {faqs.map((faq) => (
               <Disclosure as="div" key={faq.question} className="pt-6">
@@ -58,7 +59,7 @@ export function Faq() {
               </Disclosure>
             ))}
           </dl>
-        </div>
+        </FadeIn>
       </Container>
     </div>
   );

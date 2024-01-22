@@ -5,6 +5,7 @@ import {
 } from "@heroicons/react/24/outline";
 
 import { Container } from "@/components/Container";
+import { FadeIn, FadeInStagger } from "@/components/FadeIn";
 
 const features = [
   {
@@ -28,7 +29,7 @@ export function Benefits() {
   return (
     <div id="benefits" className="bg-slate-50 py-24 sm:py-32">
       <Container>
-        <div className="text-center">
+        <FadeIn className="text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Bénéfices pour les chercheurs d'emploi
           </h2>
@@ -36,12 +37,12 @@ export function Benefits() {
             Un CV adapté et performant en un rien de temps pour se démarquer de
             la concurrence.
           </p>
-        </div>
+        </FadeIn>
         <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-          <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
+          <FadeInStagger className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
             {features.map((feature) => (
-              <div key={feature.name} className="flex flex-col items-center">
-                <dt className="text-xl sm:text-2xl font-semibold leading-7 text-gray-900 flex flex-col items-center">
+              <FadeIn key={feature.name} className="flex flex-col items-center">
+                <div className="text-xl sm:text-2xl font-semibold leading-7 text-gray-900 flex flex-col items-center">
                   <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
                     <feature.icon
                       className="h-6 w-6 text-white"
@@ -49,13 +50,13 @@ export function Benefits() {
                     />
                   </div>
                   {feature.name}
-                </dt>
-                <dd className="mt-4 text-base leading-7 text-gray-600 text-center">
+                </div>
+                <div className="mt-4 text-base leading-7 text-gray-600 text-center">
                   <p>{feature.desc}</p>
-                </dd>
-              </div>
+                </div>
+              </FadeIn>
             ))}
-          </dl>
+          </FadeInStagger>
         </div>
       </Container>
     </div>

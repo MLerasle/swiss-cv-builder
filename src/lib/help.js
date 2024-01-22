@@ -78,7 +78,7 @@ export const help = {
   degreeDesc: [
     {
       title: "Description",
-      desc: "Il peut être utile d'expliquer en quoi a consisté votre formation, en particulier si l'intitulé est technique ou peu clair.",
+      desc: "Il peut être utile d'expliquer en quoi a consisté votre formation, en particulier si vous l'avez obtenu à l'étranger ou que l'intitulé est technique ou peu clair.",
     },
   ],
   certification: [

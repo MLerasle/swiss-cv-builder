@@ -4,8 +4,8 @@ import { TrashIcon, LinkIcon } from "@heroicons/react/24/solid";
 
 import { BaseInput } from "@/components/UI/BaseInput";
 import { BaseSelect } from "@/components/UI/BaseSelect";
-import { BaseTextarea } from "@/components/UI/BaseTextarea";
 import { BaseCheckbox } from "@/components/UI/BaseCheckbox";
+import { BaseEditor } from "@/components/UI/BaseEditor";
 import HelpCard from "@/components/builder/HelpCard";
 import { months, years } from "@/lib/select-options";
 import { useHelp } from "@/hooks/useHelp";
@@ -81,17 +81,20 @@ export default function FormExperience({
       <Controller
         name={`projects.${index}.description`}
         control={control}
-        render={({ field: { onBlur, ...field } }) => (
-          <BaseTextarea
-            label="Descriptif"
-            className="mt-8"
+        render={({ field: { onBlur, ref, ...field } }) => (
+          <BaseEditor
+            label="Description"
+            initialContent={
+              projects?.length > 0
+                ? projects[index]?.description
+                : fieldData.description
+            }
             onFocus={() => {
-              if (index === 0) displayHelp("projectDesc");
+              displayHelp("projectDesc");
             }}
             onBlur={(e) => {
               onBlur(e);
-              hideHelp();
-              updateResume(e.target.value, index, field);
+              updateResume(e, index, field);
             }}
             {...field}
           />

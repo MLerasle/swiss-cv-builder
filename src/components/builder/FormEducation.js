@@ -4,7 +4,7 @@ import { TrashIcon } from "@heroicons/react/24/solid";
 
 import { BaseInput } from "@/components/UI/BaseInput";
 import { BaseSelect } from "@/components/UI/BaseSelect";
-import { BaseTextarea } from "@/components/UI/BaseTextarea";
+import { BaseEditor } from "@/components/UI/BaseEditor";
 import HelpCard from "./HelpCard";
 import { months, years } from "@/lib/select-options";
 import { useHelp } from "@/hooks/useHelp";
@@ -312,17 +312,20 @@ export default function FormEducation({
       <Controller
         name={`education.${index}.description`}
         control={control}
-        render={({ field: { onBlur, ...field } }) => (
-          <BaseTextarea
-            label="Descriptif"
-            className="mt-8"
+        render={({ field: { onBlur, ref, ...field } }) => (
+          <BaseEditor
+            label="Description"
+            initialContent={
+              education?.length > 0
+                ? education[index]?.description
+                : fieldData.education
+            }
             onFocus={() => {
-              if (index === 0) displayHelp("degreeDesc");
+              displayHelp("degreeDesc");
             }}
             onBlur={(e) => {
               onBlur(e);
-              hideHelp();
-              updateResume(e.target.value, index, field);
+              updateResume(e, index, field);
             }}
             {...field}
           />
