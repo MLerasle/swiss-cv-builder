@@ -21,7 +21,7 @@ export function FormSummary() {
   };
 
   const onSubmit = (data) => {
-    setData({ step: 10, data: data.summary });
+    // setData({ step: 10, data: data.summary });
     router.push("/resume/preview");
   };
 

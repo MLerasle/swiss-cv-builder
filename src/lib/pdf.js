@@ -55,32 +55,48 @@ export function formatRichText(content, themeColor) {
   descriptionParts.forEach((node) => {
     if (node.type === "list") {
       const listItems = node.children.map((listItem) => {
-        return {
-          text: listItem.children[0].text,
-          format: getFormat(listItem.children[0].format),
-        };
+        const content = listItem.children.map((child) => {
+          return {
+            text: child.text,
+            format: getFormat(child.format),
+          };
+        });
+
+        return { content };
       });
 
       pdfParts.push(
         <View style={styles.list}>
-          {listItems.map((item) => (
-            <View key={item.text} style={styles.listItem}>
-              <Text
+          {listItems.map((item, idx) => (
+            <View key={idx} style={styles.listItem}>
+              <View
                 style={[styles.bulletCircle, { backgroundColor: themeColor }]}
-              ></Text>
-              <Text>{item.text}</Text>
+              ></View>
+              <View style={{ flexDirection: "row" }}>
+                {Object.values(item).map((item) =>
+                  item.map((content) => (
+                    <Text style={styles[content.format]}>{content.text}</Text>
+                  ))
+                )}
+              </View>
             </View>
           ))}
         </View>
       );
     } else if (node.type === "paragraph" && node.children?.length > 0) {
-      const paragraph = {
-        text: node.children[0].text,
-        format: getFormat(node.children[0].format),
-      };
+      const paragraphContent = node.children.map((content) => {
+        return {
+          text: content.text,
+          format: getFormat(content.format),
+        };
+      });
 
       pdfParts.push(
-        <Text style={styles[paragraph.format]}>{paragraph.text}</Text>
+        <View style={{ flexDirection: "row" }}>
+          {paragraphContent.map((p) => (
+            <Text style={styles[p.format]}>{p.text}</Text>
+          ))}
+        </View>
       );
     }
   });

@@ -29,11 +29,6 @@ export function FormExperiences() {
   });
 
   const onSubmit = (data) => {
-    for (const job of data.jobs) {
-      if (job.description.length > 0) {
-        job.description = job.description.filter((d) => d.task !== "");
-      }
-    }
     setData({ step: 2, data: data.jobs });
     router.push("/resume/builder/skills");
   };
