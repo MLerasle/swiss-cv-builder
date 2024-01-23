@@ -399,7 +399,7 @@ export function Template4({ data }) {
             )}
 
             {data.education && data.education.length > 0 && (
-              <View style={styles.section}>
+              <View style={styles.section} wrap={false}>
                 <Text style={styles.sectionTitle}>Formation</Text>
                 <View id="education" style={styles.sectionContent}>
                   {data.education.map((ed, index) => (
