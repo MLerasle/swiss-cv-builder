@@ -320,7 +320,7 @@ export function Template2({ data }) {
             )}
 
             {data.education && data.education.length > 0 && (
-              <View style={styles.section}>
+              <View style={styles.section} wrap={false}>
                 <Text style={styles.sectionTitle}>Formation</Text>
                 <View id="education" style={styles.sectionContent}>
                   {data.education.map((ed, index) => (
@@ -394,7 +394,7 @@ export function Template2({ data }) {
             )}
 
             {data.projects && data.projects.length > 0 && (
-              <View style={styles.section} wrap={false}>
+              <View style={styles.section}>
                 <Text style={styles.sectionTitle}>Projets Personnels</Text>
                 <View id="projects" style={styles.sectionContent}>
                   {data.projects.map((proj, index) => (

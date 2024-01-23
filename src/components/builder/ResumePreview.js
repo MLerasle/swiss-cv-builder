@@ -7,6 +7,7 @@ import "react-pdf/dist/Page/TextLayer.css";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import src from "pdfjs-dist/build/pdf.worker.js";
 
+import { ResumePreviewNavigator } from "@/components/builder/ResumePreviewNavigator";
 import { Template1 } from "@/components/templates/Template1";
 import { Template2 } from "@/components/templates/Template2";
 import { Template3 } from "@/components/templates/Template3";
@@ -15,21 +16,38 @@ import useFormStore from "@/store/useFormStore";
 
 pdfjs.GlobalWorkerOptions.workerSrc = src;
 
+const renderTemplate = (template) => {
+  switch (template) {
+    case "template1":
+      return Template1;
+    case "template2":
+      return Template2;
+    case "template3":
+      return Template3;
+    case "template4":
+      return Template4;
+  }
+};
+
 export function ResumePreview() {
   const data = useFormStore((state) => state);
   const [pdfUrl, setPdfUrl] = useState(null);
+  const [numPages, setNumPages] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const renderTemplate = (template) => {
-    switch (template) {
-      case "template1":
-        return Template1;
-      case "template2":
-        return Template2;
-      case "template3":
-        return Template3;
-      case "template4":
-        return Template4;
-    }
+  const onPreviousPage = () => {
+    if (currentPage === 1) return;
+    setCurrentPage((prev) => prev - 1);
+  };
+
+  const onNextPage = () => {
+    if (currentPage === numPages) return;
+    setCurrentPage((prev) => prev + 1);
+  };
+
+  const onDocumentLoad = (d) => {
+    setNumPages(d.numPages);
+    setCurrentPage((prev) => Math.min(prev, d.numPages));
   };
 
   useEffect(() => {
@@ -42,8 +60,16 @@ export function ResumePreview() {
   }, [data]);
 
   return (
-    <Document file={pdfUrl}>
-      <Page pageNumber={1} />
-    </Document>
+    <>
+      <Document file={pdfUrl} onLoadSuccess={onDocumentLoad}>
+        <Page key={currentPage} pageNumber={currentPage} />
+      </Document>
+      <ResumePreviewNavigator
+        currentPage={currentPage}
+        numPages={numPages}
+        onPreviousPage={onPreviousPage}
+        onNextPage={onNextPage}
+      />
+    </>
   );
 }
