@@ -20,8 +20,7 @@ export function FormSummary() {
     setData({ step: 10, data: summary });
   };
 
-  const onSubmit = (data) => {
-    // setData({ step: 10, data: data.summary });
+  const onSubmit = () => {
     router.push("/resume/preview");
   };
 

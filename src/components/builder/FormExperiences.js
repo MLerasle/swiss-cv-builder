@@ -28,8 +28,7 @@ export function FormExperiences() {
     name: "jobs",
   });
 
-  const onSubmit = (data) => {
-    setData({ step: 2, data: data.jobs });
+  const onSubmit = () => {
     router.push("/resume/builder/skills");
   };
 

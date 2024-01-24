@@ -52,7 +52,7 @@ export function formatRichText(content, themeColor) {
   const descriptionParts = description.root.children;
   const pdfParts = [];
 
-  descriptionParts.forEach((node) => {
+  descriptionParts.forEach((node, id) => {
     if (node.type === "list") {
       const listItems = node.children.map((listItem) => {
         const content = listItem.children.map((child) => {
@@ -66,7 +66,7 @@ export function formatRichText(content, themeColor) {
       });
 
       pdfParts.push(
-        <View style={styles.list}>
+        <View key={id} style={styles.list}>
           {listItems.map((item, idx) => (
             <View key={idx} style={styles.listItem}>
               <View
@@ -75,7 +75,9 @@ export function formatRichText(content, themeColor) {
               <View style={{ flexDirection: "row" }}>
                 {Object.values(item).map((item) =>
                   item.map((content) => (
-                    <Text style={styles[content.format]}>{content.text}</Text>
+                    <Text key={content.text} style={styles[content.format]}>
+                      {content.text}
+                    </Text>
                   ))
                 )}
               </View>
@@ -92,9 +94,11 @@ export function formatRichText(content, themeColor) {
       });
 
       pdfParts.push(
-        <View style={{ flexDirection: "row" }}>
-          {paragraphContent.map((p) => (
-            <Text style={styles[p.format]}>{p.text}</Text>
+        <View key={id} style={{ flexDirection: "row" }}>
+          {paragraphContent.map((p, idx) => (
+            <Text key={idx} style={styles[p.format]}>
+              {p.text}
+            </Text>
           ))}
         </View>
       );

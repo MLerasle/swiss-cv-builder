@@ -199,11 +199,11 @@ export function Template2({ data }) {
                 <Text>
                   {data.personalData.city && data.personalData.country
                     ? `${data.personalData.city}, ${data.personalData.country}`
-                    : `${data.personalData.city}`
+                    : data.personalData.city && !data.personalData.country
                     ? `${data.personalData.city}`
-                    : `${data.personalData.country}`
+                    : !data.personalData.city && data.personalData.country
                     ? `${data.personalData.country}`
-                    : ``}
+                    : null}
                 </Text>
               </View>
             )}
@@ -222,10 +222,10 @@ export function Template2({ data }) {
                     {data.personalData.nationality}
                     {data.personalData.permit
                       ? `, ${data.personalData.permit}`
-                      : ""}
+                      : null}
                     {data.personalData.age
                       ? `, ${data.personalData.age} ans`
-                      : ""}
+                      : null}
                   </Text>
                 </View>
               )}
@@ -291,7 +291,8 @@ export function Template2({ data }) {
                         {(exp.fromMonth ||
                           exp.fromYear ||
                           exp.toMonth ||
-                          exp.toYear) && (
+                          exp.toYear ||
+                          exp.current) && (
                           <Text>
                             {exp.fromMonth}/{exp.fromYear} -
                             {exp.current
@@ -420,7 +421,8 @@ export function Template2({ data }) {
                         {(proj.fromMonth ||
                           proj.fromYear ||
                           proj.toMonth ||
-                          proj.toYear) && (
+                          proj.toYear ||
+                          proj.current) && (
                           <Text>
                             {proj.fromMonth}/{proj.fromYear} -
                             {proj.current

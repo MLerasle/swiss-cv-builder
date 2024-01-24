@@ -28,8 +28,7 @@ export function FormProjects() {
     name: "projects",
   });
 
-  const onSubmit = (data) => {
-    setData({ step: 8, data: data.projects });
+  const onSubmit = () => {
     router.push("/resume/builder/hobbies");
   };
 

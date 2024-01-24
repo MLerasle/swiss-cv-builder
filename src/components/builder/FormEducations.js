@@ -28,8 +28,7 @@ export function FormEducations() {
     name: "education",
   });
 
-  const onSubmit = (data) => {
-    setData({ step: 5, data: data.education });
+  const onSubmit = () => {
     router.push("/resume/builder/certifications");
   };
 
