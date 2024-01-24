@@ -20,8 +20,8 @@ export function Cta() {
         </FadeIn>
         <FadeIn className="mt-10 flex items-center justify-center">
           <Link href="/onboard">
-            <Button color="primary" size="lg">
-              Générer mon CV
+            <Button color="primary" size="lg" radius="full">
+              Rédiger mon CV
             </Button>
           </Link>
         </FadeIn>

@@ -146,8 +146,8 @@ export function Header() {
               </Link>
             ) : (
               <Link href="/onboard">
-                <Button color="primary">
-                  Générer <span className="hidden lg:inline">mon </span>CV
+                <Button color="primary" radius="full">
+                  Rédiger <span className="hidden lg:inline">mon </span>CV
                 </Button>
               </Link>
             )}

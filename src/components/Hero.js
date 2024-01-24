@@ -31,8 +31,8 @@ export function Hero() {
         </p>
         <div className="mt-10">
           <Link href="/onboard">
-            <Button color="primary" size="lg">
-              Générer mon CV
+            <Button color="primary" size="lg" radius="full">
+              Rédiger mon CV
             </Button>
           </Link>
         </div>

@@ -102,9 +102,10 @@ export function Pricing() {
                 <Button
                   color="primary"
                   className="block w-full"
+                  radius="full"
                   variant={tier.featured ? "solid" : "bordered"}
                 >
-                  Générer mon CV
+                  Rédiger mon CV
                 </Button>
               </Link>
             </div>
