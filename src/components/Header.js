@@ -13,10 +13,10 @@ import { NavLink } from "@/components/NavLink";
 import Logo from "@/images/logo.svg";
 
 const navlinks = [
-  { href: "#benefits", label: "Bénéfices" },
-  { href: "#features", label: "Fonctionnalités" },
-  // { href: "#pricing", label: "Tarif" },
-  { href: "#faq", label: "FAQ" },
+  {
+    href: "/guides/comment-faire-un-cv-suisse",
+    label: "Comment faire un CV suisse",
+  },
 ];
 
 function MobileNavLink({ href, children }) {
@@ -127,15 +127,13 @@ export function Header() {
                 </div>
               </div>
             </Link>
-            {pathname === "/" && (
-              <div className="hidden md:flex md:gap-x-6">
-                {navlinks.map((link) => (
-                  <NavLink key={link.href} href={link.href}>
-                    {link.label}
-                  </NavLink>
-                ))}
-              </div>
-            )}
+            <div className="hidden md:flex md:gap-x-6">
+              {navlinks.map((link) => (
+                <NavLink key={link.href} href={link.href}>
+                  {link.label}
+                </NavLink>
+              ))}
+            </div>
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">
             {pathname.startsWith("/resume/builder") ? (
