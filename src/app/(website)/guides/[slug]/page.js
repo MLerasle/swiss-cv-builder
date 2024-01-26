@@ -1,4 +1,3 @@
-// import { Container } from "@/components/Container";
 import { notFound } from "next/navigation";
 import { allGuides } from "contentlayer/generated";
 
