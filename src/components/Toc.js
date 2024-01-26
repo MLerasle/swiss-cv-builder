@@ -15,8 +15,8 @@ export function Toc() {
   }, []);
 
   return (
-    <div>
-      <span>Table of Contents</span>
+    <div className="pt-12 pb-2">
+      <strong>Table des matières</strong>
       <div className="js-toc"></div>
     </div>
   );
