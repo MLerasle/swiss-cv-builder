@@ -1,7 +1,6 @@
 "use client";
 
-import { Disclosure } from "@headlessui/react";
-import { MinusSmallIcon, PlusSmallIcon } from "@heroicons/react/24/outline";
+import { Accordion, AccordionItem } from "@nextui-org/react";
 
 import { Container } from "@/components/Container";
 import { FadeIn } from "@/components/FadeIn";
@@ -16,49 +15,26 @@ export function Faq() {
             Questions fréquentes
           </h2>
         </FadeIn>
-        <FadeIn className="mx-auto max-w-4xl divide-y divide-gray-900/10">
-          <dl className="mt-10 space-y-6 divide-y divide-gray-900/10">
-            {faqs.map((faq) => (
-              <Disclosure as="div" key={faq.question} className="pt-6">
-                {({ open }) => (
-                  <>
-                    <dt>
-                      <Disclosure.Button className="flex w-full items-start justify-between text-left text-gray-900">
-                        <span className="text-base font-semibold leading-7">
-                          {faq.question}
-                        </span>
-                        <span className="ml-6 flex h-7 items-center">
-                          {open ? (
-                            <MinusSmallIcon
-                              className="h-6 w-6"
-                              aria-hidden="true"
-                            />
-                          ) : (
-                            <PlusSmallIcon
-                              className="h-6 w-6"
-                              aria-hidden="true"
-                            />
-                          )}
-                        </span>
-                      </Disclosure.Button>
-                    </dt>
-                    <Disclosure.Panel as="dd" className="mt-4 pr-12">
-                      {faq.answer.map((answer, index) => (
-                        <p
-                          key={index}
-                          className={`text-base leading-7 text-gray-600 ${
-                            index > 0 && "mt-4"
-                          }`}
-                        >
-                          {answer}
-                        </p>
-                      ))}
-                    </Disclosure.Panel>
-                  </>
-                )}
-              </Disclosure>
+        <FadeIn className="mx-auto max-w-4xl mt-16">
+          <Accordion>
+            {faqs.map((faq, index) => (
+              <AccordionItem
+                key={index}
+                aria-label={faq.question}
+                title={faq.question}
+                className="text-gray-900 font-medium "
+              >
+                {faq.answer.map((answer, index) => (
+                  <p
+                    key={index}
+                    className={`text-base leading-7 text-gray-600 font-normal mt-2 mb-6 `}
+                  >
+                    {answer}
+                  </p>
+                ))}
+              </AccordionItem>
             ))}
-          </dl>
+          </Accordion>
         </FadeIn>
       </Container>
     </div>

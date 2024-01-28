@@ -2,7 +2,7 @@ import Image from "next/image";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 
-export const BaseImage = ({ className, src, alt, width, height }) => (
+export const BaseImage = ({ className, src, alt, width, height, priority }) => (
   <Zoom>
     <Image
       className={className}
@@ -10,6 +10,7 @@ export const BaseImage = ({ className, src, alt, width, height }) => (
       src={src}
       width={width}
       height={height}
+      priority={priority}
     />
   </Zoom>
 );

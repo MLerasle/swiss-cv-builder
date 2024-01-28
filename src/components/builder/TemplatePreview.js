@@ -17,7 +17,12 @@ export function TemplatePreview({ template }) {
   return (
     <li key={template.name} className="flex flex-col justify-center">
       <div className="group block w-full overflow-hidden rounded-lg shadow-lg bg-gray-100 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
-        <BaseImage src={template.preview} alt={template.name} height="8000" />
+        <BaseImage
+          src={template.preview}
+          alt={template.name}
+          height="8000"
+          priority={true}
+        />
       </div>
       <button
         type="button"
