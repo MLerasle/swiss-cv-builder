@@ -10,129 +10,135 @@ import {
 
 import { formatRichText } from "@/lib/pdf";
 
-const styles = StyleSheet.create({
-  page: {
-    flexDirection: "col",
-    backgroundColor: "white",
-    fontFamily: "Helvetica",
-    padding: "16px 0",
-  },
-  headerMain: {
-    padding: "0 24px",
-  },
-  name: {
-    color: "#0284c7",
-  },
-  title: {
-    color: "#475569",
-    fontSize: "14px",
-    marginTop: "2px",
-  },
-  summary: {
-    fontSize: "8px",
-    marginTop: "10px",
-    lineHeight: "1.2px",
-  },
-  contact: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    fontSize: "8px",
-    marginTop: "16px",
-    padding: "8px 0",
-    borderTop: "1px solid black",
-    borderBottom: "1px solid black",
-  },
-  contactDetail: {
-    flexDirection: "row",
-    alignItems: "center",
-    columnGap: "4px",
-  },
-  main: {
-    padding: "0 24px",
-    flexDirection: "row",
-    columnGap: "24px",
-  },
-  leftColumn: {
-    width: "67%",
-  },
-  rightColumn: {
-    width: "33%",
-  },
-  section: {
-    padding: "16px 0",
-  },
-  sectionTitle: {
-    fontFamily: "Helvetica-Bold",
-    color: "#0284c7",
-    textTransform: "uppercase",
-    fontSize: "14px",
-  },
-  sectionContent: {
-    marginTop: "10px",
-  },
-  skills: {
-    flexDirection: "row",
-    rowGap: "5px",
-    columnGap: "5px",
-    flexWrap: "wrap",
-    fontSize: "8px",
-  },
-  skill: {
-    backgroundColor: "#0284c7",
-    color: "white",
-    padding: "4px 8px",
-    borderRadius: "4px",
-  },
-  hobby: {
-    border: "1px solid #94a3b8",
-    padding: "4px 8px",
-    borderRadius: "4px",
-  },
-  achievementTitle: {
-    fontFamily: "Helvetica-Bold",
-    fontSize: "12px",
-  },
-  achievementPlace: {
-    fontSize: "12px",
-    marginTop: "1px",
-  },
-  achievementDetails: {
-    fontFamily: "Helvetica-Oblique",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    fontSize: "8px",
-    color: "#475569",
-    marginTop: "4px",
-  },
-  achievementPlaceDesc: {
-    fontFamily: "Helvetica-Oblique",
-    fontSize: "8px",
-    color: "#475569",
-    marginTop: "2px",
-  },
-  achievementDescView: {
-    marginTop: "4px",
-    fontSize: "8px",
-  },
-  options: {
-    marginTop: "10px",
-    flexDirection: "col",
-    fontSize: "8px",
-    rowGap: "8px",
-  },
-  optionTitle: {
-    fontSize: "10px",
-  },
-  optionDesc: {
-    fontFamily: "Helvetica-Oblique",
-    color: "#475569",
-    marginTop: "2px",
-  },
-});
+const colors = {
+  lightGray: "#94a3b8",
+  darkGray: "#475569",
+};
 
-const iconColors = { fill: "#0284c7", stroke: "white" };
+export function Template2({ data, defaultColor }) {
+  const mainColor = data.template.color || defaultColor;
+  const iconColors = { fill: "#0284c7", stroke: "white" };
 
-export function Template2({ data }) {
+  const styles = StyleSheet.create({
+    page: {
+      flexDirection: "col",
+      backgroundColor: "white",
+      fontFamily: "Helvetica",
+      padding: "16px 0",
+    },
+    headerMain: {
+      padding: "0 24px",
+    },
+    name: {
+      color: mainColor,
+    },
+    title: {
+      color: colors.darkGray,
+      fontSize: "14px",
+      marginTop: "2px",
+    },
+    summary: {
+      fontSize: "8px",
+      marginTop: "10px",
+      lineHeight: "1.2px",
+    },
+    contact: {
+      flexDirection: "row",
+      justifyContent: "space-around",
+      fontSize: "8px",
+      marginTop: "16px",
+      padding: "8px 0",
+      borderTop: `1px solid ${colors.darkGray}`,
+      borderBottom: `1px solid ${colors.darkGray}`,
+    },
+    contactDetail: {
+      flexDirection: "row",
+      alignItems: "center",
+      columnGap: "4px",
+    },
+    main: {
+      padding: "0 24px",
+      flexDirection: "row",
+      columnGap: "24px",
+    },
+    leftColumn: {
+      width: "67%",
+    },
+    rightColumn: {
+      width: "33%",
+    },
+    section: {
+      padding: "16px 0",
+    },
+    sectionTitle: {
+      fontFamily: "Helvetica-Bold",
+      color: mainColor,
+      textTransform: "uppercase",
+      fontSize: "14px",
+    },
+    sectionContent: {
+      marginTop: "10px",
+    },
+    skills: {
+      flexDirection: "row",
+      rowGap: "5px",
+      columnGap: "5px",
+      flexWrap: "wrap",
+      fontSize: "8px",
+    },
+    skill: {
+      backgroundColor: mainColor,
+      color: "white",
+      padding: "4px 8px",
+      borderRadius: "4px",
+    },
+    hobby: {
+      border: "1px solid #94a3b8",
+      padding: "4px 8px",
+      borderRadius: "4px",
+    },
+    achievementTitle: {
+      fontFamily: "Helvetica-Bold",
+      fontSize: "12px",
+    },
+    achievementPlace: {
+      fontSize: "12px",
+      marginTop: "1px",
+    },
+    achievementDetails: {
+      fontFamily: "Helvetica-Oblique",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      fontSize: "8px",
+      color: colors.darkGray,
+      marginTop: "4px",
+    },
+    achievementPlaceDesc: {
+      fontFamily: "Helvetica-Oblique",
+      fontSize: "8px",
+      color: colors.darkGray,
+      marginTop: "2px",
+    },
+    achievementDescView: {
+      marginTop: "4px",
+      fontSize: "8px",
+    },
+    options: {
+      marginTop: "10px",
+      flexDirection: "col",
+      fontSize: "8px",
+      rowGap: "8px",
+    },
+    optionTitle: {
+      fontSize: "10px",
+    },
+    optionDesc: {
+      fontFamily: "Helvetica-Oblique",
+      color: colors.darkGray,
+      marginTop: "2px",
+    },
+  });
+
   return (
     <Document title={`CV ${data.personalData.name}`}>
       <Page size="A4" style={styles.page}>

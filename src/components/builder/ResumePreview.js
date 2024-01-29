@@ -17,7 +17,7 @@ import useFormStore from "@/store/useFormStore";
 pdfjs.GlobalWorkerOptions.workerSrc = src;
 
 const renderTemplate = (template) => {
-  switch (template) {
+  switch (template.name) {
     case "template1":
       return Template1;
     case "template2":
@@ -51,7 +51,10 @@ export function ResumePreview() {
   };
 
   useEffect(() => {
-    const resume = createElement(renderTemplate(data.template), { data });
+    const resume = createElement(renderTemplate(data.template), {
+      data,
+      defaultColor: data.template.color,
+    });
     pdf(resume)
       .toBlob()
       .then((blob) => {

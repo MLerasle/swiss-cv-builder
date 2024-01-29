@@ -13,7 +13,7 @@ export default function Preview() {
   const data = useFormStore((state) => state);
 
   const renderTemplate = (template) => {
-    switch (template) {
+    switch (template.name) {
       case "template1":
         return Template1;
       case "template2":
@@ -27,7 +27,10 @@ export default function Preview() {
 
   return (
     <PDFViewer showToolbar className="w-full h-screen">
-      {createElement(renderTemplate(data.template), { data })}
+      {createElement(renderTemplate(data.template), {
+        data,
+        defaultColor: data.template.color,
+      })}
     </PDFViewer>
   );
 }

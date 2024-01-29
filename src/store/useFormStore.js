@@ -93,7 +93,7 @@ const steps = {
 const useFormStore = create(
   persist(
     (set) => ({
-      template: "",
+      template: {},
       personalData: {},
       experiences: [],
       skills: [],

@@ -10,122 +10,127 @@ import {
 
 import { formatRichText } from "@/lib/pdf";
 
-const styles = StyleSheet.create({
-  page: {
-    flexDirection: "col",
-    backgroundColor: "white",
-    fontFamily: "Helvetica",
-    padding: "16px 24px",
-  },
-  header: {
-    color: "#1e293b",
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  headerMain: {
-    maxWidth: "60%",
-  },
-  title: {
-    color: "#0891b2",
-    fontSize: "14px",
-    marginTop: "2px",
-  },
-  summary: {
-    fontSize: "8px",
-    marginTop: "10px",
-    lineHeight: "1.2px",
-  },
-  contact: {
-    backgroundColor: "#0891b2",
-    fontSize: "8px",
-    flexDirection: "col",
-    justifyContent: "space-around",
-    padding: "8px",
-    borderRadius: "4px",
-    color: "white",
-    maxWidth: "35%",
-  },
-  contactDetail: {
-    flexDirection: "row",
-    alignItems: "center",
-    columnGap: "4px",
-    marginTop: "4px",
-  },
-  section: {
-    padding: "16px 0",
-  },
-  sectionTitle: {
-    fontFamily: "Helvetica-Bold",
-    color: "#0891b2",
-    textTransform: "uppercase",
-    fontSize: "14px",
-  },
-  sectionContent: {
-    marginTop: "10px",
-  },
-  skills: {
-    flexDirection: "row",
-    rowGap: "5px",
-    columnGap: "5px",
-    flexWrap: "wrap",
-    fontSize: "8px",
-  },
-  skill: {
-    backgroundColor: "#94a3b8",
-    color: "white",
-    padding: "4px 8px",
-    borderRadius: "4px",
-  },
-  hobby: {
-    border: "1px solid #94a3b8",
-    padding: "4px 8px",
-    borderRadius: "4px",
-  },
-  achievementTitle: {
-    fontFamily: "Helvetica-Bold",
-    fontSize: "12px",
-  },
-  achievementPlace: {
-    fontSize: "12px",
-    marginTop: "1px",
-  },
-  achievementDetails: {
-    fontFamily: "Helvetica-Oblique",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    fontSize: "8px",
-    color: "#0891b2",
-    marginTop: "4px",
-  },
-  achievementPlaceDesc: {
-    fontFamily: "Helvetica-Oblique",
-    fontSize: "8px",
-    color: "#475569",
-    marginTop: "2px",
-  },
-  achievementDescView: {
-    marginTop: "4px",
-    fontSize: "8px",
-  },
-  options: {
-    marginTop: "10px",
-    flexDirection: "row",
-    fontSize: "8px",
-    columnGap: "40px",
-  },
-  optionTitle: {
-    fontSize: "10px",
-  },
-  optionDesc: {
-    fontFamily: "Helvetica-Oblique",
-    color: "#0891b2",
-    marginTop: "2px",
-  },
-});
+const colors = {
+  lightGray: "#94a3b8",
+  darkGray: "#475569",
+};
 
-const iconColors = { fill: "white", stroke: "#0891b2" };
+export function Template1({ data, defaultColor }) {
+  const mainColor = data.template.color || defaultColor;
+  const iconColors = { fill: "white", stroke: mainColor };
 
-export function Template1({ data }) {
+  const styles = StyleSheet.create({
+    page: {
+      flexDirection: "col",
+      backgroundColor: "white",
+      fontFamily: "Helvetica",
+      padding: "16px 24px",
+    },
+    header: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+    },
+    headerMain: {
+      maxWidth: "60%",
+    },
+    title: {
+      color: colors.darkGray,
+      fontSize: "14px",
+      marginTop: "2px",
+    },
+    summary: {
+      fontSize: "8px",
+      marginTop: "10px",
+      lineHeight: "1.2px",
+    },
+    contact: {
+      backgroundColor: mainColor,
+      fontSize: "8px",
+      flexDirection: "col",
+      justifyContent: "space-around",
+      padding: "8px",
+      borderRadius: "4px",
+      color: "white",
+      maxWidth: "35%",
+    },
+    contactDetail: {
+      flexDirection: "row",
+      alignItems: "center",
+      columnGap: "4px",
+      marginTop: "4px",
+    },
+    section: {
+      padding: "16px 0",
+    },
+    sectionTitle: {
+      fontFamily: "Helvetica-Bold",
+      color: mainColor,
+      textTransform: "uppercase",
+      fontSize: "14px",
+    },
+    sectionContent: {
+      marginTop: "10px",
+    },
+    skills: {
+      flexDirection: "row",
+      rowGap: "5px",
+      columnGap: "5px",
+      flexWrap: "wrap",
+      fontSize: "8px",
+    },
+    skill: {
+      backgroundColor: colors.lightGray,
+      color: "white",
+      padding: "4px 8px",
+      borderRadius: "4px",
+    },
+    hobby: {
+      border: `1px solid ${colors.lightGray}`,
+      padding: "4px 8px",
+      borderRadius: "4px",
+    },
+    achievementTitle: {
+      fontFamily: "Helvetica-Bold",
+      fontSize: "12px",
+    },
+    achievementPlace: {
+      fontSize: "12px",
+      marginTop: "1px",
+    },
+    achievementDetails: {
+      fontFamily: "Helvetica-Oblique",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      fontSize: "8px",
+      color: mainColor,
+      marginTop: "4px",
+    },
+    achievementPlaceDesc: {
+      fontFamily: "Helvetica-Oblique",
+      fontSize: "8px",
+      color: colors.darkGray,
+      marginTop: "2px",
+    },
+    achievementDescView: {
+      marginTop: "4px",
+      fontSize: "8px",
+    },
+    options: {
+      marginTop: "10px",
+      flexDirection: "row",
+      fontSize: "8px",
+      columnGap: "40px",
+    },
+    optionTitle: {
+      fontSize: "10px",
+    },
+    optionDesc: {
+      fontFamily: "Helvetica-Oblique",
+      color: mainColor,
+      marginTop: "2px",
+    },
+  });
+
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -134,7 +139,7 @@ export function Template1({ data }) {
             <Text style={styles.name}>{data.personalData.name}</Text>
             <Text style={styles.title}>{data.personalData.title}</Text>
             <View style={styles.summary}>
-              {formatRichText(data.summary, iconColors.fill)}
+              {formatRichText(data.summary, mainColor)}
             </View>
           </View>
           <View style={styles.contact}>
@@ -301,7 +306,7 @@ export function Template1({ data }) {
                       ) : null}
                     </View>
                     <View style={styles.achievementDescView}>
-                      {formatRichText(exp.description, iconColors.fill)}
+                      {formatRichText(exp.description, mainColor)}
                     </View>
                   </View>
                 ))}
@@ -349,7 +354,7 @@ export function Template1({ data }) {
                       ) : null}
                     </View>
                     <View style={styles.achievementDescView}>
-                      {formatRichText(ed.description, iconColors.fill)}
+                      {formatRichText(ed.description, mainColor)}
                     </View>
                   </View>
                 ))}
@@ -409,7 +414,7 @@ export function Template1({ data }) {
                       )}
                     </View>
                     <View style={styles.achievementDescView}>
-                      {formatRichText(proj.description, iconColors.fill)}
+                      {formatRichText(proj.description, mainColor)}
                     </View>
                   </View>
                 ))}

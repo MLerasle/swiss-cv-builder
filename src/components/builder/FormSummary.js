@@ -21,7 +21,7 @@ export function FormSummary() {
   };
 
   const onSubmit = () => {
-    router.push("/resume/preview");
+    router.push("/resume/builder/resume-layout");
   };
 
   return (
@@ -52,7 +52,7 @@ export function FormSummary() {
         )}
       />
 
-      <FormActions prevLink="/resume/builder/hobbies" lastStep />
+      <FormActions prevLink="/resume/builder/hobbies" />
 
       {isHelpDisplayed && <HelpCard content={helpData} onClose={hideHelp} />}
     </form>

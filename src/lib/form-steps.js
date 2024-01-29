@@ -49,4 +49,9 @@ export const steps = [
     name: "Parlez-nous de votre parcours et de vos objectifs",
     href: "/resume/builder/summary",
   },
+  {
+    id: 11,
+    name: "Personnalisez votre CV",
+    href: "/resume/builder/resume-layout",
+  },
 ];
