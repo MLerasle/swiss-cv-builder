@@ -17,7 +17,7 @@ const colors = {
 
 export function Template3({ data, defaultColor }) {
   const mainColor = data.template.color || defaultColor;
-  const iconColors = { fill: "white", stroke: mainColor };
+  const iconColors = { fill: mainColor, stroke: "white" };
 
   const styles = StyleSheet.create({
     page: {

@@ -6,6 +6,7 @@ import { FadeIn } from "@/components/FadeIn";
 import screenshotForm from "@/images/screenshots/screenshot-form.png";
 import screenshotTemplate from "@/images/screenshots/screenshot-template.png";
 import screenshotPreview from "@/images/screenshots/screenshot-preview.png";
+import screenshotPersonalization from "@/images/screenshots/screenshot-personalization.png";
 
 export function Features() {
   return (
@@ -70,25 +71,48 @@ export function Features() {
         <div className="relative mt-12 sm:mt-16 lg:mt-24 lg:grid lg:grid-cols-2 lg:gap-24 lg:items-center">
           <FadeIn className="relative">
             <h3 className="text-xl sm:text-2xl font-semibold leading-7 text-gray-900">
-              Téléchargez votre CV
+              Personnalisez votre CV
             </h3>
             <p className="mt-3 text-lg text-gray-500">
-              C'est prêt ! Il ne vous reste qu'à télécharger votre document !
-              Vous pouvez toujours choisir de modifier votre modèle si vous le
-              souhaitez.
+              Modifiez votre CV en lui appliquant la couleur de votre choix.
             </p>
           </FadeIn>
 
           <FadeIn className="mt-10 -mx-4 relative lg:mt-0" aria-hidden="true">
             <Image
               className="relative mx-auto sm:rounded-xl"
-              src={screenshotPreview}
+              src={screenshotPersonalization}
               alt=""
               width={600}
               height={400}
               placeholder="blur"
             />
           </FadeIn>
+        </div>
+        <div className="relative mt-12 sm:mt-16 lg:mt-24">
+          <div className="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-24 lg:items-center">
+            <FadeIn className="lg:col-start-2">
+              <h3 className="text-xl sm:text-2xl font-semibold leading-7 text-gray-900">
+                Téléchargez votre CV
+              </h3>
+              <p className="mt-3 text-lg text-gray-500">
+                C'est prêt ! Il ne vous reste qu'à télécharger votre document !
+                Vous pouvez toujours choisir de modifier votre modèle si vous le
+                souhaitez.
+              </p>
+            </FadeIn>
+
+            <FadeIn className="mt-10 -mx-4 relative lg:mt-0 lg:col-start-1">
+              <Image
+                className="relative mx-auto sm:rounded-xl"
+                src={screenshotPreview}
+                alt=""
+                width={600}
+                height={400}
+                placeholder="blur"
+              />
+            </FadeIn>
+          </div>
         </div>
       </Container>
     </div>

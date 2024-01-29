@@ -1,5 +1,8 @@
 export const data = {
-  template: "template2",
+  template: {
+    name: "template2",
+    color: "#16a34a",
+  },
   personalData: {
     name: "John Doe",
     title: "Développeur Web Frontend",

@@ -21,6 +21,19 @@ export default function Legal() {
         situé à l'adresse ci-après :
       </p>
       <p className="italic">340 S Lemon Ave #4133 Walnut, CA 91789</p>
+
+      <h2>Crédits Photos</h2>
+      <p>
+        Les images utilisées sur le site proviennent de{" "}
+        <a href="https://storyset.com/online" rel="noreferrer" target="_blank">
+          Storyset
+        </a>{" "}
+        et{" "}
+        <a href="https://undraw.co/" rel="noreferrer" target="_blank">
+          Undraw
+        </a>
+        .
+      </p>
     </Container>
   );
 }

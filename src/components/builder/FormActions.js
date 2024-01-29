@@ -23,15 +23,16 @@ export default function FormActions({ prevLink, lastStep }) {
         <div></div>
       )}
       {lastStep ? (
-        <Button
-          color="primary"
-          type="submit"
-          startContent={
-            <ArrowDownTrayIcon className="h-4 w-4" aria-hidden="true" />
-          }
-        >
-          Télécharger mon CV
-        </Button>
+        <Link href="/resume/preview">
+          <Button
+            color="primary"
+            startContent={
+              <ArrowDownTrayIcon className="h-4 w-4" aria-hidden="true" />
+            }
+          >
+            Télécharger mon CV
+          </Button>
+        </Link>
       ) : (
         <Button
           color="primary"
