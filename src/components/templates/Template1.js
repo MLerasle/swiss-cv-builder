@@ -9,6 +9,7 @@ import {
 } from "@react-pdf/renderer";
 
 import { formatRichText } from "@/lib/pdf";
+import { fonts } from "@/lib/resume-layout";
 
 const colors = {
   lightGray: "#94a3b8",
@@ -18,12 +19,14 @@ const colors = {
 export function Template1({ data, defaultColor }) {
   const mainColor = data.template.color || defaultColor;
   const iconColors = { fill: "white", stroke: mainColor };
+  const defaultFont = data.template.font || "Helvetica";
+  const font = fonts.find((f) => f.family === defaultFont);
 
   const styles = StyleSheet.create({
     page: {
       flexDirection: "col",
       backgroundColor: "white",
-      fontFamily: "Helvetica",
+      fontFamily: font.styles.normal,
       padding: "16px 24px",
     },
     header: {
@@ -63,7 +66,7 @@ export function Template1({ data, defaultColor }) {
       padding: "16px 0",
     },
     sectionTitle: {
-      fontFamily: "Helvetica-Bold",
+      fontFamily: font.styles.bold,
       color: mainColor,
       textTransform: "uppercase",
       fontSize: "14px",
@@ -90,7 +93,7 @@ export function Template1({ data, defaultColor }) {
       borderRadius: "4px",
     },
     achievementTitle: {
-      fontFamily: "Helvetica-Bold",
+      fontFamily: font.styles.bold,
       fontSize: "12px",
     },
     achievementPlace: {
@@ -98,7 +101,7 @@ export function Template1({ data, defaultColor }) {
       marginTop: "1px",
     },
     achievementDetails: {
-      fontFamily: "Helvetica-Oblique",
+      fontFamily: font.styles.italic,
       flexDirection: "row",
       justifyContent: "space-between",
       fontSize: "8px",
@@ -106,7 +109,7 @@ export function Template1({ data, defaultColor }) {
       marginTop: "4px",
     },
     achievementPlaceDesc: {
-      fontFamily: "Helvetica-Oblique",
+      fontFamily: font.styles.italic,
       fontSize: "8px",
       color: colors.darkGray,
       marginTop: "2px",
@@ -125,7 +128,7 @@ export function Template1({ data, defaultColor }) {
       fontSize: "10px",
     },
     optionDesc: {
-      fontFamily: "Helvetica-Oblique",
+      fontFamily: font.styles.italic,
       color: mainColor,
       marginTop: "2px",
     },

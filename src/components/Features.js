@@ -74,7 +74,8 @@ export function Features() {
               Personnalisez votre CV
             </h3>
             <p className="mt-3 text-lg text-gray-500">
-              Modifiez votre CV en lui appliquant la couleur de votre choix.
+              Modifiez votre CV en lui appliquant la couleur et la police de
+              caractères de votre choix.
             </p>
           </FadeIn>
 

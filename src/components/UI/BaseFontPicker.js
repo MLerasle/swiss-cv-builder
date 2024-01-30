@@ -2,12 +2,16 @@ import { RadioGroup } from "@nextui-org/react";
 
 import { BaseRadio } from "@/components/UI/BaseRadio";
 
-export function BaseFontPicker({ fonts }) {
+export function BaseFontPicker({ fonts, selected, onChange }) {
   return (
-    <RadioGroup orientation="horizontal">
+    <RadioGroup orientation="horizontal" defaultValue={selected}>
       {fonts.map((font) => (
-        <BaseRadio key={font} value={font}>
-          {font}
+        <BaseRadio
+          key={font.family}
+          value={font.family}
+          onChange={() => onChange(font.family)}
+        >
+          {font.family}
         </BaseRadio>
       ))}
     </RadioGroup>

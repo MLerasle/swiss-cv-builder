@@ -22,6 +22,8 @@ export default function Preview() {
         return Template3;
       case "template4":
         return Template4;
+      default:
+        return Template1;
     }
   };
 

@@ -47,12 +47,31 @@ export const colors = [
 ];
 
 export const fonts = [
-  "Fira Sans",
-  "Helvetica",
-  "Lato",
-  "Montserrat",
-  "Open Sans",
-  "Roboto",
-  "Source Sans Pro",
-  "Times New Roman",
+  {
+    family: "Courier",
+    styles: {
+      normal: "Courier",
+      bold: "Courier-Bold",
+      italic: "Courier-Oblique",
+      bolditalic: "Courier-BoldOblique",
+    },
+  },
+  {
+    family: "Helvetica",
+    styles: {
+      normal: "Helvetica",
+      bold: "Helvetica-Bold",
+      italic: "Helvetica-Oblique",
+      bolditalic: "Helvetica-BoldOblique",
+    },
+  },
+  {
+    family: "Times New Roman",
+    styles: {
+      normal: "Times-Roman",
+      bold: "Times-Bold",
+      italic: "Times-Oblique",
+      bolditalic: "Times-BoldItalic",
+    },
+  },
 ];

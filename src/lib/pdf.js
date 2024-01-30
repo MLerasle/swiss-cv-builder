@@ -99,13 +99,13 @@ export function formatRichText(content, themeColor) {
       });
 
       pdfParts.push(
-        <View key={id} style={{ flexDirection: "row" }}>
+        <Text key={id} style={{ flexDirection: "row" }}>
           {paragraphContent.map((p, idx) => (
             <Text key={idx} style={styles[p.format]}>
               {p.text}
             </Text>
           ))}
-        </View>
+        </Text>
       );
     }
   });

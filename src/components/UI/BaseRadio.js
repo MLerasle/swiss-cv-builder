@@ -1,41 +1,20 @@
-import { useRadio, VisuallyHidden, cn } from "@nextui-org/react";
+import { Radio, cn } from "@nextui-org/react";
 
 export function BaseRadio(props) {
-  const {
-    Component,
-    children,
-    description,
-    getBaseProps,
-    getWrapperProps,
-    getInputProps,
-    getLabelProps,
-    getLabelWrapperProps,
-    getControlProps,
-  } = useRadio(props);
+  const { children, ...otherProps } = props;
 
   return (
-    <Component
-      {...getBaseProps()}
-      className={cn(
-        "group inline-flex items-center hover:opacity-70 active:opacity-50 justify-between flex-row-reverse tap-highlight-transparent",
-        "max-w-[300px] cursor-pointer border-2 border-default rounded-lg gap-4 p-4",
-        "data-[selected=true]:border-primary"
-      )}
+    <Radio
+      {...otherProps}
+      classNames={{
+        base: cn(
+          "inline-flex m-0 bg-content1 hover:bg-content2 items-center justify-between",
+          "flex-row-reverse max-w-[300px] cursor-pointer rounded-lg gap-4 p-4 border-2 border-transparent",
+          "data-[selected=true]:border-primary"
+        ),
+      }}
     >
-      <VisuallyHidden>
-        <input {...getInputProps()} />
-      </VisuallyHidden>
-      <span {...getWrapperProps()}>
-        <span {...getControlProps()} />
-      </span>
-      <div {...getLabelWrapperProps()}>
-        {children && <span {...getLabelProps()}>{children}</span>}
-        {description && (
-          <span className="text-small text-foreground opacity-70">
-            {description}
-          </span>
-        )}
-      </div>
-    </Component>
+      {children}
+    </Radio>
   );
 }
