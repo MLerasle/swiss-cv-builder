@@ -1,8 +1,6 @@
 import { CheckIcon } from "@heroicons/react/20/solid";
 
-import { colors } from "@/lib/resume-layout";
-
-export function BaseColorPicker({ color, onChange }) {
+export function BaseColorPicker({ colors, defaultColor, onChange }) {
   const updateColor = (e, color) => {
     e.preventDefault();
     onChange(color);
@@ -17,7 +15,7 @@ export function BaseColorPicker({ color, onChange }) {
           style={{ background: presetColor }}
           onClick={(e) => updateColor(e, presetColor)}
         >
-          {color === presetColor && (
+          {defaultColor === presetColor && (
             <CheckIcon className="h-4 w-4 text-white" aria-hidden="true" />
           )}
         </button>

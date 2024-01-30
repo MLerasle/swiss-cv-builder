@@ -47,11 +47,8 @@ export const colors = [
 ];
 
 export const fonts = [
-  "Arial",
-  "Calibri",
   "Fira Sans",
   "Helvetica",
-  "IBM Plex Sans",
   "Lato",
   "Montserrat",
   "Open Sans",

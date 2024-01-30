@@ -7,9 +7,11 @@ const getFormat = (id) => {
     case 2:
       return "italic";
     case 3:
-      return "underline";
+      return "bolditalic";
     case 4:
       return "strikethrough";
+    case 8:
+      return "underline";
     default:
       return null;
   }
@@ -21,6 +23,9 @@ const styles = StyleSheet.create({
   },
   italic: {
     fontFamily: "Helvetica-Oblique",
+  },
+  bolditalic: {
+    fontFamily: "Helvetica-BoldOblique",
   },
   underline: {
     textDecoration: "underline",
@@ -72,7 +77,7 @@ export function formatRichText(content, themeColor) {
               <View
                 style={[styles.bulletCircle, { backgroundColor: themeColor }]}
               ></View>
-              <View style={{ flexDirection: "row" }}>
+              <Text style={{ flexDirection: "row" }}>
                 {Object.values(item).map((item) =>
                   item.map((content) => (
                     <Text key={content.text} style={styles[content.format]}>
@@ -80,7 +85,7 @@ export function formatRichText(content, themeColor) {
                     </Text>
                   ))
                 )}
-              </View>
+              </Text>
             </View>
           ))}
         </View>

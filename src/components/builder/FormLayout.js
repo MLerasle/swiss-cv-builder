@@ -3,8 +3,10 @@
 import { useState } from "react";
 
 import { BaseColorPicker } from "@/components/UI/BaseColorPicker";
-import FormActions from "./FormActions";
+import { BaseFontPicker } from "@/components/UI/BaseFontPicker";
+import FormActions from "@/components/builder/FormActions";
 import useFormStore from "@/store/useFormStore";
+import { colors, fonts } from "@/lib/resume-layout";
 
 export function FormLayout() {
   const { template, setTemplate } = useFormStore();
@@ -25,7 +27,11 @@ export function FormLayout() {
           Choisissez la couleur de votre modèle
         </p>
         <div className="mt-6">
-          <BaseColorPicker color={color} onChange={updateTemplateColor} />
+          <BaseColorPicker
+            colors={colors}
+            defaultColor={color}
+            onChange={updateTemplateColor}
+          />
         </div>
       </section>
       {/* <section className="mt-16">
@@ -33,7 +39,10 @@ export function FormLayout() {
           Polices
         </h3>
         <p className="text-gray-600 mt-2">Choisissez la police de caractères</p>
-      </section> */}
+      </section>
+      <div className="mt-6">
+        <BaseFontPicker fonts={fonts} />
+      </div> */}
 
       <div className="mt-16">
         <FormActions prevLink="/resume/builder/summary" lastStep />
