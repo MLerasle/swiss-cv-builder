@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useCallback, useEffect } from "react";
 import "./toolbar.css";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { $isRangeSelection, $getSelection } from "lexical";
+import { mergeRegister } from "@lexical/utils";
 import { INSERT_UNORDERED_LIST_COMMAND } from "@lexical/list";
 import * as Toolbar from "@radix-ui/react-toolbar";
 import {
@@ -25,11 +26,30 @@ function ToolbarButton(props) {
 
 function TextFormatToolbarPlugin() {
   const [editor] = useLexicalComposerContext();
-  // Should consider the actual editor selection format
   const [isBold, setIsBold] = useState(false);
   const [isItalic, setIsItalic] = useState(false);
   const [isUnderline, setIsUnderline] = useState(false);
   const [isStrikethrough, setIsStrikethrough] = useState(false);
+
+  const updateToolbar = useCallback(() => {
+    const selection = $getSelection();
+    if ($isRangeSelection(selection)) {
+      setIsBold(selection.hasFormat("bold"));
+      setIsItalic(selection.hasFormat("italic"));
+      setIsUnderline(selection.hasFormat("underline"));
+      setIsStrikethrough(selection.hasFormat("strikethrough"));
+    }
+  }, [editor]);
+
+  useEffect(() => {
+    return mergeRegister(
+      editor.registerUpdateListener(({ editorState }) => {
+        editorState.read(() => {
+          updateToolbar();
+        });
+      })
+    );
+  }, [updateToolbar, editor]);
 
   const getIcon = (format) => {
     switch (format) {
