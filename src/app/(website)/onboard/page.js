@@ -1,6 +1,5 @@
 import { TemplatePreview } from "@/components/builder/TemplatePreview";
-
-import { templates } from "@/lib/resume-layout";
+import { useResume } from "@/hooks/useResume";
 
 export const metadata = {
   title: "SwissCVBuilder - Choix du modèle de CV",
@@ -8,6 +7,7 @@ export const metadata = {
 };
 
 export default function Builder() {
+  const { templates } = useResume();
   return (
     <ul
       role="list"

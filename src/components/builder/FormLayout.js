@@ -4,12 +4,14 @@ import { useState } from "react";
 
 import { BaseColorPicker } from "@/components/UI/BaseColorPicker";
 import { BaseFontPicker } from "@/components/UI/BaseFontPicker";
+import { BaseDragAndDrop } from "@/components/UI/BaseDragAndDrop";
 import FormActions from "@/components/builder/FormActions";
 import useFormStore from "@/store/useFormStore";
-import { colors, fonts } from "@/lib/resume-layout";
+import { useResume } from "@/hooks/useResume";
 
 export function FormLayout() {
   const { template, setTemplate } = useFormStore();
+  const { colors, fonts, sections } = useResume();
   const [color, setColor] = useState(template.color || "#eab308");
   const [font, setFont] = useState(template.font || "Helvetica");
 
@@ -21,6 +23,10 @@ export function FormLayout() {
   const updateTemplateFont = (newFont) => {
     setFont(newFont);
     setTemplate({ ...template, font: newFont });
+  };
+
+  const updateSections = (sections) => {
+    console.log("Update sections", sections);
   };
 
   return (
@@ -45,14 +51,25 @@ export function FormLayout() {
           Polices
         </h3>
         <p className="text-gray-600 mt-2">Choisissez la police de caractères</p>
+        <div className="mt-6">
+          <BaseFontPicker
+            selected={font}
+            fonts={fonts}
+            onChange={updateTemplateFont}
+          />
+        </div>
       </section>
-      <div className="mt-6">
-        <BaseFontPicker
-          selected={font}
-          fonts={fonts}
-          onChange={updateTemplateFont}
-        />
-      </div>
+      {/* <section className="mt-16">
+        <h3 className="block text-lg font-semibold leading-6 text-gray-900">
+          Mise en page
+        </h3>
+        <p className="text-gray-600 mt-2">
+          Glissez-déposez les sections pour réorganiser votre CV
+        </p>
+        <div className="mt-6">
+          <BaseDragAndDrop sections={sections} onUpdate={updateSections} />
+        </div>
+      </section> */}
 
       <div className="mt-16">
         <FormActions prevLink="/resume/builder/summary" lastStep />
