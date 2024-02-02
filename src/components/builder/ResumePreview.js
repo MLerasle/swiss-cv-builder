@@ -13,7 +13,6 @@ import { Template2 } from "@/components/templates/Template2";
 import { Template3 } from "@/components/templates/Template3";
 import { Template4 } from "@/components/templates/Template4";
 import useFormStore from "@/store/useFormStore";
-import { data } from "@/lib/fake-data";
 
 pdfjs.GlobalWorkerOptions.workerSrc = src;
 
@@ -31,7 +30,7 @@ const renderTemplate = (template) => {
 };
 
 export function ResumePreview() {
-  // const data = useFormStore((state) => state);
+  const data = useFormStore((state) => state);
   const [pdfUrl, setPdfUrl] = useState(null);
   const [numPages, setNumPages] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
