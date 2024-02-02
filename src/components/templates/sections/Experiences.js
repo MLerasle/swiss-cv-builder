@@ -2,15 +2,15 @@ import { Text, View } from "@react-pdf/renderer";
 
 import { formatRichText } from "@/lib/pdf";
 
-export function Experiences({ experiences, styles, template, mainColor }) {
-  if (!experiences || experiences.length === 0) return <View></View>;
+export function Experiences({ data, styles }) {
+  if (!data.experiences || data.experiences.length === 0) return <View></View>;
   return (
     <View style={styles.section}>
       <Text style={styles.sectionTitle}>Expérience professionnelle</Text>
       <View id="experiences" style={styles.sectionContent}>
-        {experiences.map((exp, index) => (
+        {data.experiences.map((exp, index) => (
           <View key={exp.company} id="experience" wrap={false}>
-            {template === "template3" && (
+            {data.template === "template3" && (
               <View
                 style={[styles.block, { marginTop: index > 0 ? "12px" : "" }]}
               ></View>
@@ -49,7 +49,7 @@ export function Experiences({ experiences, styles, template, mainColor }) {
               ) : null}
             </View>
             <View style={styles.achievementDescView}>
-              {formatRichText(exp.description, mainColor)}
+              {formatRichText(exp.description, data.template.color)}
             </View>
           </View>
         ))}

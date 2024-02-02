@@ -1,15 +1,8 @@
+import { createElement } from "react";
 import { Page, View, Document, StyleSheet } from "@react-pdf/renderer";
 
 import { Headline } from "@/components/templates/sections/Headline";
 import { Contact } from "@/components/templates/sections/Contact";
-import { Skills } from "@/components/templates/sections/Skills";
-import { Experiences } from "@/components/templates/sections/Experiences";
-import { Education } from "@/components/templates/sections/Education";
-import { Certifications } from "@/components/templates/sections/Certifications";
-import { Projects } from "@/components/templates/sections/Projects";
-import { Languages } from "@/components/templates/sections/Languages";
-import { References } from "@/components/templates/sections/References";
-import { Hobbies } from "@/components/templates/sections/Hobbies";
 import { useResume } from "@/hooks/useResume";
 
 const colors = {
@@ -18,7 +11,7 @@ const colors = {
 };
 
 export function Template2({ data, defaultColor }) {
-  const { fonts } = useResume();
+  const { fonts, pdfSections } = useResume();
   const mainColor = data.template.color || defaultColor;
   const iconColors = { fill: mainColor, stroke: "white" };
   const defaultFont = data.template.font || "Helvetica";
@@ -170,34 +163,21 @@ export function Template2({ data, defaultColor }) {
 
         <View id="main" style={styles.main}>
           <View id="leftColumn" style={styles.leftColumn}>
-            <Skills skills={data.skills} styles={styles} />
-            <Experiences
-              experiences={data.experiences}
-              styles={styles}
-              template="template1"
-              mainColor={mainColor}
-            />
-            <Education
-              education={data.education}
-              styles={styles}
-              template="template1"
-              mainColor={mainColor}
-            />
+            {data.template.sections.left.map((section) =>
+              createElement(
+                pdfSections.find((s) => s.key === section).template,
+                { data, styles }
+              )
+            )}
           </View>
 
           <View id="rightColumn" style={styles.rightColumn}>
-            <Certifications
-              certifications={data.certifications}
-              styles={styles}
-            />
-            <Projects
-              projects={data.projects}
-              styles={styles}
-              mainColor={mainColor}
-            />
-            <Languages languages={data.languages} styles={styles} />
-            <References references={data.references} styles={styles} />
-            <Hobbies hobbies={data.hobbies} styles={styles} />
+            {data.template.sections.right.map((section) =>
+              createElement(
+                pdfSections.find((s) => s.key === section).template,
+                { data, styles }
+              )
+            )}
           </View>
         </View>
       </Page>

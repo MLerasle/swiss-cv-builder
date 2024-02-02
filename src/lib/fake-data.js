@@ -2,6 +2,17 @@ export const data = {
   template: {
     name: "template2",
     color: "#16a34a",
+    sections: {
+      left: ["experiences", "education"],
+      right: [
+        "skills",
+        "projects",
+        "certifications",
+        "languages",
+        "references",
+        "hobbies",
+      ],
+    },
   },
   personalData: {
     name: "John Doe",

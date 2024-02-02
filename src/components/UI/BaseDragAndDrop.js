@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   DndContext,
   DragOverlay,
@@ -42,8 +42,8 @@ export function SortableItem(props) {
 
 export function BaseDragAndDrop({ sections, onUpdate }) {
   const [items, setItems] = useState({
-    containerLeft: [1, 2, 3],
-    containerRight: [4, 5, 6],
+    left: sections.left,
+    right: sections.right,
   });
   const [activeId, setActiveId] = useState();
 
@@ -53,6 +53,10 @@ export function BaseDragAndDrop({ sections, onUpdate }) {
       coordinateGetter: sortableKeyboardCoordinates,
     })
   );
+
+  useEffect(() => {
+    onUpdate(items);
+  }, [items]);
 
   return (
     <DndContext
@@ -65,24 +69,26 @@ export function BaseDragAndDrop({ sections, onUpdate }) {
       <div className="flex gap-x-4">
         <div className="flex-grow p-4 bg-slate-200 rounded-md flex flex-col gap-y-4">
           <SortableContext
-            items={items.containerLeft}
+            items={items.left}
             strategy={verticalListSortingStrategy}
           >
-            {items.containerLeft.map((id) => (
+            {items.left.map((id) => (
               <SortableItem key={id} id={id} />
             ))}
           </SortableContext>
         </div>
-        <div className="flex-grow p-4 bg-slate-200 rounded-md flex flex-col gap-y-4">
-          <SortableContext
-            items={items.containerRight}
-            strategy={verticalListSortingStrategy}
-          >
-            {items.containerRight.map((id) => (
-              <SortableItem key={id} id={id} />
-            ))}
-          </SortableContext>
-        </div>
+        {items.right && items.right.length > 0 && (
+          <div className="flex-grow p-4 bg-slate-200 rounded-md flex flex-col gap-y-4">
+            <SortableContext
+              items={items.right}
+              strategy={verticalListSortingStrategy}
+            >
+              {items.right.map((id) => (
+                <SortableItem key={id} id={id} />
+              ))}
+            </SortableContext>
+          </div>
+        )}
       </div>
       <DragOverlay>
         {activeId ? <SortableItem id={activeId} /> : null}
@@ -190,6 +196,5 @@ export function BaseDragAndDrop({ sections, onUpdate }) {
     }
 
     setActiveId(null);
-    onUpdate(items);
   }
 }

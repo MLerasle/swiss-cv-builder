@@ -1,7 +1,7 @@
 import { Text, View } from "@react-pdf/renderer";
 
-export function References({ references, styles }) {
-  if (!references || references.length === 0) return <View></View>;
+export function References({ data, styles }) {
+  if (!data.references || data.references.length === 0) return <View></View>;
   return (
     <View style={styles.section} wrap={false}>
       <Text style={styles.sectionTitle}>Références</Text>
@@ -9,7 +9,7 @@ export function References({ references, styles }) {
         id="references"
         style={{ ...styles.sectionContent, ...styles.options }}
       >
-        {references.map((ref) => (
+        {data.references.map((ref) => (
           <View key={ref.name}>
             <Text style={styles.optionTitle}>{ref.name}</Text>
             <Text style={styles.optionDesc}>

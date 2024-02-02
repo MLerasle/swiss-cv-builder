@@ -2,13 +2,13 @@ import { Text, View } from "@react-pdf/renderer";
 
 import { formatRichText } from "@/lib/pdf";
 
-export function Projects({ projects, styles, mainColor }) {
-  if (!projects || projects.length === 0) return <View></View>;
+export function Projects({ data, styles }) {
+  if (!data.projects || data.projects.length === 0) return <View></View>;
   return (
     <View style={styles.section} wrap={false}>
       <Text style={styles.sectionTitle}>Projets Personnels</Text>
       <View id="projects" style={styles.sectionContent}>
-        {projects.map((proj, index) => (
+        {data.projects.map((proj, index) => (
           <View key={proj.company} id="project" wrap={false}>
             {index > 0 ? (
               <Text style={[styles.achievementTitle, { marginTop: "12px" }]}>
@@ -33,7 +33,7 @@ export function Projects({ projects, styles, mainColor }) {
               )}
             </View>
             <View style={styles.achievementDescView}>
-              {formatRichText(proj.description, mainColor)}
+              {formatRichText(proj.description, data.template.color)}
             </View>
           </View>
         ))}

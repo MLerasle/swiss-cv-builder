@@ -10,7 +10,7 @@ import heroImg from "@/images/resume.svg";
 export function Hero() {
   return (
     <FadeIn className="bg-white">
-      <div className="mx-auto px-6 py-24 sm:py-32 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+      <div className="mx-auto px-6 py-16 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
         <div className="mx-auto max-w-2xl lg:max-w-none lg:flex lg:flex-col lg:justify-center">
           <h1 className="text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl">
             Générateur de CV Suisse en ligne

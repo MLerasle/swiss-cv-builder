@@ -11,7 +11,7 @@ import { useResume } from "@/hooks/useResume";
 
 export function FormLayout() {
   const { template, setTemplate } = useFormStore();
-  const { colors, fonts, sections } = useResume();
+  const { colors, fonts } = useResume();
   const [color, setColor] = useState(template.color || "#eab308");
   const [font, setFont] = useState(template.font || "Helvetica");
 
@@ -26,7 +26,7 @@ export function FormLayout() {
   };
 
   const updateSections = (sections) => {
-    console.log("Update sections", sections);
+    setTemplate({ ...template, sections });
   };
 
   return (
@@ -59,17 +59,22 @@ export function FormLayout() {
           />
         </div>
       </section>
-      {/* <section className="mt-16">
-        <h3 className="block text-lg font-semibold leading-6 text-gray-900">
-          Mise en page
-        </h3>
-        <p className="text-gray-600 mt-2">
-          Glissez-déposez les sections pour réorganiser votre CV
-        </p>
-        <div className="mt-6">
-          <BaseDragAndDrop sections={sections} onUpdate={updateSections} />
-        </div>
-      </section> */}
+      {template.sections && template.sections.left.length > 0 && (
+        <section className="mt-16">
+          <h3 className="block text-lg font-semibold leading-6 text-gray-900">
+            Mise en page
+          </h3>
+          <p className="text-gray-600 mt-2">
+            Glissez-déposez les sections pour réorganiser votre CV
+          </p>
+          <div className="mt-6">
+            <BaseDragAndDrop
+              sections={template.sections}
+              onUpdate={updateSections}
+            />
+          </div>
+        </section>
+      )}
 
       <div className="mt-16">
         <FormActions prevLink="/resume/builder/summary" lastStep />

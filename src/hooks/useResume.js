@@ -3,6 +3,15 @@ import Template2 from "@/images/templates/template2.png";
 import Template3 from "@/images/templates/template3.png";
 import Template4 from "@/images/templates/template4.png";
 
+import { Skills } from "@/components/templates/sections/Skills";
+import { Experiences } from "@/components/templates/sections/Experiences";
+import { Education } from "@/components/templates/sections/Education";
+import { Certifications } from "@/components/templates/sections/Certifications";
+import { Projects } from "@/components/templates/sections/Projects";
+import { Languages } from "@/components/templates/sections/Languages";
+import { References } from "@/components/templates/sections/References";
+import { Hobbies } from "@/components/templates/sections/Hobbies";
+
 const steps = [
   {
     id: 1,
@@ -115,10 +124,16 @@ const sections = [
   },
 ];
 
-// Get formatted sections to save in data template
-const getSections = (sectionsArray) => {
-  return sections.filter((s) => sectionsArray.includes(s.key));
-};
+const pdfSections = [
+  { key: "skills", template: Skills },
+  { key: "experiences", template: Experiences },
+  { key: "education", template: Education },
+  { key: "certifications", template: Certifications },
+  { key: "projects", template: Projects },
+  { key: "languages", template: Languages },
+  { key: "references", template: References },
+  { key: "hobbies", template: Hobbies },
+];
 
 // Get default left and right sections for a given template
 const getTemplateSections = (templateName) => {
@@ -126,60 +141,48 @@ const getTemplateSections = (templateName) => {
   switch (templateName) {
     case "template1":
       tmplSections.left = [
-        ...getSections([
-          "skills",
-          "experiences",
-          "education",
-          "certifications",
-          "projects",
-          "languages",
-          "references",
-          "hobbies",
-        ]),
+        "skills",
+        "experiences",
+        "education",
+        "certifications",
+        "projects",
+        "languages",
+        "references",
+        "hobbies",
       ];
       break;
     case "template2":
-      tmplSections.left = [
-        ...getSections(["skills", "experiences", "education"]),
-      ];
+      tmplSections.left = ["skills", "experiences", "education"];
       tmplSections.right = [
-        ...getSections([
-          "certifications",
-          "projects",
-          "languages",
-          "references",
-          "hobbies",
-        ]),
+        "certifications",
+        "projects",
+        "languages",
+        "references",
+        "hobbies",
       ];
       break;
     case "template3":
       tmplSections.left = [
-        ...getSections([
-          "skills",
-          "experiences",
-          "education",
-          "certifications",
-          "projects",
-          "languages",
-          "references",
-          "hobbies",
-        ]),
+        "skills",
+        "experiences",
+        "education",
+        "certifications",
+        "projects",
+        "languages",
+        "references",
+        "hobbies",
       ];
 
       break;
     case "template4":
       tmplSections.left = [
-        ...getSections([
-          "skills",
-          "certifications",
-          "languages",
-          "references",
-          "hobbies",
-        ]),
+        "skills",
+        "certifications",
+        "languages",
+        "references",
+        "hobbies",
       ];
-      tmplSections.right = [
-        ...getSections(["experiences", "education", "projects"]),
-      ];
+      tmplSections.right = ["experiences", "education", "projects"];
       break;
     default:
       break;
@@ -287,5 +290,6 @@ export function useResume() {
     fonts,
     sections,
     steps,
+    pdfSections,
   };
 }
