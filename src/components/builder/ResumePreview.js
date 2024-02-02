@@ -51,9 +51,11 @@ export function ResumePreview() {
   };
 
   useEffect(() => {
+    console.log(data.template);
     const resume = createElement(renderTemplate(data.template), {
       data,
       defaultColor: data.template.color,
+      sections: data.template.sections,
     });
     pdf(resume)
       .toBlob()

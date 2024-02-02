@@ -1,7 +1,7 @@
 import { Text, View } from "@react-pdf/renderer";
 
 export function Hobbies({ hobbies, styles }) {
-  if (!hobbies || hobbies.length === 0) return;
+  if (!hobbies || hobbies.length === 0) return <View></View>;
   return (
     <View style={styles.section}>
       <Text style={styles.sectionTitle}>Centres d'intérêts</Text>

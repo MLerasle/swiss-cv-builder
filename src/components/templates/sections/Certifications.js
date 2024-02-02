@@ -1,7 +1,7 @@
 import { Text, View } from "@react-pdf/renderer";
 
 export function Certifications({ certifications, styles }) {
-  if (!certifications || certifications.length === 0) return;
+  if (!certifications || certifications.length === 0) return <View></View>;
   return (
     <View style={styles.section} wrap={false}>
       <Text style={styles.sectionTitle}>Certifications</Text>

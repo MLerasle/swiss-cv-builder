@@ -1,7 +1,7 @@
 import { Text, View } from "@react-pdf/renderer";
 
 export function Skills({ skills, styles }) {
-  if (!skills || skills.length === 0) return;
+  if (!skills || skills.length === 0) return <View></View>;
   return (
     <View style={styles.section}>
       <Text style={styles.sectionTitle}>Compétences</Text>

@@ -3,7 +3,7 @@ import { Text, View } from "@react-pdf/renderer";
 import { formatRichText } from "@/lib/pdf";
 
 export function Education({ education, styles, template, mainColor }) {
-  if (!education || education.length === 0) return;
+  if (!education || education.length === 0) return <View></View>;
   return (
     <View style={styles.section} wrap={false}>
       <Text style={styles.sectionTitle}>Formation</Text>

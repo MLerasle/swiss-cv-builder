@@ -1,8 +1,9 @@
 import Link from "next/link";
 
-import { steps } from "@/lib/form-steps";
+import { useResume } from "@/hooks/useResume";
 
 export default function FormSteps({ pathname }) {
+  const { steps } = useResume();
   const currentStepId = steps.findIndex((s) => s.href === pathname) + 1;
 
   return (
@@ -18,13 +19,13 @@ export default function FormSteps({ pathname }) {
         className="sm:ml-8 mt-4 sm:mt-0 flex items-center space-x-5"
       >
         {steps.map((step) => (
-          <li key={step.name}>
+          <li key={step.key}>
             {step.id < currentStepId ? (
               <Link
                 href={step.href}
                 className="block h-2.5 w-2.5 rounded-full bg-blue-600 hover:bg-blue-900"
               >
-                <span className="sr-only">{step.name}</span>
+                <span className="sr-only">{step.key}</span>
               </Link>
             ) : step.id === currentStepId ? (
               <Link
@@ -39,14 +40,14 @@ export default function FormSteps({ pathname }) {
                   className="relative block h-2.5 w-2.5 rounded-full bg-blue-600"
                   aria-hidden="true"
                 />
-                <span className="sr-only">{step.name}</span>
+                <span className="sr-only">{step.key}</span>
               </Link>
             ) : (
               <Link
                 href={step.href}
                 className="block h-2.5 w-2.5 rounded-full bg-gray-200 hover:bg-gray-400"
               >
-                <span className="sr-only">{step.name}</span>
+                <span className="sr-only">{step.key}</span>
               </Link>
             )}
           </li>

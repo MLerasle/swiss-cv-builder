@@ -3,7 +3,7 @@ import { Text, View } from "@react-pdf/renderer";
 import { formatRichText } from "@/lib/pdf";
 
 export function Experiences({ experiences, styles, template, mainColor }) {
-  if (!experiences || experiences.length === 0) return;
+  if (!experiences || experiences.length === 0) return <View></View>;
   return (
     <View style={styles.section}>
       <Text style={styles.sectionTitle}>Expérience professionnelle</Text>

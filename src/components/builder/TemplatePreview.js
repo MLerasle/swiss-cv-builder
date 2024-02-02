@@ -10,7 +10,11 @@ export function TemplatePreview({ template }) {
   const { setTemplate } = useFormStore();
 
   const selectTemplate = (template) => {
-    setTemplate({ name: template.name, color: template.defaultColor });
+    setTemplate({
+      name: template.name,
+      color: template.defaultColor,
+      sections: template.sections,
+    });
     router.push("/resume/builder/personal-infos");
   };
 

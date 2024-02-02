@@ -3,7 +3,7 @@ import { Text, View } from "@react-pdf/renderer";
 import { formatRichText } from "@/lib/pdf";
 
 export function Projects({ projects, styles, mainColor }) {
-  if (!projects || projects.length === 0) return;
+  if (!projects || projects.length === 0) return <View></View>;
   return (
     <View style={styles.section} wrap={false}>
       <Text style={styles.sectionTitle}>Projets Personnels</Text>

@@ -3,30 +3,214 @@ import Template2 from "@/images/templates/template2.png";
 import Template3 from "@/images/templates/template3.png";
 import Template4 from "@/images/templates/template4.png";
 
+const steps = [
+  {
+    id: 1,
+    key: "personalData",
+    title: "Veuillez saisir vos coordonnées",
+    href: "/resume/builder/personal-infos",
+  },
+  {
+    id: 2,
+    key: "experiences",
+    title: "Parlez-nous de votre expérience",
+    href: "/resume/builder/experiences",
+  },
+  {
+    id: 3,
+    key: "skills",
+    title: "Parlez-nous de vos compétences",
+    href: "/resume/builder/skills",
+  },
+  {
+    id: 4,
+    key: "languages",
+    title: "Quelles langues parlez-vous ?",
+    href: "/resume/builder/languages",
+  },
+  {
+    id: 5,
+    key: "education",
+    title: "Veuillez indiquer votre formation",
+    href: "/resume/builder/education",
+  },
+  {
+    id: 6,
+    key: "certifications",
+    title: "Veuillez indiquer vos certifications",
+    href: "/resume/builder/certifications",
+  },
+  {
+    id: 7,
+    key: "references",
+    title: "Veulliez indiquer vos références",
+    href: "/resume/builder/references",
+  },
+  {
+    id: 8,
+    key: "projects",
+    title: "Avez-vous réalisé des projets personnels ?",
+    href: "/resume/builder/projects",
+  },
+  {
+    id: 9,
+    key: "hobbies",
+    title: "Quels sont vos loisirs ?",
+    href: "/resume/builder/hobbies",
+  },
+  {
+    id: 10,
+    key: "summary",
+    title: "Parlez-nous de votre parcours et de vos objectifs",
+    href: "/resume/builder/summary",
+  },
+  {
+    id: 11,
+    key: "layout",
+    title: "Personnalisez votre CV",
+    href: "/resume/builder/resume-layout",
+  },
+];
+
+const sections = [
+  {
+    key: "personalData",
+    name: "Informations Personnelles",
+  },
+  {
+    key: "experiences",
+    name: "Expérience Professionnelle",
+  },
+  {
+    key: "skills",
+    name: "Compétences",
+  },
+  {
+    key: "languages",
+    name: "Langues",
+  },
+  {
+    key: "education",
+    name: "Formation",
+  },
+  {
+    key: "certifications",
+    name: "Certifications",
+  },
+  {
+    key: "references",
+    name: "Références",
+  },
+  {
+    key: "projects",
+    name: "Projets Personnels",
+  },
+  {
+    key: "hobbies",
+    name: "Loisirs",
+  },
+  {
+    key: "summary",
+    name: "Résumé",
+  },
+];
+
+// Get formatted sections to save in data template
+const getSections = (sectionsArray) => {
+  return sections.filter((s) => sectionsArray.includes(s.key));
+};
+
+// Get default left and right sections for a given template
+const getTemplateSections = (templateName) => {
+  const tmplSections = { left: [], right: [] };
+  switch (templateName) {
+    case "template1":
+      tmplSections.left = [
+        ...getSections([
+          "skills",
+          "experiences",
+          "education",
+          "certifications",
+          "projects",
+          "languages",
+          "references",
+          "hobbies",
+        ]),
+      ];
+      break;
+    case "template2":
+      tmplSections.left = [
+        ...getSections(["skills", "experiences", "education"]),
+      ];
+      tmplSections.right = [
+        ...getSections([
+          "certifications",
+          "projects",
+          "languages",
+          "references",
+          "hobbies",
+        ]),
+      ];
+      break;
+    case "template3":
+      tmplSections.left = [
+        ...getSections([
+          "skills",
+          "experiences",
+          "education",
+          "certifications",
+          "projects",
+          "languages",
+          "references",
+          "hobbies",
+        ]),
+      ];
+
+      break;
+    case "template4":
+      tmplSections.left = [
+        ...getSections([
+          "skills",
+          "certifications",
+          "languages",
+          "references",
+          "hobbies",
+        ]),
+      ];
+      tmplSections.right = [
+        ...getSections(["experiences", "education", "projects"]),
+      ];
+      break;
+    default:
+      break;
+  }
+  return tmplSections;
+};
+
 const templates = [
   {
     name: "template1",
-    columns: 1,
     defaultColor: "#0891b2",
     previewImg: Template1,
+    sections: getTemplateSections("template1"),
   },
   {
     name: "template2",
-    columns: 2,
     defaultColor: "#0284c7",
     previewImg: Template2,
+    sections: getTemplateSections("template2"),
   },
   {
     name: "template3",
-    columns: 1,
     defaultColor: "#b91c1c",
     previewImg: Template3,
+    sections: getTemplateSections("template3"),
   },
   {
     name: "template4",
-    columns: 2,
     defaultColor: "#f59e0b",
     previewImg: Template4,
+    sections: getTemplateSections("template4"),
   },
 ];
 
@@ -96,89 +280,12 @@ const fonts = [
   },
 ];
 
-const sections = [
-  {
-    id: 1,
-    key: "personalData",
-    name: "Informations Personnelles",
-    formTitle: "Veuillez saisir vos coordonnées",
-    formHref: "/resume/builder/personal-infos",
-  },
-  {
-    id: 2,
-    key: "experiences",
-    name: "Expérience Professionnelle",
-    formTitle: "Parlez-nous de votre expérience",
-    formHref: "/resume/builder/experiences",
-  },
-  {
-    id: 3,
-    key: "skills",
-    name: "Compétences",
-    formTitle: "Parlez-nous de vos compétences",
-    formHref: "/resume/builder/skills",
-  },
-  {
-    id: 4,
-    key: "languages",
-    name: "Langues",
-    formTitle: "Quelles langues parlez-vous ?",
-    formHref: "/resume/builder/languages",
-  },
-  {
-    id: 5,
-    key: "education",
-    name: "Formation",
-    formTitle: "Veuillez indiquer votre formation",
-    formHref: "/resume/builder/education",
-  },
-  {
-    id: 6,
-    key: "certifications",
-    name: "Certifications",
-    formTitle: "Veuillez indiquer vos certifications",
-    formHref: "/resume/builder/certifications",
-  },
-  {
-    id: 7,
-    key: "references",
-    name: "Références",
-    formTitle: "Veulliez indiquer vos références",
-    formHref: "/resume/builder/references",
-  },
-  {
-    id: 8,
-    key: "projects",
-    name: "Projets Personnels",
-    formTitle: "Avez-vous réalisé des projets personnels ?",
-    formHref: "/resume/builder/projects",
-  },
-  {
-    id: 9,
-    key: "hobbies",
-    name: "Loisirs",
-    formTitle: "Quels sont vos loisirs ?",
-    formHref: "/resume/builder/hobbies",
-  },
-  {
-    id: 10,
-    key: "summary",
-    name: "Résumé",
-    formTitle: "Parlez-nous de votre parcours et de vos objectifs",
-    formHref: "/resume/builder/summary",
-  },
-  {
-    id: 11,
-    formTitle: "Personnalisez votre CV",
-    formHref: "/resume/builder/resume-layout",
-  },
-];
-
 export function useResume() {
   return {
     templates,
     colors,
     fonts,
     sections,
+    steps,
   };
 }

@@ -1,7 +1,7 @@
 import { Text, View } from "@react-pdf/renderer";
 
 export function References({ references, styles }) {
-  if (!references || references.length === 0) return;
+  if (!references || references.length === 0) return <View></View>;
   return (
     <View style={styles.section} wrap={false}>
       <Text style={styles.sectionTitle}>Références</Text>
