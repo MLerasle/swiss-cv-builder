@@ -1,3 +1,5 @@
+import { Font } from "@react-pdf/renderer";
+
 import Template1 from "@/images/templates/template1.png";
 import Template2 from "@/images/templates/template2.png";
 import Template3 from "@/images/templates/template3.png";
@@ -11,6 +13,48 @@ import { Projects } from "@/components/templates/sections/Projects";
 import { Languages } from "@/components/templates/sections/Languages";
 import { References } from "@/components/templates/sections/References";
 import { Hobbies } from "@/components/templates/sections/Hobbies";
+
+const fonts = [
+  "Arimo",
+  "CrimsonText",
+  "FiraSans",
+  "Lato",
+  "Lora",
+  "Merriweather",
+  "Montserrat",
+  "NotoSerif",
+  "OpenSans",
+  "Poppins",
+  "Raleway",
+  "Roboto",
+  "Ubuntu",
+  "WorkSans",
+];
+
+for (const font of fonts) {
+  Font.register({
+    family: font,
+    fonts: [
+      {
+        src: `/fonts/${font}/${font}-Regular.ttf`,
+      },
+      {
+        src: `/fonts/${font}/${font}-Bold.ttf`,
+        fontWeight: "bold",
+      },
+      {
+        src: `/fonts/${font}/${font}-Italic.ttf`,
+        fontWeight: "normal",
+        fontStyle: "italic",
+      },
+      {
+        src: `/fonts/${font}/${font}-BoldItalic.ttf`,
+        fontWeight: "bold",
+        fontStyle: "italic",
+      },
+    ],
+  });
+}
 
 const steps = [
   {
@@ -251,36 +295,6 @@ const colors = [
   "#6d28d9",
   "#5b21b6",
   "#4c1d95",
-];
-
-const fonts = [
-  {
-    family: "Courier",
-    styles: {
-      normal: "Courier",
-      bold: "Courier-Bold",
-      italic: "Courier-Oblique",
-      bolditalic: "Courier-BoldOblique",
-    },
-  },
-  {
-    family: "Helvetica",
-    styles: {
-      normal: "Helvetica",
-      bold: "Helvetica-Bold",
-      italic: "Helvetica-Oblique",
-      bolditalic: "Helvetica-BoldOblique",
-    },
-  },
-  {
-    family: "Times New Roman",
-    styles: {
-      normal: "Times-Roman",
-      bold: "Times-Bold",
-      italic: "Times-Italic",
-      bolditalic: "Times-BoldItalic",
-    },
-  },
 ];
 
 export function useResume() {

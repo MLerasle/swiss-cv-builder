@@ -14,14 +14,14 @@ export function Template3({ data, defaultColor }) {
   const { fonts, pdfSections } = useResume();
   const mainColor = data.template.color || defaultColor;
   const iconColors = { fill: mainColor, stroke: "white" };
-  const defaultFont = data.template.font || "Helvetica";
-  const font = fonts.find((f) => f.family === defaultFont);
+  const defaultFont = data.template.font || "Roboto";
+  const font = fonts.find((f) => f === defaultFont);
 
   const styles = StyleSheet.create({
     page: {
       flexDirection: "col",
       backgroundColor: "white",
-      fontFamily: font.styles.normal,
+      fontFamily: font,
       padding: "16px 0",
     },
     header: {
@@ -63,7 +63,8 @@ export function Template3({ data, defaultColor }) {
       padding: "16px 0",
     },
     sectionTitle: {
-      fontFamily: font.styles.bold,
+      fontFamily: font,
+      fontWeight: 700,
       textTransform: "uppercase",
       fontSize: "14px",
     },
@@ -89,7 +90,8 @@ export function Template3({ data, defaultColor }) {
       borderRadius: "4px",
     },
     achievementTitle: {
-      fontFamily: font.styles.bold,
+      fontFamily: font,
+      fontWeight: 700,
       fontSize: "12px",
     },
     achievementPlace: {
@@ -97,7 +99,8 @@ export function Template3({ data, defaultColor }) {
       marginTop: "1px",
     },
     achievementDetails: {
-      fontFamily: font.styles.italic,
+      fontFamily: font,
+      fontStyle: "italic",
       flexDirection: "row",
       justifyContent: "space-between",
       fontSize: "8px",
@@ -105,7 +108,8 @@ export function Template3({ data, defaultColor }) {
       marginTop: "4px",
     },
     achievementPlaceDesc: {
-      fontFamily: font.styles.italic,
+      fontFamily: font,
+      fontStyle: "italic",
       fontSize: "8px",
       color: colors.darkGray,
       marginTop: "2px",
@@ -124,7 +128,8 @@ export function Template3({ data, defaultColor }) {
       fontSize: "10px",
     },
     optionDesc: {
-      fontFamily: font.styles.italic,
+      fontFamily: font,
+      fontStyle: "italic",
       color: colors.darkGray,
       marginTop: "2px",
     },

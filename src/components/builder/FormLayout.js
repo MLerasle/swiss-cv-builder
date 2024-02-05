@@ -13,7 +13,7 @@ export function FormLayout() {
   const { template, setTemplate } = useFormStore();
   const { colors, fonts } = useResume();
   const [color, setColor] = useState(template.color || "#eab308");
-  const [font, setFont] = useState(template.font || "Helvetica");
+  const [font, setFont] = useState(template.font || "Roboto");
 
   const updateTemplateColor = (newColor) => {
     setColor(newColor);
