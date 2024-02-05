@@ -13,6 +13,7 @@ export function TemplatePreview({ template }) {
     setTemplate({
       name: template.name,
       color: template.defaultColor,
+      font: "Roboto",
       sections: template.sections,
     });
     router.push("/resume/builder/personal-infos");

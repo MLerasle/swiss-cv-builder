@@ -19,13 +19,14 @@ const getFormat = (id) => {
 
 const styles = StyleSheet.create({
   bold: {
-    fontFamily: "Helvetica-Bold",
+    fontWeight: 700,
   },
   italic: {
-    fontFamily: "Helvetica-Oblique",
+    fontStyle: "italic",
   },
   bolditalic: {
-    fontFamily: "Helvetica-BoldOblique",
+    fontWeight: 700,
+    fontStyle: "italic",
   },
   underline: {
     textDecoration: "underline",
