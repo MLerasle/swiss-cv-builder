@@ -42,9 +42,9 @@ export function FormEducations() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <span className="block text-sm font-medium leading-6 text-slate-500 mt-2">
-        Commencez par votre dernier diplôme
-      </span>
+      <h2 className="font-medium leading-6 text-slate-800 mt-2">
+        Commencez par le dernier diplôme que vous avez obtenu.
+      </h2>
       <Accordion
         selectedKeys={selectedKeys}
         onSelectionChange={setSelectedKeys}

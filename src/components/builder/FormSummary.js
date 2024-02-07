@@ -26,12 +26,12 @@ export function FormSummary() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <span className="block text-sm font-medium leading-6 text-slate-500 mt-2">
+      <h2 className="font-medium leading-6 text-slate-800 mt-2">
         Expliquez brièvement au recruteur (3 à 5 phrases) pourquoi vous êtes le
         meilleur candidat pour le poste. Résumez les points clés de votre
         parcours professionnel et universitaire, et utilisez des chiffres pour
         illustrer les résultats que vous avez obtenus.
-      </span>
+      </h2>
 
       <Controller
         name="summary"

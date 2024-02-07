@@ -70,10 +70,10 @@ export function FormLanguages() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <span className="block text-sm font-medium leading-6 text-slate-500 mt-2">
+      <h2 className="font-medium leading-6 text-slate-800 mt-2">
         Ajoutez une à une les langues que vous parlez et votre niveau de
-        compétence pour chacune d'entre elles
-      </span>
+        compétence pour chacune d'entre elles.
+      </h2>
       {fields.map((field, index) => (
         <div
           key={field.id}

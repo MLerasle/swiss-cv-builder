@@ -1,5 +1,19 @@
 import { Font } from "@react-pdf/renderer";
 
+import {
+  AcademicCapIcon,
+  BoltIcon,
+  BriefcaseIcon,
+  ChatBubbleLeftIcon,
+  IdentificationIcon,
+  InboxStackIcon,
+  LanguageIcon,
+  PaintBrushIcon,
+  PhotoIcon,
+  TrophyIcon,
+  UserGroupIcon,
+} from "@heroicons/react/24/outline";
+
 import Template1 from "@/images/templates/template1.png";
 import Template2 from "@/images/templates/template2.png";
 import Template3 from "@/images/templates/template3.png";
@@ -56,115 +70,72 @@ for (const font of fonts) {
   });
 }
 
-const steps = [
-  {
-    id: 1,
-    key: "personalData",
-    title: "Veuillez saisir vos coordonnées",
-    href: "/resume/builder/personal-infos",
-  },
-  {
-    id: 2,
-    key: "experiences",
-    title: "Parlez-nous de votre expérience",
-    href: "/resume/builder/experiences",
-  },
-  {
-    id: 3,
-    key: "skills",
-    title: "Parlez-nous de vos compétences",
-    href: "/resume/builder/skills",
-  },
-  {
-    id: 4,
-    key: "languages",
-    title: "Quelles langues parlez-vous ?",
-    href: "/resume/builder/languages",
-  },
-  {
-    id: 5,
-    key: "education",
-    title: "Veuillez indiquer votre formation",
-    href: "/resume/builder/education",
-  },
-  {
-    id: 6,
-    key: "certifications",
-    title: "Veuillez indiquer vos certifications",
-    href: "/resume/builder/certifications",
-  },
-  {
-    id: 7,
-    key: "references",
-    title: "Veulliez indiquer vos références",
-    href: "/resume/builder/references",
-  },
-  {
-    id: 8,
-    key: "projects",
-    title: "Avez-vous réalisé des projets personnels ?",
-    href: "/resume/builder/projects",
-  },
-  {
-    id: 9,
-    key: "hobbies",
-    title: "Quels sont vos loisirs ?",
-    href: "/resume/builder/hobbies",
-  },
-  {
-    id: 10,
-    key: "summary",
-    title: "Parlez-nous de votre parcours et de vos objectifs",
-    href: "/resume/builder/summary",
-  },
-  {
-    id: 11,
-    key: "layout",
-    title: "Personnalisez votre CV",
-    href: "/resume/builder/resume-layout",
-  },
-];
-
 const sections = [
   {
     key: "personalData",
-    name: "Informations Personnelles",
+    name: "Coordonnées",
+    href: "/resume/builder/personal-infos",
+    icon: IdentificationIcon,
   },
   {
     key: "experiences",
-    name: "Expérience Professionnelle",
+    name: "Expérience",
+    href: "/resume/builder/experiences",
+    icon: BriefcaseIcon,
   },
   {
     key: "skills",
     name: "Compétences",
+    href: "/resume/builder/skills",
+    icon: BoltIcon,
   },
   {
     key: "languages",
     name: "Langues",
+    href: "/resume/builder/languages",
+    icon: LanguageIcon,
   },
   {
     key: "education",
     name: "Formation",
+    href: "/resume/builder/education",
+    icon: AcademicCapIcon,
   },
   {
     key: "certifications",
     name: "Certifications",
+    href: "/resume/builder/certifications",
+    icon: TrophyIcon,
   },
   {
     key: "references",
     name: "Références",
+    href: "/resume/builder/references",
+    icon: UserGroupIcon,
   },
   {
     key: "projects",
     name: "Projets Personnels",
+    href: "/resume/builder/projects",
+    icon: InboxStackIcon,
   },
   {
     key: "hobbies",
     name: "Loisirs",
+    href: "/resume/builder/hobbies",
+    icon: PhotoIcon,
   },
   {
     key: "summary",
     name: "Résumé",
+    href: "/resume/builder/summary",
+    icon: ChatBubbleLeftIcon,
+  },
+  {
+    key: "layout",
+    name: "Personnalisation",
+    href: "/resume/builder/resume-layout",
+    icon: PaintBrushIcon,
   },
 ];
 
@@ -303,7 +274,6 @@ export function useResume() {
     colors,
     fonts,
     sections,
-    steps,
     pdfSections,
   };
 }

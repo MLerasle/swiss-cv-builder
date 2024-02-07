@@ -68,9 +68,9 @@ export function FormSkills() {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <span className="block text-sm font-medium leading-6 text-slate-500 mt-2">
-          Ajoutez une à une les compétences que vous souhaitez mettre en avant
-        </span>
+        <h2 className="font-medium leading-6 text-slate-800 mt-2">
+          Ajoutez une à une les compétences que vous souhaitez mettre en avant.
+        </h2>
         {fields.map((field, index) => (
           <div key={field.id} className="flex items-center mt-8">
             <Controller

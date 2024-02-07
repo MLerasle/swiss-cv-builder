@@ -42,9 +42,10 @@ export function FormExperiences() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <span className="block text-sm font-medium leading-6 text-slate-500 mt-2">
-        Commencez par le poste le plus récent
-      </span>
+      <h2 className="font-medium leading-6 text-slate-800 mt-2">
+        Commencez par le poste le plus récent et ne mentionnez que les
+        expériences utiles au poste que vous visez.
+      </h2>
       <Accordion
         selectedKeys={selectedKeys}
         onSelectionChange={setSelectedKeys}
@@ -53,7 +54,7 @@ export function FormExperiences() {
           title: "font-medium",
           trigger: "data-[focus-visible=true]:outline-transparent ",
         }}
-        className="my-8 px-0 gap-8"
+        className="my-4 px-0 gap-8"
       >
         {fields.map((field, index) => (
           <AccordionItem
