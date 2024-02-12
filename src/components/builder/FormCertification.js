@@ -11,7 +11,6 @@ import { useHelp } from "@/hooks/useHelp";
 export default function FormCertification({
   control,
   watch,
-  errors,
   index,
   remove,
   fieldData,
@@ -53,22 +52,10 @@ export default function FormCertification({
       <Controller
         name={`certifications.${index}.title`}
         control={control}
-        rules={{
-          required: true,
-        }}
         render={({ field: { onBlur, ...field } }) => (
           <BaseInput
             label="Nom"
             autoFocus
-            isRequired
-            isInvalid={
-              !!errors.certifications && !!errors.certifications[index]?.title
-            }
-            errorMessage={
-              !!errors.certifications &&
-              !!errors.certifications[index]?.title &&
-              "Veuillez renseigner le nom de votre certification."
-            }
             onFocus={() => {
               if (index === 0) displayHelp("certification");
             }}
@@ -85,21 +72,9 @@ export default function FormCertification({
       <Controller
         name={`certifications.${index}.issuer`}
         control={control}
-        rules={{
-          required: true,
-        }}
         render={({ field: { onBlur, ...field } }) => (
           <BaseInput
             label="Organisme de délivrance"
-            isRequired
-            isInvalid={
-              !!errors.certifications && !!errors.certifications[index]?.issuer
-            }
-            errorMessage={
-              !!errors.certifications &&
-              !!errors.certifications[index]?.issuer &&
-              "Veuillez renseigner l'organisme de délivrance de votre certification."
-            }
             className="my-8"
             onBlur={(e) => {
               onBlur(e);
@@ -115,9 +90,6 @@ export default function FormCertification({
           <Controller
             name={`certifications.${index}.month`}
             control={control}
-            rules={{
-              required: true,
-            }}
             render={({ field: { onBlur, ...field } }) => (
               <BaseSelect
                 variant="bordered"
@@ -126,16 +98,6 @@ export default function FormCertification({
                   watch(`certifications.${index}.month`)
                     ? [watch(`certifications.${index}.month`)]
                     : []
-                }
-                isRequired
-                isInvalid={
-                  !!errors.certifications &&
-                  !!errors.certifications[index]?.month
-                }
-                errorMessage={
-                  !!errors.certifications &&
-                  !!errors.certifications[index]?.month &&
-                  "Veuillez renseigner la date d'obtention de votre certification."
                 }
                 onBlur={(e) => {
                   onBlur(e);
@@ -157,9 +119,6 @@ export default function FormCertification({
           <Controller
             name={`certifications.${index}.year`}
             control={control}
-            rules={{
-              required: true,
-            }}
             render={({ field: { onBlur, ...field } }) => (
               <BaseSelect
                 variant="bordered"
@@ -168,16 +127,6 @@ export default function FormCertification({
                   watch(`certifications.${index}.year`)
                     ? [watch(`certifications.${index}.year`)]
                     : []
-                }
-                isRequired
-                isInvalid={
-                  !!errors.certifications &&
-                  !!errors.certifications[index]?.year
-                }
-                errorMessage={
-                  !!errors.certifications &&
-                  !!errors.certifications[index]?.year &&
-                  "Veuillez renseigner la date d'obtention de votre certification."
                 }
                 onBlur={(e) => {
                   onBlur(e);

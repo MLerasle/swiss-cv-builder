@@ -16,12 +16,7 @@ export function FormCertifications() {
   const { certifications, setData } = useFormStore();
   const [selectedKeys, setSelectedKeys] = useState(new Set(["0"]));
 
-  const {
-    control,
-    watch,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { control, watch, handleSubmit } = useForm({
     defaultValues: { certifications },
   });
 
@@ -63,7 +58,6 @@ export function FormCertifications() {
             <FormCertification
               control={control}
               watch={watch}
-              errors={errors}
               index={index}
               remove={remove}
               fieldData={field}

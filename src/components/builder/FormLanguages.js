@@ -17,12 +17,9 @@ export function FormLanguages() {
   const router = useRouter();
   const { languages, setData } = useFormStore();
 
-  const {
-    control,
-    watch,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ defaultValues: { languages } });
+  const { control, watch, handleSubmit } = useForm({
+    defaultValues: { languages },
+  });
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -70,7 +67,7 @@ export function FormLanguages() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <h2 className="font-medium leading-6 text-slate-800">
+      <h2 className="font-medium leading-6 text-slate-800 mt-8">
         Ajoutez une à une les langues que vous parlez et votre niveau de
         compétence pour chacune d'entre elles.
       </h2>
@@ -83,21 +80,9 @@ export function FormLanguages() {
             <Controller
               name={`languages.${index}.language`}
               control={control}
-              rules={{
-                required: true,
-              }}
               render={({ field: { onBlur, ...field } }) => (
                 <BaseInput
                   label="Langue"
-                  isRequired
-                  isInvalid={
-                    !!errors.languages && !!errors.languages[index]?.language
-                  }
-                  errorMessage={
-                    !!errors.languages &&
-                    !!errors.languages[index]?.language &&
-                    "Veuillez renseigner la langue."
-                  }
                   onFocus={() => {
                     if (index === 0) displayHelp("language");
                   }}

@@ -22,14 +22,9 @@ export function FormPersonalInfos() {
   const [previewImage, setPreviewImage] = useState(null);
   const { personalData, setData } = useFormStore();
   const { helpData, displayHelp, hideHelp, isHelpDisplayed } = useHelp();
-  const {
-    control,
-    register,
-    getValues,
-    watch,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ defaultValues: personalData });
+  const { control, register, getValues, watch, handleSubmit } = useForm({
+    defaultValues: personalData,
+  });
 
   const { ref: registerRef, ...rest } = register("profilePicture");
 
@@ -85,16 +80,10 @@ export function FormPersonalInfos() {
       <Controller
         name="name"
         control={control}
-        rules={{
-          required: true,
-        }}
         render={({ field: { onBlur, ...field } }) => (
           <BaseInput
             label="Nom"
             autoFocus
-            isRequired
-            isInvalid={!!errors.name}
-            errorMessage={!!errors.name && "Veuillez renseigner votre nom."}
             className="my-8"
             onBlur={(e) => {
               onBlur(e);
@@ -134,10 +123,6 @@ export function FormPersonalInfos() {
           <Controller
             name="email"
             control={control}
-            rules={{
-              required: true,
-              pattern: /^\S+@\S+$/i,
-            }}
             render={({ field: { onBlur, ...field } }) => (
               <BaseInput
                 type="email"
@@ -151,12 +136,6 @@ export function FormPersonalInfos() {
                     data: { ...personalData, email: e.target.value },
                   });
                 }}
-                isRequired
-                isInvalid={!!errors.email}
-                errorMessage={
-                  !!errors.email &&
-                  "Veuillez renseigner unde adresse email valide."
-                }
                 {...field}
               />
             )}

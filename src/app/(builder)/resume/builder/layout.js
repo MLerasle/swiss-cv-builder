@@ -53,7 +53,7 @@ export default function RootLayout(props) {
 
             <div className="flex-1 flex flex-col xl:flex-row w-full overflow-hidden">
               {/* Form Panel */}
-              <div className="flex-1 p-6 sm:p-8 overflow-y-scroll">
+              <div className="flex-1 px-6 sm:px-8 overflow-y-scroll">
                 {props.children}
               </div>
 

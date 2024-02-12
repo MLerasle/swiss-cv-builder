@@ -13,7 +13,6 @@ import { useHelp } from "@/hooks/useHelp";
 export default function FormExperience({
   control,
   watch,
-  errors,
   index,
   remove,
   fieldData,
@@ -55,20 +54,10 @@ export default function FormExperience({
       <Controller
         name={`projects.${index}.title`}
         control={control}
-        rules={{
-          required: true,
-        }}
         render={({ field: { onBlur, ...field } }) => (
           <BaseInput
             label="Nom du projet"
             autoFocus
-            isRequired
-            isInvalid={!!errors.projects && !!errors.projects[index]?.title}
-            errorMessage={
-              !!errors.projects &&
-              !!errors.projects[index]?.title &&
-              "Veuillez renseigner le nom du projet."
-            }
             onBlur={(e) => {
               onBlur(e);
               updateResume(e.target.value, index, field);
@@ -78,28 +67,30 @@ export default function FormExperience({
         )}
       />
 
-      <Controller
-        name={`projects.${index}.description`}
-        control={control}
-        render={({ field: { onBlur, ref, ...field } }) => (
-          <BaseEditor
-            label="Description"
-            initialContent={
-              projects?.length > 0
-                ? projects[index]?.description
-                : fieldData.description
-            }
-            onFocus={() => {
-              displayHelp("projectDesc");
-            }}
-            onBlur={(e) => {
-              onBlur(e);
-              updateResume(e, index, field);
-            }}
-            {...field}
-          />
-        )}
-      />
+      <div className="my-8 relative">
+        <Controller
+          name={`projects.${index}.description`}
+          control={control}
+          render={({ field: { onBlur, ref, ...field } }) => (
+            <BaseEditor
+              label="Description"
+              initialContent={
+                projects?.length > 0
+                  ? projects[index]?.description
+                  : fieldData.description
+              }
+              onFocus={() => {
+                displayHelp("projectDesc");
+              }}
+              onBlur={(e) => {
+                onBlur(e);
+                updateResume(e, index, field);
+              }}
+              {...field}
+            />
+          )}
+        />
+      </div>
 
       <Controller
         name={`projects.${index}.link`}
@@ -147,9 +138,6 @@ export default function FormExperience({
           <Controller
             name={`projects.${index}.fromMonth`}
             control={control}
-            rules={{
-              required: true,
-            }}
             render={({ field: { onBlur, ...field } }) => (
               <BaseSelect
                 variant="bordered"
@@ -158,15 +146,6 @@ export default function FormExperience({
                   !!watch(`projects.${index}.fromMonth`)
                     ? [watch(`projects.${index}.fromMonth`)]
                     : []
-                }
-                isRequired
-                isInvalid={
-                  !!errors.projects && !!errors.projects[index]?.fromMonth
-                }
-                errorMessage={
-                  !!errors.projects &&
-                  !!errors.projects[index]?.fromMonth &&
-                  "Veuillez renseigner la date du début de votre projet."
                 }
                 onBlur={(e) => {
                   onBlur(e);
@@ -188,9 +167,6 @@ export default function FormExperience({
           <Controller
             name={`projects.${index}.fromYear`}
             control={control}
-            rules={{
-              required: true,
-            }}
             render={({ field: { onBlur, ...field } }) => (
               <BaseSelect
                 variant="bordered"
@@ -199,15 +175,6 @@ export default function FormExperience({
                   !!watch(`projects.${index}.fromYear`)
                     ? [watch(`projects.${index}.fromYear`)]
                     : []
-                }
-                isRequired
-                isInvalid={
-                  !!errors.projects && !!errors.projects[index]?.fromYear
-                }
-                errorMessage={
-                  !!errors.projects &&
-                  !!errors.projects[index]?.fromYear &&
-                  "Veuillez renseigner la date du début de votre projet."
                 }
                 onBlur={(e) => {
                   onBlur(e);
@@ -234,9 +201,6 @@ export default function FormExperience({
           <Controller
             name={`projects.${index}.toMonth`}
             control={control}
-            rules={{
-              required: !watch(`projects.${index}.current`),
-            }}
             render={({ field: { onBlur, ...field } }) => (
               <BaseSelect
                 variant="bordered"
@@ -247,18 +211,6 @@ export default function FormExperience({
                   !watch(`projects.${index}.toMonth`)
                     ? []
                     : [watch(`projects.${index}.toMonth`)]
-                }
-                isRequired={!watch(`projects.${index}.current`)}
-                isInvalid={
-                  watch(`projects.${index}.current`)
-                    ? false
-                    : !!errors.projects && !!errors.projects[index]?.toMonth
-                }
-                errorMessage={
-                  !watch(`projects.${index}.current`) &&
-                  !!errors.projects &&
-                  !!errors.projects[index]?.toMonth &&
-                  "Veuillez renseigner la date de fin de votre projet si vous ne travaillez plus dessus."
                 }
                 onBlur={(e) => {
                   onBlur(e);
@@ -280,9 +232,6 @@ export default function FormExperience({
           <Controller
             name={`projects.${index}.toYear`}
             control={control}
-            rules={{
-              required: !watch(`projects.${index}.current`),
-            }}
             render={({ field: { onBlur, ...field } }) => (
               <BaseSelect
                 variant="bordered"
@@ -293,18 +242,6 @@ export default function FormExperience({
                   !watch(`projects.${index}.toYear`)
                     ? []
                     : [watch(`projects.${index}.toYear`)]
-                }
-                isRequired={!watch(`projects.${index}.current`)}
-                isInvalid={
-                  watch(`projects.${index}.current`)
-                    ? false
-                    : !!errors.projects && !!errors.projects[index]?.toYear
-                }
-                errorMessage={
-                  !watch(`projects.${index}.current`) &&
-                  !!errors.projects &&
-                  !!errors.projects[index]?.toYear &&
-                  "Veuillez renseigner la date de fin de votre projet si vous ne travaillez plus dessus."
                 }
                 onBlur={(e) => {
                   onBlur(e);

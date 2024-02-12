@@ -16,11 +16,7 @@ export function FormReferences() {
   const { references, setData } = useFormStore();
   const [selectedKeys, setSelectedKeys] = useState(new Set(["0"]));
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { control, handleSubmit } = useForm({
     defaultValues: { references },
   });
 
@@ -62,7 +58,6 @@ export function FormReferences() {
           >
             <FormReference
               control={control}
-              errors={errors}
               index={index}
               remove={remove}
               fieldData={field}

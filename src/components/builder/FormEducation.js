@@ -12,7 +12,6 @@ import { useHelp } from "@/hooks/useHelp";
 export default function FormEducation({
   control,
   watch,
-  errors,
   index,
   remove,
   fieldData,
@@ -56,22 +55,10 @@ export default function FormEducation({
           <Controller
             name={`education.${index}.school`}
             control={control}
-            rules={{
-              required: true,
-            }}
             render={({ field: { onBlur, ...field } }) => (
               <BaseInput
                 label="École"
                 autoFocus
-                isRequired
-                isInvalid={
-                  !!errors.education && !!errors.education[index]?.school
-                }
-                errorMessage={
-                  !!errors.education &&
-                  !!errors.education[index]?.school &&
-                  "Veuillez renseigner l'école dans laquelle vous avez obtenu votre diplôme."
-                }
                 onFocus={() => {
                   if (index === 0) displayHelp("educationOrder");
                 }}
@@ -90,21 +77,9 @@ export default function FormEducation({
           <Controller
             name={`education.${index}.degree`}
             control={control}
-            rules={{
-              required: true,
-            }}
             render={({ field: { onBlur, ...field } }) => (
               <BaseInput
                 label="Diplôme"
-                isRequired
-                isInvalid={
-                  !!errors.education && !!errors.education[index]?.degree
-                }
-                errorMessage={
-                  !!errors.education &&
-                  !!errors.education[index]?.degree &&
-                  "Veuillez renseigner le diplôme obtenu."
-                }
                 onFocus={() => {
                   if (index === 0) displayHelp("degree");
                 }}
@@ -124,19 +99,9 @@ export default function FormEducation({
         <Controller
           name={`education.${index}.field`}
           control={control}
-          rules={{
-            required: true,
-          }}
           render={({ field: { onBlur, ...field } }) => (
             <BaseInput
               label="Domaine d'études"
-              isRequired
-              isInvalid={!!errors.education && !!errors.education[index]?.field}
-              errorMessage={
-                !!errors.education &&
-                !!errors.education[index]?.field &&
-                "Veuillez renseigner le domaine d'études de votre diplôme."
-              }
               onBlur={(e) => {
                 onBlur(e);
                 updateResume(e.target.value, index, field);
@@ -309,28 +274,30 @@ export default function FormEducation({
         </div>
       </div>
 
-      <Controller
-        name={`education.${index}.description`}
-        control={control}
-        render={({ field: { onBlur, ref, ...field } }) => (
-          <BaseEditor
-            label="Description"
-            initialContent={
-              education?.length > 0
-                ? education[index]?.description
-                : fieldData.education
-            }
-            onFocus={() => {
-              displayHelp("degreeDesc");
-            }}
-            onBlur={(e) => {
-              onBlur(e);
-              updateResume(e, index, field);
-            }}
-            {...field}
-          />
-        )}
-      />
+      <div className="my-8 relative">
+        <Controller
+          name={`education.${index}.description`}
+          control={control}
+          render={({ field: { onBlur, ref, ...field } }) => (
+            <BaseEditor
+              label="Description"
+              initialContent={
+                education?.length > 0
+                  ? education[index]?.description
+                  : fieldData.education
+              }
+              onFocus={() => {
+                displayHelp("degreeDesc");
+              }}
+              onBlur={(e) => {
+                onBlur(e);
+                updateResume(e, index, field);
+              }}
+              {...field}
+            />
+          )}
+        />
+      </div>
 
       <div className="flex justify-end mt-8">
         <Button

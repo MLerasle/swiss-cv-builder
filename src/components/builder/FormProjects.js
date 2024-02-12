@@ -16,12 +16,9 @@ export function FormProjects() {
   const { projects, setData } = useFormStore();
   const [selectedKeys, setSelectedKeys] = useState(new Set(["0"]));
 
-  const {
-    control,
-    watch,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ defaultValues: { projects } });
+  const { control, watch, handleSubmit } = useForm({
+    defaultValues: { projects },
+  });
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -57,7 +54,6 @@ export function FormProjects() {
             <FormProject
               control={control}
               watch={watch}
-              errors={errors}
               index={index}
               remove={remove}
               fieldData={field}

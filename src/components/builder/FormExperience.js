@@ -13,7 +13,6 @@ import { useHelp } from "@/hooks/useHelp";
 export default function FormExperience({
   control,
   watch,
-  errors,
   index,
   remove,
   fieldData,
@@ -55,20 +54,10 @@ export default function FormExperience({
       <Controller
         name={`jobs.${index}.title`}
         control={control}
-        rules={{
-          required: true,
-        }}
         render={({ field: { onBlur, ...field } }) => (
           <BaseInput
             label="Fonction dans l'entreprise"
             autoFocus
-            isRequired
-            isInvalid={!!errors.jobs && !!errors.jobs[index]?.title}
-            errorMessage={
-              !!errors.jobs &&
-              !!errors.jobs[index]?.title &&
-              "Veuillez renseigner la fonction que vous occupiez dans cette entreprise."
-            }
             onBlur={(e) => {
               onBlur(e);
               updateResume(e.target.value, index, field);
@@ -81,20 +70,10 @@ export default function FormExperience({
       <Controller
         name={`jobs.${index}.company`}
         control={control}
-        rules={{
-          required: true,
-        }}
         render={({ field: { onBlur, ...field } }) => (
           <BaseInput
             label="Entreprise"
             className="my-8"
-            isRequired
-            isInvalid={!!errors.jobs && !!errors?.jobs[index]?.company}
-            errorMessage={
-              !!errors.jobs &&
-              !!errors?.jobs[index]?.company &&
-              "Veuillez renseigner le nom de l'entreprise."
-            }
             onBlur={(e) => {
               onBlur(e);
               updateResume(e.target.value, index, field);
@@ -148,9 +127,6 @@ export default function FormExperience({
           <Controller
             name={`jobs.${index}.fromMonth`}
             control={control}
-            rules={{
-              required: true,
-            }}
             render={({ field: { onBlur, ...field } }) => (
               <BaseSelect
                 variant="bordered"
@@ -159,13 +135,6 @@ export default function FormExperience({
                   !!watch(`jobs.${index}.fromMonth`)
                     ? [watch(`jobs.${index}.fromMonth`)]
                     : []
-                }
-                isRequired
-                isInvalid={!!errors.jobs && !!errors.jobs[index]?.fromMonth}
-                errorMessage={
-                  !!errors.jobs &&
-                  !!errors.jobs[index]?.fromMonth &&
-                  "Veuillez renseigner la date du début de votre collaboration."
                 }
                 onBlur={(e) => {
                   onBlur(e);
@@ -187,9 +156,6 @@ export default function FormExperience({
           <Controller
             name={`jobs.${index}.fromYear`}
             control={control}
-            rules={{
-              required: true,
-            }}
             render={({ field: { onBlur, ...field } }) => (
               <BaseSelect
                 variant="bordered"
@@ -198,13 +164,6 @@ export default function FormExperience({
                   !!watch(`jobs.${index}.fromYear`)
                     ? [watch(`jobs.${index}.fromYear`)]
                     : []
-                }
-                isRequired
-                isInvalid={!!errors.jobs && !!errors.jobs[index]?.fromYear}
-                errorMessage={
-                  !!errors.jobs &&
-                  !!errors.jobs[index]?.fromYear &&
-                  "Veuillez renseigner la date du début de votre collaboration."
                 }
                 onBlur={(e) => {
                   onBlur(e);
@@ -231,9 +190,6 @@ export default function FormExperience({
           <Controller
             name={`jobs.${index}.toMonth`}
             control={control}
-            rules={{
-              required: !watch(`jobs.${index}.current`),
-            }}
             render={({ field: { onBlur, ...field } }) => (
               <BaseSelect
                 variant="bordered"
@@ -244,18 +200,6 @@ export default function FormExperience({
                   !watch(`jobs.${index}.toMonth`)
                     ? []
                     : [watch(`jobs.${index}.toMonth`)]
-                }
-                isRequired={!watch(`jobs.${index}.current`)}
-                isInvalid={
-                  watch(`jobs.${index}.current`)
-                    ? false
-                    : !!errors.jobs && !!errors.jobs[index]?.toMonth
-                }
-                errorMessage={
-                  !watch(`jobs.${index}.current`) &&
-                  !!errors.jobs &&
-                  !!errors.jobs[index]?.toMonth &&
-                  "Veuillez renseigner la date de fin de votre collaboration si vous n'occupez plus ce poste."
                 }
                 onBlur={(e) => {
                   onBlur(e);
@@ -277,9 +221,6 @@ export default function FormExperience({
           <Controller
             name={`jobs.${index}.toYear`}
             control={control}
-            rules={{
-              required: !watch(`jobs.${index}.current`),
-            }}
             render={({ field: { onBlur, ...field } }) => (
               <BaseSelect
                 variant="bordered"
@@ -290,18 +231,6 @@ export default function FormExperience({
                   !watch(`jobs.${index}.toYear`)
                     ? []
                     : [watch(`jobs.${index}.toYear`)]
-                }
-                isRequired={!watch(`jobs.${index}.current`)}
-                isInvalid={
-                  watch(`jobs.${index}.current`)
-                    ? false
-                    : !!errors.jobs && !!errors.jobs[index]?.toYear
-                }
-                errorMessage={
-                  !watch(`jobs.${index}.current`) &&
-                  !!errors.jobs &&
-                  !!errors.jobs[index]?.toYear &&
-                  "Veuillez renseigner la date de fin de votre collaboration si vous n'occupez plus ce poste."
                 }
                 onBlur={(e) => {
                   onBlur(e);

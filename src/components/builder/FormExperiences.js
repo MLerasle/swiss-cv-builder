@@ -16,12 +16,9 @@ export function FormExperiences() {
   const { experiences, setData } = useFormStore();
   const [selectedKeys, setSelectedKeys] = useState(new Set(["0"]));
 
-  const {
-    control,
-    watch,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ defaultValues: { jobs: experiences } });
+  const { control, watch, handleSubmit } = useForm({
+    defaultValues: { jobs: experiences },
+  });
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -42,7 +39,7 @@ export function FormExperiences() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <h2 className="font-medium leading-6 text-slate-800">
+      <h2 className="font-medium leading-6 text-slate-800 mt-8">
         Commencez par le poste le plus récent et ne mentionnez que les
         expériences utiles au poste que vous visez.
       </h2>
@@ -64,7 +61,6 @@ export function FormExperiences() {
             <FormExperience
               control={control}
               watch={watch}
-              errors={errors}
               index={index}
               remove={remove}
               fieldData={field}

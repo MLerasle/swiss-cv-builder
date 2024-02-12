@@ -8,7 +8,6 @@ import { useHelp } from "@/hooks/useHelp";
 
 export default function FormReference({
   control,
-  errors,
   index,
   remove,
   fieldData,
@@ -50,20 +49,10 @@ export default function FormReference({
       <Controller
         name={`references.${index}.name`}
         control={control}
-        rules={{
-          required: true,
-        }}
         render={({ field: { onBlur, ...field } }) => (
           <BaseInput
             label="Nom"
             autoFocus
-            isRequired
-            isInvalid={!!errors.references && !!errors.references[index]?.name}
-            errorMessage={
-              !!errors.references &&
-              !!errors.references[index]?.name &&
-              "Veuillez renseigner le nom de la personne de référence."
-            }
             onFocus={() => {
               if (index === 0) displayHelp("reference");
             }}
@@ -82,21 +71,9 @@ export default function FormReference({
           <Controller
             name={`references.${index}.company`}
             control={control}
-            rules={{
-              required: true,
-            }}
             render={({ field: { onBlur, ...field } }) => (
               <BaseInput
                 label="Entreprise"
-                isRequired
-                isInvalid={
-                  !!errors.references && !!errors.references[index]?.company
-                }
-                errorMessage={
-                  !!errors.references &&
-                  !!errors.references[index]?.company &&
-                  "Veuillez renseigner l'entreprise' de la personne de référence."
-                }
                 onBlur={(e) => {
                   onBlur(e);
                   updateResume(e.target.value, index, field);
@@ -111,21 +88,9 @@ export default function FormReference({
           <Controller
             name={`references.${index}.position`}
             control={control}
-            rules={{
-              required: true,
-            }}
             render={({ field: { onBlur, ...field } }) => (
               <BaseInput
                 label="Fonction dans l'entreprise"
-                isRequired
-                isInvalid={
-                  !!errors.references && !!errors.references[index]?.position
-                }
-                errorMessage={
-                  !!errors.references &&
-                  !!errors.references[index]?.position &&
-                  "Veuillez renseigner le fonction occupée par la personne de référence."
-                }
                 onBlur={(e) => {
                   onBlur(e);
                   updateResume(e.target.value, index, field);
