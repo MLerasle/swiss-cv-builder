@@ -42,7 +42,7 @@ export function FormEducations() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <h2 className="font-medium leading-6 text-slate-800 mt-2">
+      <h2 className="font-medium leading-6 text-slate-800">
         Commencez par le dernier diplôme que vous avez obtenu.
       </h2>
       <Accordion

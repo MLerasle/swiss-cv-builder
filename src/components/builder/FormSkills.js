@@ -68,7 +68,7 @@ export function FormSkills() {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h2 className="font-medium leading-6 text-slate-800 mt-2">
+        <h2 className="font-medium leading-6 text-slate-800">
           Ajoutez une à une les compétences que vous souhaitez mettre en avant.
         </h2>
         {fields.map((field, index) => (

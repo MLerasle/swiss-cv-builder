@@ -70,7 +70,7 @@ export function FormLanguages() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <h2 className="font-medium leading-6 text-slate-800 mt-2">
+      <h2 className="font-medium leading-6 text-slate-800">
         Ajoutez une à une les langues que vous parlez et votre niveau de
         compétence pour chacune d'entre elles.
       </h2>

@@ -25,49 +25,42 @@ export default function RootLayout(props) {
   return (
     <>
       {isClient ? (
-        <div className="flex min-h-screen w-full">
-          {/* Sidebar */}
-          <div className="hidden md:flex-none md:inset-y-0 md:left-0 md:z-50 md:block md:w-56 md:bg-slate-800 md:pb-4">
-            <div className="flex flex-col gap-y-5">
-              <div className="flex-none h-16 sticky top-0 z-50 bg-slate-900 shadow flex items-center gap-x-3 px-6">
-                <Image
-                  src={Logo}
-                  alt="SwissCVBuilder logo"
-                  className="h-8 w-auto"
-                />
-                <div className="font-medium leading-8 text-slate-100">
-                  Swiss<span className="text-blue-700">CV</span>Builder
-                </div>
+        <div className="flex h-screen w-full">
+          {/* Sections Navigation */}
+          <div className="hidden md:flex flex-col gap-y-8 overflow-hidden md:z-50 md:w-56 md:bg-slate-800">
+            <div className="h-16 z-50 bg-slate-900 shadow flex items-center gap-x-3 px-6">
+              <Image
+                src={Logo}
+                alt="SwissCVBuilder logo"
+                className="h-8 w-auto"
+              />
+              <div className="font-medium leading-8 text-slate-100">
+                Swiss<span className="text-blue-700">CV</span>Builder
               </div>
+            </div>
+            <div className="flex-1 overflow-y-scroll">
               <SectionsNav steps={sections} currentStep={currentStep} />
             </div>
+            {/* <div className="bg-slate-900 h-16 z-50">Ajouter une section</div> */}
           </div>
-          {/* Main area */}
-          <div className="flex-1 flex flex-col">
-            <div className="flex-none h-16 sticky top-0 z-50 bg-white shadow px-8 flex items-center">
+
+          <div className="flex-1 flex flex-col overflow-hidden">
+            <div className="h-16 z-50 shadow flex items-center px-8">
               <h1 className="text-lg font-semibold tracking-wide text-slate-800">
                 {currentStep.name}
               </h1>
             </div>
-            <div className="flex flex-col xl:flex-row relative xl:min-h-screen w-full">
+
+            <div className="flex-1 flex flex-col xl:flex-row w-full overflow-hidden">
               {/* Form Panel */}
-              <div className="flex-1 w-full h-full z-10 overflow-auto xl:absolute xl:top-0 xl:left-0 xl:w-1/2">
-                <div className="px-6 sm:px-8">
-                  {/* <FormSteps pathname={pathname} /> */}
-                  <FormStepTitle
-                    id={currentStep.id}
-                    title={currentStep.title}
-                  />
-                  <section>{props.children}</section>
-                </div>
+              <div className="flex-1 p-6 sm:p-8 overflow-y-scroll">
+                {props.children}
               </div>
 
               {/* PDF Panel */}
-              <div className="hidden sm:block flex-1 w-full h-full overflow-auto bg-slate-300 xl:absolute xl:top-0 xl:right-0 xl:w-1/2">
-                <div className="flex flex-col flex-1 h-full">
-                  <div className="flex flex-col flex-1 justify-center items-center py-12">
-                    <ResumePreview />
-                  </div>
+              <div className="flex-1 hidden sm:block bg-slate-300 overflow-y-scroll">
+                <div className="flex flex-col flex-1 justify-center items-center py-8">
+                  <ResumePreview />
                 </div>
               </div>
             </div>
