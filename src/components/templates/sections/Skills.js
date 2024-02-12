@@ -6,8 +6,8 @@ export function Skills({ data, styles }) {
     <View style={styles.section}>
       <Text style={styles.sectionTitle}>Compétences</Text>
       <View id="skills" style={{ ...styles.sectionContent, ...styles.skills }}>
-        {data.skills.map((s) => (
-          <Text key={s.skill} style={styles.skill}>
+        {data.skills.map((s, index) => (
+          <Text key={index} style={styles.skill}>
             {s.skill}
           </Text>
         ))}

@@ -41,7 +41,11 @@ export function Hero() {
                 <div className="relative px-6 pt-8 sm:pt-16 md:pl-16 md:pr-0">
                   <div className="mx-auto max-w-2xl md:mx-0 md:max-w-none">
                     <div className="w-screen overflow-hidden rounded-tl-xl bg-slate-100">
-                      <Image src={heroImg} alt="CV suisse en ligne" />
+                      <Image
+                        src={heroImg}
+                        alt="CV suisse en ligne"
+                        priority={true}
+                      />
                     </div>
                   </div>
                   <div
