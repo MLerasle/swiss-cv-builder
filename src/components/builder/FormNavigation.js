@@ -2,11 +2,7 @@
 
 import Link from "next/link";
 import { Button } from "@nextui-org/react";
-import {
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  ArrowDownTrayIcon,
-} from "@heroicons/react/24/solid";
+import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 
 export function FormNavigation({ prevLink, nextLink }) {
   return (
@@ -25,7 +21,7 @@ export function FormNavigation({ prevLink, nextLink }) {
           </Button>
         </Link>
       )}
-      {nextLink ? (
+      {nextLink && (
         <Link className="flex-1" href={nextLink} passHref legacyBehavior>
           <Button
             color="primary"
@@ -36,19 +32,6 @@ export function FormNavigation({ prevLink, nextLink }) {
             }
           >
             Suivant
-          </Button>
-        </Link>
-      ) : (
-        <Link className="flex-1" href="/resume/preview" legacyBehavior>
-          <Button
-            color="primary"
-            className="w-full"
-            size="lg"
-            endContent={
-              <ArrowDownTrayIcon className="h-5 w-5" aria-hidden="true" />
-            }
-          >
-            Télécharger mon CV
           </Button>
         </Link>
       )}

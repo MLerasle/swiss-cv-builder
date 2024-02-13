@@ -136,19 +136,11 @@ export function Header() {
             </div>
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">
-            {pathname.startsWith("/resume/builder") ? (
-              <></>
-            ) : pathname.startsWith("/resume/preview") ? (
-              <Link href="/onboard">
-                <Button color="primary">Retour à l'éditeur</Button>
-              </Link>
-            ) : (
-              <Link href="/onboard">
-                <Button color="primary" radius="full">
-                  Rédiger <span className="hidden lg:inline">mon </span>CV
-                </Button>
-              </Link>
-            )}
+            <Link href="/onboard">
+              <Button color="primary" radius="full">
+                Rédiger <span className="hidden lg:inline">mon </span>CV
+              </Button>
+            </Link>
             {pathname === "" && (
               <div className="-mr-1 md:hidden">
                 <MobileNavigation />

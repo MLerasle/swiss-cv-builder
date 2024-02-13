@@ -3,6 +3,8 @@
 import { useEffect, useState, createElement } from "react";
 import { pdfjs, Document, Page } from "react-pdf";
 import { pdf } from "@react-pdf/renderer";
+import { Button } from "@nextui-org/react";
+import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
 import "react-pdf/dist/Page/TextLayer.css";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import src from "pdfjs-dist/build/pdf.worker.js";
@@ -65,6 +67,26 @@ export function ResumePreview() {
 
   return (
     <>
+      <div className="mb-4">
+        <a
+          className="flex-1"
+          href={pdfUrl}
+          target="_blank"
+          download="cv-suisse.pdf"
+          passHref
+          legacyBehavior
+        >
+          <Button
+            color="primary"
+            size="sm"
+            startContent={
+              <ArrowDownTrayIcon className="h-5 w-5" aria-hidden="true" />
+            }
+          >
+            Télécharger mon CV
+          </Button>
+        </a>
+      </div>
       <Document file={pdfUrl} onLoadSuccess={onDocumentLoad}>
         <Page key={currentPage} pageNumber={currentPage} />
       </Document>
