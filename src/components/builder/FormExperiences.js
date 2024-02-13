@@ -1,22 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { Button, Accordion, AccordionItem } from "@nextui-org/react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { PlusIcon } from "@heroicons/react/24/solid";
 
 import FormExperience from "@/components/builder/FormExperience";
-import FormActions from "@/components/builder/FormActions";
 import useFormStore, { experienceData } from "@/store/useFormStore";
 import { scrollToElement } from "@/lib/scroll";
 
 export function FormExperiences() {
-  const router = useRouter();
   const { experiences, setData } = useFormStore();
   const [selectedKeys, setSelectedKeys] = useState(new Set(["0"]));
 
-  const { control, watch, handleSubmit } = useForm({
+  const { control, watch } = useForm({
     defaultValues: { jobs: experiences },
   });
 
@@ -24,10 +21,6 @@ export function FormExperiences() {
     control,
     name: "jobs",
   });
-
-  const onSubmit = () => {
-    router.push("/resume/builder/skills");
-  };
 
   const onAddJobExperience = () => {
     append(experienceData);
@@ -38,8 +31,8 @@ export function FormExperiences() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <h2 className="font-medium leading-6 text-slate-800 mt-8">
+    <form className="my-8">
+      <h2 className="font-medium leading-6 text-slate-800">
         Commencez par le poste le plus récent et ne mentionnez que les
         expériences utiles au poste que vous visez.
       </h2>
@@ -81,8 +74,6 @@ export function FormExperiences() {
           Ajouter une expérience professionnelle
         </Button>
       </div>
-
-      <FormActions prevLink="/resume/builder/personal-infos" />
     </form>
   );
 }

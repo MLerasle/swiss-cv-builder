@@ -1,12 +1,10 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { useRouter } from "next/navigation";
+import { useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { SelectItem, Avatar, Button } from "@nextui-org/react";
-import { UserCircleIcon } from "@heroicons/react/24/solid";
+import { SelectItem, Avatar } from "@nextui-org/react";
+// import { UserCircleIcon } from "@heroicons/react/24/solid";
 
-import FormActions from "@/components/builder/FormActions";
 import HelpCard from "@/components/builder/HelpCard";
 import { BaseInputPhone } from "@/components/UI/BaseInputPhone";
 import { BaseInput } from "@/components/UI/BaseInput";
@@ -16,41 +14,38 @@ import { workPermits } from "@/lib/select-options";
 import { useHelp } from "@/hooks/useHelp";
 
 export function FormPersonalInfos() {
-  const router = useRouter();
-  const hiddenInputRef = useRef();
+  // const hiddenInputRef = useRef();
   const ageInputRef = useRef();
-  const [previewImage, setPreviewImage] = useState(null);
+  // const [previewImage, setPreviewImage] = useState(null);
   const { personalData, setData } = useFormStore();
   const { helpData, displayHelp, hideHelp, isHelpDisplayed } = useHelp();
-  const { control, register, getValues, watch, handleSubmit } = useForm({
+  const { control, register, getValues, watch } = useForm({
     defaultValues: personalData,
   });
 
-  const { ref: registerRef, ...rest } = register("profilePicture");
+  // const { ref: registerRef, ...rest } = register("profilePicture");
 
-  const handleUploadedFile = (event) => {
-    const file = event.target.files[0];
-    const urlImage = URL.createObjectURL(file);
-    setPreviewImage(urlImage);
-  };
+  // const handleUploadedFile = (event) => {
+  //   const file = event.target.files[0];
+  //   const urlImage = URL.createObjectURL(file);
+  //   setPreviewImage(urlImage);
+  // };
 
-  const onUpload = () => {
-    hiddenInputRef.current.click();
-  };
+  // const onUpload = () => {
+  //   hiddenInputRef.current.click();
+  // };
 
-  const onSubmit = async (data) => {
-    // const formData = new FormData();
-    // formData.set("picture", data.profilePicture[0]);
-    // const response = await fetch("/api/picture", {
-    //   method: "post",
-    //   body: formData,
-    // });
-    setData({ step: 1, data });
-    router.push("/resume/builder/experiences");
-  };
+  // const onSubmit = async (data) => {
+  //   const formData = new FormData();
+  //   formData.set("picture", data.profilePicture[0]);
+  //   const response = await fetch("/api/picture", {
+  //     method: "post",
+  //     body: formData,
+  //   });
+  // };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate>
+    <form>
       {/* <input
       type="file"
       name="profilePicture"
@@ -297,7 +292,7 @@ export function FormPersonalInfos() {
           />
         </div>
 
-        <div className="sm:col-span-3 mt-8 sm:mt-1">
+        <div className="sm:col-span-3 my-8 sm:mt-1">
           <Controller
             name="country"
             control={control}
@@ -317,8 +312,6 @@ export function FormPersonalInfos() {
           />
         </div>
       </div>
-
-      <FormActions />
 
       {isHelpDisplayed && <HelpCard content={helpData} onClose={hideHelp} />}
     </form>

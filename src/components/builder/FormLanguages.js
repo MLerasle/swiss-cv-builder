@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { Button, SelectItem } from "@nextui-org/react";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
@@ -8,13 +7,11 @@ import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { BaseInput } from "@/components/UI/BaseInput";
 import { BaseSelect } from "@/components/UI/BaseSelect";
 import HelpCard from "@/components/builder/HelpCard";
-import FormActions from "@/components/builder/FormActions";
 import useFormStore, { languageData } from "@/store/useFormStore";
 import { languageLevels } from "@/lib/select-options";
 import { useHelp } from "@/hooks/useHelp";
 
 export function FormLanguages() {
-  const router = useRouter();
   const { languages, setData } = useFormStore();
 
   const { control, watch, handleSubmit } = useForm({
@@ -25,11 +22,6 @@ export function FormLanguages() {
     control,
     name: "languages",
   });
-
-  const onSubmit = (data) => {
-    setData({ step: 4, data: data.languages });
-    router.push("/resume/builder/education");
-  };
 
   const onAddLanguage = () => {
     append({ language: "", level: "" });
@@ -55,6 +47,7 @@ export function FormLanguages() {
       updatedLanguages.push(updatedData);
     }
 
+    updatedLanguages = updatedLanguages.filter((l) => l.language !== "");
     setData({ step: 4, data: updatedLanguages });
   };
 
@@ -66,8 +59,8 @@ export function FormLanguages() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <h2 className="font-medium leading-6 text-slate-800 mt-8">
+    <form className="my-8">
+      <h2 className="font-medium leading-6 text-slate-800">
         Ajoutez une à une les langues que vous parlez et votre niveau de
         compétence pour chacune d'entre elles.
       </h2>
@@ -154,8 +147,6 @@ export function FormLanguages() {
           Ajouter une langue
         </Button>
       </div>
-
-      <FormActions prevLink="/resume/builder/skills" />
 
       {isHelpDisplayed && <HelpCard content={helpData} onClose={hideHelp} />}
     </form>

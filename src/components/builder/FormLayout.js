@@ -5,7 +5,6 @@ import { useState } from "react";
 import { BaseColorPicker } from "@/components/UI/BaseColorPicker";
 import { BaseFontPicker } from "@/components/UI/BaseFontPicker";
 import { BaseDragAndDrop } from "@/components/UI/BaseDragAndDrop";
-import FormActions from "@/components/builder/FormActions";
 import useFormStore from "@/store/useFormStore";
 import { useResume } from "@/hooks/useResume";
 
@@ -30,7 +29,7 @@ export function FormLayout() {
   };
 
   return (
-    <form>
+    <div className="my-8">
       <section className="my-8">
         <h3 className="block text-lg font-semibold leading-6 text-gray-900">
           Couleurs
@@ -75,10 +74,6 @@ export function FormLayout() {
           </div>
         </section>
       )}
-
-      <div className="mt-16">
-        <FormActions prevLink="/resume/builder/summary" lastStep />
-      </div>
-    </form>
+    </div>
   );
 }

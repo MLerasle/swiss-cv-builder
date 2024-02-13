@@ -1,22 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { Button, Accordion, AccordionItem } from "@nextui-org/react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { PlusIcon } from "@heroicons/react/24/solid";
 
 import FormCertification from "@/components/builder/FormCertification";
-import FormActions from "@/components/builder/FormActions";
 import useFormStore, { certificationData } from "@/store/useFormStore";
 import { scrollToElement } from "@/lib/scroll";
 
 export function FormCertifications() {
-  const router = useRouter();
   const { certifications, setData } = useFormStore();
   const [selectedKeys, setSelectedKeys] = useState(new Set(["0"]));
 
-  const { control, watch, handleSubmit } = useForm({
+  const { control, watch } = useForm({
     defaultValues: { certifications },
   });
 
@@ -24,11 +21,6 @@ export function FormCertifications() {
     control,
     name: "certifications",
   });
-
-  const onSubmit = (data) => {
-    setData({ step: 6, data: data.certifications });
-    router.push("/resume/builder/references");
-  };
 
   const onAddCertification = () => {
     append(certificationData);
@@ -39,7 +31,7 @@ export function FormCertifications() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate>
+    <form className="my-8">
       <Accordion
         selectedKeys={selectedKeys}
         onSelectionChange={setSelectedKeys}
@@ -48,7 +40,7 @@ export function FormCertifications() {
           title: "font-medium",
           trigger: "data-[focus-visible=true]:outline-transparent",
         }}
-        className="my-8 px-0 gap-8"
+        className="px-0 gap-8"
       >
         {fields.map((field, index) => (
           <AccordionItem
@@ -68,7 +60,7 @@ export function FormCertifications() {
         ))}
       </Accordion>
 
-      <div className="py-3 border-y-1 border-slate-400 border-dashed">
+      <div className="mt-8 py-3 border-y-1 border-slate-400 border-dashed">
         <Button
           color="primary"
           variant="light"
@@ -78,8 +70,6 @@ export function FormCertifications() {
           Ajouter une autre certification
         </Button>
       </div>
-
-      <FormActions prevLink="/resume/builder/education" />
     </form>
   );
 }

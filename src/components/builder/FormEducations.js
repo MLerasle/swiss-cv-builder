@@ -1,22 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { Button, Accordion, AccordionItem } from "@nextui-org/react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { PlusIcon } from "@heroicons/react/24/solid";
 
 import FormEducation from "@/components/builder/FormEducation";
-import FormActions from "@/components/builder/FormActions";
 import useFormStore, { trainingData } from "@/store/useFormStore";
 import { scrollToElement } from "@/lib/scroll";
 
 export function FormEducations() {
-  const router = useRouter();
   const { education, setData } = useFormStore();
   const [selectedKeys, setSelectedKeys] = useState(new Set(["0"]));
 
-  const { control, watch, handleSubmit } = useForm({
+  const { control, watch } = useForm({
     defaultValues: { education },
   });
 
@@ -24,10 +21,6 @@ export function FormEducations() {
     control,
     name: "education",
   });
-
-  const onSubmit = () => {
-    router.push("/resume/builder/certifications");
-  };
 
   const onAddEducation = () => {
     append(trainingData);
@@ -38,8 +31,8 @@ export function FormEducations() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <h2 className="font-medium leading-6 text-slate-800 mt-8">
+    <form className="my-8">
+      <h2 className="font-medium leading-6 text-slate-800">
         Commencez par le dernier diplôme que vous avez obtenu.
       </h2>
       <Accordion
@@ -80,8 +73,6 @@ export function FormEducations() {
           Ajouter une formation
         </Button>
       </div>
-
-      <FormActions prevLink="/resume/builder/languages" />
     </form>
   );
 }

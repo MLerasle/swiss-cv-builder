@@ -1,22 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { Button, Accordion, AccordionItem } from "@nextui-org/react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { PlusIcon } from "@heroicons/react/24/solid";
 
 import FormReference from "@/components/builder/FormReference";
-import FormActions from "@/components/builder/FormActions";
 import useFormStore, { referenceData } from "@/store/useFormStore";
 import { scrollToElement } from "@/lib/scroll";
 
 export function FormReferences() {
-  const router = useRouter();
   const { references, setData } = useFormStore();
   const [selectedKeys, setSelectedKeys] = useState(new Set(["0"]));
 
-  const { control, handleSubmit } = useForm({
+  const { control } = useForm({
     defaultValues: { references },
   });
 
@@ -24,11 +21,6 @@ export function FormReferences() {
     control,
     name: "references",
   });
-
-  const onSubmit = (data) => {
-    setData({ step: 7, data: data.references });
-    router.push("/resume/builder/projects");
-  };
 
   const onAddReference = () => {
     append(referenceData);
@@ -39,7 +31,7 @@ export function FormReferences() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate>
+    <form className="my-8">
       <Accordion
         selectedKeys={selectedKeys}
         onSelectionChange={setSelectedKeys}
@@ -48,7 +40,7 @@ export function FormReferences() {
           title: "font-medium",
           trigger: "data-[focus-visible=true]:outline-transparent ",
         }}
-        className="my-8 px-0 gap-8"
+        className="px-0 gap-8"
       >
         {fields.map((field, index) => (
           <AccordionItem
@@ -68,7 +60,7 @@ export function FormReferences() {
         ))}
       </Accordion>
 
-      <div className="py-3 border-y-1 border-slate-400 border-dashed">
+      <div className="my-8 py-3 border-y-1 border-slate-400 border-dashed">
         <Button
           color="primary"
           variant="light"
@@ -78,8 +70,6 @@ export function FormReferences() {
           Ajouter une référence
         </Button>
       </div>
-
-      <FormActions prevLink="/resume/builder/certifications" />
     </form>
   );
 }

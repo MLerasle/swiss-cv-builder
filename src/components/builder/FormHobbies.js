@@ -1,21 +1,18 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { Button } from "@nextui-org/react";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
 
 import { BaseInput } from "@/components/UI/BaseInput";
 import HelpCard from "@/components/builder/HelpCard";
-import FormActions from "@/components/builder/FormActions";
 import useFormStore, { hobbyData } from "@/store/useFormStore";
 import { useHelp } from "@/hooks/useHelp";
 
 export function FormHobbies() {
-  const router = useRouter();
   const { hobbies, setData } = useFormStore();
 
-  const { control, handleSubmit } = useForm({
+  const { control } = useForm({
     defaultValues: { hobbies },
   });
 
@@ -23,12 +20,6 @@ export function FormHobbies() {
     control,
     name: "hobbies",
   });
-
-  const onSubmit = (data) => {
-    data.hobbies = data.hobbies.filter((h) => h.hobby !== "");
-    setData({ step: 9, data: data.hobbies });
-    router.push("/resume/builder/summary");
-  };
 
   const onAddHobby = (e) => {
     if (e.key === "Enter") e.preventDefault();
@@ -57,19 +48,19 @@ export function FormHobbies() {
       updatedHobbies.push(updatedData);
     }
 
+    updatedHobbies = updatedHobbies.filter((h) => h.hobby !== "");
     setData({ step: 9, data: updatedHobbies });
   };
 
   const removeFromResume = (index) => {
     remove(index);
     hobbies.splice(index, 1);
-
     setData({ step: 4, data: hobbies });
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form>
         {fields.map((field, index) => (
           <div key={field.id} className="flex items-center mt-8">
             <Controller
@@ -108,7 +99,7 @@ export function FormHobbies() {
           </div>
         ))}
 
-        <div className="mt-8 py-3 border-y-1 border-slate-400 border-dashed">
+        <div className="my-8 py-3 border-y-1 border-slate-400 border-dashed">
           <Button
             color="primary"
             variant="light"
@@ -119,8 +110,6 @@ export function FormHobbies() {
             Ajouter un hobby
           </Button>
         </div>
-
-        <FormActions prevLink="/resume/builder/projects" />
       </form>
 
       {isHelpDisplayed && <HelpCard content={helpData} onClose={hideHelp} />}

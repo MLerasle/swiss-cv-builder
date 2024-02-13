@@ -5,7 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 import { SectionsNav } from "@/components/builder/SectionsNav";
-import FormStepTitle from "@/components/builder/FormStepTitle";
+import { FormNavigation } from "@/components/builder/FormNavigation";
 import { ResumePreview } from "@/components/builder/ResumePreview";
 import { BaseSpinner } from "@/components/UI/BaseSpinner";
 import { useResume } from "@/hooks/useResume";
@@ -16,6 +16,8 @@ export default function RootLayout(props) {
   const pathname = usePathname();
   const { sections } = useResume();
   const currentStep = sections.find((s) => s.href === pathname);
+  const prevLink = sections.find((s) => s.id === currentStep.id - 1)?.href;
+  const nextLink = sections.find((s) => s.id === currentStep.id + 1)?.href;
 
   // Fix hydration issue with zustand and Next.js
   useEffect(() => {
@@ -53,8 +55,11 @@ export default function RootLayout(props) {
 
             <div className="flex-1 flex flex-col xl:flex-row w-full overflow-hidden">
               {/* Form Panel */}
-              <div className="flex-1 px-6 sm:px-8 overflow-y-scroll">
-                {props.children}
+              <div className="flex-1 flex flex-col overflow-hidden">
+                <div className="flex-1 px-6 sm:px-8 overflow-y-scroll">
+                  {props.children}
+                </div>
+                <FormNavigation prevLink={prevLink} nextLink={nextLink} />
               </div>
 
               {/* PDF Panel */}

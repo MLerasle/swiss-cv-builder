@@ -1,31 +1,24 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useForm, Controller } from "react-hook-form";
 
 import { BaseEditor } from "@/components/UI/BaseEditor";
-import FormActions from "@/components/builder/FormActions";
 import HelpCard from "@/components/builder/HelpCard";
 import useFormStore from "@/store/useFormStore";
 import { useHelp } from "@/hooks/useHelp";
 
 export function FormSummary() {
-  const router = useRouter();
   const { summary, setData } = useFormStore();
   const { helpData, displayHelp, hideHelp, isHelpDisplayed } = useHelp();
 
-  const { control, handleSubmit } = useForm({ defaultValues: { summary } });
+  const { control } = useForm({ defaultValues: { summary } });
 
   const updateResume = (summary) => {
     setData({ step: 10, data: summary });
   };
 
-  const onSubmit = () => {
-    router.push("/resume/builder/resume-layout");
-  };
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form>
       <h2 className="font-medium leading-6 text-slate-800 mt-8">
         Expliquez brièvement au recruteur (3 à 5 phrases) pourquoi vous êtes le
         meilleur candidat pour le poste. Résumez les points clés de votre
@@ -53,8 +46,6 @@ export function FormSummary() {
           )}
         />
       </div>
-
-      <FormActions prevLink="/resume/builder/hobbies" />
 
       {isHelpDisplayed && <HelpCard content={helpData} onClose={hideHelp} />}
     </form>

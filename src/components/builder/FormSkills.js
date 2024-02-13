@@ -1,32 +1,21 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { Button } from "@nextui-org/react";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
 
 import { BaseInput } from "@/components/UI/BaseInput";
 import HelpCard from "@/components/builder/HelpCard";
-import FormActions from "@/components/builder/FormActions";
 import useFormStore, { skillData } from "@/store/useFormStore";
 import { useHelp } from "@/hooks/useHelp";
 
 export function FormSkills() {
-  const router = useRouter();
   const { skills, setData } = useFormStore();
-
-  const { control, handleSubmit } = useForm({ defaultValues: { skills } });
-
+  const { control } = useForm({ defaultValues: { skills } });
   const { fields, append, remove } = useFieldArray({
     control,
     name: "skills",
   });
-
-  const onSubmit = (data) => {
-    data.skills = data.skills.filter((s) => s.skill !== "");
-    setData({ step: 3, data: data.skills });
-    router.push("/resume/builder/languages");
-  };
 
   const onAddSkill = (e) => {
     if (e.key === "Enter") e.preventDefault();
@@ -55,20 +44,20 @@ export function FormSkills() {
       updatedSkills.push(updatedData);
     }
 
+    updatedSkills = updatedSkills.filter((s) => s.skill !== "");
     setData({ step: 3, data: updatedSkills });
   };
 
   const removeFromResume = (index) => {
     remove(index);
     skills.splice(index, 1);
-
     setData({ step: 3, data: skills });
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <h2 className="font-medium leading-6 text-slate-800 mt-8">
+      <form className="my-8">
+        <h2 className="font-medium leading-6 text-slate-800">
           Ajoutez une à une les compétences que vous souhaitez mettre en avant.
         </h2>
         {fields.map((field, index) => (
@@ -120,8 +109,6 @@ export function FormSkills() {
             Ajouter une compétence
           </Button>
         </div>
-
-        <FormActions prevLink="/resume/builder/experiences" />
       </form>
 
       {isHelpDisplayed && <HelpCard content={helpData} onClose={hideHelp} />}
