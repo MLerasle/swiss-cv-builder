@@ -26,21 +26,22 @@ export const BaseInputPhone = ({ value, onChange, ...restProps }) => {
       onChange={handlePhoneValueChange}
       ref={inputRef}
       startContent={
-        <div className="flex items-center">
-          <CountrySelector
-            selectedCountry={country}
-            onSelect={(country) => setCountry(country.iso2)}
-            buttonStyle={{
-              backgroundColor: "transparent",
-              border: "none",
-            }}
-            dropdownStyleProps={{
-              style: {
-                zIndex: 50,
-              },
-            }}
-          />
-        </div>
+        <CountrySelector
+          selectedCountry={country}
+          onSelect={(country) => setCountry(country.iso2)}
+          buttonStyle={{
+            backgroundColor: "transparent",
+            border: "none",
+          }}
+          buttonContentWrapperStyle={{
+            marginTop: "16px",
+          }}
+          dropdownStyleProps={{
+            style: {
+              zIndex: 50,
+            },
+          }}
+        />
       }
       {...restProps}
     />
