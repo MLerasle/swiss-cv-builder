@@ -6,12 +6,9 @@ import {
   BriefcaseIcon,
   ChatBubbleLeftIcon,
   IdentificationIcon,
-  InboxStackIcon,
   LanguageIcon,
   PaintBrushIcon,
-  PhotoIcon,
-  TrophyIcon,
-  UserGroupIcon,
+  SquaresPlusIcon,
 } from "@heroicons/react/24/outline";
 
 import Template1 from "@/images/templates/template1.png";
@@ -27,6 +24,8 @@ import { Projects } from "@/components/templates/sections/Projects";
 import { Languages } from "@/components/templates/sections/Languages";
 import { References } from "@/components/templates/sections/References";
 import { Hobbies } from "@/components/templates/sections/Hobbies";
+import { Volunteers } from "@/components/templates/sections/Volunteers";
+import { Publications } from "@/components/templates/sections/Publications";
 
 const fonts = [
   "Arimo",
@@ -94,55 +93,34 @@ const sections = [
   },
   {
     id: 4,
-    key: "languages",
-    name: "Langues",
-    href: "/resume/builder/languages",
-    icon: LanguageIcon,
-  },
-  {
-    id: 5,
     key: "education",
     name: "Formation",
     href: "/resume/builder/education",
     icon: AcademicCapIcon,
   },
   {
+    id: 5,
+    key: "languages",
+    name: "Langues",
+    href: "/resume/builder/languages",
+    icon: LanguageIcon,
+  },
+  {
     id: 6,
-    key: "certifications",
-    name: "Certifications",
-    href: "/resume/builder/certifications",
-    icon: TrophyIcon,
-  },
-  {
-    id: 7,
-    key: "references",
-    name: "Références",
-    href: "/resume/builder/references",
-    icon: UserGroupIcon,
-  },
-  {
-    id: 8,
-    key: "projects",
-    name: "Projets Personnels",
-    href: "/resume/builder/projects",
-    icon: InboxStackIcon,
-  },
-  {
-    id: 9,
-    key: "hobbies",
-    name: "Loisirs",
-    href: "/resume/builder/hobbies",
-    icon: PhotoIcon,
-  },
-  {
-    id: 10,
     key: "summary",
     name: "Résumé",
     href: "/resume/builder/summary",
     icon: ChatBubbleLeftIcon,
   },
   {
-    id: 11,
+    id: 7,
+    key: "options",
+    name: "Autres sections",
+    href: "/resume/builder/options",
+    icon: SquaresPlusIcon,
+  },
+  {
+    id: 8,
     key: "layout",
     name: "Personnalisation",
     href: "/resume/builder/resume-layout",
@@ -159,6 +137,8 @@ const pdfSections = [
   { key: "languages", template: Languages },
   { key: "references", template: References },
   { key: "hobbies", template: Hobbies },
+  { key: "publications", template: Publications },
+  { key: "volunteers", template: Volunteers },
 ];
 
 // Get default left and right sections for a given template
@@ -175,6 +155,8 @@ const getTemplateSections = (templateName) => {
         "languages",
         "references",
         "hobbies",
+        "publications",
+        "volunteers",
       ];
       break;
     case "template2":
@@ -184,6 +166,8 @@ const getTemplateSections = (templateName) => {
         "projects",
         "languages",
         "references",
+        "publications",
+        "volunteers",
         "hobbies",
       ];
       break;
@@ -197,6 +181,8 @@ const getTemplateSections = (templateName) => {
         "languages",
         "references",
         "hobbies",
+        "publications",
+        "volunteers",
       ];
 
       break;
@@ -207,6 +193,8 @@ const getTemplateSections = (templateName) => {
         "languages",
         "references",
         "hobbies",
+        "publications",
+        "volunteers",
       ];
       tmplSections.right = ["experiences", "education", "projects"];
       break;

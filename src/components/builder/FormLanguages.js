@@ -48,14 +48,14 @@ export function FormLanguages() {
     }
 
     updatedLanguages = updatedLanguages.filter((l) => l.language !== "");
-    setData({ step: 4, data: updatedLanguages });
+    setData({ step: 5, data: updatedLanguages });
   };
 
   const removeFromResume = (index) => {
     remove(index);
     languages.splice(index, 1);
 
-    setData({ step: 4, data: languages });
+    setData({ step: 5, data: languages });
   };
 
   return (

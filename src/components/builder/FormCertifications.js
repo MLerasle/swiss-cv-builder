@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button, Accordion, AccordionItem } from "@nextui-org/react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { PlusIcon } from "@heroicons/react/24/solid";
+import { TrophyIcon } from "@heroicons/react/24/outline";
 
 import FormCertification from "@/components/builder/FormCertification";
 import useFormStore, { certificationData } from "@/store/useFormStore";
@@ -31,45 +32,51 @@ export function FormCertifications() {
   };
 
   return (
-    <form className="my-8">
-      <Accordion
-        selectedKeys={selectedKeys}
-        onSelectionChange={setSelectedKeys}
-        selectionBehavior="replace"
-        itemClasses={{
-          title: "font-medium",
-          trigger: "data-[focus-visible=true]:outline-transparent",
-        }}
-        className="px-0 gap-8"
-      >
-        {fields.map((field, index) => (
-          <AccordionItem
-            key={index}
-            title={field.title || "Nouvelle certification"}
-          >
-            <FormCertification
-              control={control}
-              watch={watch}
-              index={index}
-              remove={remove}
-              fieldData={field}
-              certifications={certifications}
-              setData={setData}
-            />
-          </AccordionItem>
-        ))}
-      </Accordion>
-
-      <div className="mt-8 py-3 border-y-1 border-slate-400 border-dashed">
-        <Button
-          color="primary"
-          variant="light"
-          onPress={onAddCertification}
-          startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
+    <>
+      <h2 className="mt-16 text-lg font-medium tracking-wide text-slate-800 flex items-center gap-x-2">
+        <TrophyIcon className="h-5 w-5 text-blue-600" />
+        Certifications
+      </h2>
+      <form className="my-8">
+        <Accordion
+          selectedKeys={selectedKeys}
+          onSelectionChange={setSelectedKeys}
+          selectionBehavior="replace"
+          itemClasses={{
+            title: "font-medium",
+            trigger: "data-[focus-visible=true]:outline-transparent",
+          }}
+          className="px-0 gap-8"
         >
-          Ajouter une autre certification
-        </Button>
-      </div>
-    </form>
+          {fields.map((field, index) => (
+            <AccordionItem
+              key={index}
+              title={field.title || "Nouvelle certification"}
+            >
+              <FormCertification
+                control={control}
+                watch={watch}
+                index={index}
+                remove={remove}
+                fieldData={field}
+                certifications={certifications}
+                setData={setData}
+              />
+            </AccordionItem>
+          ))}
+        </Accordion>
+
+        <div className="mt-8 py-3 border-y-1 border-slate-400 border-dashed">
+          <Button
+            color="primary"
+            variant="light"
+            onPress={onAddCertification}
+            startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
+          >
+            Ajouter une certification
+          </Button>
+        </div>
+      </form>
+    </>
   );
 }

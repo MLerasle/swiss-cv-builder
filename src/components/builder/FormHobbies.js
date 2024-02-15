@@ -3,6 +3,7 @@
 import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { Button } from "@nextui-org/react";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
+import { PhotoIcon } from "@heroicons/react/24/outline";
 
 import { BaseInput } from "@/components/UI/BaseInput";
 import HelpCard from "@/components/builder/HelpCard";
@@ -60,6 +61,11 @@ export function FormHobbies() {
 
   return (
     <>
+      <h2 className="mt-16 text-lg font-medium tracking-wide text-slate-800 flex items-center gap-x-2">
+        <PhotoIcon className="h-5 w-5 text-blue-600" />
+        Loisirs
+      </h2>
+
       <form>
         {fields.map((field, index) => (
           <div key={field.id} className="flex items-center mt-8">

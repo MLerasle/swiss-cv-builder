@@ -4,27 +4,27 @@ import { useState } from "react";
 import { Button, Accordion, AccordionItem } from "@nextui-org/react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { PlusIcon } from "@heroicons/react/24/solid";
-import { UserGroupIcon } from "@heroicons/react/24/outline";
+import { HeartIcon } from "@heroicons/react/24/outline";
 
-import FormReference from "@/components/builder/FormReference";
-import useFormStore, { referenceData } from "@/store/useFormStore";
+import FormVolunteer from "@/components/builder/FormVolunteer";
+import useFormStore, { volunteerData } from "@/store/useFormStore";
 import { scrollToElement } from "@/lib/scroll";
 
-export function FormReferences() {
-  const { references, setData } = useFormStore();
+export function FormVolunteers() {
+  const { volunteers, setData } = useFormStore();
   const [selectedKeys, setSelectedKeys] = useState(new Set(["0"]));
 
-  const { control } = useForm({
-    defaultValues: { references },
+  const { control, watch } = useForm({
+    defaultValues: { volunteers },
   });
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "references",
+    name: "volunteers",
   });
 
-  const onAddReference = () => {
-    append(referenceData);
+  const onAddVolunteer = () => {
+    append(volunteerData);
     scrollToElement("body");
     setTimeout(() => {
       setSelectedKeys(new Set([fields.length.toString()]));
@@ -33,11 +33,10 @@ export function FormReferences() {
 
   return (
     <>
-      <h2 className="mt-8 text-lg font-medium tracking-wide text-slate-800 flex items-center gap-x-2">
-        <UserGroupIcon className="h-5 w-5 text-blue-600" />
-        Références
+      <h2 className="mt-16 text-lg font-medium tracking-wide text-slate-800 flex items-center gap-x-2">
+        <HeartIcon className="h-5 w-5 text-blue-600" />
+        Bénévolat
       </h2>
-
       <form className="my-8">
         <Accordion
           selectedKeys={selectedKeys}
@@ -45,22 +44,22 @@ export function FormReferences() {
           selectionBehavior="replace"
           itemClasses={{
             title: "font-medium",
-            trigger: "data-[focus-visible=true]:outline-transparent ",
+            trigger: "data-[focus-visible=true]:outline-transparent",
           }}
           className="px-0 gap-8"
         >
           {fields.map((field, index) => (
             <AccordionItem
               key={index}
-              title={field.name || "Nouvelle référence"}
-              className="reference"
+              title={field.title || "Nouveau bénévolat"}
             >
-              <FormReference
+              <FormVolunteer
                 control={control}
+                watch={watch}
                 index={index}
                 remove={remove}
                 fieldData={field}
-                references={references}
+                volunteers={volunteers}
                 setData={setData}
               />
             </AccordionItem>
@@ -71,10 +70,10 @@ export function FormReferences() {
           <Button
             color="primary"
             variant="light"
-            onPress={onAddReference}
+            onPress={onAddVolunteer}
             startContent={<PlusIcon className="h-4 w-4" aria-hidden="true" />}
           >
-            Ajouter une référence
+            Ajouter une expérience de bénévolat
           </Button>
         </div>
       </form>

@@ -77,6 +77,26 @@ export const projectData = {
 
 export const hobbyData = { hobby: "" };
 
+export const publicationData = {
+  title: "",
+  editor: "",
+  month: "",
+  year: "",
+  link: "",
+  description: "",
+};
+
+export const volunteerData = {
+  organisation: "",
+  role: "",
+  fromMonth: "",
+  fromYear: "",
+  toMonth: "",
+  toYear: "",
+  current: false,
+  description: "",
+};
+
 const steps = {
   1: "personalData",
   2: "experiences",
@@ -88,6 +108,8 @@ const steps = {
   8: "projects",
   9: "hobbies",
   10: "summary",
+  11: "publications",
+  12: "volunteers",
 };
 
 const useFormStore = create(
@@ -104,6 +126,8 @@ const useFormStore = create(
       projects: [],
       hobbies: [],
       summary: "",
+      publications: [],
+      volunteers: [],
       setTemplate: (template) =>
         set((state) => ({
           ...state,

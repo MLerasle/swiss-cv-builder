@@ -38,14 +38,14 @@ export default function FormEducation({
       updatedEducation.push(updatedData);
     }
 
-    setData({ step: 5, data: updatedEducation });
+    setData({ step: 4, data: updatedEducation });
   };
 
   const removeFromResume = (index) => {
     remove(index);
     education.splice(index, 1);
 
-    setData({ step: 5, data: education });
+    setData({ step: 4, data: education });
   };
 
   return (
