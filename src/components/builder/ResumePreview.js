@@ -73,8 +73,6 @@ export function ResumePreview() {
           href={pdfUrl}
           target="_blank"
           download="cv-suisse.pdf"
-          passHref
-          legacyBehavior
         >
           <Button
             color="primary"
