@@ -4,7 +4,6 @@ export default function sitemap() {
     "/contact",
     "/legal",
     "/privacy",
-    "/onboard",
     "/guides/comment-faire-un-cv-suisse",
   ].map((route) => ({
     url: `https://swisscvbuilder.ch${route}`,

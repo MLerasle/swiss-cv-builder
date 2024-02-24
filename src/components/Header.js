@@ -1,16 +1,26 @@
 "use client";
 
-import { Fragment } from "react";
-import Link from "next/link";
+import { useState } from "react";
 import Image from "next/image";
-import { Popover, Transition } from "@headlessui/react";
-import clsx from "clsx";
-import { Button } from "@nextui-org/react";
-import { usePathname } from "next/navigation";
-
-import { Container } from "@/components/Container";
-import { NavLink } from "@/components/NavLink";
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  NavbarMenu,
+  NavbarMenuItem,
+  NavbarMenuToggle,
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  Avatar,
+  AvatarIcon,
+  Link,
+  Button,
+} from "@nextui-org/react";
 import Logo from "@/images/logo.svg";
+import { logout } from "@/lib/actions";
 
 const navlinks = [
   {
@@ -19,136 +29,103 @@ const navlinks = [
   },
 ];
 
-function MobileNavLink({ href, children }) {
-  return (
-    <Popover.Button as={Link} href={href} className="block w-full p-2">
-      {children}
-    </Popover.Button>
-  );
-}
+export function Header({ user }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-function MobileNavIcon({ open }) {
   return (
-    <svg
-      aria-hidden="true"
-      className="h-3.5 w-3.5 overflow-visible stroke-slate-700"
-      fill="none"
-      strokeWidth={2}
-      strokeLinecap="round"
+    <Navbar
+      maxWidth="xl"
+      height="6rem"
+      shouldHideOnScroll
+      onMenuOpenChange={setIsMenuOpen}
     >
-      <path
-        d="M0 1H14M0 7H14M0 13H14"
-        className={clsx(
-          "origin-center transition",
-          open && "scale-90 opacity-0"
-        )}
-      />
-      <path
-        d="M2 2L12 12M12 2L2 12"
-        className={clsx(
-          "origin-center transition",
-          !open && "scale-90 opacity-0"
-        )}
-      />
-    </svg>
-  );
-}
-
-function MobileNavigation() {
-  return (
-    <Popover>
-      <Popover.Button
-        className="relative z-10 flex h-8 w-8 items-center justify-center ui-not-focus-visible:outline-none"
-        aria-label="Toggle Navigation"
-      >
-        {({ open }) => <MobileNavIcon open={open} />}
-      </Popover.Button>
-      <Transition.Root>
-        <Transition.Child
-          as={Fragment}
-          enter="duration-150 ease-out"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="duration-150 ease-in"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
-          <Popover.Overlay className="fixed inset-0 bg-slate-300/50" />
-        </Transition.Child>
-        <Transition.Child
-          as={Fragment}
-          enter="duration-150 ease-out"
-          enterFrom="opacity-0 scale-95"
-          enterTo="opacity-100 scale-100"
-          leave="duration-100 ease-in"
-          leaveFrom="opacity-100 scale-100"
-          leaveTo="opacity-0 scale-95"
-        >
-          <Popover.Panel
-            as="div"
-            className="absolute inset-x-0 top-full mt-4 flex origin-top flex-col rounded-2xl bg-white p-4 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5"
+      <NavbarContent>
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="sm:hidden"
+        />
+        <NavbarBrand>
+          <Link
+            href="/"
+            aria-label="Home"
+            className="flex items-center gap-x-3"
           >
-            {navlinks.map((link) => (
-              <MobileNavLink key={link.href} href={link.href}>
-                {link.label}
-              </MobileNavLink>
-            ))}
-          </Popover.Panel>
-        </Transition.Child>
-      </Transition.Root>
-    </Popover>
-  );
-}
-
-export function Header() {
-  const pathname = usePathname();
-
-  return (
-    <header className="py-10 shadow">
-      <Container>
-        <nav className="relative z-50 flex justify-between">
-          <div className="flex items-center md:gap-x-12">
-            <Link
-              href="/"
-              aria-label="Home"
-              className="flex items-center gap-x-3"
-            >
-              <Image
-                src={Logo}
-                alt="SwissCVBuilder logo"
-                className="h-10 w-auto"
-              />
-              <div className="flex items-center gap-x-2">
-                <div className="text-xl font-medium leading-8 text-gray-800">
-                  Swiss<span className="text-blue-700">CV</span>Builder
-                </div>
-                <div className="hidden sm:inline-block text-xs bg-blue-500 shadow-md shadow-blue-500/50 text-white font-semibold tracking-wider px-4 py-1 rounded-full">
-                  BETA
-                </div>
+            <Image
+              src={Logo}
+              alt="SwissCVBuilder logo"
+              className="h-10 w-auto"
+            />
+            <div className="flex items-center gap-x-2">
+              <div className="text-xl font-medium leading-8 text-gray-800">
+                Swiss<span className="text-blue-700">CV</span>Builder
               </div>
-            </Link>
-            <div className="hidden md:flex md:gap-x-6">
-              {navlinks.map((link) => (
-                <NavLink key={link.href} href={link.href}>
-                  {link.label}
-                </NavLink>
-              ))}
+              <div className="hidden sm:inline-block text-xs bg-blue-500 shadow-md shadow-blue-500/50 text-white font-semibold tracking-wider px-4 py-1 rounded-full">
+                BETA
+              </div>
             </div>
-          </div>
-          <div className="flex items-center gap-x-5 md:gap-x-8">
-            <Link href="/onboard">
-              <Button color="primary" radius="full">
-                Rédiger <span className="hidden lg:inline">mon </span>CV
-              </Button>
+          </Link>
+        </NavbarBrand>
+      </NavbarContent>
+
+      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        {navlinks.map(({ href, label }) => (
+          <NavbarItem key={href}>
+            <Link color="foreground" href={href}>
+              {label}
             </Link>
-            {pathname === "" && (
-              <div className="-mr-1 md:hidden">
-                <MobileNavigation />
-              </div>
-            )}
-          </div>
-        </nav>
-      </Container>
-    </header>
+          </NavbarItem>
+        ))}
+      </NavbarContent>
+
+      {user ? (
+        <NavbarContent as="div" justify="end">
+          <Dropdown placement="bottom-end">
+            <DropdownTrigger>
+              <Avatar
+                isBordered
+                as="button"
+                className="transition-transform"
+                classNames={{
+                  base: "bg-gray-400",
+                  icon: "text-white",
+                }}
+                size="sm"
+                icon={<AvatarIcon />}
+              />
+            </DropdownTrigger>
+            <DropdownMenu aria-label="Profile Actions" variant="flat">
+              <DropdownItem key="profile" className="h-14 gap-2">
+                <p className="font-semibold">Connecté en tant que</p>
+                <p className="font-semibold">{user?.email}</p>
+              </DropdownItem>
+              <DropdownItem key="settings">Mon compte</DropdownItem>
+              <DropdownItem key="logout" color="danger">
+                <form action={logout}>
+                  <button>Se déconnecter</button>
+                </form>
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+        </NavbarContent>
+      ) : (
+        <NavbarContent justify="end">
+          <NavbarItem>
+            <Button as={Link} color="primary" radius="full" href="/login">
+              Se connecter
+            </Button>
+          </NavbarItem>
+        </NavbarContent>
+      )}
+
+      <NavbarMenu>
+        {navlinks.map(({ href, label }) => (
+          <NavbarMenuItem key={href}>
+            <Link href={href} size="lg" className="w-full" color="foreground">
+              {label}
+            </Link>
+          </NavbarMenuItem>
+        ))}
+      </NavbarMenu>
+    </Navbar>
   );
 }
