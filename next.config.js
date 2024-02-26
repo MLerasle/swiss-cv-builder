@@ -1,5 +1,3 @@
-const { withContentlayer } = require("next-contentlayer");
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // target: "serverless",
@@ -18,7 +16,6 @@ module.exports = nextConfig;
 const { withSentryConfig } = require("@sentry/nextjs");
 
 module.exports = withSentryConfig(
-  withContentlayer(module.exports),
   {
     // For all available options, see:
     // https://github.com/getsentry/sentry-webpack-plugin#options

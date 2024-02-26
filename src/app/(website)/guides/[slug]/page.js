@@ -1,21 +1,25 @@
 import { notFound } from "next/navigation";
-import { allGuides } from "contentlayer/generated";
+import { serialize } from "next-mdx-remote/serialize";
+import remarkGfm from "remark-gfm";
+import rehypeSlug from "rehype-slug";
 
 import { GuideHeader } from "@/components/GuideHeader";
 import { GuideContent } from "@/components/GuideContent";
 import { SocialShareButtons } from "@/components/SocialShareButtons";
+import { getGuides } from "@/lib/guides";
 
 export async function generateMetadata({ params }) {
   const guide = getGuide(params);
 
   return {
-    title: guide.title,
-    description: guide.description,
+    title: guide.metadata.title,
+    description: guide.metadata.description,
   };
 }
 
-export default function Guide({ params }) {
+export default async function Guide({ params }) {
   const guide = getGuide(params);
+  const content = await getGuideContent(guide);
 
   if (!guide) notFound();
 
@@ -28,7 +32,7 @@ export default function Guide({ params }) {
             <div className="text-lg max-w-3xl mx-auto prose prose-blue md:prose-lg text-gray-500">
               <SocialShareButtons guide={guide} />
               <div className="py-12">
-                <GuideContent content={guide.body.code} />
+                <GuideContent content={content} />
               </div>
               <div className="border-t border-slate-200 pt-12">
                 <SocialShareButtons guide={guide} />
@@ -42,9 +46,21 @@ export default function Guide({ params }) {
 }
 
 export async function generateStaticParams() {
-  return allGuides.map((guide) => ({ slug: guide.slug }));
+  return getGuides().map((guide) => ({ slug: guide.slug }));
 }
 
 function getGuide(params) {
-  return allGuides.find((guide) => guide.slug === params.slug);
+  return getGuides().find((guide) => guide.slug === params.slug);
+}
+
+async function getGuideContent(guide) {
+  const mdxSource = await serialize(guide.content, {
+    parseFrontmatter: true,
+    mdxOptions: {
+      remarkPlugins: [remarkGfm],
+      rehypePlugins: [rehypeSlug],
+    },
+  });
+
+  return mdxSource;
 }
