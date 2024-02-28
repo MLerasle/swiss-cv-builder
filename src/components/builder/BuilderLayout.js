@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { usePathname, redirect } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 import { SectionsNav } from "@/components/builder/SectionsNav";
 import { FormNavigation } from "@/components/builder/FormNavigation";
@@ -10,6 +10,7 @@ import { ResumePreview } from "@/components/builder/ResumePreview";
 import { BaseSpinner } from "@/components/UI/BaseSpinner";
 import { useResume } from "@/hooks/useResume";
 import Logo from "@/images/logo.svg";
+import { logout } from "@/lib/actions";
 
 export function BuilderLayout({ props }) {
   const [isClient, setIsClient] = useState(false);
@@ -43,14 +44,19 @@ export function BuilderLayout({ props }) {
             <div className="flex-1 overflow-y-scroll">
               <SectionsNav steps={sections} currentStep={currentStep} />
             </div>
-            {/* <div className="bg-slate-900 h-16 z-50">Ajouter une section</div> */}
+            <div className="bg-slate-900 h-16 z-50">Ajouter une section</div>
           </div>
 
           <div className="flex-1 flex flex-col overflow-hidden">
-            <div className="h-16 z-50 shadow flex items-center px-8">
+            <div className="h-16 z-50 shadow flex justify-between items-center px-8">
               <h1 className="text-lg font-semibold tracking-wide text-slate-800">
                 {currentStep.name}
               </h1>
+              <form action={logout}>
+                <button color="primary" variant="bordered">
+                  Se déconnecter
+                </button>
+              </form>
             </div>
 
             <div className="flex-1 flex flex-col xl:flex-row w-full overflow-hidden">

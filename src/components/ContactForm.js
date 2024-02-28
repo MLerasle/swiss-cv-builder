@@ -1,49 +1,41 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@nextui-org/react";
+import { useForm, Controller } from "react-hook-form";
 
 import { BaseInput } from "@/components/UI/BaseInput";
 import { BaseTextarea } from "@/components/UI/BaseTextarea";
+import { sendContactMessage } from "@/lib/actions";
 import { BaseNotification } from "@/components/UI/BaseNotification";
 import { scrollToElement } from "@/lib/scroll";
 
 export function ContactForm() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [error, setError] = useState(false);
-  const emailRef = useRef();
-  const messageRef = useRef();
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
-  async function sendMessage(event) {
-    event.preventDefault();
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting, isSubmitSuccessful },
+  } = useForm();
 
-    const formData = {
-      email: emailRef.current.value,
-      message: messageRef.current.value,
-    };
+  useEffect(() => {
+    reset({
+      email: "",
+      message: "",
+    });
+  }, [isSubmitSuccessful]);
 
-    try {
-      setIsLoading(true);
-      const response = await fetch("/api/contact", {
-        method: "post",
-        body: JSON.stringify(formData),
-      });
-      if (!response.ok) {
-        setIsLoading(false);
-        setIsFormSubmitted(true);
-        throw new Error(`Invalid response: ${response.status}`);
-      }
-      setIsLoading(false);
-      setIsFormSubmitted(true);
-      scrollToElement("formContainer");
-    } catch (err) {
-      scrollToElement("formContainer");
-      setIsLoading(false);
-      setIsFormSubmitted(true);
+  const onSubmit = async (data) => {
+    const { error } = await sendContactMessage(data);
+    scrollToElement("formContainer");
+    setIsFormSubmitted(true);
+    if (error) {
       setError(true);
     }
-  }
+  };
 
   return (
     <div className="px-6 py-24 sm:py-32 lg:px-8" id="formContainer">
@@ -71,29 +63,58 @@ export function ContactForm() {
           d'amélioration, veuillez utiliser le formulaire ci-dessous.
         </p>
       </div>
-      <form className="mx-auto mt-16 max-w-xl sm:mt-20" onSubmit={sendMessage}>
+      <form
+        className="mx-auto mt-16 max-w-xl sm:mt-20"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
           <div className="sm:col-span-2">
             <div className="mt-2.5">
-              <BaseInput
-                label="Email"
-                autoFocus
-                type="email"
+              <Controller
                 name="email"
-                id="email"
-                autoComplete="email"
-                ref={emailRef}
+                rules={{
+                  required: true,
+                }}
+                control={control}
+                render={({ field: { ...field } }) => (
+                  <BaseInput
+                    autoFocus
+                    label="Adresse email"
+                    isInvalid={errors?.email}
+                    color={errors?.email ? "danger" : "default"}
+                    errorMessage={
+                      errors?.email ? "Veuillez saisir votre adresse email" : ""
+                    }
+                    autoComplete="email"
+                    {...field}
+                  />
+                )}
               />
             </div>
           </div>
           <div className="sm:col-span-2">
             <div className="mt-2.5">
-              <BaseTextarea
-                label="Message"
+              <Controller
                 name="message"
-                id="message"
-                minRows={6}
-                ref={messageRef}
+                rules={{
+                  required: true,
+                }}
+                control={control}
+                render={({ field: { ...field } }) => (
+                  <BaseTextarea
+                    label="Message"
+                    name="message"
+                    id="message"
+                    minRows={6}
+                    isInvalid={errors?.message}
+                    color={errors?.message ? "danger" : "default"}
+                    errorMessage={
+                      errors?.message ? "Veuillez saisir votre message" : ""
+                    }
+                    autoComplete="message"
+                    {...field}
+                  />
+                )}
               />
             </div>
           </div>
@@ -102,8 +123,9 @@ export function ContactForm() {
           <Button
             type="submit"
             color="primary"
+            size="lg"
             className="w-full"
-            isLoading={isLoading}
+            isLoading={isSubmitting}
           >
             Envoyer le message
           </Button>

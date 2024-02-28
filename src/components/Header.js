@@ -10,17 +10,10 @@ import {
   NavbarMenu,
   NavbarMenuItem,
   NavbarMenuToggle,
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
-  Avatar,
-  AvatarIcon,
   Link,
   Button,
 } from "@nextui-org/react";
 import Logo from "@/images/logo.svg";
-import { logout } from "@/lib/actions";
 
 const navlinks = [
   {
@@ -77,45 +70,13 @@ export function Header({ user }) {
         ))}
       </NavbarContent>
 
-      {user ? (
-        <NavbarContent as="div" justify="end">
-          <Dropdown placement="bottom-end">
-            <DropdownTrigger>
-              <Avatar
-                isBordered
-                as="button"
-                className="transition-transform"
-                classNames={{
-                  base: "bg-gray-400",
-                  icon: "text-white",
-                }}
-                size="sm"
-                icon={<AvatarIcon />}
-              />
-            </DropdownTrigger>
-            <DropdownMenu aria-label="Profile Actions" variant="flat">
-              <DropdownItem key="profile" className="h-14 gap-2">
-                <p className="font-semibold">Connecté en tant que</p>
-                <p className="font-semibold">{user?.email}</p>
-              </DropdownItem>
-              <DropdownItem key="settings">Mon compte</DropdownItem>
-              <DropdownItem key="logout" color="danger">
-                <form action={logout}>
-                  <button>Se déconnecter</button>
-                </form>
-              </DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-        </NavbarContent>
-      ) : (
-        <NavbarContent justify="end">
-          <NavbarItem>
-            <Button as={Link} color="primary" radius="full" href="/login">
-              Se connecter
-            </Button>
-          </NavbarItem>
-        </NavbarContent>
-      )}
+      <NavbarContent justify="end">
+        <NavbarItem>
+          <Button as={Link} color="primary" radius="full" href="/onboard">
+            Rédiger mon CV
+          </Button>
+        </NavbarItem>
+      </NavbarContent>
 
       <NavbarMenu>
         {navlinks.map(({ href, label }) => (

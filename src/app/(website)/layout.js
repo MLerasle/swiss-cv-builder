@@ -1,8 +1,6 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
-import { getUser } from "@/lib/actions";
-
 export const metadata = {
   title: "SwissCVBuilder",
   description:
@@ -10,11 +8,9 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const { data } = await getUser();
-
   return (
     <>
-      <Header user={data?.user} />
+      <Header />
       {children}
       <Footer />
     </>

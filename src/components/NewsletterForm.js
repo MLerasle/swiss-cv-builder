@@ -1,45 +1,37 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@nextui-org/react";
+import { useForm, Controller } from "react-hook-form";
 
 import { BaseNotification } from "@/components/UI/BaseNotification";
 import { BaseInput } from "@/components/UI/BaseInput";
 import { FadeIn } from "@/components/FadeIn";
+import { subsribeToNewsletter } from "@/lib/actions";
 
 export function NewsletterForm() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [error, setError] = useState(false);
-  const emailRef = useRef();
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
-  async function subsribeToNewsletter(event) {
-    event.preventDefault();
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting, isSubmitSuccessful },
+  } = useForm();
 
-    const formData = {
-      email: emailRef.current.value,
-    };
+  useEffect(() => {
+    reset({ email: "" });
+  }, [isSubmitSuccessful]);
 
-    try {
-      setIsLoading(true);
-      const response = await fetch("/api/newsletter", {
-        method: "post",
-        body: JSON.stringify(formData),
-      });
-      if (!response.ok) {
-        setIsLoading(false);
-        setIsFormSubmitted(true);
-        throw new Error(`Invalid response: ${response.status}`);
-      }
-      setIsLoading(false);
-      setIsFormSubmitted(true);
-      emailRef.current.value = "";
-    } catch (err) {
-      setIsLoading(false);
-      setIsFormSubmitted(true);
+  const onSubmit = async (data) => {
+    const response = await subsribeToNewsletter(data);
+    console.log({ response });
+    setIsFormSubmitted(true);
+    if (error) {
       setError(true);
     }
-  }
+  };
 
   return (
     <div className="bg-white py-16 sm:py-24">
@@ -71,26 +63,35 @@ export function NewsletterForm() {
           </FadeIn>
           <FadeIn>
             <form
-              className="mx-auto mt-10 flex max-w-md gap-x-4"
-              onSubmit={subsribeToNewsletter}
+              className="mx-auto mt-10 flex items-center max-w-md gap-x-4"
+              onSubmit={handleSubmit(onSubmit)}
             >
-              <BaseInput
-                label="Adresse email"
-                type="email"
+              <Controller
                 name="email"
-                autoComplete="email"
-                size="sm"
-                classNames={{
-                  input: "bg-transparent",
+                rules={{
+                  required: true,
                 }}
-                ref={emailRef}
+                control={control}
+                render={({ field: { ...field } }) => (
+                  <BaseInput
+                    size="sm"
+                    placeholder="Adresse email"
+                    isInvalid={errors?.email}
+                    color={errors?.email ? "danger" : "default"}
+                    errorMessage={
+                      errors?.email ? "Veuillez saisir votre adresse email" : ""
+                    }
+                    autoComplete="email"
+                    {...field}
+                  />
+                )}
               />
               <Button
                 type="submit"
                 size="lg"
                 radius="sm"
-                className="flex-none bg-white px-3.5 py-2.5 text-sm font-medium text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-                isLoading={isLoading}
+                className="flex-none bg-white text-sm font-medium text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                isLoading={isSubmitting}
               >
                 S'abonner
               </Button>
