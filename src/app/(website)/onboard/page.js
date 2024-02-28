@@ -10,10 +10,11 @@ export const metadata = {
 };
 
 export default async function Builder() {
-  const { data } = await getUser();
+  const { error } = await getUser();
+  // console.log({ error });
   const { templates } = useResume();
 
-  if (!data.user) {
+  if (error) {
     return redirect("/login");
   }
 
