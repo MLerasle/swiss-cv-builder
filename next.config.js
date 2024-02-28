@@ -13,6 +13,11 @@ const nextConfig = {
     disableLogger: true,
     automaticVercelMonitors: true,
   },
+  experimental: {
+    outputFileTracingExcludes: {
+      "*": ["node_modules/canvas"],
+    },
+  },
 };
 
 const sentryWebpackPluginOptions = {
