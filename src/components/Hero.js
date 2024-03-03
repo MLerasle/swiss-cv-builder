@@ -4,12 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@nextui-org/react";
 
-import { FadeIn } from "@/components/FadeIn";
 import heroImg from "@/images/resume.svg";
 
 export function Hero() {
   return (
-    <FadeIn className="bg-white">
+    <>
       <div className="relative isolate overflow-hidden bg-gradient-to-b from-blue-100/20">
         <div className="mx-auto max-w-7xl py-24 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:py-32">
           <div className="mx-auto max-w-2xl lg:max-w-none lg:flex lg:flex-col lg:justify-center px-6 sm:px-0">
@@ -59,6 +58,6 @@ export function Hero() {
         </div>
         <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-white sm:h-32" />
       </div>
-    </FadeIn>
+    </>
   );
 }

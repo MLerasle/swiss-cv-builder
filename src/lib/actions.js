@@ -7,6 +7,17 @@ import fetch from "node-fetch";
 import DOMPurify from "isomorphic-dompurify";
 import { createClient } from "@/utils/supabase/server";
 
+const getURL = () => {
+  let url =
+    process?.env?.NEXT_PUBLIC_SITE_URL ??
+    process?.env?.NEXT_PUBLIC_VERCEL_URL ??
+    "http://localhost:3000/";
+  url = url.includes("http") ? url : `https://${url}`;
+  url = url.charAt(url.length - 1) === "/" ? url : `${url}/`;
+  console.log("URL in getURL()", url);
+  return url;
+};
+
 export async function getUser() {
   const supabase = createClient();
   return supabase.auth.getUser();
@@ -15,8 +26,6 @@ export async function getUser() {
 export async function login(data) {
   const supabase = createClient();
 
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
   const formData = {
     email: DOMPurify.sanitize(data.email),
     password: DOMPurify.sanitize(data.password),
@@ -25,7 +34,7 @@ export async function login(data) {
   const { error } = await supabase.auth.signInWithPassword(formData);
 
   if (error) {
-    redirect("/login?message=Could not authenticate user");
+    redirect("/login?error=Could not authenticate user");
   }
 
   revalidatePath("/", "layout");
@@ -35,21 +44,22 @@ export async function login(data) {
 export async function signup(data) {
   const supabase = createClient();
 
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
   const formData = {
     email: DOMPurify.sanitize(data.email),
     password: DOMPurify.sanitize(data.password),
+    options: {
+      emailRedirectTo: `${getURL()}onboard`,
+    },
   };
 
   const { error } = await supabase.auth.signUp(formData);
 
   if (error) {
-    redirect("/login?message=Could not register user");
+    redirect("/login?error=Could not register user");
   }
 
   revalidatePath("/", "layout");
-  redirect("/onboard");
+  redirect("/login?confirm=Validate your email");
 }
 
 export async function logout() {
@@ -66,11 +76,11 @@ export async function sendResetPasswordLink(email) {
   const { error } = await supabase.auth.resetPasswordForEmail(
     DOMPurify.sanitize(email),
     {
-      redirectTo: "http://localhost:3000/change-password",
+      redirectTo: `${getURL()}change-password`,
     }
   );
   if (error) {
-    redirect("/forgot-password?message=Could not send reset link");
+    redirect("/forgot-password?error=Could not send reset link");
   }
   redirect("/forgot-password?message=Link sent");
 }
@@ -83,7 +93,7 @@ export async function updatePassword(password) {
   if (error) {
     redirect("/change-password?error=Could not update password");
   }
-  redirect("/login");
+  redirect("/change-password?message=Successfully updated password");
 }
 
 const transporter = nodemailer.createTransport({

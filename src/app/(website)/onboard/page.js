@@ -11,7 +11,6 @@ export const metadata = {
 
 export default async function Builder() {
   const { error } = await getUser();
-  // console.log({ error });
   const { templates } = useResume();
 
   if (error) {

@@ -1,80 +1,126 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState } from "react";
+import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 import { useForm, Controller } from "react-hook-form";
 import { Button } from "@nextui-org/react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 import { BaseInput } from "@/components/UI/BaseInput";
+import { BaseNotification } from "@/components/UI/BaseNotification";
 import { updatePassword } from "@/lib/actions";
+import Logo from "@/images/logo.svg";
 
 export function ChangePasswordForm() {
   const [isVisible, setIsVisible] = useState(false);
-  const [isPending, startTransition] = useTransition();
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const searchParams = useSearchParams();
+  const error = searchParams.get("error");
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    reset,
+    formState: { errors, isSubmitting },
   } = useForm();
 
   const toggleVisibility = () => setIsVisible(!isVisible);
 
-  const onSubmit = (data) => {
-    startTransition(() => {
-      updatePassword(data);
-    });
+  const onSubmit = async (data) => {
+    await updatePassword(data?.password);
+    setIsFormSubmitted(true);
+    reset({ password: "" });
   };
 
   return (
-    <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
-      <Controller
-        name="password"
-        rules={{
-          required: true,
-          minLength: 6,
-        }}
-        control={control}
-        render={({ field: { ...field } }) => (
-          <BaseInput
-            autoFocus
-            type={isVisible ? "text" : "password"}
-            label="Mot de passe"
-            placeholder="Saisissez votre nouveau mot de passe"
-            isInvalid={errors?.password}
-            color={errors?.password ? "danger" : "default"}
-            errorMessage={
-              errors?.password?.type === "required"
-                ? "Veuillez saisir un nouveau mot de passe"
-                : errors?.password?.type === "minLength"
-                ? "Votre mot de passe doit contenir au moins 6 caractères"
-                : ""
-            }
-            endContent={
-              <button
-                className="focus:outline-none"
-                type="button"
-                onClick={toggleVisibility}
-              >
-                {isVisible ? (
-                  <EyeSlashIcon className="w-5 h-5 text-default-400 pointer-events-none" />
-                ) : (
-                  <EyeIcon className="w-5 h-5 text-default-400 pointer-events-none" />
-                )}
-              </button>
-            }
-            {...field}
-          />
+    <div className="flex flex-1 flex-col justify-center py-12 md:py-16 lg:py-24 sm:px-6 lg:px-8">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md">
+        {isFormSubmitted && !error && (
+          <BaseNotification type="success" className="mb-16 sm:mb-20">
+            <p>Votre mot de passe a bien été enregistré.</p>
+            <p>Vous pouvez maintenant accéder à votre compte.</p>
+          </BaseNotification>
         )}
-      />
+        {isFormSubmitted && error && (
+          <BaseNotification type="error" className="mb-16 sm:mb-20">
+            <p>
+              Une erreur est survenue pendant la réinitialisation de votre mot
+              de passe.
+            </p>
+            <p>
+              Si celle-ci persiste, vous pouvez nous contacter directement à
+              l'adresse contact@swisscvbuilder.ch.
+            </p>
+          </BaseNotification>
+        )}
+        <Image
+          src={Logo}
+          alt="SwissCVBuilder logo"
+          className="mx-auto h-10 w-auto"
+        />
+        <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          Modifiez votre mot de passe
+        </h2>
+        <p className="mt-2 text-center text-gray-500">
+          Entrez votre nouveau mot de passe ci-dessous.
+        </p>
+      </div>
 
-      <Button
-        type="submit"
-        color="primary"
-        size="lg"
-        disabled={isPending}
-        className="w-full"
-      >
-        Changer le mot de passe
-      </Button>
-    </form>
+      <div className="sm:mx-auto sm:w-full sm:max-w-[480px] mt-6">
+        <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
+          <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+            <Controller
+              name="password"
+              rules={{
+                required: true,
+                minLength: 6,
+              }}
+              control={control}
+              render={({ field: { ...field } }) => (
+                <BaseInput
+                  autoFocus
+                  type={isVisible ? "text" : "password"}
+                  label="Mot de passe"
+                  placeholder="Saisissez votre nouveau mot de passe"
+                  isInvalid={errors?.password}
+                  color={errors?.password ? "danger" : "default"}
+                  errorMessage={
+                    errors?.password?.type === "required"
+                      ? "Veuillez saisir un nouveau mot de passe"
+                      : errors?.password?.type === "minLength"
+                      ? "Votre mot de passe doit contenir au moins 6 caractères"
+                      : ""
+                  }
+                  endContent={
+                    <button
+                      className="focus:outline-none"
+                      type="button"
+                      onClick={toggleVisibility}
+                    >
+                      {isVisible ? (
+                        <EyeSlashIcon className="w-5 h-5 text-default-400 pointer-events-none" />
+                      ) : (
+                        <EyeIcon className="w-5 h-5 text-default-400 pointer-events-none" />
+                      )}
+                    </button>
+                  }
+                  {...field}
+                />
+              )}
+            />
+
+            <Button
+              type="submit"
+              color="primary"
+              size="lg"
+              disabled={isSubmitting}
+              isLoading={isSubmitting}
+              className="w-full"
+            >
+              Changer le mot de passe
+            </Button>
+          </form>
+        </div>
+      </div>
+    </div>
   );
 }
