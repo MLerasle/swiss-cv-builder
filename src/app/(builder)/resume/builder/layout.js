@@ -5,7 +5,7 @@ import { getUser } from "@/lib/actions";
 export default async function RootLayout(props) {
   const { data } = await getUser();
   if (!data.user) {
-    return redirect("/login");
+    return redirect("/signin");
   }
 
   return <BuilderLayout props={props} />;

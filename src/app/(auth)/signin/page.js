@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
 import { AuthForm } from "@/components/auth/AuthForm";
-import { getUser, login, signup } from "@/lib/actions";
+import { getUser, login } from "@/lib/actions";
 
 export default async function LoginPage() {
   const { data } = await getUser();
@@ -10,5 +10,5 @@ export default async function LoginPage() {
     return redirect("/");
   }
 
-  return <AuthForm login={login} signup={signup} />;
+  return <AuthForm page="signin" action={login} />;
 }

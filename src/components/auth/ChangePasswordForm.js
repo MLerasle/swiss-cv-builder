@@ -1,15 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useForm, Controller } from "react-hook-form";
 import { Button } from "@nextui-org/react";
-import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { BaseInput } from "@/components/UI/BaseInput";
 import { BaseNotification } from "@/components/UI/BaseNotification";
 import { updatePassword } from "@/lib/actions";
-import Logo from "@/images/logo.svg";
 
 export function ChangePasswordForm() {
   const [isVisible, setIsVisible] = useState(false);
@@ -52,12 +50,7 @@ export function ChangePasswordForm() {
             </p>
           </BaseNotification>
         )}
-        <Image
-          src={Logo}
-          alt="SwissCVBuilder logo"
-          className="mx-auto h-10 w-auto"
-        />
-        <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+        <h2 className="mt-6 text-center text-3xl font-black leading-9 tracking-tight text-gray-900">
           Modifiez votre mot de passe
         </h2>
         <p className="mt-2 text-center text-gray-500">
@@ -65,9 +58,9 @@ export function ChangePasswordForm() {
         </p>
       </div>
 
-      <div className="sm:mx-auto sm:w-full sm:max-w-[480px] mt-6">
-        <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
-          <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+      <div className="sm:mx-auto sm:w-full sm:max-w-2xl mt-6">
+        <div className="bg-white px-6 py-12 sm:px-12">
+          <form className="space-y-12" onSubmit={handleSubmit(onSubmit)}>
             <Controller
               name="password"
               rules={{
@@ -87,7 +80,7 @@ export function ChangePasswordForm() {
                     errors?.password?.type === "required"
                       ? "Veuillez saisir un nouveau mot de passe"
                       : errors?.password?.type === "minLength"
-                      ? "Votre mot de passe doit contenir au moins 6 caractères"
+                      ? "Votre mot de passe doit contenir au moins 8 caractères"
                       : ""
                   }
                   endContent={

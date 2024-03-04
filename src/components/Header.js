@@ -72,8 +72,25 @@ export function Header({ user }) {
 
       <NavbarContent justify="end">
         <NavbarItem>
-          <Button as={Link} color="primary" radius="full" href="/onboard">
-            Rédiger mon CV
+          <Button
+            as={Link}
+            color="primary"
+            radius="full"
+            href="/signin"
+            variant="light"
+          >
+            Se connecter
+          </Button>
+        </NavbarItem>
+        <NavbarItem>
+          <Button
+            as={Link}
+            color="primary"
+            radius="full"
+            href="/signup"
+            variant="flat"
+          >
+            S'inscrire
           </Button>
         </NavbarItem>
       </NavbarContent>

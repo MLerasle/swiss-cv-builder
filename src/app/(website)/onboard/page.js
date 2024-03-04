@@ -14,7 +14,7 @@ export default async function Builder() {
   const { templates } = useResume();
 
   if (error) {
-    return redirect("/login");
+    return redirect("/signin");
   }
 
   return (
